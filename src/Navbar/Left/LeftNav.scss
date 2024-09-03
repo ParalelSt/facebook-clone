@@ -1,0 +1,45 @@
+@import "../../Global/GlobalStyles.scss";
+
+.left-nav {
+    display: flex;
+    align-items: center;
+    padding: 0.25em 0.8em;
+    flex: 1;
+
+    gap: 1em;
+
+    .logo-container {
+        img {
+            height: 3em;
+            width: 3em;
+        }
+    }
+
+    .input-container {
+        display: flex;
+        align-items: center;
+        gap: 0.5em;
+        padding: 0em 0.2em 0em 0.8em;
+        border-radius: 1.5em;
+        
+        background-color: #f0f2f5;
+
+        .left {
+            height: 1em;
+            width: 1em;
+        }
+
+        .right {
+            input {
+                height: 3em;
+                width: 15em;
+                background-color: transparent;
+                border: none;
+    
+                &::placeholder {
+                    @include set-font-size ("medium");
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,66 @@
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    text-decoration: none;
+    list-style-type: none;
+}
+
+body {
+    background-color: #f0f2f5;
+}
+
+//Screen Sizes//
+
+$mobile: 300px;
+$tablet: 768px;
+$large-desktop: 1200px;
+
+$breakpoints: (
+  "small": (
+    min-width: $mobile,
+  ),
+  "medium": (
+    min-width: $tablet,
+  ),
+  "large": (
+    min-width: $large-desktop,
+  ),
+); 
+
+@mixin responsive($size) {
+    $query: map-get($breakpoints, $size);
+  
+      @media #{$query} {
+        @content;
+    }
+}
+
+//Fonts//
+
+$small: 0.875rem;
+
+$medium: 1rem;
+
+$large: 1.5rem;
+
+$font-sizes: (
+    "small": (
+    font-size: $small,
+    ),
+  "medium": (
+    font-size: $medium,
+    ),
+  "large": (
+    font-size: $large,
+  ),
+);
+
+@mixin set-font-size($size-key) {
+    $font-size: map-get($font-sizes, $size-key);
+    @if $font-size {
+      font-size: map-get($font-size, font-size);
+    } @else {
+      @warn "Font size '#{$size-key}' not found in map.";
+    }
+  }

@@ -1,0 +1,29 @@
+.middle-nav {
+    flex: 2;
+
+    .items-container {
+        height: 100%;
+
+        display: grid;
+        grid-template-columns: repeat(5, 8em);
+
+        .item-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            &:hover {
+                background-color:#f2f2f2;
+            }
+
+            .img-container {
+                svg {
+                    color: gray;
+
+                    height: 1.5em;
+                    width: 1.5em;
+                }
+            }
+        }
+    }
+}
