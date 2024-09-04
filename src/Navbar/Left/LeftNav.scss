@@ -3,7 +3,7 @@
 .left-nav {
     display: flex;
     align-items: center;
-    padding: 0.25em 0.8em;
+    padding: 0.25rem 0.8rem;
     flex: 1;
 
     gap: 1em;
@@ -38,6 +38,10 @@
     
                 &::placeholder {
                     @include set-font-size ("medium");
+                }
+
+                &:focus {
+                    outline: none;
                 }
             }
         }

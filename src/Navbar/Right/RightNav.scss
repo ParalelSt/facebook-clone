@@ -1,0 +1,62 @@
+.right-nav {
+    display: flex;
+    justify-content: flex-end;
+    padding: 0.25rem 0.8rem;
+    flex: 1;
+
+    .items-container {
+        display: flex;
+        align-items: center;
+
+        .item-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            width: 3em;
+            height: 3em;
+
+            .img-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0.6em;
+                border-radius: 100%;
+                background-color: #e4e6eb;
+
+                .icon {
+                    width: 1.3em;
+                    height: 1.3em;
+                }
+
+            }
+
+        }
+
+        .profile-container {
+            display: flex;
+            
+            align-items: center;
+            padding: 0.25em;
+            
+            height: 3em;
+            width: 3em;
+
+            .img-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+                height: 100%;
+                width: 100%;
+
+                .profile {
+                    height: 100%;
+                    width: 100%;
+    
+                    border-radius: 100%;
+                }
+            }
+        }
+    }
+}

@@ -7,43 +7,76 @@ import {
 } from "react-icons/fa6";
 import "./Middlenav.scss";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+
+type ActiveItem = "house" | "video" | "shop" | "group" | "game" | null;
 
 function MiddleNav() {
-  const [isActive, setIsActive] = useState(false);
+  const [activeItem, setActiveItem] = useState<ActiveItem>(null);
+  const [isActive, setIsActive] = useState(true);
+
+  const handleItemClick = (item: ActiveItem) => {
+    setActiveItem(item);
+    setIsActive(false);
+  };
+
+  const getItemClass = (item: ActiveItem) => {
+    return item === activeItem ? "item-container active" : "item-container";
+  };
 
   return (
     <div className="middle-nav">
       <div className="items-container">
-        <div className="item-container">
+        <Link
+          to={"/"}
+          className={`${getItemClass("house")} ${isActive ? "active" : ""}`}
+          onClick={() => handleItemClick("house")}
+        >
           <div className="img-container">
             <FaHouse></FaHouse>
           </div>
           <div className="underline"></div>
-        </div>
-        <div className="item-container">
+        </Link>
+        <Link
+          to={"/video"}
+          className={getItemClass("video")}
+          onClick={() => handleItemClick("video")}
+        >
           <div className="img-container">
             <FaVideo></FaVideo>
           </div>
           <div className="underline"></div>
-        </div>
-        <div className="item-container">
+        </Link>
+        <Link
+          to={"/marketplace"}
+          className={getItemClass("shop")}
+          onClick={() => handleItemClick("shop")}
+        >
           <div className="img-container">
             <FaShop></FaShop>
           </div>
           <div className="underline"></div>
-        </div>
-        <div className="item-container">
+        </Link>
+        <Link
+          to={"/groups"}
+          className={getItemClass("group")}
+          onClick={() => handleItemClick("group")}
+        >
           <div className="img-container">
             <FaPeopleGroup></FaPeopleGroup>
           </div>
           <div className="underline"></div>
-        </div>
-        <div className="item-container">
+        </Link>
+        <Link
+          to={"/games"}
+          className={getItemClass("game")}
+          onClick={() => handleItemClick("game")}
+        >
           <div className="img-container">
             <FaGamepad></FaGamepad>
           </div>
           <div className="underline"></div>
-        </div>
+        </Link>
       </div>
     </div>
   );

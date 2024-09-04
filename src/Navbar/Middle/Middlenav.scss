@@ -1,4 +1,6 @@
 .middle-nav {
+    display: flex;
+    justify-content: center;
     flex: 2;
 
     .items-container {
@@ -11,10 +13,16 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            position: relative;
 
             &:hover {
                 background-color:#f2f2f2;
+
+                .underline {
+                    opacity: 1;
+                }
             }
+
 
             .img-container {
                 svg {
@@ -23,6 +31,26 @@
                     height: 1.5em;
                     width: 1.5em;
                 }
+            }
+        }
+
+        .active {
+            .underline {
+                width: 100%;
+                height: 0.2em;
+                background-color: #0866ff;
+                position: absolute;
+                top: 95%;
+            }
+
+            .img-container {
+                svg {
+                    color: #0866ff;
+                }
+            }
+
+            &:hover {
+                background-color: white;
             }
         }
     }
