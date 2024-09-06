@@ -1,4 +1,4 @@
-import Accordion from "../../../../Global/components/Accordion/Accordion";
+import Accordion from "../../../Global/components/Accordion/Accordion";
 
 export type AccordionItem = {
   id: number;

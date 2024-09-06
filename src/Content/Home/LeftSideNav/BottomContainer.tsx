@@ -1,8 +1,8 @@
-import Accordion from "../../../../Global/components/Accordion/Accordion";
+import Accordion from "../../../Global/components/Accordion/Accordion";
 import { AccordionItem } from "./TopContainer";
-import "../../../../Global/GlobalStyles.scss";
+import "../../../Global/GlobalStyles.scss";
 import { useState } from "react";
-import BorderLine from "../../../../Global/components/BorderLine";
+import BorderLine from "../../../Global/components/BorderLine";
 
 function BottomContainer() {
   const leftBottomSideNav: AccordionItem[] = [

@@ -1,8 +1,8 @@
-import BorderLine from "../../../../Global/components/BorderLine";
-import Contacts from "../../../../Global/components/Contacts/Contacts";
-import "../../../../Global/components/Contacts/Contacts.scss";
-import GroupChat from "../../../../Global/components/GroupChat/GroupChat";
-import "../../../../Global/components/GroupChat/GroupChat.scss";
+import BorderLine from "../../../Global/components/BorderLine";
+import Contacts from "../../../Global/components/Contacts/Contacts";
+import "../../../Global/components/Contacts/Contacts.scss";
+import GroupChat from "../../../Global/components/GroupChat/GroupChat";
+import "../../../Global/components/GroupChat/GroupChat.scss";
 
 export interface ContactListType {
   username: string;
