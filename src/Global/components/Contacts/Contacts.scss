@@ -1,14 +1,57 @@
-@import '../../../../Global/GlobalStyles.scss';
+@import '../../GlobalStyles.scss';
 
 .container {
     .contacts-container {
         display: flex;
         flex-direction: column;
         justify-content: center;
-    
         width: 22em;
-    
-        margin-left: 0.5em;
+
+        img {
+            border-radius: 100%;
+        }
+
+        .title-container {
+            display: flex;
+            align-items: center;
+            
+            padding-left: 0.5em;
+
+            .title {
+                @include set-font-size("medium");
+                width: 100%;
+                color: rgb(128, 128, 128);
+            }
+
+            .icon {
+                display: flex;
+                justify-content: center;
+                margin-right: 0.5em;
+
+
+                span {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 100%;
+                    
+                    &:hover {
+                        background-color: rgb(128, 128, 128, 0.15);
+                    }
+
+                    width: 2em;
+                    height: 2em;
+
+                    svg {
+                        color: rgb(128, 128, 128);
+                        height: 1em;
+                        width: 1em;
+                    }
+                }
+            }
+
+            
+        }
     
         .contact {
             display: flex;

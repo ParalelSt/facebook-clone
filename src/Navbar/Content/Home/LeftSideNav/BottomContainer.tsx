@@ -2,6 +2,7 @@ import Accordion from "../../../../Global/components/Accordion/Accordion";
 import { AccordionItem } from "./TopContainer";
 import "../../../../Global/GlobalStyles.scss";
 import { useState } from "react";
+import BorderLine from "../../../../Global/components/BorderLine";
 
 function BottomContainer() {
   const leftBottomSideNav: AccordionItem[] = [
@@ -70,9 +71,7 @@ function BottomContainer() {
       onMouseEnter={() => handleMouseEnter()}
       onMouseLeave={() => handleMouseLeave()}
     >
-      <div className="border-line">
-        <div className="line"></div>
-      </div>
+      <BorderLine></BorderLine>
       <div className="title-container">
         <h1>Your shortcuts</h1>
         <button className={`edit-btn ${isHovered ? "active" : ""}`}>

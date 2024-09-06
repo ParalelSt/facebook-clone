@@ -1,0 +1,53 @@
+@import '../../GlobalStyles.scss';
+
+.group-chat-container {
+    .title-container {
+        padding-left: 0.5em;
+        padding-bottom: 0.5em;
+
+        .title {
+            @include set-font-size ("medium");
+            color: rgb(128, 128, 128);
+        }
+
+    }
+
+    a:visited {
+        color: black;
+    }
+
+    .item-container {
+        display: flex;
+        align-items: center;
+        padding: 0.5em;
+        width: 100%;
+    
+        gap: 0.6em;
+    
+        &:hover {
+            background-color: rgba(128, 128, 128, 0.15);
+        }
+    
+        border-radius: 0.7em;
+    
+        img {
+            max-width: 2em;
+            max-height: 2em;
+            border-radius: 100%;
+        }
+
+        .background {
+            width: 2em;
+            height: 2em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(128, 128, 128, 0.3);
+            border-radius: 100%;
+        }
+    
+        span {
+            @include set-font-size ("small");
+        }
+    }
+}

@@ -1,4 +1,5 @@
 import { ContactListType } from "../../../Navbar/Content/Home/RightSideNav/RightSideNav";
+import { FaEllipsis, FaMagnifyingGlass } from "react-icons/fa6";
 
 interface Contact {
   contactList: ContactListType[];
@@ -8,6 +9,19 @@ function Contacts({ contactList }: Contact) {
   return (
     <>
       <div className="contacts-container">
+        <div className="title-container">
+          <h1 className="title">Contacts</h1>
+          <div className="icon">
+            <span>
+              <FaMagnifyingGlass></FaMagnifyingGlass>
+            </span>
+          </div>
+          <div className="icon">
+            <span>
+              <FaEllipsis></FaEllipsis>
+            </span>
+          </div>
+        </div>
         {contactList.map((contact) =>
           contact.status === "online" ? (
             <div className="contact" key={contact.id}>
