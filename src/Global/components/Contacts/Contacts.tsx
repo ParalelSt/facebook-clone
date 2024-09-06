@@ -1,10 +1,21 @@
-import Contact from "./Contact";
+import { ContactListType } from "../../../Navbar/Content/Home/RightSideNav/RightSideNav";
 
-function Contacts({ contactList }) {
+interface Contact {
+  contactList: ContactListType[];
+}
+
+function Contacts({ contactList }: Contact) {
   return (
     <>
       <div className="contacts-container">
-        <Contact contacts={contactList}></Contact>
+        {contactList.map((contact) =>
+          contact.status === "online" ? (
+            <div className="contact" key={contact.id}>
+              <img src={contact.image} className="profile-pic" />
+              <span className="username">{contact.username}</span>
+            </div>
+          ) : null
+        )}
       </div>
     </>
   );

@@ -1,7 +1,15 @@
 import Contacts from "../../../../Global/components/Contacts/Contacts";
+import "../../../../Global/components/Contacts/Contacts.scss";
+
+export interface ContactListType {
+  username: string;
+  image: string;
+  status: string;
+  id: number;
+}
 
 function RightSideNav() {
-  const contactList = [
+  const contactList: ContactListType[] = [
     {
       username: "Aron Matoic",
       image: "/images/ProfilePicture.jpg",
@@ -67,9 +75,9 @@ function RightSideNav() {
   ];
 
   return (
-    <>
-      <Contacts contacts={contactList}></Contacts>
-    </>
+    <div className="container">
+      <Contacts contactList={contactList}></Contacts>
+    </div>
   );
 }
 

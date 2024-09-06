@@ -1,0 +1,41 @@
+@import '../../../../Global/GlobalStyles.scss';
+
+.container {
+    .contacts-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    
+        width: 22em;
+    
+        margin-left: 0.5em;
+    
+        .contact {
+            display: flex;
+            align-items: center;
+            padding: 0.5em;
+    
+            gap: 0.6em;
+    
+            &:hover {
+                background-color: rgba(128, 128, 128, 0.15);
+            }
+    
+            border-radius: 0.7em;
+    
+            img {
+                max-width: 2em;
+                max-height: 2em;
+            }
+    
+            span {
+                @include set-font-size ("small");
+            }
+        }
+    
+        .item-container, #accordion {
+            width: 22em;
+        }
+        
+    }
+}
