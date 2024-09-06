@@ -1,0 +1,41 @@
+@import '../../GlobalStyles.scss';
+
+.info-container {
+    margin-top: 8em;
+
+    .items {
+        display: flex;
+        gap: 0.3em;
+        padding: 1em;
+        height: 100%;
+        flex-wrap: wrap;
+
+        span {
+            display: flex;
+            align-items: center;
+            justify-items: center;
+            height: 100%;
+
+            p {
+                line-height: 0.4em;
+            }
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            a {
+                @include set-font-size ("xs");
+                white-space: nowrap;
+
+                color: #65676b;
+
+                &:visited {
+                    color: #65676b;
+                }
+            }
+        }
+    }
+}

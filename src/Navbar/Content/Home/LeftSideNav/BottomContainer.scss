@@ -1,0 +1,93 @@
+@import '../../../../Global/GlobalStyles.scss';
+
+.bottom-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 22em;
+
+    .border-line {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+
+        .line {
+            border-top: 1px solid rgb(180, 180, 180);
+            width: 21em;
+        }
+    }
+
+    margin-left: 0.5em;
+
+    .title-container {
+        display: flex;
+        align-items: center;
+        width: 22em;
+
+        padding: 0.5em 0em 0.2em 0.5em;
+
+        h1 {
+            @include set-font-size ("medium");
+            color: rgb(128, 128, 128);
+        }
+
+        .edit-btn{
+            display: flex;
+            align-items: center;
+            opacity: 0;
+
+            margin-left: auto;
+            border-radius: 0.5em;
+
+            background-color: transparent;
+            border: none;
+
+            padding: 0.6em;
+            padding-right: 0.65em;
+
+            color: #2d7dfd;
+            
+            &:hover {
+                background-color: rgba(128, 128, 128, 0.15);
+                cursor: pointer;
+            }
+
+            @include set-font-size ("small");
+
+            &.active {
+                opacity: 1;
+            }
+
+        }
+
+    }
+
+    .item-container {
+        display: flex;
+        align-items: center;
+        padding: 0.5em;
+
+        gap: 0.6em;
+
+        &:hover {
+            background-color: rgba(128, 128, 128, 0.15);
+        }
+
+        border-radius: 0.7em;
+
+        img {
+            max-width: 2em;
+            max-height: 2em;
+            border-radius: 0.5em;
+        }
+
+        span {
+            @include set-font-size ("small");
+        }
+    }
+
+    .item-container, #accordion {
+        width: 22em;
+    }
+}

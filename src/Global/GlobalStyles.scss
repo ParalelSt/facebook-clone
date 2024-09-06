@@ -4,6 +4,8 @@
     margin: 0;
     text-decoration: none;
     list-style-type: none;
+
+    font-family: sans-serif;
 }
 
 body {
@@ -38,14 +40,19 @@ $breakpoints: (
 
 //Fonts//
 
+$xs: 0.75rem;
+
 $small: 0.875rem;
 
-$medium: 1rem;
+$medium: 0.95rem;
 
-$large: 1.5rem;
+$large: 1.2rem;
 
 $font-sizes: (
-    "small": (
+  "xs": (
+    font-size: $xs,
+    ),
+  "small": (
     font-size: $small,
     ),
   "medium": (
