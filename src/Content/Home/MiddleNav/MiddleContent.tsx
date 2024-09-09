@@ -11,9 +11,9 @@ export interface carouselData {
   id: number;
 }
 
-function MiddleNav({ contactList }: ContactI) {
+function MiddleContent({ contactList }: ContactI) {
   const carouselData: carouselData[] = useMemo(() => {
-    return contactList.map((contact) => ({
+    return contactList.flatMap((contact) => ({
       username: contact.username,
       profilePicture: contact.image,
       image: "/images/ProfilePicture.jpg",
@@ -29,4 +29,4 @@ function MiddleNav({ contactList }: ContactI) {
   );
 }
 
-export default MiddleNav;
+export default MiddleContent;

@@ -10,7 +10,7 @@ function ImageCarousel({ carouselData }: data) {
     <>
       {carouselData.map((item, index) => {
         return (
-          <div className="story-container" key={item.userId}>
+          <div className="story-container" key={index}>
             <img src={item.profilePicture} alt="" className="profile-picture" />
             <img src={item.image} alt="" className="story-image" />
             <span className="story-username">{item.username}</span>

@@ -1,7 +1,7 @@
 import LeftNavSide from "./LeftSideNav/LeftSideNav";
 import RightSideNav from "./RightSideNav/RightSideNav";
 import "./Home.scss";
-import MiddleNav from "./MiddleNav/MiddleContent";
+import MiddleContent from "./MiddleNav/MiddleContent";
 
 export interface ContactListType {
   username: string;
@@ -76,10 +76,12 @@ function Home() {
     },
   ];
 
+  console.log(contactList);
+
   return (
     <div className="home">
       <LeftNavSide></LeftNavSide>
-      <MiddleNav contactList={contactList}></MiddleNav>
+      <MiddleContent contactList={contactList}></MiddleContent>
       <RightSideNav contactList={contactList}></RightSideNav>
     </div>
   );
