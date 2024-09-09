@@ -3,12 +3,10 @@ import Contacts from "../../../Global/components/Contacts/Contacts";
 import "../../../Global/components/Contacts/Contacts.scss";
 import GroupChat from "../../../Global/components/GroupChat/GroupChat";
 import "../../../Global/components/GroupChat/GroupChat.scss";
+import { ContactListType } from "../Home";
 
-export interface ContactListType {
-  username: string;
-  image: string;
-  status: string;
-  id: number;
+export interface ContactI {
+  contactList: ContactListType[];
 }
 
 export interface GroupsType {
@@ -17,72 +15,7 @@ export interface GroupsType {
   id: number;
 }
 
-function RightSideNav() {
-  const contactList: ContactListType[] = [
-    {
-      username: "Aron Matoic",
-      image: "/images/ProfilePicture.jpg",
-      status: "online",
-      id: Math.random() * 100,
-    },
-
-    {
-      username: "1",
-      image: "/images/ProfilePicture.jpg",
-      status: "online",
-      id: Math.random() * 100,
-    },
-
-    {
-      username: "2",
-      image: "/images/ProfilePicture.jpg",
-      status: "online",
-      id: Math.random() * 100,
-    },
-
-    {
-      username: "3",
-      image: "/images/ProfilePicture.jpg",
-      status: "online",
-      id: Math.random() * 100,
-    },
-
-    {
-      username: "4",
-      image: "/images/ProfilePicture.jpg",
-      status: "online",
-      id: Math.random() * 100,
-    },
-
-    {
-      username: "5",
-      image: "/images/ProfilePicture.jpg",
-      status: "online",
-      id: Math.random() * 100,
-    },
-
-    {
-      username: "6",
-      image: "/images/ProfilePicture.jpg",
-      status: "offline",
-      id: Math.random() * 100,
-    },
-
-    {
-      username: "7",
-      image: "/images/ProfilePicture.jpg",
-      status: "online",
-      id: Math.random() * 100,
-    },
-
-    {
-      username: "8",
-      image: "/images/ProfilePicture.jpg",
-      status: "offline",
-      id: Math.random() * 100,
-    },
-  ];
-
+function RightSideNav({ contactList }: ContactI) {
   const groups: GroupsType[] = [
     {
       groupName: "Group1",
