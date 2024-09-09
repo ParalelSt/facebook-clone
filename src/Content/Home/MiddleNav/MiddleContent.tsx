@@ -7,8 +7,8 @@ export interface carouselData {
   username: string;
   profilePicture: string;
   image: string;
-  userId: number;
-  id: number;
+  userId: string;
+  id: string;
 }
 
 function MiddleContent({ contactList }: ContactI) {
@@ -16,9 +16,9 @@ function MiddleContent({ contactList }: ContactI) {
     return contactList.flatMap((contact) => ({
       username: contact.username,
       profilePicture: contact.image,
-      image: "/images/ProfilePicture.jpg",
+      image: "/images/post/R34.jpg",
       userId: contact.id,
-      id: Math.random() * 100,
+      id: contact.id,
     }));
   }, [contactList]);
 
