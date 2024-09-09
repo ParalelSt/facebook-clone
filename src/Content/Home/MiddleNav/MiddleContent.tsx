@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import ImageCarousel from "../../../Global/components/Image Carousel/ImageCarousel";
 import { ContactI } from "../RightSideNav/RightSideNav";
 import "./MiddleContent.scss";
@@ -11,39 +12,15 @@ export interface carouselData {
 }
 
 function MiddleNav({ contactList }: ContactI) {
-  const carouselData: carouselData[] = contactList.flatMap((contact) => [
-    {
+  const carouselData: carouselData[] = useMemo(() => {
+    return contactList.map((contact) => ({
       username: contact.username,
       profilePicture: contact.image,
       image: "/images/ProfilePicture.jpg",
       userId: contact.id,
       id: Math.random() * 100,
-    },
-
-    {
-      username: contact.username,
-      profilePicture: contact.image,
-      image: "/images/ProfilePicture.jpg",
-      userId: contact.id,
-      id: Math.random() * 100,
-    },
-
-    {
-      username: contact.username,
-      profilePicture: contact.image,
-      image: "/images/ProfilePicture.jpg",
-      userId: contact.id,
-      id: Math.random() * 100,
-    },
-
-    {
-      username: contact.username,
-      profilePicture: contact.image,
-      image: "/images/ProfilePicture.jpg",
-      userId: contact.id,
-      id: Math.random() * 100,
-    },
-  ]);
+    }));
+  }, [contactList]);
 
   return (
     <div className="middle-content-container">
