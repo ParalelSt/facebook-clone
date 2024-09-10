@@ -2,12 +2,13 @@ import LeftNavSide from "./LeftSideNav/LeftSideNav";
 import RightSideNav from "./RightSideNav/RightSideNav";
 import "./Home.scss";
 import MiddleContent from "./MiddleNav/MiddleContent";
-import { useId } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export interface ContactListType {
   username: string;
   image: string;
   status: string;
+  recentStoryPost: boolean;
   id: string;
 }
 
@@ -17,63 +18,72 @@ function Home() {
       username: "Aron Matoic",
       image: "/images/ProfilePicture.jpg",
       status: "online",
-      id: useId(),
+      recentStoryPost: true,
+      id: uuidv4(),
     },
 
     {
       username: "1",
       image: "/icons/Agar.io.jpg",
       status: "online",
-      id: useId(),
+      recentStoryPost: true,
+      id: uuidv4(),
     },
 
     {
       username: "2",
       image: "/images/ProfilePicture.jpg",
       status: "online",
-      id: useId(),
+      recentStoryPost: true,
+      id: uuidv4(),
     },
 
     {
       username: "3",
       image: "/images/ProfilePicture.jpg",
       status: "online",
-      id: useId(),
+      recentStoryPost: true,
+      id: uuidv4(),
     },
 
     {
       username: "4",
       image: "/images/ProfilePicture.jpg",
       status: "online",
-      id: useId(),
+      recentStoryPost: true,
+      id: uuidv4(),
     },
 
     {
       username: "5",
       image: "/images/ProfilePicture.jpg",
       status: "online",
-      id: useId(),
+      recentStoryPost: true,
+      id: uuidv4(),
     },
 
     {
       username: "6",
       image: "/images/ProfilePicture.jpg",
       status: "offline",
-      id: useId(),
+      recentStoryPost: true,
+      id: uuidv4(),
     },
 
     {
       username: "7",
       image: "/images/ProfilePicture.jpg",
       status: "online",
-      id: useId(),
+      recentStoryPost: true,
+      id: uuidv4(),
     },
 
     {
       username: "8",
       image: "/images/ProfilePicture.jpg",
       status: "offline",
-      id: useId(),
+      recentStoryPost: true,
+      id: uuidv4(),
     },
   ];
 

@@ -12,6 +12,10 @@ body {
     background-color: #f0f2f5;
 }
 
+html {
+  height: 100%;
+}
+
 button {
   border: none;
   margin: 0;
@@ -41,6 +45,8 @@ button {
   border: 0;
   padding: 0;
 }
+
+$gray: #6f7276;
 
 //Screen Sizes//
 

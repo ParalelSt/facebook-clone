@@ -4,6 +4,7 @@ import "../../../Global/components/Contacts/Contacts.scss";
 import GroupChat from "../../../Global/components/GroupChat/GroupChat";
 import "../../../Global/components/GroupChat/GroupChat.scss";
 import { ContactListType } from "../Home";
+import "./RightSideNav.scss";
 
 export interface ContactI {
   contactList: ContactListType[];
