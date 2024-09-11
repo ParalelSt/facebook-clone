@@ -3,19 +3,30 @@
 .log-in-container {
     display: flex;
     flex-direction: column;
+    width: 100%;
 
     .log-in-top-container {
-        padding: 5em 0em;
+        padding: 10em 0;
         display: flex;
-        align-items: center;
         justify-content: center;
-        width: 100%;
         gap: 3em;
 
         .log-in-left-container {
-            h1 {
-                color: $blue;
-                font-size: $xxl;
+            display: flex;
+            flex-direction: column;
+
+            .text-container {
+                margin-top: 15%;
+
+                h1 {
+                    color: $blue;
+                    font-size: 3.5em;
+                    margin-bottom: 0.2em;
+                }
+    
+                h2 {
+                    font-weight: normal;
+                }
             }
         }
 
@@ -25,26 +36,84 @@
 
         .log-in-right-container {
             .log-in-component {
+                
+                width: 25em;
                 .log-in {
-                    // background-color: white;
+                    padding: 1em;
+                    border-radius: 0.5em;
+                    box-shadow: 0 1px 5px $border-black;
+                    background-color: white;
+                    
                     .component-top {
                         display: flex;
                         flex-direction: column;
+                        align-items: center;
+                        gap: 0.7em;
         
                         .email-or-phone-container, .password-container {
+                            width: 100%;
+                            
                             input {
-                                border: none;
+                                padding: 1em;
+                                width: 100%;
+                                border: 1px solid $border-black;
+                                border-radius: 0.5em;
+                                background-color: transparent;
                                 color: $gray-text;
+                                font-size: $medium;
                                 &:focus {
                                     outline: none;
                                 }
                             }
                         } 
+
+                        .log-in-btn {
+                            padding: 0.7em;
+                            width: 100%;
+                            background-color: $blue;
+                            color: white;
+                            border-radius: 0.5em;
+                            font-size: $large;
+                            font-weight: bold;
+                            cursor: pointer;
+                        }
+
+                        a, a:visited{
+                            padding: 0.5em 0 0.7em 0;
+                           color: $blue;
+                           font-size: $small;
+                        }
         
                     }
+
                     .component-bottom {
                         display: flex;
                         flex-direction: column;
+                        align-items: center;
+
+                        .create-new-account-btn {
+                            padding: 1em;
+                            width: 60%;
+                            background-color: $green;
+                            color: white;
+                            border-radius: 0.5em;
+                            font-size: $m-l;
+                            font-weight: bold;
+                            cursor: pointer;
+                        }
+                    }
+                }
+
+                .create-a-page {
+                    text-align: center;
+                    margin-top: 2em;
+                    width: 100%;
+                    color: #414246;
+                    font-size: $small;
+
+                    a, a:visited {
+                        color: black;
+                        font-weight: bold;
                     }
                 }
             }

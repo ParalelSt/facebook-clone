@@ -7,7 +7,7 @@ import Home from "./Content/Home/Home.tsx";
 import LogIn from "./Global/components/LogIn/LogIn.tsx";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(true);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   return (
     <>

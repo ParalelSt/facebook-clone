@@ -47,11 +47,12 @@ button {
   padding: 0;
 }
 
-$gray: #6f7276;
+$gray: #e6e7e9;
 $blue: #0866ff;
 $green: #42b72a;
 $background: #f2f4f7;
 $gray-text: #c2c4c9;
+$border-black: #00000033;
 
 //Screen Sizes//
 
@@ -86,6 +87,8 @@ $xs: 0.75rem;
 $small: 0.875rem;
 
 $medium: 0.95rem;
+
+$m-l: 1em;
 
 $large: 1.2rem;
 
