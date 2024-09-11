@@ -90,27 +90,27 @@ function TopContainer() {
         </div>
 
         <div className="item-container">
-          <img src="/icons/GroupI.svg" />
+          <img className="friends" src="/icons/GroupI.svg" />
           <span className="title">Friends</span>
         </div>
 
         <div className="item-container">
-          <img src="/icons/HistoryI.svg" />
+          <img className="memories" src="/icons/HistoryI.svg" />
           <span className="title">Memories</span>
         </div>
 
         <div className="item-container">
-          <img src="/icons/SavedI.svg" />
+          <img className="saved" src="/icons/SavedI.svg" />
           <span className="title">Saved</span>
         </div>
 
         <div className="item-container">
-          <img src="/icons/GroupsI.svg" />
+          <img className="groups" src="/icons/GroupsI.svg" />
           <span className="title">Groups</span>
         </div>
 
         <div className="item-container">
-          <img src="/icons/VideoI.svg" />
+          <img className="video" src="/icons/VideoI.svg" />
           <span className="title">Video</span>
         </div>
 

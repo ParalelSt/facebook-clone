@@ -1,6 +1,5 @@
 import { carouselData } from "../../../Content/Home/MiddleNav/MiddleContent";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
-import "keen-slider/keen-slider.min.css";
 
 interface data {
   carouselData: carouselData[];

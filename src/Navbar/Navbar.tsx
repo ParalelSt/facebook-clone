@@ -1,9 +1,15 @@
+import { useLocation } from "react-router-dom";
 import LeftNav from "./Left/LeftNav";
 import MiddleNav from "./Middle/MiddleNav";
 import "./Navbar.scss";
 import RightNav from "./Right/RightNav";
 
 function Navbar() {
+  const location = useLocation();
+
+  if (location.pathname === "/login") {
+    return null;
+  }
   return (
     <>
       <nav>

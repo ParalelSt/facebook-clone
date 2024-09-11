@@ -1,0 +1,53 @@
+@import "../../GlobalStyles.scss";
+
+.log-in-container {
+    display: flex;
+    flex-direction: column;
+
+    .log-in-top-container {
+        padding: 5em 0em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        gap: 3em;
+
+        .log-in-left-container {
+            h1 {
+                color: $blue;
+                font-size: $xxl;
+            }
+        }
+
+        .log-in-right-container, .log-in-left-container {
+            width: 25%;
+        }
+
+        .log-in-right-container {
+            .log-in-component {
+                .log-in {
+                    // background-color: white;
+                    .component-top {
+                        display: flex;
+                        flex-direction: column;
+        
+                        .email-or-phone-container, .password-container {
+                            input {
+                                border: none;
+                                color: $gray-text;
+                                &:focus {
+                                    outline: none;
+                                }
+                            }
+                        } 
+        
+                    }
+                    .component-bottom {
+                        display: flex;
+                        flex-direction: column;
+                    }
+                }
+            }
+        }
+    }
+}
