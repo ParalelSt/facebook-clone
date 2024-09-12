@@ -1,12 +1,17 @@
 @import "../../GlobalStyles.scss";
 
+body {
+    background-color: white;
+}
+
 .log-in-container {
     display: flex;
     flex-direction: column;
     width: 100%;
+    background-color: $background;
 
     .log-in-top-container {
-        padding: 10em 0;
+        padding: 8.5em 0 13em 0;
         display: flex;
         justify-content: center;
         gap: 3em;
@@ -35,6 +40,9 @@
         }
 
         .log-in-right-container {
+            display: flex;
+            justify-content: center;
+
             .log-in-component {
                 
                 width: 25em;
@@ -59,7 +67,7 @@
                                 border: 1px solid $border-black;
                                 border-radius: 0.5em;
                                 background-color: transparent;
-                                color: $gray-text;
+                                color: $gray-text2;
                                 font-size: $medium;
                                 &:focus {
                                     outline: none;
@@ -114,6 +122,68 @@
                     a, a:visited {
                         color: black;
                         font-weight: bold;
+                    }
+                }
+            }
+        }
+    }
+
+    .log-in-bottom-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: white;
+
+
+        .content-container {
+            display: flex;
+            flex-direction: column;
+            padding: 2em 0;
+
+            .company {
+                margin-top: 2em;
+                font-size: $xs;
+                color: $gray-text3;
+            }
+
+            .languages, .options {
+                display: flex;
+                justify-content: center;
+                
+    
+                ul {
+                    display: flex;
+                    gap: 0.3em;
+                    width: 60em;
+                    flex-wrap: wrap;
+                    
+                    li {
+                        font-size: $xs;
+                        color: $gray-text2;
+    
+                        a, a:visited {
+                            color: $gray-text3;
+                        }
+                    }
+
+                    .add-language {
+                        padding: 0 0.5em;
+                        background-color: $button;
+                        border: 1px solid $gray-text;
+                        color: $gray-text2;
+                    }
+                }
+            }
+
+            .options {
+                margin-top: -0.3em;
+
+                ul {
+                    gap: 0.5em;
+
+                    li {
+                        font-size: $xs;
+                        line-height: 1em;
                     }
                 }
             }

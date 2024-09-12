@@ -13,7 +13,10 @@ function App() {
     <>
       <Navbar></Navbar>
       <Routes>
-        <Route path="/login" element={<LogIn></LogIn>}></Route>
+        <Route
+          path="/login"
+          element={<LogIn setIsAuthenticated={setIsAuthenticated}></LogIn>}
+        ></Route>
         <Route
           element={
             <PrivateRoute isAuthenticated={isAuthenticated}></PrivateRoute>

@@ -6,6 +6,9 @@ import { v4 as uuidv4 } from "uuid";
 
 export interface ContactListType {
   username: string;
+  email: string;
+  phoneNumber: string;
+  password: string;
   image: string;
   status: string;
   recentStoryPost: boolean;
@@ -16,6 +19,9 @@ function Home() {
   const contactList: ContactListType[] = [
     {
       username: "Aron Matoic",
+      email: "",
+      phoneNumber: "",
+      password: "",
       image: "/images/ProfilePicture.jpg",
       status: "online",
       recentStoryPost: true,
@@ -24,6 +30,9 @@ function Home() {
 
     {
       username: "1",
+      email: "",
+      phoneNumber: "",
+      password: "",
       image: "/icons/Agar.io.jpg",
       status: "online",
       recentStoryPost: true,
@@ -32,6 +41,9 @@ function Home() {
 
     {
       username: "2",
+      email: "",
+      phoneNumber: "",
+      password: "",
       image: "/images/ProfilePicture.jpg",
       status: "online",
       recentStoryPost: true,
@@ -40,6 +52,9 @@ function Home() {
 
     {
       username: "3",
+      email: "",
+      phoneNumber: "",
+      password: "",
       image: "/images/ProfilePicture.jpg",
       status: "online",
       recentStoryPost: true,
@@ -48,6 +63,9 @@ function Home() {
 
     {
       username: "4",
+      email: "",
+      phoneNumber: "",
+      password: "",
       image: "/images/ProfilePicture.jpg",
       status: "online",
       recentStoryPost: true,
@@ -56,6 +74,9 @@ function Home() {
 
     {
       username: "5",
+      email: "",
+      phoneNumber: "",
+      password: "",
       image: "/images/ProfilePicture.jpg",
       status: "online",
       recentStoryPost: true,
@@ -64,6 +85,9 @@ function Home() {
 
     {
       username: "6",
+      email: "",
+      phoneNumber: "",
+      password: "",
       image: "/images/ProfilePicture.jpg",
       status: "offline",
       recentStoryPost: true,
@@ -72,6 +96,9 @@ function Home() {
 
     {
       username: "7",
+      email: "",
+      phoneNumber: "",
+      password: "",
       image: "/images/ProfilePicture.jpg",
       status: "online",
       recentStoryPost: true,
@@ -80,6 +107,9 @@ function Home() {
 
     {
       username: "8",
+      email: "",
+      phoneNumber: "",
+      password: "",
       image: "/images/ProfilePicture.jpg",
       status: "offline",
       recentStoryPost: true,
