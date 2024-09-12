@@ -24,7 +24,6 @@ function useLogInLogic(
     );
     if (user) {
       setIsAuthenticated(true);
-      localStorage.setItem("isAuthenticated", "true");
       Navigate("/");
     } else {
       alert("Invalid email/phone or password");
