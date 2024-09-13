@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./Accordion.scss";
 import { Link } from "react-router-dom";
 import { FaCaretDown } from "react-icons/fa6";
-import { AccordionItem } from "../../../Navbar/Content/Home/LeftSideNav/TopContainer";
+import { AccordionItem } from "../../../Content/Home/LeftSideNav/TopContainer";
 
 interface Items {
   items: AccordionItem[];
