@@ -23,6 +23,7 @@ function useLogInLogic(
         user.password === passwordValue
     );
     if (user) {
+      localStorage.setItem("isAuthenticated", "true");
       setIsAuthenticated(true);
       Navigate("/");
     } else {

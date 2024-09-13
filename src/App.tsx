@@ -1,17 +1,23 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import Navbar from "./Navbar/Navbar";
 import "./Global/GlobalStyles.scss";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PrivateRoute from "./Global/components/PrivateRoute.tsx";
 import Home from "./Content/Home/Home.tsx";
 import LogIn from "./Global/components/LogIn/LogIn.tsx";
 
 function App() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    localStorage.getItem("isAuthenticated") === "true"
+  );
+
+  useEffect(() => {
+    localStorage.setItem("isAuthenticated", isAuthenticated.toString());
+  }, [isAuthenticated]);
 
   return (
     <>
-      <Navbar></Navbar>
+      <Navbar setIsAuthenticated={setIsAuthenticated}></Navbar>
       <Routes>
         <Route
           path="/login"

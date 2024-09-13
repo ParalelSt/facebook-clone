@@ -182,6 +182,7 @@
                 border-radius: 2em;
                 display: flex;
                 align-items: center;
+                cursor: pointer;
                 
                 span {
                     @include set-font-size("medium");

@@ -4,18 +4,19 @@ import MiddleNav from "./Middle/MiddleNav";
 import "./Navbar.scss";
 import RightNav from "./Right/RightNav";
 
-function Navbar() {
+function Navbar({ setIsAuthenticated }) {
   const location = useLocation();
 
   if (location.pathname === "/login") {
     return null;
   }
+
   return (
     <>
       <nav>
         <LeftNav></LeftNav>
         <MiddleNav></MiddleNav>
-        <RightNav></RightNav>
+        <RightNav setIsAuthenticated={setIsAuthenticated}></RightNav>
       </nav>
     </>
   );

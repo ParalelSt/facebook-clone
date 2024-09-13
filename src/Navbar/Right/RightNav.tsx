@@ -1,8 +1,11 @@
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import "./RightNav.scss";
 import { FaBell, FaFacebookMessenger } from "react-icons/fa6";
+import useLogOutLogic from "../../Global/components/LogIn/LogOutLogic";
 
-function RightNav() {
+function RightNav({ setIsAuthenticated }) {
+  const handleLogOut = useLogOutLogic(setIsAuthenticated);
+
   return (
     <>
       <div className="right-nav">
@@ -28,6 +31,7 @@ function RightNav() {
                 className="profile"
                 src="/images/ProfilePicture.jpg"
                 alt=""
+                onClick={() => handleLogOut()}
               />
             </div>
           </div>
