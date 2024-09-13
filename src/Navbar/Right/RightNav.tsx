@@ -51,11 +51,8 @@ function RightNav({ setIsAuthenticated, currentUser }: RightNavProps) {
               >
                 <div className="user-display-container">
                   <div className="user-display-top">
-                    <img
-                      src={currentUser ? currentUser.profilePicture : ""}
-                      alt=""
-                    />
-                    <span className="username"></span>
+                    <img src={currentUser?.profilePicture} alt="" />
+                    <span className="username">{currentUser?.user}</span>
                   </div>
                   <BorderLine></BorderLine>
                   <div className="user-display-bottom"></div>
