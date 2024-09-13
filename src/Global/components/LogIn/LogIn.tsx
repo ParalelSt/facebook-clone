@@ -2,8 +2,10 @@ import { Link } from "react-router-dom";
 import "./LogIn.scss";
 import BorderLine from "../BorderLine";
 import { v4 } from "uuid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useLogInLogic from "./LogInLogic";
+import useBodyClass from "../../hooks/useBodyClass";
+import { Users } from "../../../App";
 
 interface Language {
   language: string | null;
@@ -12,11 +14,16 @@ interface Language {
 
 interface LogInProps {
   setIsAuthenticated: (isAuthenticated: boolean) => void;
+  users: Users[];
+  setCurrentUser: (user: Users | null) => void;
 }
 
-function LogIn({ setIsAuthenticated }: LogInProps) {
+function LogIn({ setIsAuthenticated, users, setCurrentUser }: LogInProps) {
+  useBodyClass("login-body");
+
   const [passwordValue, setPasswordValue] = useState<string>("");
   const [emailOrPhoneValue, setEmailOrPhoneValue] = useState<string>("");
+
   const [languages, setLanguages] = useState<Language[]>([
     {
       language: "English (US)",
@@ -236,6 +243,14 @@ function LogIn({ setIsAuthenticated }: LogInProps) {
 
   const firstIndex = languages[0];
 
+  useEffect(() => {
+    const savedUser = localStorage.getItem("currentUser");
+    if (savedUser) {
+      setCurrentUser(JSON.parse(savedUser));
+      setIsAuthenticated(true);
+    }
+  });
+
   const swapListItems = (index1: number, index2: number) => {
     const splitLanguages = [...languages];
     const temp = splitLanguages[index1];
@@ -250,116 +265,104 @@ function LogIn({ setIsAuthenticated }: LogInProps) {
 
   const currentYear = new Date().getFullYear();
 
-  const users = [
-    {
-      user: "Aron Matoic",
-      email: "aronddtt@gmail.com",
-      phoneNumber: "0912229106",
-      password: "da",
-    },
-  ];
-
   const handleLogin = useLogInLogic(
     emailOrPhoneValue,
     passwordValue,
     users,
-    setIsAuthenticated
+    setIsAuthenticated,
+    setCurrentUser
   );
 
   return (
-    <>
-      <div className="log-in-container">
-        <div className="log-in-top-container">
-          <div className="log-in-left-container">
-            <div className="text-container">
-              <h1>facebook</h1>
-              <h2>
-                Connect with friends and the world around you on Facebook.
-              </h2>
-            </div>
-          </div>
-          <div className="log-in-right-container">
-            <div className="log-in-component">
-              <div className="log-in">
-                <div className="component-top">
-                  <div className="email-or-phone-container">
-                    <input
-                      placeholder="Email or phone number"
-                      type="text"
-                      value={emailOrPhoneValue}
-                      onChange={(e) => setEmailOrPhoneValue(e.target.value)}
-                      id="emailOrPhone"
-                      className="email-or-phone"
-                    />
-                  </div>
-                  <div className="password-container">
-                    <input
-                      placeholder="Password"
-                      type="password"
-                      value={passwordValue}
-                      onChange={(e) => setPasswordValue(e.target.value)}
-                      id="password"
-                      className="password"
-                    />
-                  </div>
-                  <button className="log-in-btn" onClick={handleLogin}>
-                    Log In
-                  </button>
-                  <Link to={""}>Forgot password?</Link>
-                </div>
-                <BorderLine></BorderLine>
-                <div className="component-bottom">
-                  <button className="create-new-account-btn">
-                    Create new account
-                  </button>
-                </div>
-              </div>
-              <div className="create-a-page">
-                <Link to={""}>Create a Page</Link> for a celebrity, brand or
-                business.
-              </div>
-            </div>
+    <div className="log-in-container">
+      <div className="log-in-top-container">
+        <div className="log-in-left-container">
+          <div className="text-container">
+            <h1>facebook</h1>
+            <h2>Connect with friends and the world around you on Facebook.</h2>
           </div>
         </div>
-        <div className="log-in-bottom-container">
-          <div className="content-container">
-            <div className="languages">
-              <ul>
-                <li id="firstIndex">{firstIndex.language}</li>
-                {languages
-                  .filter((_, index) => index !== 0)
-                  .map((language, index) => {
-                    return (
-                      <li className="language" key={language.id}>
-                        <a
-                          onClick={() => handleLanguageClick(index + 1)}
-                          href="#"
-                        >
-                          {language.language}
-                        </a>
-                      </li>
-                    );
-                  })}
-                <button className="add-language">+</button>
-              </ul>
+        <div className="log-in-right-container">
+          <div className="log-in-component">
+            <div className="log-in">
+              <div className="component-top">
+                <div className="email-or-phone-container">
+                  <input
+                    placeholder="Email or phone number"
+                    type="text"
+                    value={emailOrPhoneValue}
+                    onChange={(e) => setEmailOrPhoneValue(e.target.value)}
+                    id="emailOrPhone"
+                    className="email-or-phone"
+                  />
+                </div>
+                <div className="password-container">
+                  <input
+                    placeholder="Password"
+                    type="password"
+                    value={passwordValue}
+                    onChange={(e) => setPasswordValue(e.target.value)}
+                    id="password"
+                    className="password"
+                  />
+                </div>
+                <button className="log-in-btn" onClick={handleLogin}>
+                  Log In
+                </button>
+                <Link to={""}>Forgot password?</Link>
+              </div>
+              <BorderLine></BorderLine>
+              <div className="component-bottom">
+                <button className="create-new-account-btn">
+                  Create new account
+                </button>
+              </div>
             </div>
-            <BorderLine></BorderLine>
-            <div className="options">
-              <ul>
-                {options.map((option) => {
-                  return (
-                    <li key={option.id}>
-                      <a href={option.link}>{option.optionName}</a>
-                    </li>
-                  );
-                })}
-              </ul>
+            <div className="create-a-page">
+              <Link to={""}>Create a Page</Link> for a celebrity, brand or
+              business.
             </div>
-            <span className="company">Meta &copy; {currentYear}</span>
           </div>
         </div>
       </div>
-    </>
+      <div className="log-in-bottom-container">
+        <div className="content-container">
+          <div className="languages">
+            <ul>
+              <li id="firstIndex">{firstIndex.language}</li>
+              {languages
+                .filter((_, index) => index !== 0)
+                .map((language, index) => {
+                  return (
+                    <li className="language" key={language.id}>
+                      <a
+                        onClick={() => handleLanguageClick(index + 1)}
+                        href="#"
+                      >
+                        {language.language}
+                      </a>
+                    </li>
+                  );
+                })}
+              <button className="add-language">+</button>
+            </ul>
+          </div>
+          <BorderLine></BorderLine>
+          <div className="options">
+            <ul>
+              {options.map((option) => {
+                return (
+                  <li key={option.id}>
+                    <a href={option.link}>{option.optionName}</a>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+          <span className="company">Meta &copy; {currentYear}</span>
+        </div>
+      </div>
+    </div>
   );
 }
 

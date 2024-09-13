@@ -1,6 +1,6 @@
 @import "../../GlobalStyles.scss";
 
-body {
+.login-body {
     background-color: white;
 }
 
@@ -8,13 +8,15 @@ body {
     display: flex;
     flex-direction: column;
     width: 100%;
-    background-color: $background;
+    height: 100%;
+    
 
     .log-in-top-container {
         padding: 8.5em 0 13em 0;
         display: flex;
         justify-content: center;
         gap: 3em;
+        background-color: $background;
 
         .log-in-left-container {
             display: flex;

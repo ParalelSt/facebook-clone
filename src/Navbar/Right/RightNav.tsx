@@ -1,14 +1,20 @@
 import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import "./RightNav.scss";
-import { FaBell, FaFacebookMessenger } from "react-icons/fa6";
+import { FaBell, FaCaretDown, FaFacebookMessenger } from "react-icons/fa6";
 import useLogOutLogic from "../../Global/components/LogIn/LogOutLogic";
+import useDropDown from "../../Global/hooks/useDropDown";
+import { Users } from "../../App";
+import BorderLine from "../../Global/components/BorderLine";
 
 interface RightNavProps {
   setIsAuthenticated: (isAuthenticated: boolean) => void;
+  users: Users[];
+  currentUser: Users | null;
 }
 
-function RightNav({ setIsAuthenticated }: RightNavProps) {
+function RightNav({ setIsAuthenticated, currentUser }: RightNavProps) {
   const handleLogOut = useLogOutLogic(setIsAuthenticated);
+  const [open, close, toggle, isActive] = useDropDown();
 
   return (
     <>
@@ -35,8 +41,26 @@ function RightNav({ setIsAuthenticated }: RightNavProps) {
                 className="profile"
                 src="/images/ProfilePicture.jpg"
                 alt=""
-                onClick={() => handleLogOut()}
+                onClick={() => toggle}
               />
+              <div className="caret-container">
+                <FaCaretDown></FaCaretDown>
+              </div>
+              <div
+                className={`drop-down-container ${isActive ? "active" : ""}`}
+              >
+                <div className="user-display-container">
+                  <div className="user-display-top">
+                    <img
+                      src={currentUser ? currentUser.profilePicture : ""}
+                      alt=""
+                    />
+                    <span className="username"></span>
+                  </div>
+                  <BorderLine></BorderLine>
+                  <div className="user-display-bottom"></div>
+                </div>
+              </div>
             </div>
           </div>
         </div>

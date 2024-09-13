@@ -1,17 +1,12 @@
 import { useNavigate } from "react-router-dom";
-
-export interface Users {
-  user: string;
-  email: string;
-  phoneNumber: string;
-  password: string;
-}
+import { Users } from "../../../App";
 
 function useLogInLogic(
   emailOrPhoneValue: string,
   passwordValue: string,
   users: Users[],
-  setIsAuthenticated: (isAuthenticated: boolean) => void
+  setIsAuthenticated: (isAuthenticated: boolean) => void,
+  setCurrentUser: (user: Users | null) => void
 ) {
   const Navigate = useNavigate();
 
@@ -24,6 +19,7 @@ function useLogInLogic(
     );
     if (user) {
       localStorage.setItem("isAuthenticated", "true");
+      localStorage.setItem("currentUser", JSON.stringify(user));
       setIsAuthenticated(true);
       Navigate("/");
     } else {

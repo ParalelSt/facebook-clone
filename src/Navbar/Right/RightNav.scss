@@ -35,7 +35,7 @@
 
         .profile-container {
             display: flex;
-            
+            position: relative;
             align-items: center;
             padding: 0.25em;
             
@@ -56,7 +56,29 @@
     
                     border-radius: 100%;
                 }
+
+                .caret-container {
+                    display: flex;
+                    border-radius: 100%;
+                    background-color: white;
+                    bottom: 0.25em;
+                    right: 0.25em;
+                    position: absolute;
+    
+                    svg {
+                        height: 0.8em;
+                        width: 0.8em;
+                    }
+                }
+
+                .drop-down-container {
+                    display: flex;
+                }
             }
+            
+            
         }
+
+        
     }
 }
