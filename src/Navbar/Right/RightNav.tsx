@@ -36,10 +36,10 @@ function RightNav({ setIsAuthenticated, currentUser }: RightNavProps) {
             </div>
           </div>
           <div className="profile-container">
-            <div className="img-container">
+            <div className="img-container" onClick={() => toggle}>
               <img
                 className="profile"
-                src="/images/ProfilePicture.jpg"
+                src={currentUser?.profilePicture}
                 alt=""
                 onClick={() => toggle}
               />

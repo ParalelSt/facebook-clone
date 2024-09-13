@@ -72,6 +72,10 @@
                 }
 
                 .drop-down-container {
+                    display: none;
+                }
+
+                .drop-down-container.active {
                     display: flex;
                 }
             }
