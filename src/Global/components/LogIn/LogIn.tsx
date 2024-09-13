@@ -10,7 +10,11 @@ interface Language {
   id: string;
 }
 
-function LogIn({ setIsAuthenticated }) {
+interface LogInProps {
+  setIsAuthenticated: (isAuthenticated: boolean) => void;
+}
+
+function LogIn({ setIsAuthenticated }: LogInProps) {
   const [passwordValue, setPasswordValue] = useState<string>("");
   const [emailOrPhoneValue, setEmailOrPhoneValue] = useState<string>("");
   const [languages, setLanguages] = useState<Language[]>([

@@ -3,7 +3,11 @@ import "./RightNav.scss";
 import { FaBell, FaFacebookMessenger } from "react-icons/fa6";
 import useLogOutLogic from "../../Global/components/LogIn/LogOutLogic";
 
-function RightNav({ setIsAuthenticated }) {
+interface RightNavProps {
+  setIsAuthenticated: (isAuthenticated: boolean) => void;
+}
+
+function RightNav({ setIsAuthenticated }: RightNavProps) {
   const handleLogOut = useLogOutLogic(setIsAuthenticated);
 
   return (

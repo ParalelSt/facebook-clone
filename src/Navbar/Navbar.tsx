@@ -4,7 +4,11 @@ import MiddleNav from "./Middle/MiddleNav";
 import "./Navbar.scss";
 import RightNav from "./Right/RightNav";
 
-function Navbar({ setIsAuthenticated }) {
+interface NavbarProps {
+  setIsAuthenticated: (isAuthenticated: boolean) => void;
+}
+
+function Navbar({ setIsAuthenticated }: NavbarProps) {
   const location = useLocation();
 
   if (location.pathname === "/login") {
