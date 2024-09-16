@@ -2,12 +2,12 @@ import { BsFillGrid3X3GapFill } from "react-icons/bs";
 import "./RightNav.scss";
 import { FaBell, FaCaretDown, FaFacebookMessenger } from "react-icons/fa6";
 import useLogOutLogic from "../../Global/components/LogIn/LogOutLogic";
-import useDropDown from "../../Global/hooks/useDropDown";
 import { Users } from "../../App";
 import BorderLine from "../../Global/components/BorderLine";
 import { v4 } from "uuid";
 import Info from "../../Global/components/Info/Info";
 import { IoIosArrowForward } from "react-icons/io";
+import useDropDown from "../../Global/hooks/useDropDown";
 
 interface RightNavProps {
   setIsAuthenticated: (isAuthenticated: boolean) => void;
@@ -47,8 +47,7 @@ function RightNav({ setIsAuthenticated, currentUser }: RightNavProps) {
   ];
 
   const handleLogOut = useLogOutLogic(setIsAuthenticated);
-  const [_, handleDropDownClose, handleDropDownToggle, isActive] =
-    useDropDown();
+  const [, , handleDropDownToggle, isActive] = useDropDown();
 
   return (
     <>

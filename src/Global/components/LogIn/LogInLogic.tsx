@@ -5,8 +5,7 @@ function useLogInLogic(
   emailOrPhoneValue: string,
   passwordValue: string,
   users: Users[],
-  setIsAuthenticated: (isAuthenticated: boolean) => void,
-  setCurrentUser: (user: Users | null) => void
+  setIsAuthenticated: (isAuthenticated: boolean) => void
 ) {
   const Navigate = useNavigate();
 
