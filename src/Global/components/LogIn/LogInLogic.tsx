@@ -5,7 +5,8 @@ function useLogInLogic(
   emailOrPhoneValue: string,
   passwordValue: string,
   users: Users[],
-  setIsAuthenticated: (isAuthenticated: boolean) => void
+  setIsAuthenticated: (isAuthenticated: boolean) => void,
+  setCurrentUser: (user: Users | null) => void
 ) {
   const Navigate = useNavigate();
 
@@ -18,6 +19,7 @@ function useLogInLogic(
     );
     if (user) {
       localStorage.setItem("isAuthenticated", "true");
+      setCurrentUser(user);
       setIsAuthenticated(true);
       localStorage.setItem("currentUser", JSON.stringify(user));
       Navigate("/");
