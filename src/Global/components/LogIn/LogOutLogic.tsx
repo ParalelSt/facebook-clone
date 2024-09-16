@@ -2,8 +2,9 @@ function useLogOutLogic(
   setIsAuthenticated: (isAuthenticated: boolean) => void
 ) {
   const handleLogOut = () => {
-    setIsAuthenticated(false);
     localStorage.setItem("isAuthenticated", "false");
+    setIsAuthenticated(false);
+    localStorage.removeItem("currentUser");
   };
 
   return handleLogOut;

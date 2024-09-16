@@ -81,7 +81,7 @@
                     top: 3em;
                     right: 0;
                     background-color: white;
-                    box-shadow: $shadow-dark;
+                    box-shadow: $shadow-dark-topless;
                     border-radius: 0.5em;
 
                     .user-display-container {
@@ -95,7 +95,6 @@
                             display: flex;
                             align-items: center;
                             padding: 0.5em;
-                            
                             
                             img {
                                 border-radius: 100%;
@@ -136,7 +135,6 @@
 
                                     span {
                                         margin-top: 0.1em;
-                                        
                                     }
     
                                     img {
@@ -156,7 +154,8 @@
                         .drop-down-item {
                             display: flex;
                             align-items: center;
-                            padding: 0.7em 0.5em 0.7em 0.8em;
+                            flex: 1;
+                            padding: 0.8em 0.4em 0.8em 0.8em;
                             gap: 1em;
                             position: relative;
                             border-radius: 0.5em;
@@ -168,8 +167,8 @@
                                 margin-left: auto;
 
                                 svg {
-                                    height: 1.7em;
-                                    width: 1.7em;
+                                    height: 1.5em;
+                                    width: 1.5em;
                                     color: $icon-gray;
                                     z-index: 101;
                                 }
@@ -181,7 +180,7 @@
 
                             .img-bg {
                                 position: absolute;
-                                top: 0.38em;
+                                top: 0.4em;
                                 left: 0.4em;
                                 width: 2.3em;
                                 height: 2.3em;
@@ -194,7 +193,6 @@
                                 width: 1.5em;
                                 z-index: 101;
                             }
-
                         }
                     }
 

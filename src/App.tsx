@@ -22,7 +22,7 @@ function App() {
   const storedUser = localStorage.getItem("currentUser");
 
   useEffect(() => {
-    localStorage.setItem("isAuthenticated", isAuthenticated.toString());
+    localStorage.setItem("isAuthenticated", isAuthenticated ? "true" : "false");
   }, [isAuthenticated]);
 
   const [currentUser, setCurrentUser] = useState<Users | null>(

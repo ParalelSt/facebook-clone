@@ -44,13 +44,6 @@ function RightNav({ setIsAuthenticated, currentUser }: RightNavProps) {
       caret: false,
       id: v4(),
     },
-
-    {
-      name: "Log out",
-      img: "/icons/DoorExit.svg",
-      caret: false,
-      id: v4(),
-    },
   ];
 
   const handleLogOut = useLogOutLogic(setIsAuthenticated);
@@ -119,6 +112,11 @@ function RightNav({ setIsAuthenticated, currentUser }: RightNavProps) {
                       </div>
                     );
                   })}
+                  <div className="drop-down-item" onClick={handleLogOut}>
+                    <img src="/icons/DoorExit.svg" />
+                    <div className="img-bg"></div>
+                    <span>Log out</span>
+                  </div>
                 </div>
                 <Info></Info>
               </div>
