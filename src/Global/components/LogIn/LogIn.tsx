@@ -246,8 +246,8 @@ function LogIn({ setIsAuthenticated, users, setCurrentUser }: LogInProps) {
   useEffect(() => {
     const savedUser = localStorage.getItem("currentUser");
     if (savedUser) {
-      setCurrentUser(JSON.parse(savedUser));
       setIsAuthenticated(true);
+      setCurrentUser(JSON.parse(savedUser));
     }
   });
 

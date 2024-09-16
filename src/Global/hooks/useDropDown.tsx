@@ -12,10 +12,15 @@ function useDropDown() {
   };
 
   const handleDropDownClose = () => {
-    setIsActive(true);
+    setIsActive(false);
   };
 
-  return [handleDropDownOpen, handleDropDownClose, toggleDropDown, isActive];
+  return [
+    handleDropDownOpen,
+    handleDropDownClose,
+    toggleDropDown,
+    isActive,
+  ] as const;
 }
 
 export default useDropDown;

@@ -19,8 +19,8 @@ function useLogInLogic(
     );
     if (user) {
       localStorage.setItem("isAuthenticated", "true");
-      localStorage.setItem("currentUser", JSON.stringify(user));
       setIsAuthenticated(true);
+      localStorage.setItem("currentUser", JSON.stringify(user));
       Navigate("/");
     } else {
       alert("Invalid email/phone or password");

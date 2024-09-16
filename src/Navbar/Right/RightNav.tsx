@@ -5,6 +5,9 @@ import useLogOutLogic from "../../Global/components/LogIn/LogOutLogic";
 import useDropDown from "../../Global/hooks/useDropDown";
 import { Users } from "../../App";
 import BorderLine from "../../Global/components/BorderLine";
+import { v4 } from "uuid";
+import Info from "../../Global/components/Info/Info";
+import { IoIosArrowForward } from "react-icons/io";
 
 interface RightNavProps {
   setIsAuthenticated: (isAuthenticated: boolean) => void;
@@ -13,8 +16,46 @@ interface RightNavProps {
 }
 
 function RightNav({ setIsAuthenticated, currentUser }: RightNavProps) {
+  const dropDropIcons = [
+    {
+      name: "Settings & Privacy",
+      img: "/icons/Cog.svg",
+      caret: true,
+      id: v4(),
+    },
+
+    {
+      name: "Help & Support",
+      img: "/icons/Question.svg",
+      caret: true,
+      id: v4(),
+    },
+
+    {
+      name: "Display & accessibility",
+      img: "/icons/Moon.svg",
+      caret: true,
+      id: v4(),
+    },
+
+    {
+      name: "Give feedback",
+      img: "/icons/Exclamation.svg",
+      caret: false,
+      id: v4(),
+    },
+
+    {
+      name: "Log out",
+      img: "/icons/DoorExit.svg",
+      caret: false,
+      id: v4(),
+    },
+  ];
+
   const handleLogOut = useLogOutLogic(setIsAuthenticated);
-  const [open, close, toggle, isActive] = useDropDown();
+  const [_, handleDropDownClose, handleDropDownToggle, isActive] =
+    useDropDown();
 
   return (
     <>
@@ -35,13 +76,12 @@ function RightNav({ setIsAuthenticated, currentUser }: RightNavProps) {
               <FaBell className="icon"></FaBell>
             </div>
           </div>
-          <div className="profile-container">
-            <div className="img-container" onClick={() => toggle}>
+          <div className="profile-container" onClick={handleDropDownToggle}>
+            <div className="img-container">
               <img
                 className="profile"
                 src={currentUser?.profilePicture}
                 alt=""
-                onClick={() => toggle}
               />
               <div className="caret-container">
                 <FaCaretDown></FaCaretDown>
@@ -55,8 +95,32 @@ function RightNav({ setIsAuthenticated, currentUser }: RightNavProps) {
                     <span className="username">{currentUser?.user}</span>
                   </div>
                   <BorderLine></BorderLine>
-                  <div className="user-display-bottom"></div>
+                  <div className="user-display-bottom">
+                    <div className="button-container">
+                      <button className="profiles">
+                        <img src="/icons/SwapUser.svg" alt="" />
+                        <span>See all profiles</span>
+                      </button>
+                    </div>
+                  </div>
                 </div>
+                <div className="drop-down-item-container">
+                  {dropDropIcons.map((item) => {
+                    return (
+                      <div className="drop-down-item" key={item.id}>
+                        <img src={item.img} alt="" />
+                        <div className="img-bg"></div>
+                        <span>{item.name}</span>
+                        {item.caret && (
+                          <span className="caret">
+                            <IoIosArrowForward />
+                          </span>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+                <Info></Info>
               </div>
             </div>
           </div>

@@ -19,11 +19,15 @@ function App() {
     localStorage.getItem("isAuthenticated") === "true"
   );
 
+  const storedUser = localStorage.getItem("currentUser");
+
   useEffect(() => {
     localStorage.setItem("isAuthenticated", isAuthenticated.toString());
   }, [isAuthenticated]);
 
-  const [currentUser, setCurrentUser] = useState<Users | null>(null);
+  const [currentUser, setCurrentUser] = useState<Users | null>(
+    storedUser ? JSON.parse(storedUser) : null
+  );
 
   const users = [
     {

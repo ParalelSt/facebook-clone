@@ -1,3 +1,5 @@
+@import "../../Global/GlobalStyles.scss";
+
 .right-nav {
     display: flex;
     justify-content: flex-end;
@@ -46,6 +48,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
+                position: relative;
 
                 height: 100%;
                 width: 100%;
@@ -61,8 +64,8 @@
                     display: flex;
                     border-radius: 100%;
                     background-color: white;
-                    bottom: 0.25em;
-                    right: 0.25em;
+                    bottom: 0;
+                    right: 0;
                     position: absolute;
     
                     svg {
@@ -73,10 +76,143 @@
 
                 .drop-down-container {
                     display: none;
+                    position: absolute;
+                    padding: 0.5em;
+                    top: 3em;
+                    right: 0;
+                    background-color: white;
+                    box-shadow: $shadow-dark;
+                    border-radius: 0.5em;
+
+                    .user-display-container {
+                        width: 20em;
+                        padding: 0.5em;
+                        border-radius: 0.5em;
+                        box-shadow: $shadow-dark;
+                        margin: 0.3em 0.5em 0.8em 0.5em;
+
+                        .user-display-top {
+                            display: flex;
+                            align-items: center;
+                            padding: 0.5em;
+                            
+                            
+                            img {
+                                border-radius: 100%;
+                                height: 2.5em;
+                                width: 2.5em;
+                            }
+
+                            span {
+                                font-size: $medium;
+                                font-weight: bold;
+                                margin-left: 0.5em;
+                            }
+                            
+                        }
+
+                        .border-line {
+                            padding: 0.5em;
+                        }
+
+                        .user-display-bottom {
+
+                            .button-container {
+                                padding: 0.5em 0.5em 0.3em 0.5em;
+
+                                .profiles {
+                                    display: flex;
+                                    justify-content: center;
+                                    align-items: center;
+                                    gap: 0.3em;
+                                    width: 100%;
+                                    padding: 0.5em;
+                                    border-radius: 0.3em;
+                                    background-color: $button-gray;
+
+                                    &:hover {
+                                        background-color: #d9dbdf;
+                                    }
+
+                                    span {
+                                        margin-top: 0.1em;
+                                        
+                                    }
+    
+                                    img {
+                                        height: 1em;
+                                        width: 1em;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    .drop-down-item-container {
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+
+                        .drop-down-item {
+                            display: flex;
+                            align-items: center;
+                            padding: 0.7em 0.5em 0.7em 0.8em;
+                            gap: 1em;
+                            position: relative;
+                            border-radius: 0.5em;
+
+                            .caret {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                margin-left: auto;
+
+                                svg {
+                                    height: 1.7em;
+                                    width: 1.7em;
+                                    color: $icon-gray;
+                                    z-index: 101;
+                                }
+                            }
+                            
+                            &:hover {
+                                background-color: #f2f2f2;
+                            }
+
+                            .img-bg {
+                                position: absolute;
+                                top: 0.38em;
+                                left: 0.4em;
+                                width: 2.3em;
+                                height: 2.3em;
+                                border-radius: 100%;
+                                background-color: #e4e6eb;
+                            }
+
+                            img {
+                                height: 1.5em;
+                                width: 1.5em;
+                                z-index: 101;
+                            }
+
+                        }
+                    }
+
+                    .info-container {
+                        margin-top: 0.5em;
+                        .items {
+                            padding: 0.5em;
+                            padding-bottom: 0.35em;
+                        }
+                    }
+
                 }
 
-                .drop-down-container.active {
+                .active {
                     display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
                 }
             }
             
