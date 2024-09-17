@@ -26,6 +26,10 @@
                 border-radius: 100%;
                 background-color: #e4e6eb;
 
+                &:hover {
+                    filter: brightness(0.93);
+                }
+
                 .icon {
                     width: 1.3em;
                     height: 1.3em;
@@ -52,6 +56,10 @@
 
                 height: 100%;
                 width: 100%;
+
+                &:hover {
+                    filter: brightness(0.93);
+                }
 
                 .profile {
                     height: 100%;

@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import useLogInLogic from "./LogInLogic";
 import useBodyClass from "../../hooks/useBodyClass";
 import { Users } from "../../../App";
+import SignUp from "../SignUp/SignUp";
 
 interface Language {
   language: string | null;
@@ -362,6 +363,7 @@ function LogIn({ setIsAuthenticated, users, setCurrentUser }: LogInProps) {
           <span className="company">Meta &copy; {currentYear}</span>
         </div>
       </div>
+      <SignUp></SignUp>
     </div>
   );
 }
