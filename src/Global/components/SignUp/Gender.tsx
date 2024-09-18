@@ -42,17 +42,35 @@ function Gender() {
         </div>
       </div>
       <div className="gender-selectors">
-        <div className="gender-selector selector" onClick={handleMenuClose}>
+        <div className="gender-selector selector">
           <label htmlFor="female">Female</label>
-          <input className="sex-radio" type="radio" id="female" name="sex" />
+          <input
+            className="sex-radio"
+            type="radio"
+            id="female"
+            name="sex"
+            onClick={handleMenuClose}
+          />
         </div>
-        <div className="gender-selector selector" onClick={handleMenuClose}>
+        <div className="gender-selector selector">
           <label htmlFor="male">Male</label>
-          <input className="sex-radio" type="radio" id="male" name="sex" />
+          <input
+            className="sex-radio"
+            type="radio"
+            id="male"
+            name="sex"
+            onClick={handleMenuClose}
+          />
         </div>
-        <div className="gender-selector selector" onClick={handleMenuOpen}>
+        <div className="gender-selector selector">
           <label htmlFor="custom">Custom</label>
-          <input className="sex-radio" type="radio" id="custom" name="sex" />
+          <input
+            className="sex-radio"
+            type="radio"
+            id="custom"
+            name="sex"
+            onClick={handleMenuOpen}
+          />
         </div>
       </div>
       <div

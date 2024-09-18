@@ -18,7 +18,6 @@ function Birthday() {
   //List of months, might need improvement
 
   const currentMonth = new Date().getMonth() + 1;
-  console.log(currentMonth);
 
   const months: { month: string; number: number; id: string }[] = [
     {
