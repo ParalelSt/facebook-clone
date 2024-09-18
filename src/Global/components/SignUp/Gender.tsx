@@ -30,6 +30,7 @@ function Gender() {
     },
   ];
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [handleMenuOpen, handleMenuClose, _, isActive] = useDropDown();
 
   return (
@@ -41,11 +42,11 @@ function Gender() {
         </div>
       </div>
       <div className="gender-selectors">
-        <div className="gender-selector selector">
+        <div className="gender-selector selector" onClick={handleMenuClose}>
           <label htmlFor="female">Female</label>
           <input className="sex-radio" type="radio" id="female" name="sex" />
         </div>
-        <div className="gender-selector selector">
+        <div className="gender-selector selector" onClick={handleMenuClose}>
           <label htmlFor="male">Male</label>
           <input className="sex-radio" type="radio" id="male" name="sex" />
         </div>
@@ -54,7 +55,10 @@ function Gender() {
           <input className="sex-radio" type="radio" id="custom" name="sex" />
         </div>
       </div>
-      <div className={`custom-gender-selector ${isActive ? "active" : ""}`}>
+      <div
+        id={"genderSelector"}
+        className={`custom-gender-selector ${isActive ? "active" : ""}`}
+      >
         <div className="gender-selector">
           <select
             className="selector"
