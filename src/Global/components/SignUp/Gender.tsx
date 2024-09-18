@@ -1,5 +1,6 @@
 import { v4 } from "uuid";
 import useDropDown from "../../hooks/useDropDown";
+import { useRef } from "react";
 
 function Gender() {
   //List of pronouns
@@ -33,6 +34,17 @@ function Gender() {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [handleMenuOpen, handleMenuClose, _, isActive] = useDropDown();
 
+  const femaleRadio = useRef<HTMLInputElement>(null);
+  const maleRadio = useRef<HTMLInputElement>(null);
+  const customRadio = useRef<HTMLInputElement>(null);
+
+  const handleRadioClick = (radioRef: React.RefObject<HTMLInputElement>) => {
+    if (radioRef.current) {
+      radioRef.current.checked = true;
+      radioRef.current.click();
+    }
+  };
+
   return (
     <div className="gender-field question-field">
       <div className="gender question">
@@ -42,34 +54,55 @@ function Gender() {
         </div>
       </div>
       <div className="gender-selectors">
-        <div className="gender-selector selector">
+        <div
+          className="gender-selector selector"
+          onClick={() => handleRadioClick(femaleRadio)}
+        >
           <label htmlFor="female">Female</label>
           <input
             className="sex-radio"
             type="radio"
             id="female"
             name="sex"
-            onClick={handleMenuClose}
+            ref={femaleRadio}
+            onClick={(e) => {
+              handleMenuClose();
+              e.stopPropagation();
+            }}
           />
         </div>
-        <div className="gender-selector selector">
+        <div
+          className="gender-selector selector"
+          onClick={() => handleRadioClick(maleRadio)}
+        >
           <label htmlFor="male">Male</label>
           <input
             className="sex-radio"
             type="radio"
             id="male"
             name="sex"
-            onClick={handleMenuClose}
+            ref={maleRadio}
+            onClick={(e) => {
+              handleMenuClose();
+              e.stopPropagation();
+            }}
           />
         </div>
-        <div className="gender-selector selector">
+        <div
+          className="gender-selector selector"
+          onClick={() => handleRadioClick(customRadio)}
+        >
           <label htmlFor="custom">Custom</label>
           <input
             className="sex-radio"
             type="radio"
             id="custom"
             name="sex"
-            onClick={handleMenuOpen}
+            ref={customRadio}
+            onClick={(e) => {
+              handleMenuOpen();
+              e.stopPropagation();
+            }}
           />
         </div>
       </div>
