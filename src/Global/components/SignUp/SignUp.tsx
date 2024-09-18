@@ -1,6 +1,19 @@
+import { v4 } from "uuid";
 import "./SignUp.scss";
 
 function SignUp() {
+  const endYear: number = new Date().getFullYear();
+  const years: { year: number; id: string }[] = [];
+
+  const birthdayYears = () => {
+    for (let year = 1905; year <= endYear; year++) {
+      years.push({ year, id: v4() });
+    }
+  };
+
+  birthdayYears();
+  console.log(years);
+
   return (
     <>
       <div className="sign-up-container">
@@ -53,7 +66,13 @@ function SignUp() {
                   name="year"
                   id="year"
                 >
-                  <option value="2024">2024</option>
+                  {years.reverse().map((year) => {
+                    return (
+                      <option key={year.id} value={year.year}>
+                        {year.year}
+                      </option>
+                    );
+                  })}
                 </select>
               </div>
             </div>
