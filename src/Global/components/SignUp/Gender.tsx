@@ -1,4 +1,5 @@
 import { v4 } from "uuid";
+import useDropDown from "../../hooks/useDropDown";
 
 function Gender() {
   //List of pronouns
@@ -29,6 +30,8 @@ function Gender() {
     },
   ];
 
+  const [handleMenuOpen, handleMenuClose, _, isActive] = useDropDown();
+
   return (
     <div className="gender-field question-field">
       <div className="gender question">
@@ -46,12 +49,12 @@ function Gender() {
           <label htmlFor="male">Male</label>
           <input className="sex-radio" type="radio" id="male" name="sex" />
         </div>
-        <div className="gender-selector selector">
+        <div className="gender-selector selector" onClick={handleMenuOpen}>
           <label htmlFor="custom">Custom</label>
           <input className="sex-radio" type="radio" id="custom" name="sex" />
         </div>
       </div>
-      <div className="custom-gender-selector">
+      <div className={`custom-gender-selector ${isActive ? "active" : ""}`}>
         <div className="gender-selector">
           <select
             className="selector"

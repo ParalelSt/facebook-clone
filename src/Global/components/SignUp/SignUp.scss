@@ -136,13 +136,14 @@
                 }
     
                 .custom-gender-selector {
-                    display: none;
+                    display: flex;
                     margin-top: 0.5em;
     
                     .gender-selector {
                         display: flex;
                         flex-direction: column;
                         gap: 0.5em;
+                        width: 100%;
     
                         .selector {
                             margin-top: 0.2em;
@@ -172,10 +173,6 @@
                             color: $gray-text-dark;
                         }
                     }
-                }
-
-                .custom-gender-selector.active {
-                    display: flex;
                 }
     
                 .text-container {
