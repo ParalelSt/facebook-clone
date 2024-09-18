@@ -21,18 +21,36 @@ function SignUp() {
                 <input type="text" placeholder="First name" />
                 <input type="text" placeholder="Last name" />
               </div>
+              <div className="warning first-name">
+                <span>What&apos;s your name?</span>
+              </div>
+              <div className="warning last-name">
+                <span>What&apos;s your name?</span>
+              </div>
               <div className="phone-or-email-field sign-up-item">
                 <input type="text" placeholder="Mobile number or email" />
               </div>
+              <div className="warning phone-or-email">
+                <span>
+                  You'll use this when you log in and if you ever need to reset
+                  your password.
+                </span>
+              </div>
               <div className="password-field sign-up-item">
                 <input type="text" placeholder="New password" />
+              </div>
+              <div className="warning password">
+                <span>
+                  Enter a combination of at least six numbers, letters and
+                  punctuation marks (like ! and &).
+                </span>
               </div>
             </div>
             <div className="bottom">
               <Birthday></Birthday>
               <Gender></Gender>
               <div className="text-container">
-                <span>
+                <span className="top-span">
                   People who use our service may have uploaded your contact
                   information to Facebook. <a href="#">Learn more</a>.
                 </span>
