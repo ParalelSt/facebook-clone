@@ -5,46 +5,49 @@ import Gender from "./Gender";
 function SignUp() {
   return (
     <>
-      <div className="sign-up-container">
-        <div className="sign-up-top">
-          <div className="top">
-            <h1>Sign Up</h1>
-          </div>
-          <div className="bottom">
-            <h4>It's quick and easy</h4>
-          </div>
-        </div>
-        <div className="sign-up-bottom">
-          <div className="top">
-            <div className="name-fields sign-up-item">
-              <input type="text" placeholder="First name" />
-              <input type="text" placeholder="Last name" />
+      <div className="white-bg">
+        <div className="sign-up-container">
+          <div className="sign-up-top">
+            <div className="top">
+              <h1>Sign Up</h1>
             </div>
-            <div className="phone-or-email-field sign-up-item">
-              <input type="text" placeholder="Mobile number or email" />
-            </div>
-            <div className="password-field sign-up-item">
-              <input type="text" placeholder="New password" />
+            <div className="bottom">
+              <h4>It's quick and easy</h4>
             </div>
           </div>
-          <div className="bottom">
-            <Birthday></Birthday>
-            <Gender></Gender>
-            <div className="text-container">
-              <span>
-                People who use our service may have uploaded your contact
-                information to Facebook. <a href="#">Learn more</a>.
-              </span>
-              <span>
-                By clicking Sign Up, you agree to our <a href="#">Terms</a>.
-                Learn how we collect, use and share your data in our{" "}
-                <a href="#">Privacy Policy</a> and how we use cookies and
-                similar technology in our <a href="#">Cookies Policy</a>. You
-                may receive SMS Notifications from us and can opt out any time.
-              </span>
+          <div className="sign-up-bottom">
+            <div className="top">
+              <div className="name-fields sign-up-item">
+                <input type="text" placeholder="First name" />
+                <input type="text" placeholder="Last name" />
+              </div>
+              <div className="phone-or-email-field sign-up-item">
+                <input type="text" placeholder="Mobile number or email" />
+              </div>
+              <div className="password-field sign-up-item">
+                <input type="text" placeholder="New password" />
+              </div>
             </div>
-            <div className="sign-up">
-              <button>Sign up</button>
+            <div className="bottom">
+              <Birthday></Birthday>
+              <Gender></Gender>
+              <div className="text-container">
+                <span>
+                  People who use our service may have uploaded your contact
+                  information to Facebook. <a href="#">Learn more</a>.
+                </span>
+                <span>
+                  By clicking Sign Up, you agree to our <a href="#">Terms</a>.
+                  Learn how we collect, use and share your data in our{" "}
+                  <a href="#">Privacy Policy</a> and how we use cookies and
+                  similar technology in our <a href="#">Cookies Policy</a>. You
+                  may receive SMS Notifications from us and can opt out any
+                  time.
+                </span>
+              </div>
+              <div className="sign-up">
+                <button>Sign up</button>
+              </div>
             </div>
           </div>
         </div>

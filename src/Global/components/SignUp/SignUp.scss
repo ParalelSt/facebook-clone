@@ -1,131 +1,48 @@
 @import '../../GlobalStyles.scss';
 
-.sign-up-container {
-    background-color: white;
+.white-bg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
-    width: 27em;
-    top: 15%;
-    right: 40%;
-    border-radius: 0.5em;
-    box-shadow: $shadow-dark-topless;
+    background-color: rgba(252, 253, 253, 0.8);
+    z-index: 101;
+    width: 100%;
+    height: 100%;
 
-    .sign-up-top {
-        display: flex;
-        flex-direction: column;
-        border-bottom: 1px solid $border-black;
-        padding: 0.8em 1em;
-
-        h4 {
-            font-weight: normal;
+    .sign-up-container {
+        z-index: 102;
+        background-color: white;
+        width: 27em;
+        border-radius: 0.5em;
+        box-shadow: $shadow-dark-topless;
+    
+        .sign-up-top {
+            display: flex;
+            flex-direction: column;
+            border-bottom: 1px solid $border-black;
+            padding: 0.8em 1em;
+    
+            h4 {
+                font-weight: normal;
+            }
         }
-    }
-
-    .sign-up-bottom {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5em;
-        padding: 0.8em 1em;
-        
-        .top {
+    
+        .sign-up-bottom {
             display: flex;
             flex-direction: column;
             gap: 0.5em;
-
-            .sign-up-item {
-                display: flex;
-                gap: 0.5em;
-
-                input {
-                    width: 100%;
-                    background-color: $input-gray;
-                    border: 1px solid $border-black;
-                    border-radius: 0.3em;
-                    padding: 0.8em;
-                    font-size: $medium;
-                    
-                    &:focus {
-                        outline: none;
-                    }
-                }
-            }
-        }
-
-        .bottom {
-            display: flex;
-            flex-direction: column;
-            gap: 0.5em;            
-
-            .question-field {
+            padding: 0.8em 1em;
+            
+            .top {
                 display: flex;
                 flex-direction: column;
-
-                .question {
-                    display: flex;
-                    align-items: center;
-                    font-size: $small;
-                    gap: 0.2em;
-
-                    span {
-                        color: $gray-text-dark;
-                    }
-
-                    .img-container {
-                        display: flex;
-                        align-items: center;
-
-                        cursor: pointer;
-
-                        img {
-                            height: 0.8em;
-                            width: 0.8em;
-                        }
-                    }
-                }
-            }
-
-            //Make it work
-            //Fix the styling for the span elements at the bottom
-
-            .gender-selectors, .birthday-selectors {
-                display: flex;
                 gap: 0.5em;
-                
-                .selector {
-                    margin-top: 0.2em;
-                    background-color: transparent;
-                    border: 1px solid $border-black;
-                    font-size: $medium;
-                    padding: 0.5em;
-                    width: 100%;
-                    border-radius: 0.3em;
+    
+                .sign-up-item {
                     display: flex;
-
-                    label {
-                        margin-right: auto;
-                    }
-                }
-
-                
-            }
-
-            .custom-gender-selector {
-                margin-top: 0.5em;
-
-                .gender-selector {
-                    display: flex;
-                    flex-direction: column;
                     gap: 0.5em;
-
-                    .selector {
-                        margin-top: 0.2em;
-                        background-color: transparent;
-                        border: 1px solid $border-black;
-                        font-size: $medium;
-                        padding: 0.5em;
-                        width: 100%;
-                        border-radius: 0.3em;
-                    }
-
+    
                     input {
                         width: 100%;
                         background-color: $input-gray;
@@ -138,40 +55,133 @@
                             outline: none;
                         }
                     }
-
-                    label {
+                }
+            }
+    
+            .bottom {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5em;            
+    
+                .question-field {
+                    display: flex;
+                    flex-direction: column;
+    
+                    .question {
+                        display: flex;
+                        align-items: center;
+                        font-size: $small;
+                        gap: 0.2em;
+    
+                        span {
+                            color: $gray-text-dark;
+                        }
+    
+                        .img-container {
+                            display: flex;
+                            align-items: center;
+    
+                            cursor: pointer;
+    
+                            img {
+                                height: 0.8em;
+                                width: 0.8em;
+                            }
+                        }
+                    }
+                }
+    
+                //Make it work
+                //Fix the styling for the span elements at the bottom
+    
+                .gender-selectors, .birthday-selectors {
+                    display: flex;
+                    gap: 0.5em;
+                    
+                    .selector {
+                        margin-top: 0.2em;
+                        background-color: transparent;
+                        border: 1px solid $border-black;
+                        font-size: $medium;
+                        padding: 0.5em;
+                        width: 100%;
+                        border-radius: 0.3em;
+                        display: flex;
+    
+                        label {
+                            margin-right: auto;
+                        }
+                    }
+    
+                    
+                }
+    
+                .custom-gender-selector {
+                    margin-top: 0.5em;
+    
+                    .gender-selector {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 0.5em;
+    
+                        .selector {
+                            margin-top: 0.2em;
+                            background-color: transparent;
+                            border: 1px solid $border-black;
+                            font-size: $medium;
+                            padding: 0.5em;
+                            width: 100%;
+                            border-radius: 0.3em;
+                        }
+    
+                        input {
+                            width: 100%;
+                            background-color: $input-gray;
+                            border: 1px solid $border-black;
+                            border-radius: 0.3em;
+                            padding: 0.8em;
+                            font-size: $medium;
+                            
+                            &:focus {
+                                outline: none;
+                            }
+                        }
+    
+                        label {
+                            font-size: $xs;
+                            color: $gray-text-dark;
+                        }
+                    }
+                }
+    
+                .text-container {
+                    span {
                         font-size: $xs;
-                        color: $gray-text-dark;
+                        color: $gray-text2;
+    
+                        a, a:visited {
+                            color: $a-blue;
+                        }
                     }
                 }
             }
-
-            .text-container {
-                span {
-                    font-size: $xs;
-                    color: $gray-text2;
-
-                    a, a:visited {
-                        color: $a-blue;
-                    }
+            .sign-up {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-top: 0.8em;
+                margin-bottom: 0.5em;
+    
+                button {
+                    background-color: #00a400;
+                    color: white;
+                    padding: 0.45em 3.5em;
+                    border-radius: 0.5em;
+                    font-weight: bold;
+                    font-size: $large;
                 }
-            }
-        }
-        .sign-up {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-top: 0.8em;
-            margin-bottom: 0.5em;
-
-            button {
-                background-color: #00a400;
-                color: white;
-                padding: 0.45em 3.5em;
-                border-radius: 0.5em;
-                font-weight: bold;
-                font-size: $large;
             }
         }
     }
 }
+

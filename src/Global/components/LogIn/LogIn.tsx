@@ -363,6 +363,7 @@ function LogIn({ setIsAuthenticated, users, setCurrentUser }: LogInProps) {
           <span className="company">Meta &copy; {currentYear}</span>
         </div>
       </div>
+
       <SignUp></SignUp>
     </div>
   );
