@@ -193,15 +193,30 @@ function SignUp() {
               <div className="gender-selectors">
                 <div className="gender-selector selector">
                   <label htmlFor="female">Female</label>
-                  <input type="radio" id="female" />
+                  <input
+                    className="sex-radio"
+                    type="radio"
+                    id="female"
+                    name="sex"
+                  />
                 </div>
                 <div className="gender-selector selector">
                   <label htmlFor="male">Male</label>
-                  <input type="radio" id="male" />
+                  <input
+                    className="sex-radio"
+                    type="radio"
+                    id="male"
+                    name="sex"
+                  />
                 </div>
                 <div className="gender-selector selector">
                   <label htmlFor="custom">Custom</label>
-                  <input type="radio" id="custom" />
+                  <input
+                    className="sex-radio"
+                    type="radio"
+                    id="custom"
+                    name="sex"
+                  />
                 </div>
               </div>
               <div className="custom-gender-selector">
