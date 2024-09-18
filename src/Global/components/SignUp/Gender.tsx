@@ -5,26 +5,26 @@ function Gender() {
 
   const pronouns = [
     {
-      value: "",
-      name: "",
+      value: "select your pronoun",
+      name: "Select your pronoun",
       id: v4(),
     },
 
     {
-      value: "",
-      name: "",
+      value: "she",
+      name: 'She: "Wish her a happy birthday!"',
       id: v4(),
     },
 
     {
-      value: "",
-      name: "",
+      value: "he",
+      name: 'He: "Wish him a happy birthday!"',
       id: v4(),
     },
 
     {
-      value: "",
-      name: "",
+      value: "they",
+      name: 'They: "Wish them a happy birthday!"',
       id: v4(),
     },
   ];
@@ -59,10 +59,13 @@ function Gender() {
             id="pronoun-selector selector"
             defaultValue={"select your pronoun"}
           >
-            <option value="select your pronoun">Select your pronoun</option>
-            <option value="she">She: "Wish her a happy birthday!"</option>
-            <option value="he">He: "Wish him a happy birthday!"</option>
-            <option value="them">They: "Wish them a happy birthday!"</option>
+            {pronouns.map((pronoun) => {
+              return (
+                <option key={pronoun.id} value={pronoun.value}>
+                  {pronoun.name}
+                </option>
+              );
+            })}
           </select>
           <label htmlFor="pronoun-selector">
             Your pronoun is visible to everyone.
