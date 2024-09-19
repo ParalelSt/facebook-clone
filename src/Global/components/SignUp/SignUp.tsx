@@ -5,7 +5,6 @@ import { IoClose } from "react-icons/io5";
 import { useRef, useState } from "react";
 import { v4 } from "uuid";
 import { Users } from "../../../App";
-import { useNavigate } from "react-router-dom";
 
 interface SignUpProps {
   handleCreateClose: () => void;
@@ -35,6 +34,11 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
 
   //Sign up
 
+  //password hashing
+
+  const salt = await bcrypt.genSalt(10);
+  const bcrypt = require("bcryptjs");
+
   const firstNameRef = useRef<HTMLInputElement>(null);
   const lastNameRef = useRef<HTMLInputElement>(null);
 
@@ -58,7 +62,7 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
     setPasswordValue(event?.target.value);
   };
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const signUp = () => {
     const isEmail = validateEmail(phoneOrEmailValue);
@@ -74,11 +78,9 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
       id: v4(),
     };
 
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    setUsers((prevUsers) => [...users, newUser]);
-    navigate("/create-account");
-
-    console.log(users);
+    setUsers((prevUsers) => [...prevUsers, newUser]);
+    localStorage.setItem("user", JSON.stringify(newUser));
+    // navigate("/create-account");
   };
 
   return (

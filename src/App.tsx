@@ -40,6 +40,13 @@ function App() {
   ]);
 
   useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      setUsers((prevUsers) => [...prevUsers, JSON.parse(user)]);
+    }
+  }, []);
+
+  useEffect(() => {
     console.log(users);
   }, [users]);
 
