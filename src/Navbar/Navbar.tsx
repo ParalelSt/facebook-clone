@@ -21,13 +21,15 @@ function Navbar({ setIsAuthenticated, users, currentUser }: NavbarProps) {
   return (
     <>
       <nav>
-        <LeftNav></LeftNav>
-        <MiddleNav></MiddleNav>
-        <RightNav
-          users={users}
-          currentUser={currentUser}
-          setIsAuthenticated={setIsAuthenticated}
-        ></RightNav>
+        <div className="navbar-container">
+          <LeftNav></LeftNav>
+          <MiddleNav></MiddleNav>
+          <RightNav
+            users={users}
+            currentUser={currentUser}
+            setIsAuthenticated={setIsAuthenticated}
+          ></RightNav>
+        </div>
       </nav>
     </>
   );
