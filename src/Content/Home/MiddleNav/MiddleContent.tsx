@@ -1,9 +1,10 @@
 import { useMemo } from "react";
 import ImageCarousel from "../../../Global/components/Image Carousel/ImageCarousel";
-import { ContactI } from "../RightSideNav/RightSideNav";
 import "./MiddleContent.scss";
 import { v4 as uuidv4 } from "uuid";
 import StateYourMind from "./StateYourMind";
+import { Users } from "../../../App";
+import { ContactListType } from "../Home";
 
 export interface carouselData {
   username: string;
@@ -14,17 +15,17 @@ export interface carouselData {
   id: string;
 }
 
+interface MiddleContentProps {
+  contactList: ContactListType[];
+  user: Users | null;
+}
+
 export interface User {
   username: string;
   profilePicture: string;
 }
 
-const user: User = {
-  username: "Aron",
-  profilePicture: "/images/ProfilePicture.jpg",
-};
-
-function MiddleContent({ contactList }: ContactI) {
+function MiddleContent({ contactList, user }: MiddleContentProps) {
   const carouselData: carouselData[] = useMemo(() => {
     return contactList.flatMap((post) => ({
       username: post.username,

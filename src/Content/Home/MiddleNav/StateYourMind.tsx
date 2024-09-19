@@ -1,21 +1,21 @@
 import { Link } from "react-router-dom";
-import { User } from "./MiddleContent";
 import { IoIosImages } from "react-icons/io";
 import { FaVideo } from "react-icons/fa6";
 import BorderLine from "../../../Global/components/BorderLine";
 import { FaRegSmile } from "react-icons/fa";
+import { Users } from "../../../App";
 
 interface UserI {
-  user: User;
+  user: Users | null;
 }
 
 function StateYourMind({ user }: UserI) {
   return (
     <div className="content-container">
       <div className="content-top-container">
-        <img src={user.profilePicture} />
+        <img src={user ? user.profilePicture : ""} />
         <div className="button-container">
-          <span>What's on your mind, {user.username}?</span>
+          <span>What's on your mind, {user ? user.user : ""}?</span>
         </div>
       </div>
       <BorderLine></BorderLine>

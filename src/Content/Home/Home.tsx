@@ -3,6 +3,7 @@ import RightSideNav from "./RightSideNav/RightSideNav";
 import "./Home.scss";
 import MiddleContent from "./MiddleNav/MiddleContent";
 import { v4 as uuidv4 } from "uuid";
+import { Users } from "../../App";
 
 export interface ContactListType {
   username: string;
@@ -15,7 +16,11 @@ export interface ContactListType {
   id: string;
 }
 
-function Home() {
+interface HomeProps {
+  user: Users | null;
+}
+
+function Home({ user }: HomeProps) {
   const contactList: ContactListType[] = [
     {
       username: "Aron Matoic",
@@ -120,7 +125,7 @@ function Home() {
   return (
     <div className="home">
       <LeftNavSide></LeftNavSide>
-      <MiddleContent contactList={contactList}></MiddleContent>
+      <MiddleContent user={user} contactList={contactList}></MiddleContent>
       <RightSideNav contactList={contactList}></RightSideNav>
     </div>
   );
