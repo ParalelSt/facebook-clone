@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Link } from "react-router-dom";
 import "./LogIn.scss";
 import BorderLine from "../BorderLine";
@@ -7,6 +8,7 @@ import useLogInLogic from "./LogInLogic";
 import useBodyClass from "../../hooks/useBodyClass";
 import { Users } from "../../../App";
 import SignUp from "../SignUp/SignUp";
+import useDropDown from "../../hooks/useDropDown";
 
 interface Language {
   language: string | null;
@@ -22,8 +24,7 @@ interface LogInProps {
 function LogIn({ setIsAuthenticated, users, setCurrentUser }: LogInProps) {
   useBodyClass("login-body");
 
-  const [passwordValue, setPasswordValue] = useState<string>("");
-  const [emailOrPhoneValue, setEmailOrPhoneValue] = useState<string>("");
+  //Function to change the list of items inside the list of languages at the bottom
 
   const [languages, setLanguages] = useState<Language[]>([
     {
@@ -76,6 +77,24 @@ function LogIn({ setIsAuthenticated, users, setCurrentUser }: LogInProps) {
       id: v4(),
     },
   ]);
+
+  const firstIndex = languages[0];
+
+  const swapListItems = (index1: number, index2: number) => {
+    const splitLanguages = [...languages];
+    const temp = splitLanguages[index1];
+    splitLanguages[index1] = splitLanguages[index2];
+    splitLanguages[index2] = temp;
+    setLanguages(splitLanguages);
+  };
+
+  const handleLanguageClick = (clickedIndex: number) => {
+    swapListItems(0, clickedIndex);
+  };
+
+  const currentYear = new Date().getFullYear(); //Variable for setting the current year next to "Meta"
+
+  //Options
 
   const options = [
     {
@@ -242,7 +261,10 @@ function LogIn({ setIsAuthenticated, users, setCurrentUser }: LogInProps) {
     },
   ];
 
-  const firstIndex = languages[0];
+  //Log in functions
+
+  const [passwordValue, setPasswordValue] = useState<string>("");
+  const [emailOrPhoneValue, setEmailOrPhoneValue] = useState<string>("");
 
   useEffect(() => {
     const savedUser = localStorage.getItem("currentUser");
@@ -252,20 +274,6 @@ function LogIn({ setIsAuthenticated, users, setCurrentUser }: LogInProps) {
     }
   });
 
-  const swapListItems = (index1: number, index2: number) => {
-    const splitLanguages = [...languages];
-    const temp = splitLanguages[index1];
-    splitLanguages[index1] = splitLanguages[index2];
-    splitLanguages[index2] = temp;
-    setLanguages(splitLanguages);
-  };
-
-  const handleLanguageClick = (clickedIndex: number) => {
-    swapListItems(0, clickedIndex);
-  };
-
-  const currentYear = new Date().getFullYear();
-
   const handleLogin = useLogInLogic(
     emailOrPhoneValue,
     passwordValue,
@@ -273,6 +281,10 @@ function LogIn({ setIsAuthenticated, users, setCurrentUser }: LogInProps) {
     setIsAuthenticated,
     setCurrentUser
   );
+
+  //Sign up
+
+  const [handleCreateOpen, handleCreateClose, _, isActive] = useDropDown();
 
   return (
     <div className="log-in-container">
@@ -314,7 +326,10 @@ function LogIn({ setIsAuthenticated, users, setCurrentUser }: LogInProps) {
               </div>
               <BorderLine></BorderLine>
               <div className="component-bottom">
-                <button className="create-new-account-btn">
+                <button
+                  onClick={handleCreateOpen}
+                  className="create-new-account-btn"
+                >
                   Create new account
                 </button>
               </div>
@@ -364,7 +379,11 @@ function LogIn({ setIsAuthenticated, users, setCurrentUser }: LogInProps) {
         </div>
       </div>
 
-      <SignUp></SignUp>
+      <SignUp
+        users={users}
+        handleCreateClose={handleCreateClose}
+        isActive={isActive}
+      ></SignUp>
     </div>
   );
 }

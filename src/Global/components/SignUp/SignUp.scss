@@ -1,7 +1,11 @@
 @import '../../GlobalStyles.scss';
 
+.white-bg.active {
+    display: flex;
+}
+
 .white-bg {
-    display: none; //change to flex
+    display: none;
     align-items: center;
     justify-content: center;
     position: absolute;
@@ -23,6 +27,19 @@
             flex-direction: column;
             border-bottom: 1px solid $border-black;
             padding: 0.8em 1em;
+            position: relative;
+
+            .top {
+                display: flex;
+
+                svg {
+                    position: absolute;
+                    right: 0.7em;
+                    height: 1.7em;
+                    width: 1.7em;
+                    color: $gray-text-dark;
+                }
+            }
     
             h4 {
                 font-weight: normal;

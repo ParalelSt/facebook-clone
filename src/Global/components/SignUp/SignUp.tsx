@@ -1,15 +1,75 @@
 import "./SignUp.scss";
 import Birthday from "./Birthday";
 import Gender from "./Gender";
+import { IoClose } from "react-icons/io5";
+import { useRef, useState } from "react";
+import { Users } from "../../../App";
 
-function SignUp() {
+interface SignUpProps {
+  handleCreateClose: () => void;
+  isActive: boolean;
+  users: Users[];
+}
+
+function SignUp({ handleCreateClose, isActive, users }: SignUpProps) {
+  //Validation
+
+  const validateEmail = (email: string) => {
+    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    return emailPattern.test(email);
+  };
+
+  const validatePhoneNumber = (phoneNumber: string) => {
+    const phonePattern = /^[+]?[(]?[0-9]{1,4}[)]?[-\s./0-9]*$/;
+    return phonePattern.test(phoneNumber);
+  };
+
+  //Sign up
+
+  const firstNameRef = useRef<HTMLInputElement>(null);
+  const lastNameRef = useRef<HTMLInputElement>(null);
+
+  const phoneOrEmailRef = useRef<HTMLInputElement>(null);
+  const [phoneOrEmailValue, setPhoneOrEmailValue] = useState("");
+
+  const passwordRef = useRef<HTMLInputElement>(null);
+
+  const userName =
+    firstNameRef.current?.value + "" + lastNameRef.current?.value;
+
+  const phoneOrEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const inputValue = event?.target.value;
+    setPhoneOrEmailValue(inputValue);
+  };
+
+  const signUp = () => {
+    const isEmail = validateEmail(phoneOrEmailValue);
+    const isPhoneNumber = validatePhoneNumber(phoneOrEmailValue);
+
+    const newUser = {
+      user: userName.trim(),
+      email: isEmail ? phoneOrEmailValue : "",
+      phoneNumber: isPhoneNumber ? phoneOrEmailValue : "",
+      password: "da2",
+      profilePicture: "/icons/BingoPop.png",
+      birthday: "",
+      gender: "",
+      pronoun: "",
+    };
+
+    users.push(newUser);
+
+    console.log(users);
+  };
+
   return (
     <>
-      <div className="white-bg">
+      <div className={`white-bg ${isActive ? "active" : ""}`}>
         <div className="sign-up-container">
           <div className="sign-up-top">
             <div className="top">
               <h1>Sign Up</h1>
+              <IoClose onClick={handleCreateClose} />
             </div>
             <div className="bottom">
               <h4>It's quick and easy</h4>
@@ -18,8 +78,12 @@ function SignUp() {
           <div className="sign-up-bottom">
             <div className="top">
               <div className="name-fields sign-up-item">
-                <input type="text" placeholder="First name" />
-                <input type="text" placeholder="Last name" />
+                <input
+                  type="text"
+                  placeholder="First name"
+                  ref={firstNameRef}
+                />
+                <input type="text" placeholder="Last name" ref={lastNameRef} />
               </div>
               <div className="warning first-name">
                 <span>What&apos;s your name?</span>
@@ -28,7 +92,13 @@ function SignUp() {
                 <span>What&apos;s your name?</span>
               </div>
               <div className="phone-or-email-field sign-up-item">
-                <input type="text" placeholder="Mobile number or email" />
+                <input
+                  type="text"
+                  placeholder="Mobile number or email"
+                  value={phoneOrEmailValue}
+                  ref={phoneOrEmailRef}
+                  onChange={phoneOrEmail}
+                />
               </div>
               <div className="warning phone-or-email">
                 <span>
@@ -37,7 +107,11 @@ function SignUp() {
                 </span>
               </div>
               <div className="password-field sign-up-item">
-                <input type="text" placeholder="New password" />
+                <input
+                  type="password"
+                  placeholder="New password"
+                  ref={passwordRef}
+                />
               </div>
               <div className="warning password">
                 <span>
@@ -64,7 +138,14 @@ function SignUp() {
                 </span>
               </div>
               <div className="sign-up">
-                <button>Sign up</button>
+                <button
+                  onClick={() => {
+                    signUp();
+                    handleCreateClose();
+                  }}
+                >
+                  Sign up
+                </button>
               </div>
             </div>
           </div>
