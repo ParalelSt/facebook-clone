@@ -44,7 +44,7 @@ function RightSideNav({ contactList }: ContactI) {
   ];
 
   return (
-    <div className="container">
+    <div className="right-side-nav-container">
       <Contacts contactList={contactList}></Contacts>
       <BorderLine></BorderLine>
       <GroupChat groups={groups}></GroupChat>

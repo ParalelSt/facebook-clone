@@ -10,7 +10,7 @@ import "../../../Global/GlobalStyles.scss";
 function LeftSideNav() {
   return (
     <>
-      <div className="container">
+      <div className="left-side-nav-container">
         <TopContainer></TopContainer>
         <BottomContainer></BottomContainer>
         <Info></Info>
