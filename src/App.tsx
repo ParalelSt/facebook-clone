@@ -29,15 +29,7 @@ function App() {
     storedUser ? JSON.parse(storedUser) : null
   );
 
-  const [users, setUsers] = useState<Users[]>([
-    {
-      user: "Aron Matoic",
-      email: "aronddtt@gmail.com",
-      phoneNumber: "0912229106",
-      password: "da",
-      profilePicture: "/images/ProfilePicture.jpg",
-    },
-  ]);
+  const [users, setUsers] = useState<Users[]>([]);
 
   useEffect(() => {
     const user = localStorage.getItem("user");

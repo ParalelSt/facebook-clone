@@ -5,6 +5,7 @@ import { IoClose } from "react-icons/io5";
 import { useRef, useState } from "react";
 import { v4 } from "uuid";
 import { Users } from "../../../App";
+import bcrypt from "bcryptjs";
 
 interface SignUpProps {
   handleCreateClose: () => void;
@@ -34,11 +35,6 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
 
   //Sign up
 
-  //password hashing
-
-  const salt = await bcrypt.genSalt(10);
-  const bcrypt = require("bcryptjs");
-
   const firstNameRef = useRef<HTMLInputElement>(null);
   const lastNameRef = useRef<HTMLInputElement>(null);
 
@@ -47,6 +43,8 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
 
   const passwordRef = useRef<HTMLInputElement>(null);
   const [passwordValue, setPasswordValue] = useState("");
+
+  //password hashing
 
   const userName =
     firstNameRef.current?.value.trim() +
@@ -64,21 +62,24 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
 
   // const navigate = useNavigate();
 
-  const signUp = () => {
+  const signUp = async () => {
     const isEmail = validateEmail(phoneOrEmailValue);
     const isPhoneNumber = validatePhoneNumber(phoneOrEmailValue);
     // const isPassword = validatePassword(passwordValue);
+
+    const saltRounds = 10;
+    const hashedPassword = await bcrypt.hash(passwordValue, saltRounds);
 
     const newUser = {
       user: userName,
       email: isEmail ? phoneOrEmailValue : "",
       phoneNumber: isPhoneNumber ? phoneOrEmailValue : "",
-      password: passwordValue,
+      password: hashedPassword,
       profilePicture: "/images/ProfilePicture.jpg",
       id: v4(),
     };
 
-    setUsers((prevUsers) => [...prevUsers, newUser]);
+    setUsers((prevUsers) => [...users, newUser]);
     localStorage.setItem("user", JSON.stringify(newUser));
     // navigate("/create-account");
   };
