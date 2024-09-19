@@ -1,7 +1,7 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 import Navbar from "./Navbar/Navbar";
 import "./Global/GlobalStyles.scss";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import PrivateRoute from "./Global/components/PrivateRoute.tsx";
 import Home from "./Content/Home/Home.tsx";
 import LogIn from "./Global/components/LogIn/LogIn.tsx";
@@ -19,55 +19,13 @@ function App() {
     localStorage.getItem("isAuthenticated") === "true"
   );
 
-  const storedUser = localStorage.getItem("currentUser");
-
-  useEffect(() => {
-    localStorage.setItem("isAuthenticated", isAuthenticated ? "true" : "false");
-  }, [isAuthenticated]);
-
-  const [currentUser, setCurrentUser] = useState<Users | null>(
-    storedUser ? JSON.parse(storedUser) : null
-  );
-
-  const [users, setUsers] = useState<Users[]>([
-    {
-      user: "Aron Matoic",
-      email: "aronddtt@gmail.com",
-      phoneNumber: "0912229106",
-      password: "da",
-      profilePicture: "/images/ProfilePicture.jpg",
-    },
-  ]);
-
-  useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (user) {
-      setUsers((prevUsers) => [...prevUsers, JSON.parse(user)]);
-    }
-  }, []);
-
-  useEffect(() => {
-    console.log(users);
-  }, [users]);
-
   return (
     <>
-      <Navbar
-        users={users}
-        currentUser={currentUser}
-        setIsAuthenticated={setIsAuthenticated}
-      ></Navbar>
+      <Navbar setIsAuthenticated={setIsAuthenticated}></Navbar>
       <Routes>
         <Route
           path="/login"
-          element={
-            <LogIn
-              setUsers={setUsers}
-              users={users}
-              setCurrentUser={setCurrentUser}
-              setIsAuthenticated={setIsAuthenticated}
-            ></LogIn>
-          }
+          element={<LogIn setIsAuthenticated={setIsAuthenticated}></LogIn>}
         />
         <Route
           element={
