@@ -67,6 +67,7 @@ function App() {
           <Route path="/marketplace"></Route>
           <Route path="/groups"></Route>
           <Route path="/games"></Route>
+          <Route path="/.netlify/functions/api"></Route>
         </Route>
         <Route
           path="*"
