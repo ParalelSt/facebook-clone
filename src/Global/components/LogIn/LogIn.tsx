@@ -387,7 +387,6 @@ function LogIn({
 
       <SignUp
         setUsers={setUsers}
-        users={users}
         handleCreateClose={handleCreateClose}
         isActive={isActive}
       ></SignUp>
