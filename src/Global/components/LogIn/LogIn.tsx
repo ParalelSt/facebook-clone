@@ -19,9 +19,15 @@ interface LogInProps {
   setIsAuthenticated: (isAuthenticated: boolean) => void;
   users: Users[];
   setCurrentUser: (user: Users | null) => void;
+  setUsers: React.Dispatch<React.SetStateAction<Users[]>>;
 }
 
-function LogIn({ setIsAuthenticated, users, setCurrentUser }: LogInProps) {
+function LogIn({
+  setIsAuthenticated,
+  users,
+  setCurrentUser,
+  setUsers,
+}: LogInProps) {
   useBodyClass("login-body");
 
   //Function to change the list of items inside the list of languages at the bottom
@@ -380,6 +386,7 @@ function LogIn({ setIsAuthenticated, users, setCurrentUser }: LogInProps) {
       </div>
 
       <SignUp
+        setUsers={setUsers}
         users={users}
         handleCreateClose={handleCreateClose}
         isActive={isActive}

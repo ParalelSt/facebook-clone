@@ -3,15 +3,18 @@ import Birthday from "./Birthday";
 import Gender from "./Gender";
 import { IoClose } from "react-icons/io5";
 import { useRef, useState } from "react";
+import { v4 } from "uuid";
 import { Users } from "../../../App";
+import { useNavigate } from "react-router-dom";
 
 interface SignUpProps {
   handleCreateClose: () => void;
   isActive: boolean;
   users: Users[];
+  setUsers: React.Dispatch<React.SetStateAction<Users[]>>;
 }
 
-function SignUp({ handleCreateClose, isActive, users }: SignUpProps) {
+function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
   //Validation
 
   const validateEmail = (email: string) => {
@@ -42,6 +45,8 @@ function SignUp({ handleCreateClose, isActive, users }: SignUpProps) {
     setPhoneOrEmailValue(inputValue);
   };
 
+  const navigate = useNavigate();
+
   const signUp = () => {
     const isEmail = validateEmail(phoneOrEmailValue);
     const isPhoneNumber = validatePhoneNumber(phoneOrEmailValue);
@@ -51,13 +56,12 @@ function SignUp({ handleCreateClose, isActive, users }: SignUpProps) {
       email: isEmail ? phoneOrEmailValue : "",
       phoneNumber: isPhoneNumber ? phoneOrEmailValue : "",
       password: "da2",
-      profilePicture: "/icons/BingoPop.png",
-      birthday: "",
-      gender: "",
-      pronoun: "",
+      profilePicture: "",
+      id: v4(),
     };
 
-    users.push(newUser);
+    setUsers([...users, newUser]);
+    navigate("/create-account");
 
     console.log(users);
   };

@@ -29,7 +29,7 @@ function App() {
     storedUser ? JSON.parse(storedUser) : null
   );
 
-  const users = [
+  const [users, setUsers] = useState<Users[]>([
     {
       user: "Aron Matoic",
       email: "aronddtt@gmail.com",
@@ -37,7 +37,9 @@ function App() {
       password: "da",
       profilePicture: "/images/ProfilePicture.jpg",
     },
-  ];
+  ]);
+
+  console.log(users);
 
   return (
     <>
@@ -51,12 +53,14 @@ function App() {
           path="/login"
           element={
             <LogIn
+              setUsers={setUsers}
               users={users}
               setCurrentUser={setCurrentUser}
               setIsAuthenticated={setIsAuthenticated}
             ></LogIn>
           }
         />
+        <Route path="/create-account"></Route>
         <Route
           element={
             <PrivateRoute isAuthenticated={isAuthenticated}></PrivateRoute>
