@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import { Users } from "../../../App";
-import bcrypt from "bcryptjs";
 
 function useLogInLogic(
   emailOrPhoneValue: string,
@@ -11,29 +10,19 @@ function useLogInLogic(
 ) {
   const Navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const handleLogin = () => {
     const user = users.find(
       (user) =>
-        user.email === emailOrPhoneValue ||
-        user.phoneNumber === emailOrPhoneValue
+        (user.email === emailOrPhoneValue ||
+          user.phoneNumber === emailOrPhoneValue) &&
+        user.password === passwordValue
     );
     if (user) {
-      const isPasswordValid = await bcrypt.compare(
-        passwordValue,
-        user.password
-      );
-
-      console.log(passwordValue, user.password);
-
-      console.log(isPasswordValid);
-
-      if (isPasswordValid) {
-        localStorage.setItem("isAuthenticated", "true");
-        setCurrentUser(user);
-        setIsAuthenticated(true);
-        localStorage.setItem("currentUser", JSON.stringify(user));
-        Navigate("/");
-      }
+      localStorage.setItem("isAuthenticated", "true");
+      setCurrentUser(user);
+      setIsAuthenticated(true);
+      localStorage.setItem("currentUser", JSON.stringify(user));
+      Navigate("/");
     } else {
       alert("Invalid email/phone or password");
     }
