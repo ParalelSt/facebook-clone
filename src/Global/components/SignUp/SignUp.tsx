@@ -27,6 +27,12 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
     return phonePattern.test(phoneNumber);
   };
 
+  // const validatePassword = (password: string) => {
+  //   const passwordPattern =
+  //     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,25}$/;
+  //   return passwordPattern.test(password);
+  // };
+
   //Sign up
 
   const firstNameRef = useRef<HTMLInputElement>(null);
@@ -36,13 +42,20 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
   const [phoneOrEmailValue, setPhoneOrEmailValue] = useState("");
 
   const passwordRef = useRef<HTMLInputElement>(null);
+  const [passwordValue, setPasswordValue] = useState("");
 
   const userName =
-    firstNameRef.current?.value + "" + lastNameRef.current?.value;
+    firstNameRef.current?.value.trim() +
+    " " +
+    lastNameRef.current?.value.trim();
 
   const phoneOrEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event?.target.value;
     setPhoneOrEmailValue(inputValue);
+  };
+
+  const password = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setPasswordValue(event?.target.value);
   };
 
   const navigate = useNavigate();
@@ -50,17 +63,18 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
   const signUp = () => {
     const isEmail = validateEmail(phoneOrEmailValue);
     const isPhoneNumber = validatePhoneNumber(phoneOrEmailValue);
+    // const isPassword = validatePassword(passwordValue);
 
     const newUser = {
-      user: userName.trim(),
+      user: userName,
       email: isEmail ? phoneOrEmailValue : "",
       phoneNumber: isPhoneNumber ? phoneOrEmailValue : "",
-      password: "da2",
+      password: passwordValue,
       profilePicture: "",
       id: v4(),
     };
 
-    setUsers([...users, newUser]);
+    setUsers((prevUsers) => [...users, newUser]);
     navigate("/create-account");
 
     console.log(users);
@@ -114,7 +128,9 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
                 <input
                   type="password"
                   placeholder="New password"
+                  value={passwordValue}
                   ref={passwordRef}
+                  onChange={password}
                 />
               </div>
               <div className="warning password">

@@ -39,7 +39,9 @@ function App() {
     },
   ]);
 
-  console.log(users);
+  useEffect(() => {
+    console.log(users);
+  }, [users]);
 
   return (
     <>
@@ -60,7 +62,6 @@ function App() {
             ></LogIn>
           }
         />
-        <Route path="/create-account"></Route>
         <Route
           element={
             <PrivateRoute isAuthenticated={isAuthenticated}></PrivateRoute>
@@ -71,6 +72,7 @@ function App() {
           <Route path="/marketplace"></Route>
           <Route path="/groups"></Route>
           <Route path="/games"></Route>
+          <Route path="/create-account"></Route>
         </Route>
         <Route
           path="*"
