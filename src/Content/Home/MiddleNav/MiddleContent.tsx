@@ -31,7 +31,7 @@ function MiddleContent({ contactList, user }: MiddleContentProps) {
       username: post.username,
       profilePicture: post.image,
       recentStoryPost: post.recentStoryPost,
-      image: "/images/post/R34.jpg",
+      image: post.postImage,
       userId: post.id,
       id: uuidv4(),
     }));

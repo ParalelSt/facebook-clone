@@ -36,24 +36,6 @@
                 display: none;
             }
             
-    
-            .button-prev {
-                left: 1em;
-    
-                svg {
-                    left: 0.6em;
-                }
-                
-            }
-    
-            .button-next {
-                right: 1em;
-                
-                svg {
-                    right: 0.6em;
-                }
-            }
-            
             .button-next, .button-prev {
                 display: flex;
                 align-items: center;
@@ -75,6 +57,24 @@
     
                 &:hover {
                     filter: brightness(0.95);
+                }
+            }
+
+            .button-prev {
+                left: 1em;
+                display: none;
+    
+                svg {
+                    left: 0.6em;
+                }
+                
+            }
+    
+            .button-next {
+                right: 1em;
+                
+                svg {
+                    right: 0.6em;
                 }
             }
     
@@ -132,7 +132,7 @@
                     left: 1em;
                     z-index: 101;
                     border-radius: 100%;
-    
+                    object-fit: cover;
                 }
     
                 .active {
@@ -150,8 +150,11 @@
                     left: 0.7em;
                     bottom: 0.5em;
                     color: white;
-    
-                    @include set-font-size("medium");
+                    white-space: normal;  // Allows text to wrap onto the next line
+                    overflow-wrap: break-word;  // Ensures long words break and wrap onto the next line
+                    text-overflow: clip;  // Ensures text does not get clipped or ellipsized
+                    max-width: calc(80% - 2em);  // Adjust max-width to fit within the container
+                    font-size: $medium;
                 }
             }
         }

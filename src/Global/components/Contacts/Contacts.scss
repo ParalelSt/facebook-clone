@@ -67,6 +67,12 @@
             border-radius: 0.7em;
     
             img {
+                height: 2em;
+                height: 2em;
+            }
+
+            .profile-pic {
+                object-fit: cover;
                 max-width: 2em;
                 max-height: 2em;
             }

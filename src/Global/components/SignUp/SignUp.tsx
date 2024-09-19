@@ -10,11 +10,10 @@ import bcrypt from "bcryptjs";
 interface SignUpProps {
   handleCreateClose: () => void;
   isActive: boolean;
-  users: Users[];
   setUsers: React.Dispatch<React.SetStateAction<Users[]>>;
 }
 
-function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
+function SignUp({ handleCreateClose, isActive, setUsers }: SignUpProps) {
   //Validation
 
   const validateEmail = (email: string) => {
@@ -79,7 +78,7 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
       id: v4(),
     };
 
-    setUsers((prevUsers) => [...users, newUser]);
+    setUsers((prevUsers) => [...prevUsers, newUser]);
     localStorage.setItem("user", JSON.stringify(newUser));
     // navigate("/create-account");
   };

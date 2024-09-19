@@ -7,10 +7,8 @@ import { Users } from "../../App";
 
 export interface ContactListType {
   username: string;
-  email: string;
-  phoneNumber: string;
-  password: string;
   image: string;
+  postImage: string;
   status: string;
   recentStoryPost: boolean;
   id: string;
@@ -23,33 +21,27 @@ interface HomeProps {
 function Home({ user }: HomeProps) {
   const contactList: ContactListType[] = [
     {
-      username: "Aron Matoic",
-      email: "",
-      phoneNumber: "",
-      password: "",
-      image: "/images/ProfilePicture.jpg",
+      username: user?.user || "",
+      image: user?.profilePicture || "",
+      postImage: "/images/post/Sunflowers.webp",
       status: "online",
       recentStoryPost: true,
       id: uuidv4(),
     },
 
     {
-      username: "1",
-      email: "",
-      phoneNumber: "",
-      password: "",
-      image: "/icons/Agar.io.jpg",
+      username: "James Marquez",
+      image: "/images/post/ProfilePic1.jpg",
+      postImage: "/images/post/R34.avif",
       status: "online",
       recentStoryPost: true,
       id: uuidv4(),
     },
 
     {
-      username: "2",
-      email: "",
-      phoneNumber: "",
-      password: "",
+      username: "Toshihido Yamada",
       image: "/images/ProfilePicture.jpg",
+      postImage: "/images/post/R34.jpg",
       status: "online",
       recentStoryPost: true,
       id: uuidv4(),
@@ -57,10 +49,8 @@ function Home({ user }: HomeProps) {
 
     {
       username: "3",
-      email: "",
-      phoneNumber: "",
-      password: "",
       image: "/images/ProfilePicture.jpg",
+      postImage: "/images/post/CapybaraJudge.jpg",
       status: "online",
       recentStoryPost: true,
       id: uuidv4(),
@@ -68,10 +58,8 @@ function Home({ user }: HomeProps) {
 
     {
       username: "4",
-      email: "",
-      phoneNumber: "",
-      password: "",
       image: "/images/ProfilePicture.jpg",
+      postImage: "/images/post/Cat.jpg",
       status: "online",
       recentStoryPost: true,
       id: uuidv4(),
@@ -79,10 +67,8 @@ function Home({ user }: HomeProps) {
 
     {
       username: "5",
-      email: "",
-      phoneNumber: "",
-      password: "",
       image: "/images/ProfilePicture.jpg",
+      postImage: "",
       status: "online",
       recentStoryPost: true,
       id: uuidv4(),
@@ -90,10 +76,8 @@ function Home({ user }: HomeProps) {
 
     {
       username: "6",
-      email: "",
-      phoneNumber: "",
-      password: "",
       image: "/images/ProfilePicture.jpg",
+      postImage: "",
       status: "offline",
       recentStoryPost: true,
       id: uuidv4(),
@@ -101,10 +85,8 @@ function Home({ user }: HomeProps) {
 
     {
       username: "7",
-      email: "",
-      phoneNumber: "",
-      password: "",
       image: "/images/ProfilePicture.jpg",
+      postImage: "",
       status: "online",
       recentStoryPost: true,
       id: uuidv4(),
@@ -112,10 +94,8 @@ function Home({ user }: HomeProps) {
 
     {
       username: "8",
-      email: "",
-      phoneNumber: "",
-      password: "",
       image: "/images/ProfilePicture.jpg",
+      postImage: "",
       status: "offline",
       recentStoryPost: true,
       id: uuidv4(),
