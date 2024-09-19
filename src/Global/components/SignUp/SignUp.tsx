@@ -70,10 +70,11 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
       email: isEmail ? phoneOrEmailValue : "",
       phoneNumber: isPhoneNumber ? phoneOrEmailValue : "",
       password: passwordValue,
-      profilePicture: "",
+      profilePicture: "/images/ProfilePicture.jpg",
       id: v4(),
     };
 
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     setUsers((prevUsers) => [...users, newUser]);
     navigate("/create-account");
 
