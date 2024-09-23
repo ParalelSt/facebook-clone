@@ -12,6 +12,7 @@ export interface Users {
   phoneNumber: string;
   password: string;
   profilePicture: string;
+  id: string;
 }
 
 export interface CurrentUser {
@@ -79,10 +80,7 @@ function App() {
             <PrivateRoute isAuthenticated={isAuthenticated}></PrivateRoute>
           }
         >
-          <Route
-            path="/"
-            element={<Home currentUser={currentUser} user={currentUser}></Home>}
-          ></Route>
+          <Route path="/" element={<Home user={currentUser}></Home>}></Route>
           <Route path="/video"></Route>
           <Route path="/marketplace"></Route>
           <Route path="/groups"></Route>
