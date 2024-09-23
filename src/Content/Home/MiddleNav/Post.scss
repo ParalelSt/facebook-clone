@@ -1,0 +1,66 @@
+@import '../../../Global/GlobalStyles.scss';
+
+.content {
+    .post-top-container {
+        display: flex;
+        flex-direction: column;
+
+        .post-top-container-top {
+            display: flex;
+
+            .post-top-left {
+                display: flex;
+    
+                .post-top-left-profile {
+                    position: relative;
+    
+                    img {
+                        height: 2.5rem;
+                        width: 2.5rem;
+                        border-radius: 100%;
+                    }
+    
+                    margin-right: 0.5em;
+    
+                    .online-dot {
+                        position: absolute;
+                        bottom: 0;
+                        right: 0;
+                        z-index: 102;
+    
+                        height: 1em;
+                        width: 1em;
+                        border: 3px solid white;
+                        border-radius: 100%;
+    
+                        background-color: $online-green;
+                    }
+                }
+    
+                .post-top-left-text {
+                    display: flex;
+                    flex-direction: column;
+                }
+            }
+        }
+
+        .post-top-container-bottom {
+            .post-description {
+                padding: 0.5em 0;
+                font-size: $medium;
+            }
+        }
+    }
+
+    .post-bottom-container {
+        .post-bottom-image {
+            margin: 0 -1em;
+
+            img {
+                object-fit: cover;
+                height: 100%;
+                width: 100%;
+            }
+        }
+    }
+}
