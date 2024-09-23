@@ -60,7 +60,7 @@ function MiddleContent({ contactList, user }: MiddleContentProps) {
       timePosted: "10 hours ago",
       description:
         "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Asperiores tenetur quasi sequi enim laudantium rem doloribus repudiandae aut nemo dolorem, iure placeat. Reiciendis recusandae accusantium nam neque. Cum, sapiente debitis.",
-      image: "/icons/ClimateScienceCenter.svg",
+      image: "/images/post/CapybaraJudge.jpg",
       likeCount: 0,
       commentCount: 0,
       shareCount: 0,
