@@ -21,10 +21,6 @@ function App() {
 
   const storedUser = localStorage.getItem("currentUser");
 
-  useEffect(() => {
-    localStorage.setItem("isAuthenticated", isAuthenticated ? "true" : "false");
-  }, [isAuthenticated]);
-
   const [currentUser, setCurrentUser] = useState<Users | null>(
     storedUser ? JSON.parse(storedUser) : null
   );
@@ -32,15 +28,24 @@ function App() {
   const [users, setUsers] = useState<Users[]>([]);
 
   useEffect(() => {
-    const user = localStorage.getItem("user");
-    if (user) {
-      setUsers((prevUsers) => [...prevUsers, JSON.parse(user)]);
+    const storedUsers = localStorage.getItem("user");
+    if (storedUsers) {
+      const parsedUser = JSON.parse(storedUsers);
+      setUsers((prevUsers) =>
+        prevUsers.find((user) => user.email === parsedUser.email)
+          ? prevUsers
+          : [...prevUsers, parsedUser]
+      );
     }
   }, []);
 
   useEffect(() => {
     console.log(users);
   }, [users]);
+
+  useEffect(() => {
+    localStorage.setItem("isAuthenticated", isAuthenticated ? "true" : "false");
+  }, [isAuthenticated]);
 
   return (
     <>
