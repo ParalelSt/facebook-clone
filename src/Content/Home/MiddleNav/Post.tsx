@@ -41,6 +41,9 @@ const Post = ({ posts }: PostProps) => {
               <div className="post-bottom-image">
                 <img src={post.image} alt="" />
               </div>
+              <div className="like-share-display"></div>
+              <div className="post-buttons"></div>
+              <div className="post-write-comment"></div>
             </div>
           </div>
         );

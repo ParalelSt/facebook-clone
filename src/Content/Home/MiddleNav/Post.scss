@@ -87,6 +87,8 @@
         .post-bottom-image {
             margin: 0 -1em;
 
+            border-bottom: 1px solid $gray;
+
             img {
                 object-fit: cover;
                 height: 100%;
