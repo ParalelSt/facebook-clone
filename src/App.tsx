@@ -14,6 +14,14 @@ export interface Users {
   profilePicture: string;
 }
 
+export interface CurrentUser {
+  user: string;
+  email: string;
+  phoneNumber: string;
+  password: string;
+  id: string;
+}
+
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(
     localStorage.getItem("isAuthenticated") === "true"
@@ -71,7 +79,10 @@ function App() {
             <PrivateRoute isAuthenticated={isAuthenticated}></PrivateRoute>
           }
         >
-          <Route path="/" element={<Home user={currentUser}></Home>}></Route>
+          <Route
+            path="/"
+            element={<Home currentUser={currentUser} user={currentUser}></Home>}
+          ></Route>
           <Route path="/video"></Route>
           <Route path="/marketplace"></Route>
           <Route path="/groups"></Route>

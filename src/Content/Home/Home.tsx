@@ -3,7 +3,7 @@ import RightSideNav from "./RightSideNav/RightSideNav";
 import "./Home.scss";
 import MiddleContent from "./MiddleNav/MiddleContent";
 import { v4 as uuidv4 } from "uuid";
-import { Users } from "../../App";
+import { CurrentUser, Users } from "../../App";
 
 export interface ContactListType {
   username: string;
@@ -16,9 +16,10 @@ export interface ContactListType {
 
 interface HomeProps {
   user: Users | null;
+  currentUser: CurrentUser;
 }
 
-function Home({ user }: HomeProps) {
+function Home({ user, currentUser }: HomeProps) {
   const contactList: ContactListType[] = [
     {
       username: user?.user || "",
@@ -26,7 +27,7 @@ function Home({ user }: HomeProps) {
       postImage: "/images/post/Sunflowers.webp",
       status: "online",
       recentStoryPost: true,
-      id: uuidv4(),
+      id: currentUser.id,
     },
 
     {

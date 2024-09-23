@@ -6,6 +6,9 @@ interface Contact {
 }
 
 function Contacts({ contactList }: Contact) {
+  const currentUserString = localStorage.getItem("currentUser");
+  const currentUser = currentUserString ? JSON.parse(currentUserString) : null;
+
   return (
     <>
       <div className="contacts-container">
@@ -23,7 +26,7 @@ function Contacts({ contactList }: Contact) {
           </div>
         </div>
         {contactList.map((contact) =>
-          contact.status === "online" ? (
+          contact.status === "online" && contact.id !== currentUser.id ? (
             <div className="contact" key={contact.id}>
               <img src={contact.image} className="profile-pic" />
               <span className="username">{contact.username}</span>
