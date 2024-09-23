@@ -7,6 +7,7 @@
 
         .post-top-container-top {
             display: flex;
+            align-items: center;
 
             .post-top-left {
                 display: flex;
@@ -40,6 +41,36 @@
                 .post-top-left-text {
                     display: flex;
                     flex-direction: column;
+
+                    .time-posted {
+                        font-size: $small;
+                        color: $gray-text-dark;
+                    }
+                }
+            }
+
+            .post-top-right {
+                display: flex;
+                align-items: flex-start;
+
+                margin-left: auto;
+
+                .icon-container {
+                    display: flex;
+
+                    padding: 0.4em;
+                    border-radius: 100%;
+                    margin-bottom: 0.5em;
+
+                    &:hover {
+                        background-color: $hover-white;
+                    }
+
+                    svg {
+                        height: 1.3em;
+                        width: 1.3em;
+                        color: $gray-text-dark;
+                    }
                 }
             }
         }
