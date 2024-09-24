@@ -1,4 +1,9 @@
-import { FaEllipsis } from "react-icons/fa6";
+import {
+  FaCamera,
+  FaCaretDown,
+  FaEllipsis,
+  FaFileImage,
+} from "react-icons/fa6";
 import ContentContainer from "../../../Global/components/ContentContainer/ContentContainer";
 import { Posts } from "./MiddleContent";
 import "./Post.scss";
@@ -7,12 +12,16 @@ import { AiOutlineLike } from "react-icons/ai";
 import { IoChatbubbleOutline } from "react-icons/io5";
 import { RiLinkM } from "react-icons/ri";
 import { PiShareFatLight } from "react-icons/pi";
+import { FaSmile, FaSmileBeam, FaStickyNote } from "react-icons/fa";
+import ProfilesAndPages from "./ProfilesAndPages";
+import { Users } from "../../../App";
 
 interface PostProps {
   posts: Posts[];
+  users: Users[];
 }
 
-const Post = ({ posts }: PostProps) => {
+const Post = ({ posts, users }: PostProps) => {
   return (
     <ContentContainer>
       {posts.map((post) => {
@@ -45,7 +54,9 @@ const Post = ({ posts }: PostProps) => {
             <div className="post-bottom-container">
               <div className="post-bottom-image">
                 <img src={post.image} alt="" />
+                <BorderLine></BorderLine>
               </div>
+
               <div className="like-share-display">
                 <div className="post-likes">
                   <div className="like-icons">
@@ -57,19 +68,27 @@ const Post = ({ posts }: PostProps) => {
                       );
                     })}
                   </div>
-                  <div className="like-count">{post.likeCount}</div>
+                  <div className="like-count count">
+                    {post.likeCount == 0 ? "" : post.likeCount}
+                  </div>
                 </div>
                 <div className="comment-and-share">
-                  <div className="comment-count">
-                    {post ? post.commentCount + " " + `comments` : ""}
+                  <div className="comment-count count">
+                    {post.commentCount !== 0
+                      ? post.commentCount + " " + `comments`
+                      : ""}
                   </div>
-                  <div className="share-count">
-                    {post ? post.shareCount + " " + `share` : ""}
+                  <div className="share-count count">
+                    {post.commentCount !== 0
+                      ? post.shareCount + " " + `share`
+                      : ""}
                   </div>
                 </div>
               </div>
 
-              <BorderLine></BorderLine>
+              {(post.likeCount > 0 ||
+                post.commentCount > 0 ||
+                post.shareCount > 0) && <BorderLine></BorderLine>}
               <div className="post-buttons">
                 <button className="like-btn">
                   <AiOutlineLike />
@@ -88,7 +107,30 @@ const Post = ({ posts }: PostProps) => {
                   <span>Share</span>
                 </button>
               </div>
-              <div className={`post-write-comment`}></div>
+              {post.commentCount > 0 && <BorderLine></BorderLine>}
+              {post.commentCount > 0 && <div className={`post-comments`}></div>}
+              <div className="post-write-comment">
+                <div className="post-comment-left">
+                  <img src={post.profilePicture} alt="" />
+                  <div className="caret-container">
+                    <FaCaretDown></FaCaretDown>
+                  </div>
+                  <ProfilesAndPages users={users}></ProfilesAndPages>
+                </div>
+                <div className="post-comment-right">
+                  <input
+                    placeholder={`Comment as ${post.username}`}
+                    type="text"
+                  />
+                  <div className="comment-btns">
+                    <FaSmileBeam />
+                    <FaSmile />
+                    <FaCamera />
+                    <FaFileImage />
+                    <FaStickyNote />
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         );

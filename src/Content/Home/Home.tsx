@@ -16,9 +16,10 @@ export interface ContactListType {
 
 interface HomeProps {
   user: Users | null;
+  users: Users[];
 }
 
-function Home({ user }: HomeProps) {
+function Home({ user, users }: HomeProps) {
   const contactList: ContactListType[] = [
     {
       username: user?.user || "",
@@ -105,7 +106,11 @@ function Home({ user }: HomeProps) {
   return (
     <div className="home">
       <LeftNavSide></LeftNavSide>
-      <MiddleContent user={user} contactList={contactList}></MiddleContent>
+      <MiddleContent
+        users={users}
+        user={user}
+        contactList={contactList}
+      ></MiddleContent>
       <RightSideNav contactList={contactList}></RightSideNav>
     </div>
   );

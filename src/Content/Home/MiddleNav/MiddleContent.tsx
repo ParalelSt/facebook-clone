@@ -19,6 +19,7 @@ export interface carouselData {
 interface MiddleContentProps {
   contactList: ContactListType[];
   user: Users | null;
+  users: Users[];
 }
 
 export interface User {
@@ -41,7 +42,7 @@ export interface Posts {
   id: string;
 }
 
-function MiddleContent({ contactList, user }: MiddleContentProps) {
+function MiddleContent({ contactList, user, users }: MiddleContentProps) {
   const carouselData: carouselData[] = useMemo(() => {
     return contactList.flatMap((post) => ({
       username: post.username,
@@ -64,7 +65,7 @@ function MiddleContent({ contactList, user }: MiddleContentProps) {
       image: "/images/post/CapybaraJudge.jpg",
       likeIcons: [],
       likeCount: 0,
-      commentCount: 0,
+      commentCount: 1,
       shareCount: 0,
       comments: [],
       id: v4(),
@@ -76,7 +77,7 @@ function MiddleContent({ contactList, user }: MiddleContentProps) {
       <div className="inner-content-container">
         <ImageCarousel carouselData={carouselData}></ImageCarousel>
         <StateYourMind user={user}></StateYourMind>
-        <Post posts={posts}></Post>
+        <Post users={users} posts={posts}></Post>
       </div>
     </div>
   );

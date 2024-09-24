@@ -1,6 +1,8 @@
 @import '../../../Global/GlobalStyles.scss';
 
 .content {
+    margin-bottom: -0.5em;
+
     .post-top-container {
         display: flex;
         flex-direction: column;
@@ -78,7 +80,7 @@
         .post-top-container-bottom {
             .post-description {
                 padding: 0.5em 0;
-                font-size: $medium;
+                font-size: $m-l;
             }
         }
     }
@@ -93,19 +95,33 @@
                 height: 100%;
                 width: 100%;
             }
+
+            .border-line {
+                margin-top: -0.25em;
+                padding-top: 0;
+                padding-bottom: 0.3em;
+            }
         }
 
         .like-share-display {
             display: flex;
             align-items: center;
 
+            padding: 0.3em 0;
+
+            &, .comment-and-share {
+                gap: 1em;
+            }
+
             .post-likes {
                 display: flex;
             }
 
-            .like-count {
-                
+            .count {
+                color: $gray-text-dark;
+                font-size: $medium;
             }
+
 
             .comment-and-share {
                 display: flex;
@@ -115,6 +131,7 @@
         }
 
         .border-line {
+            padding-top: 0.3em;
             padding-bottom: 0.3em;
         }
 
@@ -129,7 +146,7 @@
                 justify-content: center;
                 flex: 1;
 
-                padding: 0.2em;
+                padding: 0.25em;
                 border-radius: 0.25em;
 
                 gap: 0.3em;
@@ -153,6 +170,84 @@
             }
         }
 
-        
+        .post-write-comment {
+            display: flex;
+            align-items: center;
+
+            padding-top: 0.3em;
+
+            .post-comment-left {
+                position: relative;
+
+                &:hover {
+                    filter: brightness(0.93);
+                }
+
+                img {
+                    height: $xl;
+                    width: $xl;
+                    border-radius: 100%;
+                }
+
+                .caret-container {
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+
+                    svg {
+                        width: 0.8em;
+                        height: 0.8em;
+
+                        border-radius: 100%;
+                        background-color: white;
+                    }
+                }
+            }
+
+            .post-comment-right {
+                display: flex;
+                align-items: center;
+
+                background-color: #f0f2f5;
+
+                width: 100%;
+
+                margin-left: 0.5em;
+                padding: 0.5em 0.7em;
+                border-radius: 1.25em;
+
+                input {
+                    margin-right: 0.2em;
+                    border: none;
+
+                    background-color: transparent;
+
+                    width: 100%;
+                    height: 1.5em;
+
+                    font-size: $medium;
+
+                    &:focus {
+                        outline: none;
+                    }
+                }
+
+                .comment-btns {
+                    display: flex;
+                    align-items: center;
+
+                    gap: 0.7em;
+
+                    svg {
+                        color: $gray-text2;
+
+                        &:hover {
+                            background-color: $hover-white;
+                            scale: 1.1;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
