@@ -33,10 +33,11 @@ export interface Posts {
   timePosted: string;
   description: string;
   image: string;
+  likeIcons: [];
   likeCount: number;
   commentCount: number;
   shareCount: number;
-  comments: string[];
+  comments: [];
   id: string;
 }
 
@@ -61,6 +62,7 @@ function MiddleContent({ contactList, user }: MiddleContentProps) {
       description:
         "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Asperiores tenetur quasi sequi enim laudantium rem doloribus repudiandae aut nemo dolorem, iure placeat. Reiciendis recusandae accusantium nam neque. Cum, sapiente debitis.",
       image: "/images/post/CapybaraJudge.jpg",
+      likeIcons: [],
       likeCount: 0,
       commentCount: 0,
       shareCount: 0,
