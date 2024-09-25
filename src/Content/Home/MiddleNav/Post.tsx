@@ -15,6 +15,7 @@ import { PiShareFatLight } from "react-icons/pi";
 import { FaSmile, FaSmileBeam, FaStickyNote } from "react-icons/fa";
 import { Users } from "../../../App";
 import ProfilesAndPages from "./ProfilesAndPages";
+import useDropDown from "../../../Global/hooks/useDropDown";
 
 interface PostProps {
   posts: Posts[];
@@ -22,6 +23,9 @@ interface PostProps {
 }
 
 const Post = ({ posts, users }: PostProps) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [handleDropDownOpen, handleDropDownClose, _, isActive] = useDropDown();
+
   return (
     <>
       <ContentContainer>
@@ -113,7 +117,10 @@ const Post = ({ posts, users }: PostProps) => {
                   <div className={`post-comments`}></div>
                 )}
                 <div className="post-write-comment">
-                  <div className="post-comment-left">
+                  <div
+                    className="post-comment-left"
+                    onClick={handleDropDownOpen}
+                  >
                     <img src={post.profilePicture} alt="" />
                     <div className="caret-container">
                       <FaCaretDown></FaCaretDown>
@@ -138,7 +145,11 @@ const Post = ({ posts, users }: PostProps) => {
           );
         })}
       </ContentContainer>
-      <ProfilesAndPages users={users}></ProfilesAndPages>
+      <ProfilesAndPages
+        dropDownClose={handleDropDownClose}
+        isActive={isActive}
+        users={users}
+      ></ProfilesAndPages>
     </>
   );
 };

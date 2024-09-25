@@ -1,24 +1,232 @@
 @import '../../../Global/GlobalStyles.scss';
 
 .profiles-and-pages-background {
-    position: absolute;
-    display: flex;
+    display: none;
+    position: fixed;
+    top: 0;
     align-items: center;
     justify-content: center;
 
     background-color: rgb(249, 251, 251, 0.8);
 
     width: 100vw;
-    height: 100vh;
+    height: 100%;
 
-    z-index: 1000;
+    z-index: 1001;
 
     .content-container {
         width: 35%;
+        padding: 0;
+
+        box-shadow: $shadow-dark;
 
         .profiles-and-pages-container {
-            
+            display: flex;
+            flex-direction: column;
+
+            .top-container {
+                position: relative;
+                display: flex;
+                align-items: center;
+
+                border-bottom: 1px solid $border-black;
+                
+                width: 100%;
+
+
+                h1 {
+                    font-size: $large;
+
+                    padding: 1em 0;
+                }
+
+                .img-container {
+                    position: absolute;
+                    right: 1.1em;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+
+                    border-radius: 100%;
+
+                    width: 2.2em;
+                    height: 2.2em;
+
+                    &:hover {
+                        filter: brightness(0.95);
+                    }
+
+                    background-color: $button-gray;
+
+                    svg {
+                        
+    
+                        width: 1.7em;
+                        height: 1.7em;
+                    }
+                }
+            }
+
+            .bottom-container {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: flex-start;
+
+                padding: 0 0.5em 1em 0.5em;
+
+                width: 100%;
+
+                h4 {
+                    padding: 0.7em 0.5em 0.2em 0.5em;
+
+                    font-size: $medium;
+                    font-weight: normal;
+
+                    a {
+                        &, &:visited {
+                            color: black;
+                            font-weight: bold;
+                        }
+
+                        &:hover {
+                            text-decoration: underline;
+                        }
+                    }
+                }
+
+                .input-container {
+                    display: flex;
+                    align-items: center;
+
+                    padding: 0.5em 0.5em 0.5em 0.4em;
+                    
+                    width: 100%;                    
+
+                    .container {
+                        display: flex;
+                        align-items: center;
+
+                        padding: 0.6em 0.5em 0.6em 0.5em;
+                        border-radius: 1.5em;
+
+                        width: 100%;
+
+                        background-color: #f0f2f5;
+
+                        svg {
+                            margin-left: 0.1em;
+                            margin-right: 0.3em;
+
+                            color: $gray-text3;
+                        }
+
+                        input {
+
+                            border: none;
+
+                            font-size: $medium;
+
+                            color: $gray-text2;
+                            background-color: transparent;
+
+                            &:focus {
+                                outline: none;
+                            }
+                        }
+                    }
+                }
+
+                .account-list {
+                    display: flex;
+                    flex-direction: column;
+
+                    width: 100%;
+
+                    .account {
+                        display: flex;
+                        align-items: center;
+                        gap: 0.3em;
+
+                        padding: 0.5em;
+                        border-radius: 0.5em;
+
+                        width: 100%;
+
+                        &:hover {
+                            background-color: $hover-white;
+                        }
+
+                        img {
+                            border-radius: 100%;
+
+                            height: 2.5em;
+                            width: 2.5em;
+                        }
+
+                        .icon-container {
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+
+                            border-radius: 100%;
+
+                            height: 2.5em;
+                            width: 2.5em;
+
+                            background-color: $button-gray;
+
+                            svg {
+                                height: 1em;
+                                width: 1em;
+                            }
+                            
+                        }
+
+                    }
+
+                    .line {
+                        margin-left: auto;
+                        margin-right: 0.5em;
+
+                        width: 90.5%;
+                        height: 1px;
+                        background-color: $border-black;
+                    }
+
+                }
+
+                .btn-container {
+                    display: flex;
+                    align-items: center;
+
+                    margin-top: 0.7em;
+                    margin-bottom: 0.2em;
+                    padding: 0 0.5em;
+
+                    width: 100%;
+
+                    .accounts-center {
+                        padding: 0.6em 0.2em;
+                        border-radius: 0.4em;
+    
+                        width: 100%;
+                        font-size: $medium;
+    
+                        background-color: $button-gray;
+                        cursor: pointer;
+    
+                        &:hover {
+                            filter: brightness(0.95);
+                        }
+                    }
+                }
+            }
         }
     }
+}
+
+.active {
+    display: flex;
 }
 
