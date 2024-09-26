@@ -46,6 +46,8 @@ const Post = ({
 
   // useEffect(() => {});
 
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
   return (
     <>
       <div className="posts">
@@ -147,14 +149,14 @@ const Post = ({
                       className="post-comment-left"
                       onClick={handleDropDownOpen}
                     >
-                      <img src={post.profilePicture} alt="" />
+                      <img src={currentUser.profilePicture} alt="" />
                       <div className="caret-container">
                         <FaCaretDown></FaCaretDown>
                       </div>
                     </div>
                     <div className="post-comment-right">
                       <input
-                        placeholder={`Comment as ${post.username}`}
+                        placeholder={`Comment as ${currentUser.user}`}
                         type="text"
                       />
                       <div className="comment-btns">
