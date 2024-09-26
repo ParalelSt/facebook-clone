@@ -32,7 +32,6 @@ export interface User {
 export interface Posts {
   username: string;
   profilePicture: string;
-  status: string;
   timePosted: string;
   description: string;
   image: string;
@@ -66,14 +65,28 @@ function MiddleContent({
     {
       username: "Aron Matoic",
       profilePicture: "./images/ProfilePicture.jpg",
-      status: "online",
       timePosted: "10 hours ago",
       description:
         "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Asperiores tenetur quasi sequi enim laudantium rem doloribus repudiandae aut nemo dolorem, iure placeat. Reiciendis recusandae accusantium nam neque. Cum, sapiente debitis.",
       image: "/images/post/CapybaraJudge.jpg",
       likeIcons: [],
       likeCount: 0,
-      commentCount: 1,
+      commentCount: 0,
+      shareCount: 0,
+      comments: [],
+      id: v4(),
+    },
+
+    {
+      username: "Toshihido Yamada",
+      profilePicture: "./images/post/Toshihido.jpg",
+      timePosted: "28 August",
+      description:
+        "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Asperiores tenetur quasi sequi enim laudantium rem doloribus repudiandae aut nemo dolorem, iure placeat. Reiciendis recusandae accusantium nam neque. Cum, sapiente debitis.",
+      image: "/images/post/R34.avif",
+      likeIcons: [],
+      likeCount: 0,
+      commentCount: 0,
       shareCount: 0,
       comments: [],
       id: v4(),

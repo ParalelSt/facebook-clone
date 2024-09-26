@@ -1,5 +1,11 @@
 @import '../../../Global/GlobalStyles.scss';
 
+.posts {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+
 .content {
     margin-bottom: -0.5em;
 
@@ -21,6 +27,7 @@
                         height: 2.5rem;
                         width: 2.5rem;
                         border-radius: 100%;
+                        object-fit: cover;
                     }
     
                     margin-right: 0.5em;
@@ -109,9 +116,9 @@
 
             padding: 0.3em 0;
 
-            &, .comment-and-share {
-                gap: 1em;
-            }
+            gap: 1em;
+
+            
 
             .post-likes {
                 display: flex;
@@ -208,6 +215,7 @@
                     height: $xl;
                     width: $xl;
                     border-radius: 100%;
+                    object-fit: cover;
 
                     &:hover {
                         filter: brightness(0.93);
