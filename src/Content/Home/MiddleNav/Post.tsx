@@ -46,7 +46,9 @@ const Post = ({
 
   // useEffect(() => {});
 
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const currentUser = localStorage.getItem("currentUser")
+    ? JSON.parse(localStorage.getItem("currentUser") as string)
+    : null;
 
   return (
     <>
@@ -60,9 +62,9 @@ const Post = ({
                     <div className="post-top-left">
                       <div className="post-top-left-profile">
                         <img src={post.profilePicture} alt="" />
-                        {post.status === "online" && (
+                        {/* {post.status === "online" && (
                           <div className="online-dot"></div>
-                        )}
+                        )} */}
                       </div>
                       <div className="post-top-left-text">
                         <span className="username">{post.username}</span>
@@ -149,14 +151,14 @@ const Post = ({
                       className="post-comment-left"
                       onClick={handleDropDownOpen}
                     >
-                      <img src={currentUser.profilePicture} alt="" />
+                      <img src={currentUser?.profilePicture} alt="" />
                       <div className="caret-container">
                         <FaCaretDown></FaCaretDown>
                       </div>
                     </div>
                     <div className="post-comment-right">
                       <input
-                        placeholder={`Comment as ${currentUser.user}`}
+                        placeholder={`Comment as ${currentUser?.user}`}
                         type="text"
                       />
                       <div className="comment-btns">
