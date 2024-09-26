@@ -4,10 +4,10 @@ import { FaBell, FaCaretDown, FaFacebookMessenger } from "react-icons/fa6";
 import useLogOutLogic from "../../Global/components/LogIn/LogOutLogic";
 import { Users } from "../../App";
 import BorderLine from "../../Global/components/BorderLine";
-import { v4 } from "uuid";
 import Info from "../../Global/components/Info/Info";
-import { IoIosArrowForward } from "react-icons/io";
 import useDropDown from "../../Global/hooks/useDropDown";
+import RightNavDropDown from "./RightNavDropDown";
+import { useEffect, useRef } from "react";
 
 interface RightNavProps {
   setIsAuthenticated: (isAuthenticated: boolean) => void;
@@ -16,38 +16,36 @@ interface RightNavProps {
 }
 
 function RightNav({ setIsAuthenticated, currentUser }: RightNavProps) {
-  const dropDropIcons = [
-    {
-      name: "Settings & Privacy",
-      img: "/icons/Cog.svg",
-      caret: true,
-      id: v4(),
-    },
-
-    {
-      name: "Help & Support",
-      img: "/icons/Question.svg",
-      caret: true,
-      id: v4(),
-    },
-
-    {
-      name: "Display & accessibility",
-      img: "/icons/Moon.svg",
-      caret: true,
-      id: v4(),
-    },
-
-    {
-      name: "Give feedback",
-      img: "/icons/Exclamation.svg",
-      caret: false,
-      id: v4(),
-    },
-  ];
-
   const handleLogOut = useLogOutLogic(setIsAuthenticated);
-  const [, , handleDropDownToggle, isActive] = useDropDown();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [handleDropDownOpen, handleDropDownClose, _, isActive] = useDropDown();
+
+  const dropDownRef = useRef<HTMLDivElement>(null);
+  const profilePicRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (
+        isActive &&
+        dropDownRef.current &&
+        !dropDownRef.current.contains(e.target as Node) &&
+        profilePicRef.current &&
+        !profilePicRef.current.contains(e.target as Node)
+      ) {
+        handleDropDownClose();
+      }
+    };
+
+    document.body.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.body.removeEventListener("click", handleClickOutside);
+    };
+  }, [handleDropDownClose, isActive]);
+
+  const handleDropDownClick = (e: React.MouseEvent) => {
+    e.stopPropagation();
+  };
 
   return (
     <>
@@ -68,7 +66,11 @@ function RightNav({ setIsAuthenticated, currentUser }: RightNavProps) {
               <FaBell className="icon"></FaBell>
             </div>
           </div>
-          <div className="profile-container" onClick={handleDropDownToggle}>
+          <div
+            ref={profilePicRef}
+            className="profile-container"
+            onClick={isActive ? handleDropDownClose : handleDropDownOpen}
+          >
             <div className="img-container">
               <img
                 className="profile"
@@ -78,47 +80,29 @@ function RightNav({ setIsAuthenticated, currentUser }: RightNavProps) {
               <div className="caret-container">
                 <FaCaretDown></FaCaretDown>
               </div>
-              <div
-                className={`drop-down-container ${isActive ? "active" : ""}`}
-              >
-                <div className="user-display-container">
-                  <div className="user-display-top">
-                    <img src={currentUser?.profilePicture} alt="" />
-                    <span className="username">{currentUser?.user}</span>
-                  </div>
-                  <BorderLine></BorderLine>
-                  <div className="user-display-bottom">
-                    <div className="button-container">
-                      <button className="profiles">
-                        <img src="/icons/SwapUser.svg" alt="" />
-                        <span>See all profiles</span>
-                      </button>
-                    </div>
+            </div>
+            <div
+              ref={dropDownRef}
+              className={`drop-down-container ${isActive ? "active" : ""}`}
+              onClick={handleDropDownClick}
+            >
+              <div className="user-display-container">
+                <div className="user-display-top">
+                  <img src={currentUser?.profilePicture} alt="" />
+                  <span className="username">{currentUser?.user}</span>
+                </div>
+                <BorderLine></BorderLine>
+                <div className="user-display-bottom">
+                  <div className="button-container">
+                    <button className="profiles">
+                      <img src="/icons/SwapUser.svg" alt="" />
+                      <span>See all profiles</span>
+                    </button>
                   </div>
                 </div>
-                <div className="drop-down-item-container">
-                  {dropDropIcons.map((item) => {
-                    return (
-                      <div className="drop-down-item" key={item.id}>
-                        <img src={item.img} alt="" />
-                        <div className="img-bg"></div>
-                        <span>{item.name}</span>
-                        {item.caret && (
-                          <span className="caret">
-                            <IoIosArrowForward />
-                          </span>
-                        )}
-                      </div>
-                    );
-                  })}
-                  <div className="drop-down-item" onClick={handleLogOut}>
-                    <img src="/icons/DoorExit.svg" />
-                    <div className="img-bg"></div>
-                    <span>Log out</span>
-                  </div>
-                </div>
-                <Info></Info>
               </div>
+              <RightNavDropDown handleLogOut={handleLogOut}></RightNavDropDown>
+              <Info></Info>
             </div>
           </div>
         </div>
