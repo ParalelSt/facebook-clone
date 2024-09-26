@@ -17,9 +17,11 @@ export interface ContactListType {
 interface HomeProps {
   user: Users | null;
   users: Users[];
+  setIsAuthenticated: (isAuthenticated: boolean) => void;
+  setCurrentUser: (user: Users | null) => void;
 }
 
-function Home({ user, users }: HomeProps) {
+function Home({ user, users, setIsAuthenticated, setCurrentUser }: HomeProps) {
   const contactList: ContactListType[] = [
     {
       username: user?.user || "",
@@ -107,6 +109,8 @@ function Home({ user, users }: HomeProps) {
     <div className="home">
       <LeftNavSide></LeftNavSide>
       <MiddleContent
+        setIsAuthenticated={setIsAuthenticated}
+        setCurrentUser={setCurrentUser}
         users={users}
         user={user}
         contactList={contactList}

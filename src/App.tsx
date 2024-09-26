@@ -82,7 +82,14 @@ function App() {
         >
           <Route
             path="/"
-            element={<Home users={users} user={currentUser}></Home>}
+            element={
+              <Home
+                setIsAuthenticated={setIsAuthenticated}
+                setCurrentUser={setCurrentUser}
+                users={users}
+                user={currentUser}
+              ></Home>
+            }
           ></Route>
           <Route path="/video"></Route>
           <Route path="/marketplace"></Route>

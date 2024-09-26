@@ -16,15 +16,25 @@ import { FaSmile, FaSmileBeam, FaStickyNote } from "react-icons/fa";
 import { Users } from "../../../App";
 import ProfilesAndPages from "./ProfilesAndPages";
 import useDropDown from "../../../Global/hooks/useDropDown";
+import useLikeButtonLogic from "./LikeButtonLogic";
 
 interface PostProps {
   posts: Posts[];
   users: Users[];
+  setIsAuthenticated: (isAuthenticated: boolean) => void;
+  setCurrentUser: (user: Users | null) => void;
 }
 
-const Post = ({ posts, users }: PostProps) => {
+const Post = ({
+  posts,
+  users,
+  setIsAuthenticated,
+  setCurrentUser,
+}: PostProps) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [handleDropDownOpen, handleDropDownClose, _, isActive] = useDropDown();
+
+  const [handleLikeToggle, isLiked] = useLikeButtonLogic();
 
   return (
     <>
@@ -95,7 +105,10 @@ const Post = ({ posts, users }: PostProps) => {
                   post.commentCount > 0 ||
                   post.shareCount > 0) && <BorderLine></BorderLine>}
                 <div className="post-buttons">
-                  <button className="like-btn">
+                  <button
+                    className={`like-btn ${isLiked ? "liked" : ""}`}
+                    onClick={() => handleLikeToggle()}
+                  >
                     <AiOutlineLike />
                     <span>Like</span>
                   </button>
@@ -146,6 +159,8 @@ const Post = ({ posts, users }: PostProps) => {
         })}
       </ContentContainer>
       <ProfilesAndPages
+        setIsAuthenticated={setIsAuthenticated}
+        setCurrentUser={setCurrentUser}
         dropDownClose={handleDropDownClose}
         isActive={isActive}
         users={users}

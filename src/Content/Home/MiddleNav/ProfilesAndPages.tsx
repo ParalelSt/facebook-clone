@@ -5,34 +5,45 @@ import { FaPlus } from "react-icons/fa6";
 import ContentContainer from "../../../Global/components/ContentContainer/ContentContainer";
 import { useEffect, useRef } from "react";
 import { IoClose } from "react-icons/io5";
+import useLogInLogic from "../../../Global/components/LogIn/LogInLogic";
 
 interface ProfileAndPagesProps {
   users: Users[];
   dropDownClose: () => void;
   isActive: boolean;
+  setIsAuthenticated: (isAuthenticated: boolean) => void;
+  setCurrentUser: (user: Users | null) => void;
 }
 
 const ProfilesAndPages = ({
   users,
   dropDownClose,
   isActive,
+  setIsAuthenticated,
+  setCurrentUser,
 }: ProfileAndPagesProps) => {
+  //Handle Modal Close
+
   const modalRef = useRef<HTMLDivElement>(null);
 
-  const closeDropDown = (e: Event) => {
-    console.log(e);
-    if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
-      dropDownClose();
-    }
-  };
-
   useEffect(() => {
+    const closeDropDown = (e: Event) => {
+      console.log(e);
+      if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
+        dropDownClose();
+      }
+    };
+
     document.addEventListener("mousedown", closeDropDown);
 
     return () => {
       document.removeEventListener("mousedown", closeDropDown);
     };
-  }, []);
+  }, [dropDownClose]);
+
+  //Handle Login
+
+  const handleLogin = useLogInLogic();
 
   return (
     <div
@@ -60,7 +71,19 @@ const ProfilesAndPages = ({
             <div className="account-list">
               {users.map((user) => {
                 return (
-                  <div className="account" key={user.id}>
+                  <div
+                    className="account"
+                    onClick={() =>
+                      handleLogin(
+                        user.email || user.phoneNumber,
+                        user.password,
+                        users,
+                        setIsAuthenticated,
+                        setCurrentUser
+                      )
+                    }
+                    key={user.id}
+                  >
                     <img src={user.profilePicture} alt="" />
                     <span>{user.user}</span>
                   </div>

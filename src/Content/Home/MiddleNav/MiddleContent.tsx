@@ -20,6 +20,8 @@ interface MiddleContentProps {
   contactList: ContactListType[];
   user: Users | null;
   users: Users[];
+  setIsAuthenticated: (isAuthenticated: boolean) => void;
+  setCurrentUser: (user: Users | null) => void;
 }
 
 export interface User {
@@ -42,7 +44,13 @@ export interface Posts {
   id: string;
 }
 
-function MiddleContent({ contactList, user, users }: MiddleContentProps) {
+function MiddleContent({
+  contactList,
+  user,
+  users,
+  setIsAuthenticated,
+  setCurrentUser,
+}: MiddleContentProps) {
   const carouselData: carouselData[] = useMemo(() => {
     return contactList.flatMap((post) => ({
       username: post.username,
@@ -77,7 +85,12 @@ function MiddleContent({ contactList, user, users }: MiddleContentProps) {
       <div className="inner-content-container">
         <ImageCarousel carouselData={carouselData}></ImageCarousel>
         <StateYourMind user={user}></StateYourMind>
-        <Post users={users} posts={posts}></Post>
+        <Post
+          setCurrentUser={setCurrentUser}
+          setIsAuthenticated={setIsAuthenticated}
+          users={users}
+          posts={posts}
+        ></Post>
       </div>
     </div>
   );

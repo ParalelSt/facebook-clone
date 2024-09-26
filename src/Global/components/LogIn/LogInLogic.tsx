@@ -2,16 +2,16 @@ import { useNavigate } from "react-router-dom";
 import { Users } from "../../../App";
 import bcrypt from "bcryptjs";
 
-function useLogInLogic(
-  emailOrPhoneValue: string,
-  passwordValue: string,
-  users: Users[],
-  setIsAuthenticated: (isAuthenticated: boolean) => void,
-  setCurrentUser: (user: Users | null) => void
-) {
+function useLogInLogic() {
   const Navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const handleLogin = async (
+    emailOrPhoneValue: string,
+    passwordValue: string,
+    users: Users[],
+    setIsAuthenticated: (isAuthenticated: boolean) => void,
+    setCurrentUser: (user: Users | null) => void
+  ) => {
     const user = users.find(
       (user) =>
         user.email === emailOrPhoneValue ||
@@ -23,7 +23,8 @@ function useLogInLogic(
         user.password
       );
 
-      console.log(passwordValue, user.password);
+      console.log(passwordValue);
+      console.log(user.password);
 
       console.log(isPasswordValid);
 
