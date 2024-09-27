@@ -16,6 +16,7 @@ import { Users } from "../../../App";
 import ProfilesAndPages from "./ProfilesAndPages";
 import useDropDown from "../../../Global/hooks/useDropDown";
 import LikeButton from "./LikeButton";
+import { Link } from "react-router-dom";
 
 interface PostProps {
   posts: Posts[];
@@ -82,7 +83,9 @@ const Post = ({
                 </div>
                 <div className="post-bottom-container">
                   <div className="post-bottom-image">
-                    <img src={post.image} alt="" />
+                    <Link to={`/posts/${post.id}`}>
+                      <img src={post.image} alt="" />
+                    </Link>
                     <BorderLine></BorderLine>
                   </div>
                   {(post.likeCount > 0 ||

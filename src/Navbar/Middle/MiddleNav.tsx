@@ -8,11 +8,14 @@ import {
 import "./Middlenav.scss";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { ActiveItem } from "../Navbar";
 
-type ActiveItem = "house" | "video" | "shop" | "group" | "game" | null;
+interface MiddleNavProps {
+  activeItem: ActiveItem;
+  setActiveItem: (item: ActiveItem) => void;
+}
 
-function MiddleNav() {
-  const [activeItem, setActiveItem] = useState<ActiveItem>(null);
+function MiddleNav({ activeItem, setActiveItem }: MiddleNavProps) {
   const [isActive, setIsActive] = useState(true);
 
   const handleItemClick = (item: ActiveItem) => {

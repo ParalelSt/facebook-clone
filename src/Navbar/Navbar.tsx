@@ -4,6 +4,7 @@ import MiddleNav from "./Middle/MiddleNav";
 import "./Navbar.scss";
 import RightNav from "./Right/RightNav";
 import { Users } from "../App";
+import { useState } from "react";
 
 interface NavbarProps {
   setIsAuthenticated: (isAuthenticated: boolean) => void;
@@ -11,8 +12,11 @@ interface NavbarProps {
   currentUser: Users | null;
 }
 
+export type ActiveItem = "house" | "video" | "shop" | "group" | "game" | null;
+
 function Navbar({ setIsAuthenticated, users, currentUser }: NavbarProps) {
   const location = useLocation();
+  const [activeItem, setActiveItem] = useState<ActiveItem>(null);
 
   if (location.pathname === "/login") {
     return null;
@@ -22,8 +26,11 @@ function Navbar({ setIsAuthenticated, users, currentUser }: NavbarProps) {
     <>
       <nav>
         <div className="navbar-container">
-          <LeftNav></LeftNav>
-          <MiddleNav></MiddleNav>
+          <LeftNav setActiveItem={setActiveItem}></LeftNav>
+          <MiddleNav
+            setActiveItem={setActiveItem}
+            activeItem={activeItem}
+          ></MiddleNav>
           <RightNav
             users={users}
             currentUser={currentUser}

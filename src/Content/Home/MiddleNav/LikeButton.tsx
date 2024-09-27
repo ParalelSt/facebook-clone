@@ -8,7 +8,7 @@ interface LikeButtonProps {
 }
 
 const LikeButton = ({ post, setPosts }: LikeButtonProps) => {
-  const [handleLikeToggle, isLiked] = useLikeButtonLogic(post, setPosts);
+  const [handleLikeToggle, isLiked] = useLikeButtonLogic();
 
   return (
     <button

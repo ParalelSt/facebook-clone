@@ -96,6 +96,7 @@ function App() {
           <Route path="/groups"></Route>
           <Route path="/games"></Route>
           <Route path="/create-account"></Route>
+          <Route path="/posts/postId"></Route>
         </Route>
         <Route
           path="*"

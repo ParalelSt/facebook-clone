@@ -1,13 +1,7 @@
-import { useEffect, useState } from "react";
-import { Posts } from "./MiddleContent";
+import { useState } from "react";
 
-const useLikeButtonLogic = (
-  post: Posts,
-  setPosts: React.Dispatch<React.SetStateAction<Posts[]>>
-) => {
+const useLikeButtonLogic = () => {
   const [isLiked, setIsLiked] = useState(false);
-
-  useEffect(() => {});
 
   const handleLikeToggle = () => {
     setIsLiked(!isLiked);
