@@ -51,8 +51,8 @@ function Home({ user, users, setIsAuthenticated, setCurrentUser }: HomeProps) {
     },
 
     {
-      username: "3",
-      image: "/images/ProfilePicture.jpg",
+      username: "HappyCapy",
+      image: "/images/post/CapybaraJudge.jpg",
       postImage: "/images/post/CapybaraJudge.jpg",
       status: "online",
       recentStoryPost: true,
@@ -60,8 +60,8 @@ function Home({ user, users, setIsAuthenticated, setCurrentUser }: HomeProps) {
     },
 
     {
-      username: "4",
-      image: "/images/ProfilePicture.jpg",
+      username: "KittenLover323",
+      image: "/icons/KittenLover.jpg",
       postImage: "/images/post/Cat.jpg",
       status: "online",
       recentStoryPost: true,
@@ -69,9 +69,9 @@ function Home({ user, users, setIsAuthenticated, setCurrentUser }: HomeProps) {
     },
 
     {
-      username: "5",
-      image: "/images/ProfilePicture.jpg",
-      postImage: "",
+      username: "John Smith",
+      image: "/icons/John.jpg",
+      postImage: "/icons/LoL.jpg",
       status: "online",
       recentStoryPost: true,
       id: uuidv4(),
@@ -91,6 +91,78 @@ function Home({ user, users, setIsAuthenticated, setCurrentUser }: HomeProps) {
       image: "/images/ProfilePicture.jpg",
       postImage: "",
       status: "online",
+      recentStoryPost: true,
+      id: uuidv4(),
+    },
+
+    {
+      username: "8",
+      image: "/images/ProfilePicture.jpg",
+      postImage: "",
+      status: "offline",
+      recentStoryPost: true,
+      id: uuidv4(),
+    },
+
+    {
+      username: "8",
+      image: "/images/ProfilePicture.jpg",
+      postImage: "",
+      status: "offline",
+      recentStoryPost: true,
+      id: uuidv4(),
+    },
+
+    {
+      username: "8",
+      image: "/images/ProfilePicture.jpg",
+      postImage: "",
+      status: "offline",
+      recentStoryPost: true,
+      id: uuidv4(),
+    },
+
+    {
+      username: "8",
+      image: "/images/ProfilePicture.jpg",
+      postImage: "",
+      status: "offline",
+      recentStoryPost: true,
+      id: uuidv4(),
+    },
+
+    {
+      username: "8",
+      image: "/images/ProfilePicture.jpg",
+      postImage: "",
+      status: "offline",
+      recentStoryPost: true,
+      id: uuidv4(),
+    },
+
+    {
+      username: "8",
+      image: "/images/ProfilePicture.jpg",
+      postImage: "",
+      status: "offline",
+      recentStoryPost: true,
+      id: uuidv4(),
+    },
+
+    {
+      username: "8",
+      image: "/images/ProfilePicture.jpg",
+      postImage: "",
+      status: "offline",
+      recentStoryPost: true,
+      id: uuidv4(),
+    },
+
+    {
+      username: "8",
+      image: "/images/ProfilePicture.jpg",
+      postImage: "",
+      status: "offline",
       recentStoryPost: true,
       id: uuidv4(),
     },

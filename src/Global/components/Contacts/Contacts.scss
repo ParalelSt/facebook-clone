@@ -1,11 +1,14 @@
 @import '../../GlobalStyles.scss';
 
 .right-side-nav-container {
+    overflow-y: auto;
+
     .contacts-container {
         display: flex;
         flex-direction: column;
         justify-content: center;
         width: 22em;
+        
 
         img {
             border-radius: 100%;

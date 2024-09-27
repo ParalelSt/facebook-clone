@@ -5,6 +5,8 @@
     flex-direction: column;
     width: 22em;
     margin-top: 1em;
+    height: 90vh;
+    overflow-y: auto;
 
     .border-line {
         padding-left: 0.3em;
@@ -13,4 +15,5 @@
 
     position: fixed;
     right: 0;
+    
 }

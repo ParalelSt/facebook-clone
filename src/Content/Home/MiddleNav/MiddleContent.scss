@@ -62,12 +62,18 @@
 
             .button-prev {
                 left: 1em;
-                display: none;
     
                 svg {
                     left: 0.6em;
                 }
-                
+            }
+
+            .visible {
+                display: flex;
+            }
+
+            .move-left {
+                left: -2em;
             }
     
             .button-next {
