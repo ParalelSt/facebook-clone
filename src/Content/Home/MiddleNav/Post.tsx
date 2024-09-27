@@ -8,7 +8,6 @@ import ContentContainer from "../../../Global/components/ContentContainer/Conten
 import { Posts } from "./MiddleContent";
 import "./Post.scss";
 import BorderLine from "../../../Global/components/BorderLine";
-import { AiOutlineLike } from "react-icons/ai";
 import { IoChatbubbleOutline } from "react-icons/io5";
 import { RiLinkM } from "react-icons/ri";
 import { PiShareFatLight } from "react-icons/pi";
@@ -16,7 +15,7 @@ import { FaSmile, FaSmileBeam, FaStickyNote } from "react-icons/fa";
 import { Users } from "../../../App";
 import ProfilesAndPages from "./ProfilesAndPages";
 import useDropDown from "../../../Global/hooks/useDropDown";
-import useLikeButtonLogic from "./LikeButtonLogic";
+import LikeButton from "./LikeButton";
 
 interface PostProps {
   posts: Posts[];
@@ -36,8 +35,6 @@ const Post = ({
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [handleDropDownOpen, handleDropDownClose, _, isActive] = useDropDown();
 
-  const [handleLikeToggle, isLiked] = useLikeButtonLogic();
-
   //Conditional Rendering
 
   // const [shareStates, setShareStates] = useState<{ [key: number]: boolean }>(
@@ -55,8 +52,8 @@ const Post = ({
       <div className="posts">
         {posts.map((post) => {
           return (
-            <ContentContainer>
-              <div className="content" key={post.id}>
+            <ContentContainer key={post.id}>
+              <div className="content">
                 <div className="post-top-container">
                   <div className="post-top-container-top">
                     <div className="post-top-left">
@@ -122,13 +119,7 @@ const Post = ({
                     post.commentCount > 0 ||
                     post.shareCount > 0) && <BorderLine></BorderLine>}
                   <div className="post-buttons">
-                    <button
-                      className={`like-btn ${isLiked ? "liked" : ""}`}
-                      onClick={() => handleLikeToggle()}
-                    >
-                      <AiOutlineLike />
-                      <span>Like</span>
-                    </button>
+                    <LikeButton post={post}></LikeButton>
                     <button className="comment-btn">
                       <IoChatbubbleOutline />
                       <span>Comment</span>

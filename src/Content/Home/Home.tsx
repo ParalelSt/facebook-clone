@@ -43,7 +43,7 @@ function Home({ user, users, setIsAuthenticated, setCurrentUser }: HomeProps) {
 
     {
       username: "Toshihido Yamada",
-      image: "/images/ProfilePicture.jpg",
+      image: "/images/post/Toshihido.jpg",
       postImage: "/images/post/R34.jpg",
       status: "online",
       recentStoryPost: true,

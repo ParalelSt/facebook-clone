@@ -26,7 +26,6 @@ function RightNav({ setIsAuthenticated, currentUser }: RightNavProps) {
   useEffect(() => {
     const handleClickOutside = (e: MouseEvent) => {
       if (
-        isActive &&
         dropDownRef.current &&
         !dropDownRef.current.contains(e.target as Node) &&
         profilePicRef.current &&
