@@ -4,10 +4,11 @@ import { Posts } from "./MiddleContent";
 
 interface LikeButtonProps {
   post: Posts;
+  setPosts: React.Dispatch<React.SetStateAction<Posts[]>>;
 }
 
-const LikeButton = ({ post }: LikeButtonProps) => {
-  const [handleLikeToggle, isLiked] = useLikeButtonLogic();
+const LikeButton = ({ post, setPosts }: LikeButtonProps) => {
+  const [handleLikeToggle, isLiked] = useLikeButtonLogic(post, setPosts);
 
   return (
     <button

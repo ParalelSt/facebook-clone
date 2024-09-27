@@ -19,6 +19,7 @@ import LikeButton from "./LikeButton";
 
 interface PostProps {
   posts: Posts[];
+  setPosts: React.Dispatch<React.SetStateAction<Posts[]>>;
   users: Users[];
   setIsAuthenticated: (isAuthenticated: boolean) => void;
   setCurrentUser: (user: Users | null) => void;
@@ -26,6 +27,7 @@ interface PostProps {
 
 const Post = ({
   posts,
+  setPosts,
   users,
   setIsAuthenticated,
   setCurrentUser,
@@ -119,7 +121,7 @@ const Post = ({
                     post.commentCount > 0 ||
                     post.shareCount > 0) && <BorderLine></BorderLine>}
                   <div className="post-buttons">
-                    <LikeButton post={post}></LikeButton>
+                    <LikeButton setPosts={setPosts} post={post}></LikeButton>
                     <button className="comment-btn">
                       <IoChatbubbleOutline />
                       <span>Comment</span>

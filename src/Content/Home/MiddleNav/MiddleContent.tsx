@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import ImageCarousel from "../../../Global/components/Image Carousel/ImageCarousel";
 import "./MiddleContent.scss";
 import { v4 as uuidv4, v4 } from "uuid";
@@ -61,7 +61,7 @@ function MiddleContent({
     }));
   }, [contactList]);
 
-  const posts: Posts[] = [
+  const [posts, setPosts] = useState<Posts[]>([
     {
       username: "Aron Matoic",
       profilePicture: "./images/ProfilePicture.jpg",
@@ -90,7 +90,7 @@ function MiddleContent({
       comments: [],
       id: v4(),
     },
-  ];
+  ]);
 
   return (
     <div className="middle-content-container">
@@ -102,6 +102,7 @@ function MiddleContent({
           setIsAuthenticated={setIsAuthenticated}
           users={users}
           posts={posts}
+          setPosts={setPosts}
         ></Post>
       </div>
     </div>
