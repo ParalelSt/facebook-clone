@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Posts } from "./MiddleContent";
 
 const useLikeButtonLogic = (
@@ -7,16 +7,10 @@ const useLikeButtonLogic = (
 ) => {
   const [isLiked, setIsLiked] = useState(false);
 
-  const handleLikeToggle = () => {
-    setIsLiked((prevIsLiked) => !prevIsLiked);
+  useEffect(() => {});
 
-    setPosts((prevPosts) =>
-      prevPosts.map((p) =>
-        p.id === post.id
-          ? { ...p, likeCount: p.likeCount + (p.likeCount ? -1 : 1) }
-          : p
-      )
-    );
+  const handleLikeToggle = () => {
+    setIsLiked(!isLiked);
   };
 
   return [handleLikeToggle, isLiked] as const;
