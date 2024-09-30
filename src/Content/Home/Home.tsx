@@ -52,7 +52,7 @@ function Home({ user, users, setIsAuthenticated, setCurrentUser }: HomeProps) {
 
     {
       username: "HappyCapy",
-      image: "/images/post/CapybaraJudge.jpg",
+      image: "/icons/HappyCapy.jpg",
       postImage: "/images/post/CapybaraJudge.jpg",
       status: "online",
       recentStoryPost: true,
@@ -175,7 +175,151 @@ function Home({ user, users, setIsAuthenticated, setCurrentUser }: HomeProps) {
       recentStoryPost: true,
       id: uuidv4(),
     },
+
+    {
+      username: "8",
+      image: "/images/ProfilePicture.jpg",
+      postImage: "",
+      status: "offline",
+      recentStoryPost: true,
+      id: uuidv4(),
+    },
+
+    {
+      username: "8",
+      image: "/images/ProfilePicture.jpg",
+      postImage: "",
+      status: "offline",
+      recentStoryPost: true,
+      id: uuidv4(),
+    },
+
+    {
+      username: "8",
+      image: "/images/ProfilePicture.jpg",
+      postImage: "",
+      status: "offline",
+      recentStoryPost: true,
+      id: uuidv4(),
+    },
+
+    {
+      username: "8",
+      image: "/images/ProfilePicture.jpg",
+      postImage: "",
+      status: "offline",
+      recentStoryPost: true,
+      id: uuidv4(),
+    },
+
+    {
+      username: "8",
+      image: "/images/ProfilePicture.jpg",
+      postImage: "",
+      status: "offline",
+      recentStoryPost: true,
+      id: uuidv4(),
+    },
+
+    {
+      username: "8",
+      image: "/images/ProfilePicture.jpg",
+      postImage: "",
+      status: "offline",
+      recentStoryPost: true,
+      id: uuidv4(),
+    },
+
+    {
+      username: "8",
+      image: "/images/ProfilePicture.jpg",
+      postImage: "",
+      status: "offline",
+      recentStoryPost: true,
+      id: uuidv4(),
+    },
+
+    {
+      username: "8",
+      image: "/images/ProfilePicture.jpg",
+      postImage: "",
+      status: "offline",
+      recentStoryPost: true,
+      id: uuidv4(),
+    },
+
+    {
+      username: "8",
+      image: "/images/ProfilePicture.jpg",
+      postImage: "",
+      status: "offline",
+      recentStoryPost: true,
+      id: uuidv4(),
+    },
+
+    {
+      username: "8",
+      image: "/images/ProfilePicture.jpg",
+      postImage: "",
+      status: "offline",
+      recentStoryPost: true,
+      id: uuidv4(),
+    },
+
+    {
+      username: "A",
+      image: "/images/ProfilePicture.jpg",
+      postImage: "",
+      status: "offline",
+      recentStoryPost: true,
+      id: uuidv4(),
+    },
+
+    {
+      username: "A",
+      image: "/images/ProfilePicture.jpg",
+      postImage: "",
+      status: "offline",
+      recentStoryPost: true,
+      id: uuidv4(),
+    },
+
+    {
+      username: "A",
+      image: "/images/ProfilePicture.jpg",
+      postImage: "",
+      status: "offline",
+      recentStoryPost: true,
+      id: uuidv4(),
+    },
+
+    {
+      username: "A",
+      image: "/images/ProfilePicture.jpg",
+      postImage: "",
+      status: "offline",
+      recentStoryPost: true,
+      id: uuidv4(),
+    },
+
+    {
+      username: "A",
+      image: "/images/ProfilePicture.jpg",
+      postImage: "",
+      status: "offline",
+      recentStoryPost: true,
+      id: uuidv4(),
+    },
   ];
+
+  const sortedContactList = contactList
+    .sort((a, b) => {
+      if (!a || !b) {
+        return 0;
+      }
+      return a.status === "online" ? -1 : 1;
+    })
+    .slice(0, 17);
 
   return (
     <div className="home">
@@ -187,7 +331,7 @@ function Home({ user, users, setIsAuthenticated, setCurrentUser }: HomeProps) {
         user={user}
         contactList={contactList}
       ></MiddleContent>
-      <RightSideNav contactList={contactList}></RightSideNav>
+      <RightSideNav contactList={sortedContactList}></RightSideNav>
     </div>
   );
 }
