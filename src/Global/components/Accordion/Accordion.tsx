@@ -14,26 +14,24 @@ function Accordion({ items }: Items) {
     setIsOpen(!isOpen);
   };
 
-  const accordionTitle = isOpen ? "See more" : "See less";
+  const accordionTitle = isOpen ? "See less" : "See more";
 
   return (
-    <div
-      onClick={() => toggleTitle()}
-      id="accordion"
-      className="item-container"
-    >
-      <div className="top">
-        <FaCaretDown></FaCaretDown>
-        <div className="icon-container"></div>
-        <span className="title">{accordionTitle}</span>
-      </div>
-      <div className={`accordion-container ${isOpen ? "active" : ""}`}>
-        {items.map((item) => (
-          <Link to={""} className="accordion-item" key={item.id}>
-            <img src={item.image} />
-            <span>{item.title}</span>
-          </Link>
-        ))}
+    <div id="accordion" className="item-container">
+      <div className={`accordion-inner ${isOpen ? "reorder" : ""}`}>
+        <div className="top" onClick={toggleTitle}>
+          <FaCaretDown />
+          <div className="icon-container"></div>
+          <span className="title">{accordionTitle}</span>
+        </div>
+        <div className={`accordion-container ${isOpen ? "active" : ""}`}>
+          {items.map((item) => (
+            <Link to={""} className="accordion-item" key={item.id}>
+              <img src={item.image} alt={item.title} />
+              <span>{item.title}</span>
+            </Link>
+          ))}
+        </div>
       </div>
     </div>
   );

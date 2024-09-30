@@ -26,6 +26,9 @@
 
         gap: 0.65em;
 
+        cursor: pointer;
+        order: 0;
+
         svg {
             height: 1.6em;
             width: 1.6em;
@@ -45,6 +48,21 @@
         }
     }
 
+    .accordion-inner {
+        width: 100%;
+
+        display: flex;
+        flex-direction: column;
+
+        &.reorder .top {
+            order: 2;
+        }
+
+        &.reorder .accordion-container {
+            order: 1;
+        }
+    }
+
 
     .accordion-container {
         display: none;
@@ -53,6 +71,7 @@
     .active {
         display: flex;
         flex-direction: column;
+        order: 1;
         
         a {
             display: flex;
