@@ -1,7 +1,6 @@
 @import '../../GlobalStyles.scss';
 
 .right-side-nav-container {
-    overflow-y: auto;
 
     .contacts-container {
         display: flex;
@@ -56,6 +55,7 @@
         }
     
         .contact {
+            position: relative;
             display: flex;
             align-items: center;
             padding: 0.5em;
@@ -81,6 +81,20 @@
     
             span {
                 @include set-font-size ("small");
+            }
+
+            .online-dot {
+                position: absolute;
+                bottom: 0.3em;
+                right: 88%;
+
+                border: 2.5px solid white;
+                border-radius: 100%;
+
+                width: 0.7em;
+                height: 0.7em;
+
+                background-color: $green;
             }
         }
     

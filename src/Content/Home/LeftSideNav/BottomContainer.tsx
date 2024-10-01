@@ -4,7 +4,16 @@ import "../../../Global/GlobalStyles.scss";
 import { useState } from "react";
 import BorderLine from "../../../Global/components/BorderLine";
 
-function BottomContainer() {
+interface BottomContainerProps {
+  scrollVisibleBottom: boolean;
+  setScrollVisibleBottom: (scrollVisibleBottom: boolean) => void;
+}
+
+function BottomContainer({
+  scrollVisibleBottom,
+  setScrollVisibleBottom,
+}: BottomContainerProps) {
+  const [isOpen, setIsOpen] = useState(false);
   const leftBottomSideNav: AccordionItem[] = [
     {
       title: "Covjece ne ljuti se",
@@ -98,7 +107,13 @@ function BottomContainer() {
         <img src="/icons/BingoPop.png" />
         <span className="title">Bingo Pop</span>
       </div>
-      <Accordion items={leftBottomSideNav}></Accordion>
+      <Accordion
+        isOpen={isOpen}
+        setIsOpen={setIsOpen}
+        scrollVisible={scrollVisibleBottom}
+        setScrollVisible={setScrollVisibleBottom}
+        items={leftBottomSideNav}
+      ></Accordion>
     </div>
   );
 }

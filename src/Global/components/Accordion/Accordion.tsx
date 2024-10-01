@@ -1,4 +1,3 @@
-import { useState } from "react";
 import "./Accordion.scss";
 import { Link } from "react-router-dom";
 import { FaCaretDown } from "react-icons/fa6";
@@ -6,12 +5,22 @@ import { AccordionItem } from "../../../Content/Home/LeftSideNav/TopContainer";
 
 interface Items {
   items: AccordionItem[];
+  isOpen: boolean;
+  setIsOpen: (isOpen: boolean) => void;
+  scrollVisible: boolean;
+  setScrollVisible: (scrollVisible: boolean) => void;
 }
 
-function Accordion({ items }: Items) {
-  const [isOpen, setIsOpen] = useState(false);
+function Accordion({
+  items,
+  isOpen,
+  setIsOpen,
+  scrollVisible,
+  setScrollVisible,
+}: Items) {
   const toggleTitle = () => {
     setIsOpen(!isOpen);
+    setScrollVisible(!scrollVisible);
   };
 
   const accordionTitle = isOpen ? "See less" : "See more";
@@ -36,9 +45,5 @@ function Accordion({ items }: Items) {
     </div>
   );
 }
-
-Accordion.defaultProps = {
-  title: "See less",
-};
 
 export default Accordion;

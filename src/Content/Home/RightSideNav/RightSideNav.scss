@@ -5,8 +5,14 @@
     flex-direction: column;
     width: 22em;
     margin-top: 1em;
-    height: 90vh;
-    overflow-y: auto;
+    height: 90%;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    
+    &:hover {
+        overflow-y: scroll;
+        scrollbar-width: thin;
+    }
 
     .border-line {
         padding-left: 0.3em;

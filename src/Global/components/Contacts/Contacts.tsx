@@ -25,12 +25,19 @@ function Contacts({ contactList }: Contact) {
             </span>
           </div>
         </div>
-        {contactList.map((contact) => (
-          <div className="contact" key={contact.id}>
-            <img src={contact.image} className="profile-pic" />
-            <span className="username">{contact.username}</span>
-          </div>
-        ))}
+        {contactList.map((contact) => {
+          if (contact.id !== currentUser.id) {
+            return (
+              <div className="contact" key={contact.id}>
+                <img src={contact.image} className="profile-pic" />
+                <span className="username">{contact.username}</span>
+                {contact.status === "online" && (
+                  <div className="online-dot"></div>
+                )}
+              </div>
+            );
+          }
+        })}
       </div>
     </>
   );

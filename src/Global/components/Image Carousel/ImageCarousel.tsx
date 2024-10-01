@@ -26,7 +26,9 @@ function ImageCarousel({ carouselData }: data) {
     });
   };
 
-  const remainingItems = carouselData.length - currentIndex;
+  const remainingItems =
+    carouselData.filter((contact) => contact.recentStoryPost).length -
+    currentIndex;
 
   const isPrevVisible = currentIndex > 0;
   const isNextVisible = remainingItems > imagesToShow - 1;
@@ -35,18 +37,22 @@ function ImageCarousel({ carouselData }: data) {
     <div className="carousel">
       {carouselData
         .slice(currentIndex, currentIndex + imagesToShow)
-        .map((story) => (
-          <div className="story-container" key={story.id}>
-            <img src={story.image} className="story-image" />
-            <img
-              src={story.profilePicture}
-              className={`profile-picture ${
-                story.recentStoryPost ? "active" : "disabled"
-              }`}
-            />
-            <span className="story-username">{story.username}</span>
-          </div>
-        ))}
+        .map((story) => {
+          if (story.recentStoryPost) {
+            return (
+              <div className="story-container" key={story.id}>
+                <img src={story.image} className="story-image" />
+                <img
+                  src={story.profilePicture}
+                  className={`profile-picture ${
+                    story.recentStoryPost ? "active" : "disabled"
+                  }`}
+                />
+                <span className="story-username">{story.username}</span>
+              </div>
+            );
+          }
+        })}
       {isPrevVisible && (
         <button
           className={`button-prev ${remainingItems === 1 ? "move-left" : ""}`}

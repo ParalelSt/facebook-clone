@@ -1,4 +1,10 @@
+import { useState } from "react";
 import Accordion from "../../../Global/components/Accordion/Accordion";
+
+interface TopContainerProps {
+  scrollVisibleTop: boolean;
+  setScrollVisibleTop: (scrollVisibleTop: boolean) => void;
+}
 
 export type AccordionItem = {
   id: number;
@@ -6,7 +12,11 @@ export type AccordionItem = {
   title: string;
 };
 
-function TopContainer() {
+function TopContainer({
+  scrollVisibleTop,
+  setScrollVisibleTop,
+}: TopContainerProps) {
+  const [isOpen, setIsOpen] = useState(false);
   const leftTopSideNav: AccordionItem[] = [
     {
       title: "Ads Manager",
@@ -114,7 +124,13 @@ function TopContainer() {
           <span className="title">Video</span>
         </div>
 
-        <Accordion items={leftTopSideNav}></Accordion>
+        <Accordion
+          isOpen={isOpen}
+          setIsOpen={setIsOpen}
+          items={leftTopSideNav}
+          scrollVisible={scrollVisibleTop}
+          setScrollVisible={setScrollVisibleTop}
+        ></Accordion>
       </div>
     </>
   );
