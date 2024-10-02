@@ -8,10 +8,10 @@
     height: 90%;
     overflow-x: hidden;
     overflow-y: hidden;
+    scrollbar-width: thin;
     
     &:hover {
-        overflow-y: scroll;
-        scrollbar-width: thin;
+        overflow-y: scroll;  
     }
 
     .border-line {

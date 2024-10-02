@@ -62,9 +62,6 @@ const Post = ({
                     <div className="post-top-left">
                       <div className="post-top-left-profile">
                         <img src={post.profilePicture} alt="" />
-                        {/* {post.status === "online" && (
-                          <div className="online-dot"></div>
-                        )} */}
                       </div>
                       <div className="post-top-left-text">
                         <span className="username">{post.username}</span>

@@ -1,0 +1,30 @@
+@import "../../Global/GlobalStyles.scss";
+
+.nav-item-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 3em;
+    height: 3em;
+
+    .img-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0.6em;
+        border-radius: 100%;
+        background-color: #e4e6eb;
+
+        &:hover {
+            filter: brightness(0.93);
+        }
+
+        .icon {
+            width: 1.3em;
+            height: 1.3em;
+        }
+
+    }
+
+}

@@ -18,7 +18,10 @@ function Navbar({ setIsAuthenticated, users, currentUser }: NavbarProps) {
   const location = useLocation();
   const [activeItem, setActiveItem] = useState<ActiveItem>(null);
 
-  if (location.pathname === "/login") {
+  if (
+    location.pathname === "/login" ||
+    location.pathname === "/stories/create"
+  ) {
     return null;
   }
 

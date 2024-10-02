@@ -74,7 +74,7 @@ function SignUp({ handleCreateClose, isActive, setUsers }: SignUpProps) {
       email: isEmail ? phoneOrEmailValue : "",
       phoneNumber: isPhoneNumber ? phoneOrEmailValue : "",
       password: hashedPassword,
-      profilePicture: "/images/ProfilePicture.jpg",
+      profilePicture: "/icons/avatarDefault.svg",
       id: v4(),
     };
 

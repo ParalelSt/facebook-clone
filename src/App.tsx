@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import PrivateRoute from "./Global/components/PrivateRoute.tsx";
 import Home from "./Content/Home/Home.tsx";
 import LogIn from "./Global/components/LogIn/LogIn.tsx";
+import CreateStory from "./Global/components/Image Carousel/CreateStory.tsx";
 
 export interface Users {
   user: string;
@@ -97,6 +98,15 @@ function App() {
           <Route path="/games"></Route>
           <Route path="/create-account"></Route>
           <Route path="/posts/postId"></Route>
+          <Route
+            path="/stories/create"
+            element={
+              <CreateStory
+                setIsAuthenticated={setIsAuthenticated}
+                currentUser={currentUser}
+              ></CreateStory>
+            }
+          ></Route>
         </Route>
         <Route
           path="*"

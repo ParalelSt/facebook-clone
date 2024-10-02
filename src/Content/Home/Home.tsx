@@ -28,7 +28,7 @@ function Home({ user, users, setIsAuthenticated, setCurrentUser }: HomeProps) {
       image: user?.profilePicture || "",
       postImage: "/images/post/Sunflowers.webp",
       status: "online",
-      recentStoryPost: true,
+      recentStoryPost: false,
       id: user?.id || uuidv4(),
     },
 

@@ -4,7 +4,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 100%;
+    width: 100%;   
 
     a {
       &:visited {
@@ -17,7 +17,7 @@
         flex-direction: column;
         align-items: center;
         width: 40rem;
-        margin-top: 1em;
+        margin: 1em 0;
         position: relative;
     
         gap: 1em;
@@ -131,8 +131,8 @@
                 }
     
                 .profile-picture {
-                    width: 2.5em;
-                    height: 2.5em;
+                    width: 2.9em;
+                    height: 2.9em;
                     position: absolute;
                     top: 1em;
                     left: 1em;
@@ -142,6 +142,8 @@
                 }
     
                 .active {
+                    width: 2.5em;
+                    height: 2.5em;
                     border: 0.3em solid #075ce6;
                 }
     
@@ -161,6 +163,74 @@
                     text-overflow: clip;  // Ensures text does not get clipped or ellipsized
                     max-width: calc(80% - 2em);  // Adjust max-width to fit within the container
                     font-size: $medium;
+                }
+            }
+
+            .user-story-container {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+
+                &::before {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 30%;
+                    background: transparent;
+                    z-index: 101;
+                    border-bottom-left-radius: 0.5em;
+                    border-bottom-right-radius: 0.5em;
+                }
+
+                .user-profile {
+                    display: block;
+
+                    width: 142px;
+                    height: 100%;
+
+                    margin-top: -0.5em;
+
+                    object-fit: cover;
+                    transition: scale 0.2s ease-in-out;
+                }
+
+                .create-story {
+                    position: relative;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: end;
+
+                    width: 100%;
+                    height: 30%;
+
+                    background-color: white;
+
+                    button {
+                        position: absolute;
+                        top: -1.1em;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+
+                        height: 2.7em;
+                        width: 2.7em;
+
+                        padding: 0.1em;
+                        border: 4px solid white;
+                        border-radius: 100%;
+
+                        background-color: $blue;
+
+                        svg {
+                            height: 2em;
+                            width: 2em;
+                            
+                            color: white;
+                        }
+                    }
                 }
             }
         }
@@ -203,7 +273,10 @@
                 }
             }
 
-            img {
+            img, svg {
+                height: 2.5em;
+                width: 2.5em;
+
                 border-radius: 100%;
             }
         }
