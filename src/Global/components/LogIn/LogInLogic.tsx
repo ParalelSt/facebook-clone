@@ -23,9 +23,6 @@ function useLogInLogic() {
         user.password
       );
 
-      console.log(passwordValue);
-      console.log(user.password);
-
       console.log(isPasswordValid);
 
       if (isPasswordValid) {

@@ -1,7 +1,7 @@
 import LeftNavSide from "./LeftSideNav/LeftSideNav";
 import RightSideNav from "./RightSideNav/RightSideNav";
 import "./Home.scss";
-import MiddleContent from "./MiddleNav/MiddleContent";
+import MiddleContent from "./MiddleContent/MiddleContent";
 import { v4 as uuidv4 } from "uuid";
 import { Users } from "../../App";
 

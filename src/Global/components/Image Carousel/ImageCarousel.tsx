@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { carouselData } from "../../../Content/Home/MiddleNav/MiddleContent";
+import { carouselData } from "../../../Content/Home/MiddleContent/MiddleContent";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { GoPlus } from "react-icons/go";
 import { useNavigate } from "react-router-dom";

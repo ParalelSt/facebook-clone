@@ -13,6 +13,7 @@ export interface Users {
   phoneNumber: string;
   password: string;
   profilePicture: string;
+  likedPosts: string[];
   id: string;
 }
 

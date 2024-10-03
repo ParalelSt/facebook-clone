@@ -22,6 +22,7 @@ interface PostProps {
   posts: Posts[];
   setPosts: React.Dispatch<React.SetStateAction<Posts[]>>;
   users: Users[];
+  user: Users | null;
   setIsAuthenticated: (isAuthenticated: boolean) => void;
   setCurrentUser: (user: Users | null) => void;
 }
@@ -30,6 +31,7 @@ const Post = ({
   posts,
   setPosts,
   users,
+  user,
   setIsAuthenticated,
   setCurrentUser,
 }: PostProps) => {
@@ -98,21 +100,39 @@ const Post = ({
                               </div>
                             );
                           })}
+                          <div className="users-that-liked">
+                            {post.usersWhoLiked.map((likedUser) => {
+                              return (
+                                <div
+                                  className="liked-user-display"
+                                  key={likedUser.id}
+                                >
+                                  {likedUser.username}
+                                </div>
+                              );
+                            })}
+                          </div>
                         </div>
                         <div className="like-count count">
-                          {post.likeCount == 0 ? "" : post.likeCount}
+                          <span>
+                            {post.likeCount == 0 ? "" : post.likeCount}
+                          </span>
                         </div>
                       </div>
                       <div className={`comment-and-share`}>
                         <div className="comment-count count">
-                          {post.commentCount !== 0
-                            ? post.commentCount + " " + `comments`
-                            : ""}
+                          <span>
+                            {post.commentCount !== 0
+                              ? post.commentCount + " " + `comments`
+                              : ""}
+                          </span>
                         </div>
                         <div className="share-count count">
-                          {post.shareCount !== 0
-                            ? post.shareCount + " " + `share`
-                            : ""}
+                          <span>
+                            {post.shareCount !== 0
+                              ? post.shareCount + " " + `share`
+                              : ""}
+                          </span>
                         </div>
                       </div>
                     </div>
@@ -121,7 +141,11 @@ const Post = ({
                     post.commentCount > 0 ||
                     post.shareCount > 0) && <BorderLine></BorderLine>}
                   <div className="post-buttons">
-                    <LikeButton setPosts={setPosts} post={post}></LikeButton>
+                    <LikeButton
+                      user={user}
+                      setPosts={setPosts}
+                      post={post}
+                    ></LikeButton>
                     <button className="comment-btn">
                       <IoChatbubbleOutline />
                       <span>Comment</span>
