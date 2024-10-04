@@ -19,7 +19,7 @@ const LikeButton = ({ user, post, setPosts }: LikeButtonProps) => {
 
     const likedPosts = user.likedPosts || [];
 
-    const isPostLiked = user?.likedPosts.includes(post.id);
+    const isPostLiked = likedPosts.includes(post.id);
 
     const updatedLikedPosts = isPostLiked
       ? likedPosts.filter((p) => p !== post.id)

@@ -123,6 +123,7 @@ function LogIn({
       </div>
 
       <SignUp
+        users={users}
         setUsers={setUsers}
         handleCreateClose={handleCreateClose}
         isActive={isActive}

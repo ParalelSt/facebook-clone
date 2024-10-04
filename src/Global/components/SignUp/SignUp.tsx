@@ -10,10 +10,11 @@ import bcrypt from "bcryptjs";
 interface SignUpProps {
   handleCreateClose: () => void;
   isActive: boolean;
+  users: Users[];
   setUsers: React.Dispatch<React.SetStateAction<Users[]>>;
 }
 
-function SignUp({ handleCreateClose, isActive, setUsers }: SignUpProps) {
+function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
   //Validation
 
   const validateEmail = (email: string) => {
@@ -37,6 +38,50 @@ function SignUp({ handleCreateClose, isActive, setUsers }: SignUpProps) {
   const firstNameRef = useRef<HTMLInputElement>(null);
   const lastNameRef = useRef<HTMLInputElement>(null);
 
+  const [firstNameValue, setFirstNameValue] = useState("");
+  const [lastNameValue, setLastNameValue] = useState("");
+
+  const [firstNameError, setFirstNameError] = useState<string | null>(null);
+  const [lastNameError, setLastNameError] = useState<string | null>(null);
+
+  const firstNameCheck = () => {
+    const firstNameLength = firstNameValue.length;
+
+    if (!firstNameLength) {
+      setFirstNameError("First name is required");
+      return false;
+    }
+
+    if (firstNameLength > 12) {
+      setFirstNameError(
+        "The first name must contain... Check the first name and try again"
+      );
+      return false;
+    }
+
+    setFirstNameError(null);
+    return true;
+  };
+
+  const lastNameCheck = () => {
+    const lastNameLength = lastNameValue.length;
+
+    if (!lastNameLength) {
+      setLastNameError("Last name is required");
+      return false;
+    }
+
+    if (lastNameLength > 12) {
+      setLastNameError(
+        "The last name must contain... Check the last name and try again"
+      );
+      return false;
+    }
+
+    setLastNameError(null);
+    return true;
+  };
+
   const phoneOrEmailRef = useRef<HTMLInputElement>(null);
   const [phoneOrEmailValue, setPhoneOrEmailValue] = useState("");
 
@@ -50,6 +95,19 @@ function SignUp({ handleCreateClose, isActive, setUsers }: SignUpProps) {
     " " +
     lastNameRef.current?.value.trim();
 
+  const validateUserName = (username: string) => {
+    const userExists = users.some(
+      (existingUser) => existingUser.user === username
+    );
+
+    if (userExists) {
+      console.log("A user with that username already exists");
+      return false;
+    }
+
+    return true;
+  };
+
   const phoneOrEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event?.target.value;
     setPhoneOrEmailValue(inputValue);
@@ -61,16 +119,19 @@ function SignUp({ handleCreateClose, isActive, setUsers }: SignUpProps) {
 
   // const navigate = useNavigate();
 
-  const signUp = async () => {
-    const isEmail = validateEmail(phoneOrEmailValue);
-    const isPhoneNumber = validatePhoneNumber(phoneOrEmailValue);
-    // const isPassword = validatePassword(passwordValue);
+  // const isPassword = validatePassword(passwordValue);
 
+  const signUp = async () => {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(passwordValue, saltRounds);
+    const isEmail = validateEmail(phoneOrEmailValue);
+    const isPhoneNumber = validatePhoneNumber(phoneOrEmailValue);
+    const notExistingUsername = validateUserName(userName);
+
+    firstNameCheck();
 
     const newUser = {
-      user: userName,
+      user: notExistingUsername ? userName : "",
       email: isEmail ? phoneOrEmailValue : "",
       phoneNumber: isPhoneNumber ? phoneOrEmailValue : "",
       password: hashedPassword,
@@ -82,6 +143,24 @@ function SignUp({ handleCreateClose, isActive, setUsers }: SignUpProps) {
     setUsers((prevUsers) => [...prevUsers, newUser]);
     localStorage.setItem("user", JSON.stringify(newUser));
     // navigate("/create-account");
+  };
+
+  const signUpValidation = async () => {
+    const isEmail = validateEmail(phoneOrEmailValue);
+    const isPhoneNumber = validatePhoneNumber(phoneOrEmailValue);
+    const notExistingUsername = validateUserName(userName);
+    const firstNameValid = firstNameCheck();
+    const lastNameValid = lastNameCheck();
+
+    if (
+      (isEmail || isPhoneNumber) &&
+      notExistingUsername &&
+      firstNameValid &&
+      lastNameValid
+    ) {
+      await signUp();
+      handleCreateClose();
+    }
   };
 
   return (
@@ -104,15 +183,22 @@ function SignUp({ handleCreateClose, isActive, setUsers }: SignUpProps) {
                   type="text"
                   placeholder="First name"
                   ref={firstNameRef}
+                  value={firstNameValue}
+                  onChange={(e) => setFirstNameValue(e.target.value)}
+                  onBlur={firstNameCheck}
                 />
-                <input type="text" placeholder="Last name" ref={lastNameRef} />
+                {firstNameError && <div>{firstNameError}</div>}
+                <input
+                  type="text"
+                  placeholder="Last name"
+                  ref={lastNameRef}
+                  value={lastNameValue}
+                  onChange={(e) => setLastNameValue(e.target.value)}
+                  onBlur={lastNameCheck}
+                />
+                {lastNameError && <div className="">{lastNameError}</div>}
               </div>
-              <div className="warning first-name">
-                <span>What&apos;s your name?</span>
-              </div>
-              <div className="warning last-name">
-                <span>What&apos;s your name?</span>
-              </div>
+
               <div className="phone-or-email-field sign-up-item">
                 <input
                   type="text"
@@ -164,8 +250,7 @@ function SignUp({ handleCreateClose, isActive, setUsers }: SignUpProps) {
               <div className="sign-up">
                 <button
                   onClick={() => {
-                    signUp();
-                    handleCreateClose();
+                    signUpValidation();
                   }}
                 >
                   Sign up
