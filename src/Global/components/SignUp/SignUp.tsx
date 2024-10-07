@@ -27,12 +27,6 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
     return phonePattern.test(phoneNumber);
   };
 
-  // const validatePassword = (password: string) => {
-  //   const passwordPattern =
-  //     /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,25}$/;
-  //   return passwordPattern.test(password);
-  // };
-
   //Sign up
 
   const firstNameRef = useRef<HTMLInputElement>(null);
@@ -44,6 +38,10 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
   const [firstNameError, setFirstNameError] = useState<string | null>(null);
   const [lastNameError, setLastNameError] = useState<string | null>(null);
 
+  const [phoneOrEmailError, setPhoneOrEmailError] = useState<string | null>(
+    null
+  );
+
   const firstNameCheck = () => {
     const firstNameLength = firstNameValue.length;
 
@@ -52,7 +50,7 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
       return false;
     }
 
-    if (firstNameLength > 12) {
+    if (firstNameLength > 12 || firstNameLength <= 1) {
       setFirstNameError(
         "The first name must contain... Check the first name and try again"
       );
@@ -71,7 +69,7 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
       return false;
     }
 
-    if (lastNameLength > 12) {
+    if (lastNameLength > 12 || lastNameLength <= 1) {
       setLastNameError(
         "The last name must contain... Check the last name and try again"
       );
@@ -90,10 +88,7 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
 
   //password hashing
 
-  const userName =
-    firstNameRef.current?.value.trim() +
-    " " +
-    lastNameRef.current?.value.trim();
+  const userName = firstNameValue.trim() + " " + lastNameValue.trim();
 
   const validateUserName = (username: string) => {
     const userExists = users.some(
@@ -111,6 +106,28 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
   const phoneOrEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event?.target.value;
     setPhoneOrEmailValue(inputValue);
+  };
+
+  const phoneOrEmailCheck = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const phoneOrEmailValue = event?.target.value;
+    const phoneOrEmailLength = phoneOrEmailValue?.length;
+
+    if (!phoneOrEmailLength) {
+      setPhoneOrEmailError("This field can not be empty");
+      return false;
+    }
+
+    if (
+      !validateEmail(phoneOrEmailValue) &&
+      !validatePhoneNumber(phoneOrEmailValue)
+    ) {
+      setPhoneOrEmailError(
+        "You'll use this when you log in and if you ever need to reset your password."
+      );
+      return false;
+    } else {
+      setPhoneOrEmailError(null);
+    }
   };
 
   const password = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -146,17 +163,20 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
   };
 
   const signUpValidation = async () => {
-    const isEmail = validateEmail(phoneOrEmailValue);
-    const isPhoneNumber = validatePhoneNumber(phoneOrEmailValue);
     const notExistingUsername = validateUserName(userName);
     const firstNameValid = firstNameCheck();
     const lastNameValid = lastNameCheck();
+    const phoneOrEmailValid = phoneOrEmailCheck({
+      target: {
+        value: phoneOrEmailValue,
+      },
+    } as React.ChangeEvent<HTMLInputElement>);
 
     if (
-      (isEmail || isPhoneNumber) &&
       notExistingUsername &&
       firstNameValid &&
-      lastNameValid
+      lastNameValid &&
+      phoneOrEmailValid
     ) {
       await signUp();
       handleCreateClose();
@@ -181,38 +201,54 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
               <div className="name-fields sign-up-item">
                 <input
                   type="text"
+                  className={`${firstNameError ? "active" : ""}`}
                   placeholder="First name"
                   ref={firstNameRef}
                   value={firstNameValue}
-                  onChange={(e) => setFirstNameValue(e.target.value)}
+                  onChange={(e) => {
+                    setFirstNameValue(e.target.value);
+                  }}
                   onBlur={firstNameCheck}
                 />
-                {firstNameError && <div>{firstNameError}</div>}
+                {firstNameError && (
+                  <div className="error-display first-name-error">
+                    {firstNameError}
+                  </div>
+                )}
                 <input
                   type="text"
+                  className={`${lastNameError ? "active" : ""}`}
                   placeholder="Last name"
                   ref={lastNameRef}
                   value={lastNameValue}
                   onChange={(e) => setLastNameValue(e.target.value)}
                   onBlur={lastNameCheck}
                 />
-                {lastNameError && <div className="">{lastNameError}</div>}
+                {lastNameError && (
+                  <div className="error-display last-name-error">
+                    {lastNameError}
+                  </div>
+                )}
               </div>
 
               <div className="phone-or-email-field sign-up-item">
                 <input
                   type="text"
+                  className={`${phoneOrEmailError ? "active" : "disabled"}`}
                   placeholder="Mobile number or email"
                   value={phoneOrEmailValue}
                   ref={phoneOrEmailRef}
-                  onChange={phoneOrEmail}
+                  onChange={(e) => {
+                    phoneOrEmail(e);
+                    phoneOrEmailCheck(e);
+                  }}
+                  onBlur={phoneOrEmailCheck}
                 />
-              </div>
-              <div className="warning phone-or-email">
-                <span>
-                  You'll use this when you log in and if you ever need to reset
-                  your password.
-                </span>
+                {phoneOrEmailError && (
+                  <div className="error-display email-error">
+                    {phoneOrEmailError}
+                  </div>
+                )}
               </div>
               <div className="password-field sign-up-item">
                 <input
@@ -222,12 +258,6 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
                   ref={passwordRef}
                   onChange={password}
                 />
-              </div>
-              <div className="warning password">
-                <span>
-                  Enter a combination of at least six numbers, letters and
-                  punctuation marks (like ! and &).
-                </span>
               </div>
             </div>
             <div className="bottom">

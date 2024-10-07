@@ -53,6 +53,7 @@
             padding: 0.8em 1em;
             
             .top {
+                position: relative;
                 display: flex;
                 flex-direction: column;
                 gap: 0.5em;
@@ -73,13 +74,46 @@
                         &:focus {
                             outline: none;
                         }
+
+                        &.active {
+                            border: 1px solid #ff0000;
+                        }
+
+                        &.disabled {
+                            border: 1px solid $border-black;
+                        }
+
+                        &:focus {
+                            border: 1px solid $border-black;
+                        }
                     }
 
                 }
 
                 //Fix this
 
-                .warning { display: none;}
+                .error-display { 
+                    position: absolute;
+                    display: flex;
+
+                    padding: 0.5em;
+                    border-radius: 0.5em;
+
+                    width: 10em;
+
+                    background-color: $red;
+                    color: white;
+
+                }
+
+                .first-name-error, .email-error, .phone-num-error {
+                    left: -12em;
+                }
+
+                .last-name-error {
+                    right: -12em;
+                }
+
 
                 // .warning {
                 //     position: absolute;
