@@ -118,6 +118,7 @@ function SignUp({ handleCreateClose, isActive, setUsers }: SignUpProps) {
       return false;
     } else {
       setPhoneOrEmailError(null);
+      return true;
     }
   };
 
@@ -128,6 +129,7 @@ function SignUp({ handleCreateClose, isActive, setUsers }: SignUpProps) {
   };
 
   const passwordCheck = () => {
+    console.log(passwordValue);
     if (!validatePassword(passwordValue)) {
       setPasswordError(
         "Enter a combination of at least six numbers, letters and punctuation marks (like ! and &)."
@@ -135,6 +137,7 @@ function SignUp({ handleCreateClose, isActive, setUsers }: SignUpProps) {
       return false;
     } else {
       setPasswordError(null);
+      return true;
     }
   };
 
@@ -175,6 +178,11 @@ function SignUp({ handleCreateClose, isActive, setUsers }: SignUpProps) {
       await signUp();
       handleCreateClose();
     }
+
+    console.log("First name valid:", firstNameValid);
+    console.log("Last name valid:", lastNameValid);
+    console.log("Phone or email valid:", phoneOrEmailValid);
+    console.log("Password valid:", passwordValid);
   };
 
   return (
