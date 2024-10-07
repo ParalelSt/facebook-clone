@@ -10,11 +10,10 @@ import bcrypt from "bcryptjs";
 interface SignUpProps {
   handleCreateClose: () => void;
   isActive: boolean;
-  users: Users[];
   setUsers: React.Dispatch<React.SetStateAction<Users[]>>;
 }
 
-function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
+function SignUp({ handleCreateClose, isActive, setUsers }: SignUpProps) {
   //Validation
 
   const validateEmail = (email: string) => {
@@ -27,20 +26,33 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
     return phonePattern.test(phoneNumber);
   };
 
+  const validatePassword = (password: string) => {
+    const passwordPattern =
+      /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[!@#$%^&*])[\w!@#$%^&*]{6,}$/;
+    return passwordPattern.test(password);
+  };
+
   //Sign up
 
   const firstNameRef = useRef<HTMLInputElement>(null);
   const lastNameRef = useRef<HTMLInputElement>(null);
+  const phoneOrEmailRef = useRef<HTMLInputElement>(null);
+  const passwordRef = useRef<HTMLInputElement>(null);
 
   const [firstNameValue, setFirstNameValue] = useState("");
   const [lastNameValue, setLastNameValue] = useState("");
+  const [phoneOrEmailValue, setPhoneOrEmailValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
 
   const [firstNameError, setFirstNameError] = useState<string | null>(null);
   const [lastNameError, setLastNameError] = useState<string | null>(null);
-
   const [phoneOrEmailError, setPhoneOrEmailError] = useState<string | null>(
     null
   );
+  const [passwordError, setPasswordError] = useState<string | null>(null);
+  const [focusedInput, setFocusedInput] = useState<string | null>(null);
+
+  //First name
 
   const firstNameCheck = () => {
     const firstNameLength = firstNameValue.length;
@@ -51,15 +63,15 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
     }
 
     if (firstNameLength > 12 || firstNameLength <= 1) {
-      setFirstNameError(
-        "The first name must contain... Check the first name and try again"
-      );
+      setFirstNameError("What's your name?");
       return false;
     }
 
     setFirstNameError(null);
     return true;
   };
+
+  //Last name
 
   const lastNameCheck = () => {
     const lastNameLength = lastNameValue.length;
@@ -70,9 +82,7 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
     }
 
     if (lastNameLength > 12 || lastNameLength <= 1) {
-      setLastNameError(
-        "The last name must contain... Check the last name and try again"
-      );
+      setLastNameError("What's your name?");
       return false;
     }
 
@@ -80,28 +90,9 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
     return true;
   };
 
-  const phoneOrEmailRef = useRef<HTMLInputElement>(null);
-  const [phoneOrEmailValue, setPhoneOrEmailValue] = useState("");
-
-  const passwordRef = useRef<HTMLInputElement>(null);
-  const [passwordValue, setPasswordValue] = useState("");
-
-  //password hashing
+  //Phone and Email
 
   const userName = firstNameValue.trim() + " " + lastNameValue.trim();
-
-  const validateUserName = (username: string) => {
-    const userExists = users.some(
-      (existingUser) => existingUser.user === username
-    );
-
-    if (userExists) {
-      console.log("A user with that username already exists");
-      return false;
-    }
-
-    return true;
-  };
 
   const phoneOrEmail = (event: React.ChangeEvent<HTMLInputElement>) => {
     const inputValue = event?.target.value;
@@ -130,25 +121,33 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
     }
   };
 
+  //Password
+
   const password = (event: React.ChangeEvent<HTMLInputElement>) => {
     setPasswordValue(event?.target.value);
   };
 
-  // const navigate = useNavigate();
-
-  // const isPassword = validatePassword(passwordValue);
+  const passwordCheck = () => {
+    if (!validatePassword(passwordValue)) {
+      setPasswordError(
+        "Enter a combination of at least six numbers, letters and punctuation marks (like ! and &)."
+      );
+      return false;
+    } else {
+      setPasswordError(null);
+    }
+  };
 
   const signUp = async () => {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(passwordValue, saltRounds);
     const isEmail = validateEmail(phoneOrEmailValue);
     const isPhoneNumber = validatePhoneNumber(phoneOrEmailValue);
-    const notExistingUsername = validateUserName(userName);
 
     firstNameCheck();
 
     const newUser = {
-      user: notExistingUsername ? userName : "",
+      user: userName,
       email: isEmail ? phoneOrEmailValue : "",
       phoneNumber: isPhoneNumber ? phoneOrEmailValue : "",
       password: hashedPassword,
@@ -163,7 +162,6 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
   };
 
   const signUpValidation = async () => {
-    const notExistingUsername = validateUserName(userName);
     const firstNameValid = firstNameCheck();
     const lastNameValid = lastNameCheck();
     const phoneOrEmailValid = phoneOrEmailCheck({
@@ -171,13 +169,9 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
         value: phoneOrEmailValue,
       },
     } as React.ChangeEvent<HTMLInputElement>);
+    const passwordValid = passwordCheck();
 
-    if (
-      notExistingUsername &&
-      firstNameValid &&
-      lastNameValid &&
-      phoneOrEmailValid
-    ) {
+    if (firstNameValid && lastNameValid && phoneOrEmailValid && passwordValid) {
       await signUp();
       handleCreateClose();
     }
@@ -207,10 +201,12 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
                   value={firstNameValue}
                   onChange={(e) => {
                     setFirstNameValue(e.target.value);
+                    firstNameCheck();
                   }}
                   onBlur={firstNameCheck}
+                  onFocus={() => setFocusedInput("firstName")}
                 />
-                {firstNameError && (
+                {firstNameError && focusedInput === "firstName" && (
                   <div className="error-display first-name-error">
                     {firstNameError}
                   </div>
@@ -221,10 +217,14 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
                   placeholder="Last name"
                   ref={lastNameRef}
                   value={lastNameValue}
-                  onChange={(e) => setLastNameValue(e.target.value)}
+                  onChange={(e) => {
+                    setLastNameValue(e.target.value);
+                    lastNameCheck();
+                  }}
                   onBlur={lastNameCheck}
+                  onFocus={() => setFocusedInput("lastName")}
                 />
-                {lastNameError && (
+                {lastNameError && focusedInput === "lastName" && (
                   <div className="error-display last-name-error">
                     {lastNameError}
                   </div>
@@ -243,8 +243,9 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
                     phoneOrEmailCheck(e);
                   }}
                   onBlur={phoneOrEmailCheck}
+                  onFocus={() => setFocusedInput("phoneOrEmail")}
                 />
-                {phoneOrEmailError && (
+                {phoneOrEmailError && focusedInput === "phoneOrEmail" && (
                   <div className="error-display email-error">
                     {phoneOrEmailError}
                   </div>
@@ -254,10 +255,18 @@ function SignUp({ handleCreateClose, isActive, users, setUsers }: SignUpProps) {
                 <input
                   type="password"
                   placeholder="New password"
+                  className={passwordError ? "active" : ""}
                   value={passwordValue}
                   ref={passwordRef}
                   onChange={password}
+                  onBlur={passwordCheck}
+                  onFocus={() => setFocusedInput("password")}
                 />
+                {passwordError && focusedInput === "password" && (
+                  <div className="error-display email-error">
+                    {passwordError}
+                  </div>
+                )}
               </div>
             </div>
             <div className="bottom">

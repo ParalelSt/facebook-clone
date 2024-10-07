@@ -92,40 +92,37 @@
 
                 //Fix this
 
-                .error-display { 
+                .error-display {
+                    z-index: 1000;
                     position: absolute;
                     display: flex;
 
-                    padding: 0.5em;
-                    border-radius: 0.5em;
+                    padding: 0.9em;
+                    border-radius: 0.3em;
 
-                    width: 10em;
+                    width: 11em;
 
                     background-color: $red;
                     color: white;
 
+                    font-size: $xs-s;
+
                 }
 
-                .first-name-error, .email-error, .phone-num-error {
-                    left: -12em;
+                .first-name-error {
+                    left: -13em;
                 }
 
                 .last-name-error {
-                    right: -12em;
+                    right: -13em;
                 }
 
-
-                // .warning {
-                //     position: absolute;
-                //     color: white;
-                //     background-color: $red;
-                //     z-index: 103;
-                //     border: 1px solid $border-red;
-                //     border-radius: 0.3em;
-                //     padding: 1em;
-                //     font-size: $small;
-            
-                // }
+                .email-error, .password-error {
+                    left: -22em;
+                    
+                    width: 20em;
+                }
+                
             }
     
             .bottom {
