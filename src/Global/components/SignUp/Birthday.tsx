@@ -1,7 +1,39 @@
-import moment from "moment";
+import { useRef, useState } from "react";
 import { v4 } from "uuid";
 
-function Birthday() {
+interface BirthdayProps {
+  birthdayValid: boolean;
+  setBirthdayValid: (birthdayValid: boolean) => void;
+  monthValue: string;
+  setMonthValue: (monthValue: string) => void;
+  dayValue: string;
+  setDayValue: (dayValue: string) => void;
+  yearValue: string;
+  setYearValue: (yearValue: string) => void;
+  focusedInput: string | null;
+  setFocusedInput: (focusedInput: string | null) => void;
+}
+
+function Birthday({
+  birthdayValid,
+  setBirthdayValid,
+  monthValue,
+  setMonthValue,
+  dayValue,
+  setDayValue,
+  yearValue,
+  setYearValue,
+  focusedInput,
+  setFocusedInput,
+}: BirthdayProps) {
+  //States, refs and values
+
+  const monthRef = useRef<HTMLSelectElement>(null);
+  const dayRef = useRef<HTMLSelectElement>(null);
+  const yearRef = useRef<HTMLSelectElement>(null);
+
+  const [birthdayError, setBirthdayError] = useState<string | null>(null);
+
   //A way to generate year values from 1905 to 2024 without writing them out one by one
 
   const endYear: number = new Date().getFullYear();
@@ -16,8 +48,6 @@ function Birthday() {
   birthdayYears();
 
   //List of months, might need improvement
-
-  const currentMonth = new Date().getMonth() + 1;
 
   const months: { month: string; number: number; id: string }[] = [
     {
@@ -95,8 +125,6 @@ function Birthday() {
 
   //List of days
 
-  const currentDay = moment().format("D");
-
   const days: { day: number; id: string }[] = [];
 
   const generateDays = () => {
@@ -106,6 +134,27 @@ function Birthday() {
   };
 
   generateDays();
+
+  //Function to check the validity of the selected birthday
+
+  const birthdayValidation = () => {
+    const selectedYear = parseInt(yearRef?.current?.value || "0", 10);
+
+    const currentYear = new Date().getFullYear();
+    const minAllowedYear = currentYear - 5;
+
+    if (selectedYear > minAllowedYear) {
+      setBirthdayError(
+        "It looks like you entered the wrong info. Please be sure to use your real birthday."
+      );
+      setBirthdayValid(false);
+      return false;
+    }
+
+    setBirthdayError(null);
+    setBirthdayValid(true);
+    return true;
+  };
 
   return (
     <div className="birthday-field question-field">
@@ -117,10 +166,19 @@ function Birthday() {
       </div>
       <div className="birthday-selectors">
         <select
-          className="birthday-selector selector"
+          className={`birthday-selector selector ${
+            birthdayError ? "active" : "disabled"
+          }`}
           name="month"
+          ref={monthRef}
           id="month"
-          defaultValue={currentMonth}
+          value={monthValue}
+          onChange={(e) => {
+            setMonthValue(e.target.value);
+            birthdayValidation();
+          }}
+          onBlur={birthdayValidation}
+          onFocus={() => setFocusedInput("birthday")}
         >
           {months.map((month) => (
             <option key={month.id} value={month.number}>
@@ -128,11 +186,23 @@ function Birthday() {
             </option>
           ))}
         </select>
+        {birthdayError && !birthdayValid && focusedInput === "birthday" && (
+          <div className="error-display birthday-error">{birthdayError}</div>
+        )}
         <select
-          className="birthday-selector selector"
+          className={`birthday-selector selector ${
+            birthdayError ? "active" : "disabled"
+          }`}
           name="day"
+          ref={dayRef}
           id="day"
-          defaultValue={currentDay}
+          value={dayValue}
+          onChange={(e) => {
+            setDayValue(e.target.value);
+            birthdayValidation();
+          }}
+          onBlur={birthdayValidation}
+          onFocus={() => setFocusedInput("birthday")}
         >
           {days.reverse().map((day) => {
             return (
@@ -142,7 +212,23 @@ function Birthday() {
             );
           })}
         </select>
-        <select className="birthday-selector selector" name="year" id="year">
+        <select
+          className={`birthday-selector selector ${
+            birthdayError ? "active" : "disabled"
+          }`}
+          name="year"
+          ref={yearRef}
+          id="year"
+          value={yearValue}
+          onChange={(e) => {
+            setYearValue(e.target.value);
+            birthdayValidation();
+          }}
+          onBlur={birthdayValidation}
+          onFocus={() => {
+            setFocusedInput("birthday");
+          }}
+        >
           {years.reverse().map((year) => {
             return (
               <option key={year.id} value={year.year}>

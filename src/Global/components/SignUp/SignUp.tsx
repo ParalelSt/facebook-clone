@@ -2,7 +2,7 @@ import "./SignUp.scss";
 import Birthday from "./Birthday";
 import Gender from "./Gender";
 import { IoClose } from "react-icons/io5";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { v4 } from "uuid";
 import { Users } from "../../../App";
 import bcrypt from "bcryptjs";
@@ -10,10 +10,11 @@ import bcrypt from "bcryptjs";
 interface SignUpProps {
   handleCreateClose: () => void;
   isActive: boolean;
+  users: Users[];
   setUsers: React.Dispatch<React.SetStateAction<Users[]>>;
 }
 
-function SignUp({ handleCreateClose, isActive, setUsers }: SignUpProps) {
+function SignUp({ handleCreateClose, users, isActive, setUsers }: SignUpProps) {
   //Validation
 
   const validateEmail = (email: string) => {
@@ -43,24 +44,31 @@ function SignUp({ handleCreateClose, isActive, setUsers }: SignUpProps) {
   const [lastNameValue, setLastNameValue] = useState("");
   const [phoneOrEmailValue, setPhoneOrEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
+  const [monthValue, setMonthValue] = useState("");
+  const [dayValue, setDayValue] = useState("");
+  const [yearValue, setYearValue] = useState("");
 
   const [firstNameError, setFirstNameError] = useState<string | null>(null);
   const [lastNameError, setLastNameError] = useState<string | null>(null);
   const [phoneOrEmailError, setPhoneOrEmailError] = useState<string | null>(
     null
   );
+
   const [passwordError, setPasswordError] = useState<string | null>(null);
+
   const [focusedInput, setFocusedInput] = useState<string | null>(null);
+
+  const [birthdayValid, setBirthdayValid] = useState(false);
 
   //First name
 
   const firstNameCheck = () => {
     const firstNameLength = firstNameValue.length;
 
-    if (!firstNameLength) {
-      setFirstNameError("First name is required");
-      return false;
-    }
+    // if (!firstNameLength) {
+    //   setFirstNameError("First name is required");
+    //   return false;
+    // }
 
     if (firstNameLength > 12 || firstNameLength <= 1) {
       setFirstNameError("What's your name?");
@@ -76,10 +84,10 @@ function SignUp({ handleCreateClose, isActive, setUsers }: SignUpProps) {
   const lastNameCheck = () => {
     const lastNameLength = lastNameValue.length;
 
-    if (!lastNameLength) {
-      setLastNameError("Last name is required");
-      return false;
-    }
+    // if (!lastNameLength) {
+    //   setLastNameError("Last name is required");
+    //   return false;
+    // }
 
     if (lastNameLength > 12 || lastNameLength <= 1) {
       setLastNameError("What's your name?");
@@ -116,10 +124,22 @@ function SignUp({ handleCreateClose, isActive, setUsers }: SignUpProps) {
         "You'll use this when you log in and if you ever need to reset your password."
       );
       return false;
-    } else {
-      setPhoneOrEmailError(null);
-      return true;
     }
+    const emailOrPhoneExists = users.find(
+      (user) =>
+        user.email === phoneOrEmailValue ||
+        user.phoneNumber === phoneOrEmailValue
+    );
+
+    if (emailOrPhoneExists) {
+      setPhoneOrEmailError(
+        "A user with that email address or phone number already exists. Please use another email address or phone number."
+      );
+      return false;
+    }
+
+    setPhoneOrEmailError(null);
+    return true;
   };
 
   //Password
@@ -129,7 +149,6 @@ function SignUp({ handleCreateClose, isActive, setUsers }: SignUpProps) {
   };
 
   const passwordCheck = () => {
-    console.log(passwordValue);
     if (!validatePassword(passwordValue)) {
       setPasswordError(
         "Enter a combination of at least six numbers, letters and punctuation marks (like ! and &)."
@@ -140,6 +159,8 @@ function SignUp({ handleCreateClose, isActive, setUsers }: SignUpProps) {
       return true;
     }
   };
+
+  //Birthday
 
   const signUp = async () => {
     const saltRounds = 10;
@@ -154,6 +175,7 @@ function SignUp({ handleCreateClose, isActive, setUsers }: SignUpProps) {
       email: isEmail ? phoneOrEmailValue : "",
       phoneNumber: isPhoneNumber ? phoneOrEmailValue : "",
       password: hashedPassword,
+      birthday: { month: monthValue, day: dayValue, year: yearValue },
       profilePicture: "/icons/avatarDefault.svg",
       likedPosts: [],
       id: v4(),
@@ -174,16 +196,22 @@ function SignUp({ handleCreateClose, isActive, setUsers }: SignUpProps) {
     } as React.ChangeEvent<HTMLInputElement>);
     const passwordValid = passwordCheck();
 
-    if (firstNameValid && lastNameValid && phoneOrEmailValid && passwordValid) {
+    if (
+      firstNameValid &&
+      lastNameValid &&
+      phoneOrEmailValid &&
+      passwordValid &&
+      birthdayValid
+    ) {
       await signUp();
       handleCreateClose();
     }
-
-    console.log("First name valid:", firstNameValid);
-    console.log("Last name valid:", lastNameValid);
-    console.log("Phone or email valid:", phoneOrEmailValid);
-    console.log("Password valid:", passwordValid);
   };
+
+  //Autofocus for first Input box
+  useEffect(() => {
+    firstNameRef?.current?.focus();
+  }, []);
 
   return (
     <>
@@ -278,7 +306,18 @@ function SignUp({ handleCreateClose, isActive, setUsers }: SignUpProps) {
               </div>
             </div>
             <div className="bottom">
-              <Birthday></Birthday>
+              <Birthday
+                birthdayValid={birthdayValid}
+                setBirthdayValid={setBirthdayValid}
+                monthValue={monthValue}
+                dayValue={dayValue}
+                yearValue={yearValue}
+                focusedInput={focusedInput}
+                setMonthValue={setMonthValue}
+                setDayValue={setDayValue}
+                setYearValue={setYearValue}
+                setFocusedInput={setFocusedInput}
+              ></Birthday>
               <Gender></Gender>
               <div className="text-container">
                 <span className="top-span">

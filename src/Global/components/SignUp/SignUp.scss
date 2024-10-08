@@ -70,10 +70,6 @@
                         border-radius: 0.3em;
                         padding: 0.8em;
                         font-size: $medium;
-                        
-                        &:focus {
-                            outline: none;
-                        }
 
                         &.active {
                             border: 1px solid #ff0000;
@@ -84,6 +80,7 @@
                         }
 
                         &:focus {
+                            outline: none;
                             border: 1px solid $border-black;
                         }
                     }
@@ -126,6 +123,7 @@
             }
     
             .bottom {
+                position: relative;
                 display: flex;
                 flex-direction: column;
                 gap: 0.5em;            
@@ -181,6 +179,39 @@
                     }
     
                     
+                }
+
+                .error-display {
+                    z-index: 1000;
+                    position: absolute;
+                    display: flex;
+
+                    padding: 0.9em;
+                    border-radius: 0.3em;
+
+                    width: 20em;
+
+                    background-color: $red;
+                    color: white;
+
+                    font-size: $xs-s;
+
+                }
+
+                .birthday-error {
+                    left: -22em;
+                }
+
+                .birthday-selectors {
+                    &:focus-within .birthday-selector{
+                        border: 1px solid $border-black;
+                    }
+                }
+
+                .birthday-selector {
+                    &.active {
+                        border: 1px solid red;
+                    }
                 }
     
                 .custom-gender-selector {

@@ -48,6 +48,8 @@ button {
   padding: 0;
 }
 
+$outline: 2px solid #0060df;
+
 $shadow-dark: rgba(0, 0, 0, 0.2) 0px 1px 10px;
 $shadow-dark-topless: rgba(0, 0, 0, 0.2) 0px 4px 10px;
 $shadow-light : rgba(0, 0, 0, 0.16) 0px 1px 4px;
@@ -56,6 +58,7 @@ $a-blue: #385898;
 $hover-white: #f2f2f2;
 $gray: #e6e7e9;
 $blue: #0866ff;
+$outline-blue: #0060df;
 $button-blue: #0064ff;
 $green: #42b72a;
 $background: #f2f4f7;
