@@ -39,6 +39,7 @@ function SignUp({ handleCreateClose, users, isActive, setUsers }: SignUpProps) {
   const lastNameRef = useRef<HTMLInputElement>(null);
   const phoneOrEmailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
+  const birthdayRef = useRef<{ birthdayValidation: () => boolean }>(null);
 
   const [firstNameValue, setFirstNameValue] = useState("");
   const [lastNameValue, setLastNameValue] = useState("");
@@ -195,13 +196,14 @@ function SignUp({ handleCreateClose, users, isActive, setUsers }: SignUpProps) {
       },
     } as React.ChangeEvent<HTMLInputElement>);
     const passwordValid = passwordCheck();
+    const birthdayValidity = birthdayRef.current?.birthdayValidation();
 
     if (
       firstNameValid &&
       lastNameValid &&
       phoneOrEmailValid &&
       passwordValid &&
-      birthdayValid
+      birthdayValidity
     ) {
       await signUp();
       handleCreateClose();
@@ -307,6 +309,7 @@ function SignUp({ handleCreateClose, users, isActive, setUsers }: SignUpProps) {
             </div>
             <div className="bottom">
               <Birthday
+                ref={birthdayRef}
                 birthdayValid={birthdayValid}
                 setBirthdayValid={setBirthdayValid}
                 monthValue={monthValue}
