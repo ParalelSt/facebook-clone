@@ -206,6 +206,7 @@ const Gender = forwardRef(
               id="pronoun-selector selector"
               value={pronounValue}
               onChange={(e) => setPronounValue(e.target.value)}
+              onBlur={pronounValidation}
               onFocus={() => setFocusedInput("pronoun")}
             >
               {pronouns.map((pronoun) => {
