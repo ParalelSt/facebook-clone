@@ -119,7 +119,6 @@
                     
                     width: 20em;
                 }
-                
             }
     
             .bottom {
@@ -213,6 +212,23 @@
                         border: 1px solid red;
                     }
                 }
+
+                .gender-error {
+                    left: -22em;
+                }
+
+                .gender-selectors {
+                    &:focus-within .gender-selector{
+                        border: 1px solid $border-black;
+                    }
+                }
+
+                .gender-selector {
+                    &.active {
+                        border: 1px solid red;
+                    }
+                }
+
     
                 .custom-gender-selector {
                     display: none;

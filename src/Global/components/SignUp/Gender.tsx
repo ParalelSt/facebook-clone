@@ -1,138 +1,238 @@
 import { v4 } from "uuid";
 import useDropDown from "../../hooks/useDropDown";
-import { useRef } from "react";
+import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 
-function Gender() {
-  //List of pronouns
-
-  const pronouns = [
-    {
-      value: "select your pronoun",
-      name: "Select your pronoun",
-      id: v4(),
-    },
-
-    {
-      value: "she",
-      name: 'She: "Wish her a happy birthday!"',
-      id: v4(),
-    },
-
-    {
-      value: "he",
-      name: 'He: "Wish him a happy birthday!"',
-      id: v4(),
-    },
-
-    {
-      value: "they",
-      name: 'They: "Wish them a happy birthday!"',
-      id: v4(),
-    },
-  ];
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [handleMenuOpen, handleMenuClose, _, isActive] = useDropDown();
-
-  const femaleRadio = useRef<HTMLInputElement>(null);
-  const maleRadio = useRef<HTMLInputElement>(null);
-  const customRadio = useRef<HTMLInputElement>(null);
-
-  const handleRadioClick = (radioRef: React.RefObject<HTMLInputElement>) => {
-    if (radioRef.current) {
-      radioRef.current.checked = true;
-      radioRef.current.click();
-    }
-  };
-
-  return (
-    <div className="gender-field question-field">
-      <div className="gender question">
-        <span>Gender</span>
-        <div className="img-container">
-          <img src="/icons/Question-signup.svg" alt="" />
-        </div>
-      </div>
-      <div className="gender-selectors">
-        <div
-          className="gender-selector selector"
-          onClick={() => handleRadioClick(femaleRadio)}
-        >
-          <label htmlFor="female">Female</label>
-          <input
-            className="sex-radio"
-            type="radio"
-            id="female"
-            name="sex"
-            ref={femaleRadio}
-            onClick={(e) => {
-              handleMenuClose();
-              e.stopPropagation();
-            }}
-          />
-        </div>
-        <div
-          className="gender-selector selector"
-          onClick={() => handleRadioClick(maleRadio)}
-        >
-          <label htmlFor="male">Male</label>
-          <input
-            className="sex-radio"
-            type="radio"
-            id="male"
-            name="sex"
-            ref={maleRadio}
-            onClick={(e) => {
-              handleMenuClose();
-              e.stopPropagation();
-            }}
-          />
-        </div>
-        <div
-          className="gender-selector selector"
-          onClick={() => handleRadioClick(customRadio)}
-        >
-          <label htmlFor="custom">Custom</label>
-          <input
-            className="sex-radio"
-            type="radio"
-            id="custom"
-            name="sex"
-            ref={customRadio}
-            onClick={(e) => {
-              handleMenuOpen();
-              e.stopPropagation();
-            }}
-          />
-        </div>
-      </div>
-      <div
-        id={"genderSelector"}
-        className={`custom-gender-selector ${isActive ? "active" : ""}`}
-      >
-        <div className="gender-selector">
-          <select
-            className="selector"
-            name="pronoun"
-            id="pronoun-selector selector"
-            defaultValue={"select your pronoun"}
-          >
-            {pronouns.map((pronoun) => {
-              return (
-                <option key={pronoun.id} value={pronoun.value}>
-                  {pronoun.name}
-                </option>
-              );
-            })}
-          </select>
-          <label htmlFor="pronoun-selector">
-            Your pronoun is visible to everyone.
-          </label>
-          <input type="text" placeholder="Gender (optional)" />
-        </div>
-      </div>
-    </div>
-  );
+interface GenderProps {
+  focusedInput: string | null;
+  setFocusedInput: (focusedInput: string) => void;
+  genderValue: string | null;
+  setGenderValue: (genderValue: string | null) => void;
+  pronounValue: string;
+  setPronounValue: (pronounValue: string) => void;
+  optionalGenderValue: string;
+  setOptionalGenderValue: (optionalGenderValue: string) => void;
 }
+
+const Gender = forwardRef(
+  (
+    {
+      focusedInput,
+      setFocusedInput,
+      genderValue,
+      setGenderValue,
+      pronounValue,
+      setPronounValue,
+      optionalGenderValue,
+      setOptionalGenderValue,
+    }: GenderProps,
+    ref
+  ) => {
+    const pronounRef = useRef<HTMLSelectElement>(null);
+    const optionalGenderRef = useRef<HTMLInputElement>(null);
+
+    const [genderError, setGenderError] = useState<string | null>("");
+    const [pronounError, setPronounError] = useState<string | null>("");
+
+    //List of pronouns
+    const pronouns = [
+      {
+        value: "select your pronoun",
+        name: "Select your pronoun",
+        id: v4(),
+      },
+
+      {
+        value: "she",
+        name: 'She: "Wish her a happy birthday!"',
+        id: v4(),
+      },
+
+      {
+        value: "he",
+        name: 'He: "Wish him a happy birthday!"',
+        id: v4(),
+      },
+
+      {
+        value: "they",
+        name: 'They: "Wish them a happy birthday!"',
+        id: v4(),
+      },
+    ];
+
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const [handleMenuOpen, handleMenuClose, _, isActive] = useDropDown();
+
+    const femaleRadioRef = useRef<HTMLInputElement>(null);
+    const maleRadioRef = useRef<HTMLInputElement>(null);
+    const customRadioRef = useRef<HTMLInputElement>(null);
+
+    const handleGenderChange = (value: string | null) => {
+      setGenderValue(value);
+    };
+
+    const handleRadioClick = (
+      radioRef: React.RefObject<HTMLInputElement>,
+      value: string
+    ) => {
+      if (radioRef.current) {
+        radioRef.current.checked = true;
+        radioRef.current.click();
+        handleGenderChange(value);
+      }
+    };
+
+    const genderValidation = () => {
+      const isGenderSelected =
+        maleRadioRef?.current?.checked ||
+        femaleRadioRef?.current?.checked ||
+        customRadioRef?.current?.checked;
+
+      if (!isGenderSelected) {
+        setGenderError(
+          "Please choose a gender. You can change who can see this later."
+        );
+        return false;
+      }
+
+      setGenderError(null);
+      return true;
+    };
+
+    const pronounValidation = () => {
+      const selectedPronoun = pronounRef?.current?.value;
+
+      if (selectedPronoun === "Select your pronoun") {
+        setPronounError("Please select your pronoun.");
+        return false;
+      }
+
+      setPronounError(null);
+      return true;
+    };
+
+    useImperativeHandle(ref, () => ({
+      genderValidation,
+    }));
+
+    return (
+      <div className="gender-field question-field">
+        <div className="gender question">
+          <span>Gender</span>
+          <div className="img-container">
+            <img src="/icons/Question-signup.svg" alt="" />
+          </div>
+        </div>
+        <div className="gender-selectors">
+          <div
+            className={`gender-selector selector ${
+              genderError ? "active" : ""
+            }`}
+            onClick={() => handleRadioClick(femaleRadioRef, "Female")}
+          >
+            <label htmlFor="female">Female</label>
+            <input
+              className="sex-radio"
+              type="radio"
+              id="female"
+              name="sex"
+              ref={femaleRadioRef}
+              onClick={(e) => {
+                handleMenuClose();
+                e.stopPropagation();
+              }}
+              onChange={() => handleGenderChange("Female")}
+              onBlur={genderValidation}
+              onFocus={() => setFocusedInput("sex")}
+            />
+            {genderError && focusedInput === "sex" && (
+              <div className="error-display gender-error">{genderError}</div>
+            )}
+          </div>
+          <div
+            className={`gender-selector selector ${
+              genderError ? "active" : ""
+            }`}
+            onClick={() => handleRadioClick(maleRadioRef, "Male")}
+          >
+            <label htmlFor="male">Male</label>
+            <input
+              className="sex-radio"
+              type="radio"
+              id="male"
+              name="sex"
+              ref={maleRadioRef}
+              onClick={(e) => {
+                handleMenuClose();
+                e.stopPropagation();
+              }}
+              onChange={() => handleGenderChange("Male")}
+              onBlur={genderValidation}
+              onFocus={() => setFocusedInput("sex")}
+            />
+          </div>
+          <div
+            className={`gender-selector selector ${
+              genderError ? "active" : ""
+            }`}
+            onClick={() => handleRadioClick(customRadioRef, "Custom")}
+          >
+            <label htmlFor="custom">Custom</label>
+            <input
+              className="sex-radio"
+              type="radio"
+              id="custom"
+              name="sex"
+              ref={customRadioRef}
+              onClick={(e) => {
+                handleMenuOpen();
+                e.stopPropagation();
+              }}
+              onChange={() => handleGenderChange("Custom")}
+              onBlur={genderValidation}
+              onFocus={() => setFocusedInput("sex")}
+            />
+          </div>
+        </div>
+        <div
+          id={"genderSelector"}
+          className={`custom-gender-selector ${isActive ? "active" : ""}`}
+        >
+          <div className="gender-selector">
+            <select
+              className="selector"
+              ref={pronounRef}
+              name="pronoun"
+              id="pronoun-selector selector"
+              value={pronounValue}
+              onChange={(e) => setPronounValue(e.target.value)}
+              onFocus={() => setFocusedInput("pronoun")}
+            >
+              {pronouns.map((pronoun) => {
+                return (
+                  <option key={pronoun.id} value={pronoun.value}>
+                    {pronoun.name}
+                  </option>
+                );
+              })}
+            </select>
+            {pronounError && focusedInput === "pronoun" && (
+              <div className="error-display pronoun-error">{pronounError}</div>
+            )}
+            <label htmlFor="pronoun-selector">
+              Your pronoun is visible to everyone.
+            </label>
+            <input
+              type="text"
+              placeholder="Gender (optional)"
+              ref={optionalGenderRef}
+              onChange={(e) => setOptionalGenderValue(e.target.value)}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
+);
 
 export default Gender;

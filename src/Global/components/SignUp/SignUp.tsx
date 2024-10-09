@@ -40,6 +40,7 @@ function SignUp({ handleCreateClose, users, isActive, setUsers }: SignUpProps) {
   const phoneOrEmailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const birthdayRef = useRef<{ birthdayValidation: () => boolean }>(null);
+  const genderRef = useRef<{ genderValidation: () => boolean }>(null);
 
   const [firstNameValue, setFirstNameValue] = useState("");
   const [lastNameValue, setLastNameValue] = useState("");
@@ -48,6 +49,9 @@ function SignUp({ handleCreateClose, users, isActive, setUsers }: SignUpProps) {
   const [monthValue, setMonthValue] = useState("");
   const [dayValue, setDayValue] = useState("");
   const [yearValue, setYearValue] = useState("");
+  const [genderValue, setGenderValue] = useState<string | null>("");
+  const [pronounValue, setPronounValue] = useState("");
+  const [optionalGenderValue, setOptionalGenderValue] = useState("");
 
   const [firstNameError, setFirstNameError] = useState<string | null>(null);
   const [lastNameError, setLastNameError] = useState<string | null>(null);
@@ -177,6 +181,8 @@ function SignUp({ handleCreateClose, users, isActive, setUsers }: SignUpProps) {
       phoneNumber: isPhoneNumber ? phoneOrEmailValue : "",
       password: hashedPassword,
       birthday: { month: monthValue, day: dayValue, year: yearValue },
+      gender: { genderValue, optionalGenderValue },
+      pronouns: { pronounValue },
       profilePicture: "/icons/avatarDefault.svg",
       likedPosts: [],
       id: v4(),
@@ -197,13 +203,15 @@ function SignUp({ handleCreateClose, users, isActive, setUsers }: SignUpProps) {
     } as React.ChangeEvent<HTMLInputElement>);
     const passwordValid = passwordCheck();
     const birthdayValidity = birthdayRef.current?.birthdayValidation();
+    const genderValidity = genderRef?.current?.genderValidation();
 
     if (
       firstNameValid &&
       lastNameValid &&
       phoneOrEmailValid &&
       passwordValid &&
-      birthdayValidity
+      birthdayValidity &&
+      genderValidity
     ) {
       await signUp();
       handleCreateClose();
@@ -321,7 +329,17 @@ function SignUp({ handleCreateClose, users, isActive, setUsers }: SignUpProps) {
                 setYearValue={setYearValue}
                 setFocusedInput={setFocusedInput}
               ></Birthday>
-              <Gender></Gender>
+              <Gender
+                genderValue={genderValue}
+                setGenderValue={setGenderValue}
+                pronounValue={pronounValue}
+                setPronounValue={setPronounValue}
+                optionalGenderValue={optionalGenderValue}
+                setOptionalGenderValue={setOptionalGenderValue}
+                focusedInput={focusedInput}
+                setFocusedInput={setFocusedInput}
+                ref={genderRef}
+              ></Gender>
               <div className="text-container">
                 <span className="top-span">
                   People who use our service may have uploaded your contact
