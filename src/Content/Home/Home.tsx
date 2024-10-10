@@ -17,11 +17,24 @@ export interface ContactListType {
 interface HomeProps {
   user: Users | null;
   users: Users[];
+  emailOrPhoneValue: string;
+  setEmailOrPhoneValue: (emailOrPhoneValue: string) => void;
+  passwordValue: string;
+  setPasswordValue: (passwordValue: string) => void;
   setIsAuthenticated: (isAuthenticated: boolean) => void;
   setCurrentUser: (user: Users | null) => void;
 }
 
-function Home({ user, users, setIsAuthenticated, setCurrentUser }: HomeProps) {
+function Home({
+  user,
+  users,
+  setIsAuthenticated,
+  setCurrentUser,
+  emailOrPhoneValue,
+  setEmailOrPhoneValue,
+  passwordValue,
+  setPasswordValue,
+}: HomeProps) {
   const contactList: ContactListType[] = [
     {
       username: user?.user || "",
@@ -221,6 +234,10 @@ function Home({ user, users, setIsAuthenticated, setCurrentUser }: HomeProps) {
     <div className="home">
       <LeftNavSide></LeftNavSide>
       <MiddleContent
+        emailOrPhoneValue={emailOrPhoneValue}
+        setEmailOrPhoneValue={setEmailOrPhoneValue}
+        passwordValue={passwordValue}
+        setPasswordValue={setPasswordValue}
         setIsAuthenticated={setIsAuthenticated}
         setCurrentUser={setCurrentUser}
         users={users}

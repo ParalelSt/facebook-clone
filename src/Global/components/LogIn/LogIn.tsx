@@ -14,6 +14,10 @@ import LanguageList from "./LanguageList";
 interface LogInProps {
   setIsAuthenticated: (isAuthenticated: boolean) => void;
   users: Users[];
+  emailOrPhoneValue: string;
+  setEmailOrPhoneValue: (emailOrPhoneValue: string) => void;
+  passwordValue: string;
+  setPasswordValue: (passwordValue: string) => void;
   setCurrentUser: (user: Users | null) => void;
   setUsers: React.Dispatch<React.SetStateAction<Users[]>>;
 }
@@ -21,6 +25,10 @@ interface LogInProps {
 function LogIn({
   setIsAuthenticated,
   users,
+  emailOrPhoneValue,
+  setEmailOrPhoneValue,
+  passwordValue,
+  setPasswordValue,
   setCurrentUser,
   setUsers,
 }: LogInProps) {
@@ -29,9 +37,6 @@ function LogIn({
   const currentYear = new Date().getFullYear(); //Variable for setting the current year next to "Meta"
 
   //Log in functions
-
-  const [passwordValue, setPasswordValue] = useState<string>("");
-  const [emailOrPhoneValue, setEmailOrPhoneValue] = useState<string>("");
 
   const [focusedInput, setFocusedInput] = useState<string | null>("");
 

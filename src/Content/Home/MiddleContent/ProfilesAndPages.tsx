@@ -9,6 +9,8 @@ import useLogInLogic from "../../../Global/components/LogIn/LogInLogic";
 
 interface ProfileAndPagesProps {
   users: Users[];
+  emailOrPhoneValue: string;
+  passwordValue: string;
   dropDownClose: () => void;
   isActive: boolean;
   setIsAuthenticated: (isAuthenticated: boolean) => void;
@@ -21,6 +23,8 @@ const ProfilesAndPages = ({
   isActive,
   setIsAuthenticated,
   setCurrentUser,
+  emailOrPhoneValue,
+  passwordValue,
 }: ProfileAndPagesProps) => {
   //Handle Modal Close
 
@@ -43,7 +47,13 @@ const ProfilesAndPages = ({
 
   //Handle Login
 
-  const handleLogin = useLogInLogic();
+  const [handleLogin] = useLogInLogic(
+    emailOrPhoneValue,
+    passwordValue,
+    users,
+    setIsAuthenticated,
+    setCurrentUser
+  );
 
   return (
     <div
@@ -73,15 +83,7 @@ const ProfilesAndPages = ({
                 return (
                   <div
                     className="account"
-                    onClick={() =>
-                      handleLogin(
-                        user.email || user.phoneNumber,
-                        user.password,
-                        users,
-                        setIsAuthenticated,
-                        setCurrentUser
-                      )
-                    }
+                    onClick={() => handleLogin()}
                     key={user.id}
                   >
                     <img src={user.profilePicture} alt="" />

@@ -26,6 +26,9 @@ export interface CurrentUser {
 }
 
 function App() {
+  const [passwordValue, setPasswordValue] = useState<string>("");
+  const [emailOrPhoneValue, setEmailOrPhoneValue] = useState<string>("");
+
   const [isAuthenticated, setIsAuthenticated] = useState(
     localStorage.getItem("isAuthenticated") === "true"
   );
@@ -70,6 +73,10 @@ function App() {
           path="/login"
           element={
             <LogIn
+              emailOrPhoneValue={emailOrPhoneValue}
+              setEmailOrPhoneValue={setEmailOrPhoneValue}
+              passwordValue={passwordValue}
+              setPasswordValue={setPasswordValue}
               setUsers={setUsers}
               users={users}
               setCurrentUser={setCurrentUser}
@@ -86,6 +93,10 @@ function App() {
             path="/"
             element={
               <Home
+                emailOrPhoneValue={emailOrPhoneValue}
+                setEmailOrPhoneValue={setEmailOrPhoneValue}
+                passwordValue={passwordValue}
+                setPasswordValue={setPasswordValue}
                 setIsAuthenticated={setIsAuthenticated}
                 setCurrentUser={setCurrentUser}
                 users={users}
