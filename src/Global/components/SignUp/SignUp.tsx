@@ -50,7 +50,7 @@ function SignUp({ handleCreateClose, users, isActive, setUsers }: SignUpProps) {
   const [dayValue, setDayValue] = useState("");
   const [yearValue, setYearValue] = useState("");
   const [genderValue, setGenderValue] = useState<string | null>("");
-  const [pronounValue, setPronounValue] = useState("");
+  const [pronounValue, setPronounValue] = useState("select your pronoun");
   const [optionalGenderValue, setOptionalGenderValue] = useState("");
 
   const [firstNameError, setFirstNameError] = useState<string | null>(null);

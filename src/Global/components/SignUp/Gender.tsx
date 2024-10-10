@@ -67,7 +67,7 @@ const Gender = forwardRef(
     const maleRadioRef = useRef<HTMLInputElement>(null);
     const customRadioRef = useRef<HTMLInputElement>(null);
 
-    const handleGenderChange = (value: string | null) => {
+    const handleGenderInputChange = (value: string | null) => {
       setGenderValue(value);
     };
 
@@ -78,7 +78,7 @@ const Gender = forwardRef(
       if (radioRef.current) {
         radioRef.current.checked = true;
         radioRef.current.click();
-        handleGenderChange(value);
+        handleGenderInputChange(value);
       }
     };
 
@@ -100,10 +100,12 @@ const Gender = forwardRef(
     };
 
     const pronounValidation = () => {
-      const selectedPronoun = pronounRef?.current?.value;
+      const selectedPronoun = pronounValue;
+      console.log(pronounValue);
 
-      if (selectedPronoun === "Select your pronoun") {
+      if (selectedPronoun === "select your pronoun") {
         setPronounError("Please select your pronoun.");
+        console.log(pronounValue);
         return false;
       }
 
@@ -126,13 +128,13 @@ const Gender = forwardRef(
         <div className="gender-selectors">
           <div
             className={`gender-selector selector ${
-              genderError ? "active" : ""
+              genderError ? "active" : "disabled"
             }`}
             onClick={() => handleRadioClick(femaleRadioRef, "Female")}
           >
             <label htmlFor="female">Female</label>
             <input
-              className="sex-radio"
+              className={`sex-radio`}
               type="radio"
               id="female"
               name="sex"
@@ -141,7 +143,7 @@ const Gender = forwardRef(
                 handleMenuClose();
                 e.stopPropagation();
               }}
-              onChange={() => handleGenderChange("Female")}
+              onChange={() => handleGenderInputChange("Female")}
               onBlur={genderValidation}
               onFocus={() => setFocusedInput("sex")}
             />
@@ -151,13 +153,13 @@ const Gender = forwardRef(
           </div>
           <div
             className={`gender-selector selector ${
-              genderError ? "active" : ""
+              genderError ? "active" : "disabled"
             }`}
             onClick={() => handleRadioClick(maleRadioRef, "Male")}
           >
             <label htmlFor="male">Male</label>
             <input
-              className="sex-radio"
+              className={`sex-radio`}
               type="radio"
               id="male"
               name="sex"
@@ -166,20 +168,22 @@ const Gender = forwardRef(
                 handleMenuClose();
                 e.stopPropagation();
               }}
-              onChange={() => handleGenderChange("Male")}
+              onChange={() => {
+                handleGenderInputChange("Male");
+              }}
               onBlur={genderValidation}
               onFocus={() => setFocusedInput("sex")}
             />
           </div>
           <div
             className={`gender-selector selector ${
-              genderError ? "active" : ""
+              genderError ? "active" : "disabled"
             }`}
             onClick={() => handleRadioClick(customRadioRef, "Custom")}
           >
             <label htmlFor="custom">Custom</label>
             <input
-              className="sex-radio"
+              className={`sex-radio`}
               type="radio"
               id="custom"
               name="sex"
@@ -188,7 +192,7 @@ const Gender = forwardRef(
                 handleMenuOpen();
                 e.stopPropagation();
               }}
-              onChange={() => handleGenderChange("Custom")}
+              onChange={() => handleGenderInputChange("Custom")}
               onBlur={genderValidation}
               onFocus={() => setFocusedInput("sex")}
             />
@@ -198,14 +202,19 @@ const Gender = forwardRef(
           id={"genderSelector"}
           className={`custom-gender-selector ${isActive ? "active" : ""}`}
         >
-          <div className="gender-selector">
+          <div className={`gender-selector`}>
             <select
-              className="selector"
+              className={`pronoun-selector selector ${
+                pronounError ? "active" : "disabled"
+              }`}
               ref={pronounRef}
               name="pronoun"
-              id="pronoun-selector selector"
+              id="selector"
               value={pronounValue}
-              onChange={(e) => setPronounValue(e.target.value)}
+              onChange={(e) => {
+                setPronounValue(e.target.value);
+                pronounValidation();
+              }}
               onBlur={pronounValidation}
               onFocus={() => setFocusedInput("pronoun")}
             >

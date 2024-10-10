@@ -228,17 +228,30 @@
                         border: 1px solid red;
                     }
                 }
-
     
                 .custom-gender-selector {
                     display: none;
                     margin-top: 0.5em;
-    
+
+                    .pronoun-error {
+                        left: -22em;
+                    }
+
                     .gender-selector {
                         display: flex;
                         flex-direction: column;
                         gap: 0.5em;
                         width: 100%;
+
+                        .pronoun-selector {
+                            &.active {
+                                border: 1px solid red;
+                            }
+
+                            &:focus {
+                                border: 1px solid $border-black;
+                            }
+                        }
     
                         .selector {
                             margin-top: 0.2em;
