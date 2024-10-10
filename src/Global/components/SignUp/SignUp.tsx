@@ -12,9 +12,18 @@ interface SignUpProps {
   isActive: boolean;
   users: Users[];
   setUsers: React.Dispatch<React.SetStateAction<Users[]>>;
+  focusedInput: string | null;
+  setFocusedInput: (focusedInput: string | null) => void;
 }
 
-function SignUp({ handleCreateClose, users, isActive, setUsers }: SignUpProps) {
+function SignUp({
+  handleCreateClose,
+  users,
+  isActive,
+  setUsers,
+  focusedInput,
+  setFocusedInput,
+}: SignUpProps) {
   //Validation
 
   const validateEmail = (email: string) => {
@@ -60,8 +69,6 @@ function SignUp({ handleCreateClose, users, isActive, setUsers }: SignUpProps) {
   );
 
   const [passwordError, setPasswordError] = useState<string | null>(null);
-
-  const [focusedInput, setFocusedInput] = useState<string | null>(null);
 
   const [birthdayValid, setBirthdayValid] = useState(false);
 
@@ -194,11 +201,10 @@ function SignUp({ handleCreateClose, users, isActive, setUsers }: SignUpProps) {
   };
 
   const signUpValidation = async () => {
-    let pronounValidity = true;
-
-    if (genderValue === "Custom") {
-      pronounValidity = genderRef.current?.pronounValidation() ?? false;
-    }
+    const pronounValidity =
+      genderValue === "Custom"
+        ? genderRef.current?.pronounValidation() ?? false
+        : true;
 
     const firstNameValid = firstNameCheck();
     const lastNameValid = lastNameCheck();

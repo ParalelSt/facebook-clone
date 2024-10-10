@@ -212,7 +212,7 @@ const Birthday = forwardRef(
             onBlur={birthdayValidation}
             onFocus={() => setFocusedInput("birthday")}
           >
-            {days.reverse().map((day) => {
+            {days.map((day) => {
               return (
                 <option key={day.id} value={day.day}>
                   {day.day}

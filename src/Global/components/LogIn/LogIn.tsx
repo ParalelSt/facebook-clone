@@ -33,6 +33,8 @@ function LogIn({
   const [passwordValue, setPasswordValue] = useState<string>("");
   const [emailOrPhoneValue, setEmailOrPhoneValue] = useState<string>("");
 
+  const [focusedInput, setFocusedInput] = useState<string | null>("");
+
   useEffect(() => {
     const savedUser = localStorage.getItem("currentUser");
     if (savedUser) {
@@ -41,7 +43,30 @@ function LogIn({
     }
   }, [setIsAuthenticated, setCurrentUser]);
 
-  const handleLogin = useLogInLogic();
+  const [
+    handleLogin,
+    emailOrPhoneError,
+    passwordError,
+    emailOrPhoneValidation,
+    passwordValidation,
+  ] = useLogInLogic(
+    emailOrPhoneValue,
+    passwordValue,
+    users,
+    setIsAuthenticated,
+    setCurrentUser
+  );
+
+  const handleEmailOrPhoneBlur = () => {
+    emailOrPhoneValidation();
+  };
+
+  const handlePasswordBlur = async () => {
+    const user = emailOrPhoneValidation();
+    if (user) {
+      await passwordValidation(user);
+    }
+  };
 
   //Sign up
 
@@ -67,8 +92,17 @@ function LogIn({
                     value={emailOrPhoneValue}
                     onChange={(e) => setEmailOrPhoneValue(e.target.value)}
                     id="emailOrPhone"
-                    className="email-or-phone"
+                    className={`email-or-phone ${
+                      emailOrPhoneError ? "active" : "disabled"
+                    }`}
+                    onFocus={() => setFocusedInput("emailOrPhone")}
+                    onBlur={handleEmailOrPhoneBlur}
                   />
+                  {emailOrPhoneError && focusedInput === "emailOrPhone" && (
+                    <div className="error-display log-in-error">
+                      {emailOrPhoneError}
+                    </div>
+                  )}
                 </div>
                 <div className="password-container">
                   <input
@@ -77,20 +111,23 @@ function LogIn({
                     value={passwordValue}
                     onChange={(e) => setPasswordValue(e.target.value)}
                     id="password"
-                    className="password"
+                    className={`password ${
+                      passwordError ? "active" : "disabled"
+                    }`}
+                    onFocus={() => setFocusedInput("password")}
+                    onBlur={handlePasswordBlur}
                   />
+                  {passwordError && focusedInput === "password" && (
+                    <div className="error-display log-in-error password-error">
+                      {passwordError}
+                    </div>
+                  )}
                 </div>
                 <button
                   className="log-in-btn"
-                  onClick={() =>
-                    handleLogin(
-                      emailOrPhoneValue,
-                      passwordValue,
-                      users,
-                      setIsAuthenticated,
-                      setCurrentUser
-                    )
-                  }
+                  onClick={() => {
+                    handleLogin();
+                  }}
                 >
                   Log In
                 </button>
@@ -99,7 +136,10 @@ function LogIn({
               <BorderLine></BorderLine>
               <div className="component-bottom">
                 <button
-                  onClick={handleCreateOpen}
+                  onClick={() => {
+                    handleCreateOpen();
+                    setFocusedInput("signUp");
+                  }}
                   className="create-new-account-btn"
                 >
                   Create new account
@@ -127,6 +167,8 @@ function LogIn({
         setUsers={setUsers}
         handleCreateClose={handleCreateClose}
         isActive={isActive}
+        focusedInput={focusedInput}
+        setFocusedInput={setFocusedInput}
       ></SignUp>
     </div>
   );

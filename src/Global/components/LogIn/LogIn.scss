@@ -1,5 +1,17 @@
 @import "../../GlobalStyles.scss";
 
+@keyframes buttonFade{
+    from {
+        box-shadow: none;
+    }
+
+    to {
+        box-shadow: 0 0 0 1px rgba(66, 133, 244, 0.3),
+                                            0 0 0 2px rgba(66, 133, 244, 0.2),
+    }
+
+}
+
 .login-body {
     background-color: white;
 }
@@ -55,10 +67,37 @@
                     background-color: white;
                     
                     .component-top {
+                        position: relative;
                         display: flex;
                         flex-direction: column;
                         align-items: center;
                         gap: 0.7em;
+
+                        .error-display {
+                            z-index: 1000;
+                            position: absolute;
+                            display: flex;
+        
+                            padding: 0.9em;
+                            border-radius: 0.3em;
+        
+                            width: 100%;
+        
+                            background-color: $red;
+                            color: white;
+        
+                            font-size: $xs-s;
+        
+                        }
+
+                        .log-in-error {
+                            top: -0.3em;
+                            left: -30em;
+                        }
+
+                        .password-error {
+                            top: 4.5em;
+                        }
         
                         .email-or-phone-container, .password-container {
                             width: 100%;
@@ -75,6 +114,16 @@
                                     outline: none;
                                 }
                             }
+
+                            .emailOrPhone, .password {
+                                &.active {
+                                    border: 1px solid red;
+                                }
+
+                                &:focus {
+                                    border: 1px solid $border-black;
+                                }
+                            }
                         } 
 
                         .log-in-btn {
@@ -86,6 +135,14 @@
                             font-size: $large;
                             font-weight: bold;
                             cursor: pointer;
+
+                            &:focus {
+                                outline: none;
+                                animation-name: buttonFade;
+                                animation-duration: 0.25s;
+                                box-shadow: 0 0 0 1px rgba(66, 133, 244, 0.3),
+                                            0 0 0 2px rgba(66, 133, 244, 0.2),
+                            }
                         }
 
                         a, a:visited{
@@ -110,6 +167,14 @@
                             font-size: $m-l;
                             font-weight: bold;
                             cursor: pointer;
+
+                            &:focus {
+                                outline: none;
+                                animation-name: buttonFade;
+                                animation-duration: 0.25s;
+                                box-shadow: 0 0 0 1px rgba(66, 133, 244, 0.3),
+                                            0 0 0 2px rgba(66, 133, 244, 0.2),
+                            }
                         }
                     }
                 }
