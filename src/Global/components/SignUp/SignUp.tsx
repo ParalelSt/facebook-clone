@@ -1,6 +1,6 @@
 import "./SignUp.scss";
 import Birthday from "./Birthday";
-import Gender from "./Gender";
+import Gender, { GenderHandle } from "./Gender";
 import { IoClose } from "react-icons/io5";
 import { useEffect, useRef, useState } from "react";
 import { v4 } from "uuid";
@@ -40,7 +40,7 @@ function SignUp({ handleCreateClose, users, isActive, setUsers }: SignUpProps) {
   const phoneOrEmailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const birthdayRef = useRef<{ birthdayValidation: () => boolean }>(null);
-  const genderRef = useRef<{ genderValidation: () => boolean }>(null);
+  const genderRef = useRef<GenderHandle>(null);
 
   const [firstNameValue, setFirstNameValue] = useState("");
   const [lastNameValue, setLastNameValue] = useState("");
@@ -182,7 +182,7 @@ function SignUp({ handleCreateClose, users, isActive, setUsers }: SignUpProps) {
       password: hashedPassword,
       birthday: { month: monthValue, day: dayValue, year: yearValue },
       gender: optionalGenderValue ? optionalGenderValue : genderValue,
-      pronouns: pronounValue ? pronounValue : "",
+      pronouns: pronounValue !== "select your pronoun" ? pronounValue : "",
       profilePicture: "/icons/avatarDefault.svg",
       likedPosts: [],
       id: v4(),
@@ -194,6 +194,12 @@ function SignUp({ handleCreateClose, users, isActive, setUsers }: SignUpProps) {
   };
 
   const signUpValidation = async () => {
+    let pronounValidity = true;
+
+    if (genderValue === "Custom") {
+      pronounValidity = genderRef.current?.pronounValidation() ?? false;
+    }
+
     const firstNameValid = firstNameCheck();
     const lastNameValid = lastNameCheck();
     const phoneOrEmailValid = phoneOrEmailCheck({
@@ -211,7 +217,8 @@ function SignUp({ handleCreateClose, users, isActive, setUsers }: SignUpProps) {
       phoneOrEmailValid &&
       passwordValid &&
       birthdayValidity &&
-      genderValidity
+      genderValidity &&
+      pronounValidity
     ) {
       await signUp();
       handleCreateClose();
@@ -330,11 +337,9 @@ function SignUp({ handleCreateClose, users, isActive, setUsers }: SignUpProps) {
                 setFocusedInput={setFocusedInput}
               ></Birthday>
               <Gender
-                genderValue={genderValue}
                 setGenderValue={setGenderValue}
                 pronounValue={pronounValue}
                 setPronounValue={setPronounValue}
-                optionalGenderValue={optionalGenderValue}
                 setOptionalGenderValue={setOptionalGenderValue}
                 focusedInput={focusedInput}
                 setFocusedInput={setFocusedInput}

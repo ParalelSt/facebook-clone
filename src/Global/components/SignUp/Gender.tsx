@@ -5,12 +5,15 @@ import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 interface GenderProps {
   focusedInput: string | null;
   setFocusedInput: (focusedInput: string) => void;
-  genderValue: string | null;
   setGenderValue: (genderValue: string | null) => void;
   pronounValue: string;
   setPronounValue: (pronounValue: string) => void;
-  optionalGenderValue: string;
   setOptionalGenderValue: (optionalGenderValue: string) => void;
+}
+
+export interface GenderHandle {
+  genderValidation: () => boolean;
+  pronounValidation: () => boolean;
 }
 
 const Gender = forwardRef(
@@ -18,11 +21,9 @@ const Gender = forwardRef(
     {
       focusedInput,
       setFocusedInput,
-      genderValue,
       setGenderValue,
       pronounValue,
       setPronounValue,
-      optionalGenderValue,
       setOptionalGenderValue,
     }: GenderProps,
     ref
@@ -115,6 +116,7 @@ const Gender = forwardRef(
 
     useImperativeHandle(ref, () => ({
       genderValidation,
+      pronounValidation,
     }));
 
     return (
