@@ -1,9 +1,10 @@
+import { FaFacebook } from "react-icons/fa6";
 import "./FacebookLogo.scss";
 
 const FacebookLogoButton = () => {
   return (
     <div className="facebook-logo-button-container item-container">
-      <img src="/images/FacebookLogo.svg" />
+      <FaFacebook color="#0866ff" size={32} />
     </div>
   );
 };

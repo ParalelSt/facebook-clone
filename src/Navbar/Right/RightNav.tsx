@@ -18,7 +18,7 @@ function RightNav({ setIsAuthenticated, currentUser }: RightNavProps) {
   return (
     <>
       <div className="right-nav">
-        <ItemsContainer>
+        <ItemsContainer className="nav-items-container">
           <Menu></Menu>
           <Messenger></Messenger>
           <Notifications></Notifications>

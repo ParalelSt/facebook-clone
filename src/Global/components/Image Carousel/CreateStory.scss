@@ -1,0 +1,163 @@
+@import "../../GlobalStyles.scss";
+
+.create-story-container {
+    display: flex;
+
+    .create-story-left {
+        width: 27.7rem;
+
+        height: 100vh;
+
+        background-color: white;
+        box-shadow: $shadow-light;
+
+        .create-story-left-top {
+            display: flex;
+            gap: 0.5em;
+
+            padding: 0.5em 0;
+
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+            .close-button-container {
+                margin-left: 1em;
+            }
+        }
+
+        .create-story-left-user-info-container-top {
+            display: flex;
+
+            padding: 1em;
+
+            .left {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                margin-top: 0.6em;
+            }
+
+            .right {
+                margin-left: auto;
+
+                .privacy-settings {
+                    position: relative;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+    
+                    border-radius: 100%;
+    
+                    width: 2.2em;
+                    height: 2.2em;
+    
+                    background-color: $button-gray;
+
+                    &:hover {
+                        filter: brightness(0.95);
+                    }
+    
+                    img {
+                        position: absolute;
+                        right: 0.29em;
+    
+                        width: 1.6em;
+                        height: 1.6em;
+                    }
+                }
+            }
+        }
+
+        .create-story-left-user-info-container-bottom {
+            display: flex;
+            align-items: center;
+            gap: 0.7em;
+
+            padding: 0.5em 1em 1.25em 1em;
+            border-bottom: 1px solid $border-gray;
+
+            .username {
+                font-size: $m-l;
+            }
+        }
+    }
+
+    .create-story-middle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1.3em;
+
+        width: 100%;
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            
+            border-radius: 0.5em;
+
+            width: 13.75em;
+            height: 20.625em;
+
+            &:hover {
+                filter: brightness(0.95);
+            }
+
+            .icon-container {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                margin-bottom: 0.5em;
+                // padding: 0.625em;
+                border-radius: 100%;
+
+                width: 44px;
+                height: 44px;
+
+                box-shadow: 0 2px 2px #65676A;
+                background-color: white;
+            }
+
+            .card-text {
+                font-size: $small;
+                font-weight: bold;
+                color: white;
+                
+            }
+        }
+
+        .left-card {
+            background: linear-gradient(to bottom right, #6366f1, #60a5fa);
+        }
+
+        .right-card {
+            background: linear-gradient(to bottom right, #8b5cf6, #ec4899);
+        }
+
+        
+    }
+
+    .create-story-right {
+        position: absolute;
+        right: 0;
+
+        display: flex;
+        justify-content: end;
+
+        padding: 0.25em;
+        padding-right: 0.7em;
+
+        height: 100%;
+
+        nav {
+            margin-top: 0;
+
+            .create-story-right-container {
+                display: flex;
+            }
+        } 
+    }
+}
