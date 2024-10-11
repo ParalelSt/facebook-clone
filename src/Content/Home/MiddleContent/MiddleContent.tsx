@@ -20,9 +20,7 @@ interface MiddleContentProps {
   contactList: ContactListType[];
   user: Users | null;
   users: Users[];
-  emailOrPhoneValue: string;
   setEmailOrPhoneValue: (emailOrPhoneValue: string) => void;
-  passwordValue: string;
   setPasswordValue: (passwordValue: string) => void;
   setIsAuthenticated: (isAuthenticated: boolean) => void;
   setCurrentUser: (user: Users | null) => void;
@@ -54,8 +52,6 @@ function MiddleContent({
   users,
   setIsAuthenticated,
   setCurrentUser,
-  emailOrPhoneValue,
-  passwordValue,
 }: MiddleContentProps) {
   const carouselData: carouselData[] = useMemo(() => {
     return contactList.flatMap((post) => ({
@@ -107,8 +103,6 @@ function MiddleContent({
         <ImageCarousel carouselData={carouselData}></ImageCarousel>
         <StateYourMind user={user}></StateYourMind>
         <Post
-          emailOrPhoneValue={emailOrPhoneValue}
-          passwordValue={passwordValue}
           setCurrentUser={setCurrentUser}
           setIsAuthenticated={setIsAuthenticated}
           users={users}

@@ -23,8 +23,6 @@ interface PostProps {
   setPosts: React.Dispatch<React.SetStateAction<Posts[]>>;
   users: Users[];
   user: Users | null;
-  emailOrPhoneValue: string;
-  passwordValue: string;
   setIsAuthenticated: (isAuthenticated: boolean) => void;
   setCurrentUser: (user: Users | null) => void;
 }
@@ -36,8 +34,6 @@ const Post = ({
   user,
   setIsAuthenticated,
   setCurrentUser,
-  emailOrPhoneValue,
-  passwordValue,
 }: PostProps) => {
   //Like Logic
 
@@ -199,8 +195,6 @@ const Post = ({
       </div>
 
       <ProfilesAndPages
-        emailOrPhoneValue={emailOrPhoneValue}
-        passwordValue={passwordValue}
         setIsAuthenticated={setIsAuthenticated}
         setCurrentUser={setCurrentUser}
         dropDownClose={handleDropDownClose}

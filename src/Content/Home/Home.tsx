@@ -30,9 +30,7 @@ function Home({
   users,
   setIsAuthenticated,
   setCurrentUser,
-  emailOrPhoneValue,
   setEmailOrPhoneValue,
-  passwordValue,
   setPasswordValue,
 }: HomeProps) {
   const contactList: ContactListType[] = [
@@ -234,9 +232,7 @@ function Home({
     <div className="home">
       <LeftNavSide></LeftNavSide>
       <MiddleContent
-        emailOrPhoneValue={emailOrPhoneValue}
         setEmailOrPhoneValue={setEmailOrPhoneValue}
-        passwordValue={passwordValue}
         setPasswordValue={setPasswordValue}
         setIsAuthenticated={setIsAuthenticated}
         setCurrentUser={setCurrentUser}
