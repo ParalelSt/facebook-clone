@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { v4 } from "uuid";
 import { Users } from "../../../App";
 import bcrypt from "bcryptjs";
+import moment from "moment";
 
 interface SignUpProps {
   handleCreateClose: () => void;
@@ -55,8 +56,8 @@ function SignUp({
   const [lastNameValue, setLastNameValue] = useState("");
   const [phoneOrEmailValue, setPhoneOrEmailValue] = useState("");
   const [passwordValue, setPasswordValue] = useState("");
-  const [monthValue, setMonthValue] = useState("");
-  const [dayValue, setDayValue] = useState("");
+  const [monthValue, setMonthValue] = useState(() => moment().format("M"));
+  const [dayValue, setDayValue] = useState(() => moment().format("D"));
   const [yearValue, setYearValue] = useState("");
   const [genderValue, setGenderValue] = useState<string | null>("");
   const [pronounValue, setPronounValue] = useState("select your pronoun");

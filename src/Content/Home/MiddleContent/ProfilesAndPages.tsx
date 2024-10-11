@@ -6,11 +6,10 @@ import ContentContainer from "../../../Global/components/ContentContainer/Conten
 import { useEffect, useRef } from "react";
 import { IoClose } from "react-icons/io5";
 import useLogInLogic from "../../../Global/components/LogIn/LogInLogic";
+import { useNavigate } from "react-router-dom";
 
 interface ProfileAndPagesProps {
   users: Users[];
-  emailOrPhoneValue: string;
-  passwordValue: string;
   dropDownClose: () => void;
   isActive: boolean;
   setIsAuthenticated: (isAuthenticated: boolean) => void;
@@ -23,16 +22,15 @@ const ProfilesAndPages = ({
   isActive,
   setIsAuthenticated,
   setCurrentUser,
-  emailOrPhoneValue,
-  passwordValue,
 }: ProfileAndPagesProps) => {
   //Handle Modal Close
 
   const modalRef = useRef<HTMLDivElement>(null);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const closeDropDown = (e: Event) => {
-      console.log(e);
       if (modalRef.current && !modalRef.current.contains(e.target as Node)) {
         dropDownClose();
       }
@@ -48,12 +46,18 @@ const ProfilesAndPages = ({
   //Handle Login
 
   const [handleLogin] = useLogInLogic(
-    emailOrPhoneValue,
-    passwordValue,
     users,
     setIsAuthenticated,
     setCurrentUser
   );
+
+  const handleLoginClick = async (email: string, password: string) => {
+    const logInSuccessful = await handleLogin(email, password);
+    if (logInSuccessful) {
+      dropDownClose();
+      navigate("/");
+    }
+  };
 
   return (
     <div
@@ -83,7 +87,7 @@ const ProfilesAndPages = ({
                 return (
                   <div
                     className="account"
-                    onClick={() => handleLogin()}
+                    onClick={() => handleLoginClick(user.email, user.password)}
                     key={user.id}
                   >
                     <img src={user.profilePicture} alt="" />

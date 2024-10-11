@@ -4,8 +4,6 @@ import bcrypt from "bcryptjs";
 import { useState } from "react";
 
 function useLogInLogic(
-  emailOrPhoneValue: string,
-  passwordValue: string,
   users: Users[],
   setIsAuthenticated: (isAuthenticated: boolean) => void,
   setCurrentUser: (user: Users | null) => void
@@ -15,7 +13,7 @@ function useLogInLogic(
 
   const Navigate = useNavigate();
 
-  const emailOrPhoneValidation = () => {
+  const emailOrPhoneValidation = (emailOrPhoneValue: string) => {
     const user = users.find(
       (user) =>
         user.email === emailOrPhoneValue ||
@@ -33,7 +31,7 @@ function useLogInLogic(
     return user;
   };
 
-  const passwordValidation = async (user: Users) => {
+  const passwordValidation = async (user: Users, passwordValue: string) => {
     const isPasswordValid = await bcrypt.compare(passwordValue, user.password);
 
     if (!isPasswordValid) {
@@ -45,14 +43,17 @@ function useLogInLogic(
     return true;
   };
 
-  const handleLogin = async () => {
+  const handleLogin = async (
+    emailOrPhoneValue: string,
+    passwordValue: string
+  ) => {
     setEmailOrPhoneError(null);
     setPasswordError(null);
 
-    const user = emailOrPhoneValidation();
-    if (!user) return;
-    const isPasswordValid = await passwordValidation(user);
-    if (!isPasswordValid) return;
+    const user = emailOrPhoneValidation(emailOrPhoneValue);
+    if (!user) return false;
+    const isPasswordValid = await passwordValidation(user, passwordValue);
+    if (!isPasswordValid) return false;
 
     localStorage.setItem("isAuthenticated", "true");
     setCurrentUser(user);

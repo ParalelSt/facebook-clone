@@ -54,22 +54,16 @@ function LogIn({
     passwordError,
     emailOrPhoneValidation,
     passwordValidation,
-  ] = useLogInLogic(
-    emailOrPhoneValue,
-    passwordValue,
-    users,
-    setIsAuthenticated,
-    setCurrentUser
-  );
+  ] = useLogInLogic(users, setIsAuthenticated, setCurrentUser);
 
   const handleEmailOrPhoneBlur = () => {
-    emailOrPhoneValidation();
+    emailOrPhoneValidation(emailOrPhoneValue);
   };
 
   const handlePasswordBlur = async () => {
-    const user = emailOrPhoneValidation();
+    const user = emailOrPhoneValidation(emailOrPhoneValue);
     if (user) {
-      await passwordValidation(user);
+      await passwordValidation(user, passwordValue);
     }
   };
 
@@ -131,7 +125,7 @@ function LogIn({
                 <button
                   className="log-in-btn"
                   onClick={() => {
-                    handleLogin();
+                    handleLogin(emailOrPhoneValue, passwordValue);
                   }}
                 >
                   Log In
