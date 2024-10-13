@@ -1,11 +1,11 @@
 import { FaCaretDown } from "react-icons/fa6";
-import Info from "../../Global/components/Info/Info";
-import RightNavDropDown from "./RightNavDropDown";
-import useLogOutLogic from "../../Global/components/LogIn/LogOutLogic";
-import useDropDown from "../../Global/hooks/useDropDown";
+import Info from "Global/components/Info/Info";
+import RightNavDropDown from "Navbar/Right/RightNavDropDown";
+import useLogOutLogic from "Global/components/LogIn/LogOutLogic";
+import useDropDown from "Global/hooks/useDropDown";
 import { useEffect, useRef } from "react";
-import { Users } from "../../App";
-import BorderLine from "../../Global/components/BorderLine";
+import { Users } from "App";
+import BorderLine from "Global/components/BorderLine";
 
 interface ProfileButtonProps {
   setIsAuthenticated: (isAuthenticated: boolean) => void;

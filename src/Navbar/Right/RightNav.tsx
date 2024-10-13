@@ -1,9 +1,9 @@
 import "./RightNav.scss";
-import { Users } from "../../App";
-import ProfileButton from "./ProfileButton";
-import Menu from "./Menu";
-import Messenger from "./Messenger";
-import Notifications from "./Notifications";
+import { Users } from "App";
+import ProfileButton from "Navbar/Right/ProfileButton";
+import Menu from "Navbar/Right/Menu";
+import Messenger from "Navbar/Right/Messenger";
+import Notifications from "Navbar/Right/Notifications";
 import "./ProfileItem.scss";
 import "./ItemContainer.scss";
 import ItemsContainer from "./ItemsContainer";

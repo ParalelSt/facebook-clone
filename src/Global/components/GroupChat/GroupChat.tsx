@@ -1,5 +1,5 @@
 import { FaPlus } from "react-icons/fa6";
-import { GroupsType } from "../../../Content/Home/RightSideNav/RightSideNav";
+import { GroupsType } from "Content/Home/RightSideNav/RightSideNav";
 import { Link } from "react-router-dom";
 
 interface Group {

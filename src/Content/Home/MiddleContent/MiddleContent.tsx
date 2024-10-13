@@ -1,11 +1,11 @@
 import { useMemo, useState } from "react";
-import ImageCarousel from "../../../Global/components/Image Carousel/ImageCarousel";
-import "./MiddleContent.scss";
+import ImageCarousel from "Global/components/Image Carousel/ImageCarousel";
+import "Content/Home/MiddleContent/MiddleContent.scss";
 import { v4 as uuidv4, v4 } from "uuid";
-import StateYourMind from "./StateYourMind";
-import { Users } from "../../../App";
-import { ContactListType } from "../Home";
-import Post from "./Post";
+import StateYourMind from "Content/Home/MiddleContent/StateYourMind";
+import { Users } from "App";
+import { ContactListType } from "Content/Home/Home";
+import Post from "Content/Home/MiddleContent/Post";
 
 export interface carouselData {
   username: string;

@@ -4,18 +4,18 @@ import {
   FaEllipsis,
   FaFileImage,
 } from "react-icons/fa6";
-import ContentContainer from "../../../Global/components/ContentContainer/ContentContainer";
-import { Posts } from "./MiddleContent";
-import "./Post.scss";
-import BorderLine from "../../../Global/components/BorderLine";
+import ContentContainer from "Global/components/ContentContainer/ContentContainer";
+import { Posts } from "Content/Home/MiddleContent/MiddleContent";
+import "Content/Home/MiddleContent/Post.scss";
+import BorderLine from "Global/components/BorderLine";
 import { IoChatbubbleOutline } from "react-icons/io5";
 import { RiLinkM } from "react-icons/ri";
 import { PiShareFatLight } from "react-icons/pi";
 import { FaSmile, FaSmileBeam, FaStickyNote } from "react-icons/fa";
-import { Users } from "../../../App";
-import ProfilesAndPages from "./ProfilesAndPages";
-import useDropDown from "../../../Global/hooks/useDropDown";
-import LikeButton from "./LikeButton";
+import { Users } from "App";
+import ProfilesAndPages from "Content/Home/MiddleContent/ProfilesAndPages";
+import useDropDown from "Global/hooks/useDropDown";
+import LikeButton from "Content/Home/MiddleContent/LikeButton";
 import { Link } from "react-router-dom";
 
 interface PostProps {

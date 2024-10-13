@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Link } from "react-router-dom";
-import "./LogIn.scss";
+import "Global/components/Login/LogIn.scss";
 import BorderLine from "../BorderLine";
 import { useEffect, useState } from "react";
 import useLogInLogic from "./LogInLogic";

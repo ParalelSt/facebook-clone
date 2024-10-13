@@ -1,8 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useHandleName } from "../../Global/hooks/useHandleName";
-import "./LeftNav.scss";
-import SearchInput from "./SearchInput";
-import { ActiveItem } from "../Navbar";
+import { useHandleName } from "Global/hooks/useHandleName";
+import "Navbar/Left/LeftNav.scss";
+import SearchInput from "Navbar/Left/SearchInput";
+import { ActiveItem } from "Navbar/Navbar";
 
 interface LeftNavProps {
   setActiveItem: (item: ActiveItem) => void;

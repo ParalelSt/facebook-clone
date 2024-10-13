@@ -52,11 +52,11 @@
                     width: 2.2em;
                     height: 2.2em;
 
+                    background-color: $button-gray;
+
                     &:hover {
                         filter: brightness(0.95);
                     }
-
-                    background-color: $button-gray;
 
                     svg {
                         

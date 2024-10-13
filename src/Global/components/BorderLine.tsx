@@ -1,4 +1,4 @@
-import "./BorderLine.scss";
+import "Global/components/BorderLine.scss";
 
 function BorderLine() {
   return (

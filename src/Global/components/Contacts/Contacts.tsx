@@ -1,4 +1,4 @@
-import { ContactListType } from "../../../Content/Home/Home";
+import { ContactListType } from "Content/Home/Home";
 import { FaEllipsis, FaMagnifyingGlass } from "react-icons/fa6";
 
 interface Contact {

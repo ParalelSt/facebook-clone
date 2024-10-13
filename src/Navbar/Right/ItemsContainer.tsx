@@ -1,4 +1,4 @@
-import "./ItemsContainer.scss";
+import "Navbar/Right/ItemsContainer.scss";
 
 interface ItemsContainerProps {
   className?: string;

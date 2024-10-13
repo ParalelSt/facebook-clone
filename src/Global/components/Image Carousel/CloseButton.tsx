@@ -1,5 +1,5 @@
 import { CgClose } from "react-icons/cg";
-import "./CloseButton.scss";
+import "Global/components/Image Carousel/CloseButton.scss";
 import { useNavigate } from "react-router-dom";
 
 const CloseButton = () => {

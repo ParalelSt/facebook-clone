@@ -1,5 +1,5 @@
 import { v4 } from "uuid";
-import useDropDown from "../../hooks/useDropDown";
+import useDropDown from "Global/hooks/useDropDown";
 import { forwardRef, useImperativeHandle, useRef, useState } from "react";
 
 interface GenderProps {

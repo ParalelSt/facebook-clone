@@ -1,8 +1,8 @@
-import Accordion from "../../../Global/components/Accordion/Accordion";
-import { AccordionItem } from "./TopContainer";
-import "../../../Global/GlobalStyles.scss";
+import Accordion from "Global/components/Accordion/Accordion";
+import { AccordionItem } from "Content/Home/LeftSideNav/TopContainer";
+import "Global/GlobalStyles.scss";
 import { useState } from "react";
-import BorderLine from "../../../Global/components/BorderLine";
+import BorderLine from "Global/components/BorderLine";
 
 interface BottomContainerProps {
   scrollVisibleBottom: boolean;

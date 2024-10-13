@@ -1,5 +1,5 @@
 import { forwardRef, ReactNode } from "react";
-import "./ContentContainer.scss";
+import "Global/components/ContentContainer/ContentContainer.scss";
 
 interface ContentContainerProps {
   children: ReactNode;

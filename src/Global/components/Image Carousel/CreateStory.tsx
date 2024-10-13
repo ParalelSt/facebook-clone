@@ -1,10 +1,10 @@
-import { Users } from "../../../App";
-import ItemsContainer from "../../../Navbar/Right/ItemsContainer";
-import Menu from "../../../Navbar/Right/Menu";
-import Notifications from "../../../Navbar/Right/Notifications";
-import ProfileButton from "../../../Navbar/Right/ProfileButton";
-import CloseButton from "./CloseButton";
-import FacebookLogoButton from "./FacebookLogoButton";
+import { Users } from "App";
+import ItemsContainer from "Navbar/Right/ItemsContainer";
+import Menu from "Navbar/Right/Menu";
+import Notifications from "Navbar/Right/Notifications";
+import ProfileButton from "Navbar/Right/ProfileButton";
+import CloseButton from "Global/components/Image Carousel/CloseButton";
+import FacebookLogoButton from "Global/components/Image Carousel/FacebookLogoButton";
 import "./CreateStory.scss";
 import { FaImage } from "react-icons/fa6";
 

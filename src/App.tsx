@@ -1,11 +1,11 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-import Navbar from "./Navbar/Navbar";
-import "./Global/GlobalStyles.scss";
+import Navbar from "Navbar/Navbar";
+import "Global/GlobalStyles.scss";
 import { useEffect, useState } from "react";
-import PrivateRoute from "./Global/components/PrivateRoute.tsx";
-import Home from "./Content/Home/Home.tsx";
-import LogIn from "./Global/components/LogIn/LogIn.tsx";
-import CreateStory from "./Global/components/Image Carousel/CreateStory.tsx";
+import PrivateRoute from "Global/components/PrivateRoute.tsx";
+import Home from "Content/Home/Home.tsx";
+import LogIn from "Global/components/LogIn/LogIn.tsx";
+import CreateStory from "Global/components/Image Carousel/CreateStory.tsx";
 
 export interface Users {
   user: string;

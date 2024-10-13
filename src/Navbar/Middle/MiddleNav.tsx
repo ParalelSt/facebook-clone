@@ -5,7 +5,7 @@ import {
   FaShop,
   FaVideo,
 } from "react-icons/fa6";
-import "./Middlenav.scss";
+import "Navbar/Middle/Middlenav.scss";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ActiveItem } from "../Navbar";

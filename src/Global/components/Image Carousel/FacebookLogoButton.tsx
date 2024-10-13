@@ -1,5 +1,5 @@
 import { FaFacebook } from "react-icons/fa6";
-import "./FacebookLogo.scss";
+import "Global/components/Image Carousel/FacebookLogo.scss";
 
 const FacebookLogoButton = () => {
   return (

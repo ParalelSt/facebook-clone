@@ -1,9 +1,9 @@
 import { useLocation } from "react-router-dom";
-import LeftNav from "./Left/LeftNav";
-import MiddleNav from "./Middle/MiddleNav";
-import "./Navbar.scss";
-import RightNav from "./Right/RightNav";
-import { Users } from "../App";
+import LeftNav from "Navbar/Left/LeftNav";
+import MiddleNav from "Navbar/Middle/MiddleNav";
+import "Navbar/Navbar.scss";
+import RightNav from "Navbar/Right/RightNav";
+import { Users } from "App";
 import { useState } from "react";
 
 interface NavbarProps {

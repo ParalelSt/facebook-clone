@@ -1,7 +1,7 @@
-import "./Accordion.scss";
+import "Global/components/Accordion/Accordion.scss";
 import { Link } from "react-router-dom";
 import { FaCaretDown } from "react-icons/fa6";
-import { AccordionItem } from "../../../Content/Home/LeftSideNav/TopContainer";
+import { AccordionItem } from "Content/Home/LeftSideNav/TopContainer";
 
 interface Items {
   items: AccordionItem[];
@@ -36,7 +36,11 @@ function Accordion({
         <div className={`accordion-container ${isOpen ? "active" : ""}`}>
           {items.map((item) => (
             <Link to={""} className="accordion-item" key={item.id}>
-              <img src={item.image} alt={item.title} />
+              {typeof item.image === "string" ? (
+                <img src={item.image} alt={item.image}></img>
+              ) : (
+                item.image
+              )}
               <span>{item.title}</span>
             </Link>
           ))}

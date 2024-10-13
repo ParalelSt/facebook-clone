@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Users } from "../../../App";
+import { Users } from "App";
 import bcrypt from "bcryptjs";
 import { useState } from "react";
 

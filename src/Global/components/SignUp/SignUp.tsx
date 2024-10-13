@@ -1,10 +1,10 @@
-import "./SignUp.scss";
-import Birthday from "./Birthday";
-import Gender, { GenderHandle } from "./Gender";
+import "Global/components/SignUp/SignUp.scss";
+import Birthday from "Global/components/SignUp/Birthday";
+import Gender, { GenderHandle } from "Global/components/SignUp/Gender";
 import { IoClose } from "react-icons/io5";
 import { useEffect, useRef, useState } from "react";
 import { v4 } from "uuid";
-import { Users } from "../../../App";
+import { Users } from "App";
 import bcrypt from "bcryptjs";
 import moment from "moment";
 

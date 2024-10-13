@@ -1,11 +1,11 @@
 import { FaSearch } from "react-icons/fa";
-import "./ProfilesAndPages.scss";
-import { Users } from "../../../App";
+import "Content/Home/MiddleContent/ProfilesAndPages.scss";
+import { Users } from "App";
 import { FaPlus } from "react-icons/fa6";
-import ContentContainer from "../../../Global/components/ContentContainer/ContentContainer";
+import ContentContainer from "Global/components/ContentContainer/ContentContainer";
 import { useEffect, useRef } from "react";
 import { IoClose } from "react-icons/io5";
-import useLogInLogic from "../../../Global/components/LogIn/LogInLogic";
+import useLogInLogic from "Global/components/LogIn/LogInLogic";
 import { useNavigate } from "react-router-dom";
 
 interface ProfileAndPagesProps {

@@ -1,9 +1,9 @@
-import LeftNavSide from "./LeftSideNav/LeftSideNav";
-import RightSideNav from "./RightSideNav/RightSideNav";
-import "./Home.scss";
-import MiddleContent from "./MiddleContent/MiddleContent";
+import LeftNavSide from "Content/Home/LeftSideNav/LeftSideNav";
+import RightSideNav from "Content/Home/RightSideNav/RightSideNav";
+import "Content/Home/Home.scss";
+import MiddleContent from "Content/Home/MiddleContent/MiddleContent";
 import { v4 as uuidv4 } from "uuid";
-import { Users } from "../../App";
+import { Users } from "App";
 
 export interface ContactListType {
   username: string;
@@ -62,7 +62,7 @@ function Home({
     },
 
     {
-      username: "HappyCapy",
+      username: "Happy Capy",
       image: "/icons/HappyCapy.jpg",
       postImage: "/images/post/CapybaraJudge.jpg",
       status: "online",
@@ -71,7 +71,7 @@ function Home({
     },
 
     {
-      username: "KittenLover323",
+      username: "KittenLover 323",
       image: "/icons/KittenLover.jpg",
       postImage: "/images/post/Cat.jpg",
       status: "online",
