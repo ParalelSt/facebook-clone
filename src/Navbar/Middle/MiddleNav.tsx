@@ -6,34 +6,45 @@ import {
   FaVideo,
 } from "react-icons/fa6";
 import "Navbar/Middle/Middlenav.scss";
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { ActiveItem } from "../Navbar";
+import { Link, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 interface MiddleNavProps {
-  activeItem: ActiveItem;
-  setActiveItem: (item: ActiveItem) => void;
+  currentPage: string;
+  setCurrentPage: (currentPage: string) => void;
 }
 
-function MiddleNav({ activeItem, setActiveItem }: MiddleNavProps) {
-  const [isActive, setIsActive] = useState(true);
+function MiddleNav({ currentPage, setCurrentPage }: MiddleNavProps) {
+  //Button color and underline for currently active Url
 
-  const handleItemClick = (item: ActiveItem) => {
-    setActiveItem(item);
-    setIsActive(false);
-  };
+  const location = useLocation();
 
-  const getItemClass = (item: ActiveItem) => {
-    return item === activeItem ? "item-container active" : "item-container";
-  };
+  useEffect(() => {
+    switch (location.pathname) {
+      case "/":
+        setCurrentPage("house");
+        break;
+      case "/video":
+        setCurrentPage("video");
+        break;
+      case "/marketplace":
+        setCurrentPage("marketplace");
+        break;
+      case "/groups":
+        setCurrentPage("groups");
+        break;
+      case "/games":
+        setCurrentPage("games");
+        break;
+    }
+  });
 
   return (
     <div className="middle-nav">
       <div className="items-container">
         <Link
           to={"/"}
-          className={`${getItemClass("house")} ${isActive ? "active" : ""}`}
-          onClick={() => handleItemClick("house")}
+          className={`${currentPage === "house" ? "active" : "disabled"}`}
         >
           <div className="img-container">
             <FaHouse></FaHouse>
@@ -42,8 +53,7 @@ function MiddleNav({ activeItem, setActiveItem }: MiddleNavProps) {
         </Link>
         <Link
           to={"/video"}
-          className={getItemClass("video")}
-          onClick={() => handleItemClick("video")}
+          className={`${currentPage === "video" ? "active" : "disabled"}`}
         >
           <div className="img-container">
             <FaVideo></FaVideo>
@@ -52,8 +62,7 @@ function MiddleNav({ activeItem, setActiveItem }: MiddleNavProps) {
         </Link>
         <Link
           to={"/marketplace"}
-          className={getItemClass("shop")}
-          onClick={() => handleItemClick("shop")}
+          className={`${currentPage === "marketplace" ? "active" : "disabled"}`}
         >
           <div className="img-container">
             <FaShop></FaShop>
@@ -62,8 +71,7 @@ function MiddleNav({ activeItem, setActiveItem }: MiddleNavProps) {
         </Link>
         <Link
           to={"/groups"}
-          className={getItemClass("group")}
-          onClick={() => handleItemClick("group")}
+          className={`${currentPage === "groups" ? "active" : "disabled"}`}
         >
           <div className="img-container">
             <FaPeopleGroup></FaPeopleGroup>
@@ -72,8 +80,7 @@ function MiddleNav({ activeItem, setActiveItem }: MiddleNavProps) {
         </Link>
         <Link
           to={"/games"}
-          className={getItemClass("game")}
-          onClick={() => handleItemClick("game")}
+          className={`${currentPage === "games" ? "active" : "disabled"}`}
         >
           <div className="img-container">
             <FaGamepad></FaGamepad>

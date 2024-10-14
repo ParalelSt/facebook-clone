@@ -100,18 +100,20 @@ const Post = ({
                               </div>
                             );
                           })}
-                          <div className="users-that-liked">
-                            {post.usersWhoLiked.map((likedUser) => {
-                              return (
-                                <div
-                                  className="liked-user-display"
-                                  key={likedUser.id}
-                                >
-                                  {likedUser.username}
-                                </div>
-                              );
-                            })}
-                          </div>
+                          {post.likeCount !== 0 && (
+                            <div className="users-that-liked">
+                              {post.usersWhoLiked.map((likedUser) => {
+                                return (
+                                  <div
+                                    className="liked-user-display"
+                                    key={likedUser.id}
+                                  >
+                                    {likedUser.username}
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          )}
                         </div>
                         <div className="like-count count">
                           <span>

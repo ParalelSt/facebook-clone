@@ -12,11 +12,10 @@ interface NavbarProps {
   currentUser: Users | null;
 }
 
-export type ActiveItem = "house" | "video" | "shop" | "group" | "game" | null;
-
 function Navbar({ setIsAuthenticated, users, currentUser }: NavbarProps) {
+  const [currentPage, setCurrentPage] = useState<string>("");
+
   const location = useLocation();
-  const [activeItem, setActiveItem] = useState<ActiveItem>(null);
 
   if (
     location.pathname === "/login" ||
@@ -29,10 +28,10 @@ function Navbar({ setIsAuthenticated, users, currentUser }: NavbarProps) {
     <>
       <nav>
         <div className="navbar-container">
-          <LeftNav setActiveItem={setActiveItem}></LeftNav>
+          <LeftNav></LeftNav>
           <MiddleNav
-            setActiveItem={setActiveItem}
-            activeItem={activeItem}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
           ></MiddleNav>
           <RightNav
             users={users}

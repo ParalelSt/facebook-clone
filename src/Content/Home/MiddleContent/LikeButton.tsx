@@ -1,7 +1,7 @@
 import { AiOutlineLike } from "react-icons/ai";
-import useLikeButtonLogic from "./LikeButtonLogic";
 import { Posts } from "Content/Home/MiddleContent/MiddleContent";
 import { Users } from "App";
+import useLikeButtonLogic from "./LikeButtonLogic";
 
 interface LikeButtonProps {
   post: Posts;
@@ -10,50 +10,41 @@ interface LikeButtonProps {
 }
 
 const LikeButton = ({ user, post, setPosts }: LikeButtonProps) => {
-  const [handleLikeToggle, isLiked] = useLikeButtonLogic();
+  const currentUserString = localStorage.getItem("currentUser");
+  const currentUser = currentUserString ? JSON.parse(currentUserString) : null;
+  const initialLikeState = post.usersWhoLiked.some(
+    (likedUser) => likedUser.id === user?.id
+  );
+  const [handleLikeToggle, isLiked] = useLikeButtonLogic(initialLikeState);
 
-  const handleLike = () => {
+  const handleLikeButtonClick = () => {
     handleLikeToggle();
-
-    if (!user) return;
-
-    const likedPosts = user.likedPosts || [];
-
-    const isPostLiked = likedPosts.includes(post.id);
-
-    const updatedLikedPosts = isPostLiked
-      ? likedPosts.filter((p) => p !== post.id)
-      : [...likedPosts, post.id];
-
-    const updatedUsersWhoLiked = isPostLiked
-      ? post.usersWhoLiked.filter((likedUser) => likedUser.id !== user.id)
-      : [...post.usersWhoLiked, { username: user.user, id: user.id }];
-
-    const updatedUser = { likedPosts: updatedLikedPosts };
-
-    const updatedLikeCount = isPostLiked
-      ? post.likeCount - 1
-      : post.likeCount + 1;
-
     setPosts((prevPosts) =>
-      prevPosts.map((p) =>
-        p.id === post.id
-          ? {
-              ...p,
-              usersWhoLiked: updatedUsersWhoLiked,
-              likeCount: updatedLikeCount,
-            }
-          : p
-      )
-    );
+      prevPosts.map((p) => {
+        if (p.id === post.id) {
+          const updatedLikeCount = isLiked ? p.likeCount - 1 : p.likeCount + 1;
+          const updatedUsersWhoLiked = isLiked
+            ? p.usersWhoLiked.filter((user) => user.id !== currentUser.id)
+            : [
+                ...p.usersWhoLiked,
+                { id: currentUser.id, username: currentUser.user },
+              ];
 
-    console.log(updatedUser, updatedUsersWhoLiked);
+          return {
+            ...p,
+            likeCount: updatedLikeCount,
+            usersWhoLiked: updatedUsersWhoLiked,
+          };
+        }
+        return p;
+      })
+    );
   };
 
   return (
     <button
       className={`like-btn ${isLiked ? "liked" : ""}`}
-      onClick={() => handleLike()}
+      onClick={handleLikeButtonClick}
     >
       <AiOutlineLike />
       <span>Like</span>

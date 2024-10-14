@@ -31,9 +31,10 @@
         border-radius: 0.7em;
     
         img {
-            max-width: 2em;
-            max-height: 2em;
+            width: 2em;
+            height: 2em;
             border-radius: 100%;
+            object-fit: cover;
         }
 
         .background {

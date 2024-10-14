@@ -4,23 +4,21 @@ import {
   FaCalendarAlt,
   FaGlobeAmericas,
   FaHistory,
-  FaPlayCircle,
   FaUserFriends,
 } from "react-icons/fa";
 import {
   FaBookmark,
   FaChartBar,
   FaChartLine,
-  FaFacebookMessenger,
-  FaFileInvoiceDollar,
+  FaCreditCard,
   FaFlag,
   FaGamepad,
   FaHandHoldingHeart,
   FaRss,
   FaStore,
   FaUsers,
-  FaVideo,
 } from "react-icons/fa6";
+import { MdOndemandVideo } from "react-icons/md";
 
 interface TopContainerProps {
   scrollVisibleTop: boolean;
@@ -38,6 +36,7 @@ function TopContainer({
   setScrollVisibleTop,
 }: TopContainerProps) {
   const [isOpen, setIsOpen] = useState(false);
+
   const leftTopSideNav: AccordionItem[] = [
     {
       title: "Ads Manager",
@@ -83,9 +82,7 @@ function TopContainer({
 
     {
       title: "Gaming Video",
-      image: (
-        <FaGamepad className="gaming-video" style={{ color: "#1877F2" }} />
-      ),
+      image: "./icons/GamingVideo.svg",
       id: 6,
     },
 
@@ -97,22 +94,14 @@ function TopContainer({
 
     {
       title: "Messenger",
-      image: (
-        <FaFacebookMessenger
-          className="messenger"
-          style={{ color: "#00C6FF" }}
-        />
-      ),
+      image: "./icons/Messenger.svg",
       id: 8,
     },
 
     {
       title: "Orders and payments",
       image: (
-        <FaFileInvoiceDollar
-          className="orders-payments"
-          style={{ color: "#1877F2" }}
-        />
+        <FaCreditCard className="orders-payments" style={{ color: "black" }} />
       ),
       id: 9,
     },
@@ -125,9 +114,7 @@ function TopContainer({
 
     {
       title: "Play games",
-      image: (
-        <FaPlayCircle className="play-games" style={{ color: "#1877F2" }} />
-      ),
+      image: <FaGamepad className="play-games" style={{ color: "#1877F2" }} />,
       id: 11,
     },
 
@@ -175,7 +162,7 @@ function TopContainer({
         </div>
 
         <div className="item-container">
-          <FaVideo className="video" style={{ color: "#1877F2" }} />
+          <MdOndemandVideo className="video" style={{ color: "#1877F2" }} />
           <span className="title">Video</span>
         </div>
 

@@ -1,7 +1,7 @@
 import { useState } from "react";
 
-const useLikeButtonLogic = () => {
-  const [isLiked, setIsLiked] = useState(false);
+const useLikeButtonLogic = (initialState = false) => {
+  const [isLiked, setIsLiked] = useState(initialState);
 
   const handleLikeToggle = () => {
     setIsLiked(!isLiked);

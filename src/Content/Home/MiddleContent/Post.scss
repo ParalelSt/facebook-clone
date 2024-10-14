@@ -19,9 +19,11 @@
 
             .post-top-left {
                 display: flex;
-    
+
                 .post-top-left-profile {
                     position: relative;
+
+                    margin-right: 0.5em;
     
                     img {
                         height: 2.5rem;
@@ -29,9 +31,7 @@
                         border-radius: 100%;
                         object-fit: cover;
                     }
-    
-                    margin-right: 0.5em;
-    
+
                     .online-dot {
                         position: absolute;
                         bottom: 0;

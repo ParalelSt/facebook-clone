@@ -9,7 +9,7 @@
         display: grid;
         grid-template-columns: repeat(5, 8em);
 
-        .item-container {
+        a {
             display: flex;
             align-items: center;
             justify-content: center;

@@ -74,7 +74,7 @@ function MiddleContent({
       image: "/images/post/CapybaraJudge.jpg",
       likeIcons: [],
       usersWhoLiked: [],
-      likeCount: 74,
+      likeCount: 0,
       commentCount: 1,
       shareCount: 1,
       comments: [],

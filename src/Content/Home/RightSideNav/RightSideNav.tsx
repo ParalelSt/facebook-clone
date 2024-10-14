@@ -5,6 +5,7 @@ import GroupChat from "Global/components/GroupChat/GroupChat";
 import "Global/components/GroupChat/GroupChat.scss";
 import { ContactListType } from "../Home";
 import "Content/Home/RightSideNav/RightSideNav.scss";
+import { v4 } from "uuid";
 
 export interface ContactI {
   contactList: ContactListType[];
@@ -13,33 +14,33 @@ export interface ContactI {
 export interface GroupsType {
   groupName: string;
   image: string;
-  id: number;
+  id: string;
 }
 
 function RightSideNav({ contactList }: ContactI) {
   const groups: GroupsType[] = [
     {
-      groupName: "Group1",
-      image: "/images/ProfilePicture.jpg",
-      id: Math.random() * 100,
+      groupName: "Local Car Dealership",
+      image: "/images/groups/dealership.jpg",
+      id: v4(),
     },
 
     {
-      groupName: "Group2",
-      image: "/images/ProfilePicture.jpg",
-      id: Math.random() * 100,
+      groupName: "Cuisine",
+      image: "/images/groups/cuisine.jpeg",
+      id: v4(),
     },
 
     {
-      groupName: "Group3",
-      image: "/images/ProfilePicture.jpg",
-      id: Math.random() * 100,
+      groupName: "Classroom 4b",
+      image: "/images/groups/classroom.jpg",
+      id: v4(),
     },
 
     {
-      groupName: "Group4",
-      image: "/images/ProfilePicture.jpg",
-      id: Math.random() * 100,
+      groupName: "Danville Music",
+      image: "/images/groups/guitar-store.jpg",
+      id: v4(),
     },
   ];
 

@@ -76,6 +76,11 @@
             padding: 0.5em 1em 1.25em 1em;
             border-bottom: 1px solid $border-gray;
 
+            .profile-picture {
+                height: 4em;
+                width: 4em;
+            }
+
             .username {
                 font-size: $m-l;
             }
@@ -111,7 +116,6 @@
                 justify-content: center;
 
                 margin-bottom: 0.5em;
-                // padding: 0.625em;
                 border-radius: 100%;
 
                 width: 44px;
