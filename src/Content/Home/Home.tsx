@@ -1,7 +1,9 @@
 import LeftNavSide from "Content/Home/LeftSideNav/LeftSideNav";
 import RightSideNav from "Content/Home/RightSideNav/RightSideNav";
 import "Content/Home/Home.scss";
-import MiddleContent from "Content/Home/MiddleContent/MiddleContent";
+import MiddleContent, {
+  carouselDataType,
+} from "Content/Home/MiddleContent/MiddleContent";
 import { v4 as uuidv4 } from "uuid";
 import { Users } from "App";
 import { useMemo } from "react";
@@ -24,6 +26,8 @@ interface HomeProps {
   setPasswordValue: (passwordValue: string) => void;
   setIsAuthenticated: (isAuthenticated: boolean) => void;
   setCurrentUser: (user: Users | null) => void;
+  carouselData: carouselDataType[];
+  setCarouselData: (carouselData: carouselDataType[]) => void;
 }
 
 function Home({
@@ -33,6 +37,8 @@ function Home({
   setCurrentUser,
   setEmailOrPhoneValue,
   setPasswordValue,
+  carouselData,
+  setCarouselData,
 }: HomeProps) {
   const contactList: ContactListType[] = useMemo(
     () => [
@@ -245,6 +251,8 @@ function Home({
         users={users}
         user={user}
         contactList={contactList}
+        carouselData={carouselData}
+        setCarouselData={setCarouselData}
       ></MiddleContent>
       <RightSideNav contactList={sortedContactList}></RightSideNav>
     </div>

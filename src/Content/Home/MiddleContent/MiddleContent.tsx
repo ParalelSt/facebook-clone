@@ -1,13 +1,14 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import ImageCarousel from "Global/components/Image Carousel/ImageCarousel";
 import "Content/Home/MiddleContent/MiddleContent.scss";
-import { v4 as uuidv4, v4 } from "uuid";
+import { v4 } from "uuid";
 import StateYourMind from "Content/Home/MiddleContent/StateYourMind";
 import { Users } from "App";
 import { ContactListType } from "Content/Home/Home";
 import Post from "Content/Home/MiddleContent/Post";
+import CarouselContext from "./CarouselContext";
 
-export interface carouselData {
+export interface carouselDataType {
   username: string;
   profilePicture: string;
   recentStoryPost: boolean;
@@ -24,6 +25,8 @@ interface MiddleContentProps {
   setPasswordValue: (passwordValue: string) => void;
   setIsAuthenticated: (isAuthenticated: boolean) => void;
   setCurrentUser: (user: Users | null) => void;
+  carouselData: carouselDataType[];
+  setCarouselData: (carouselData: carouselDataType[]) => void;
 }
 
 export interface User {
@@ -52,17 +55,32 @@ function MiddleContent({
   users,
   setIsAuthenticated,
   setCurrentUser,
+  carouselData,
+  setCarouselData,
 }: MiddleContentProps) {
-  const carouselData: carouselData[] = useMemo(() => {
-    return contactList.flatMap((post) => ({
-      username: post.username,
-      profilePicture: post.image,
-      recentStoryPost: post.recentStoryPost,
-      image: post.postImage,
-      userId: post.id,
-      id: uuidv4(),
-    }));
+  // const currentUserString = localStorage.getItem("currentUser");
+  // const currentUser = currentUserString ? JSON.parse(currentUserString) : null;
+
+  const initialCarouselData: carouselDataType[] = useMemo(() => {
+    return contactList.flatMap((post) => {
+      return [
+        {
+          username: post.username || "",
+          profilePicture: post.image || "",
+          recentStoryPost: post.recentStoryPost || false,
+          image: post.postImage || "",
+          userId: post.id || "",
+          id: v4(),
+        },
+      ];
+    });
   }, [contactList]);
+
+  useEffect(() => {
+    if (carouselData.length === 0) {
+      setCarouselData(initialCarouselData);
+    }
+  }, [carouselData.length, initialCarouselData, setCarouselData]);
 
   const [posts, setPosts] = useState<Posts[]>([
     {
@@ -561,16 +579,18 @@ function MiddleContent({
   return (
     <div className="middle-content-container">
       <div className="inner-content-container">
-        <ImageCarousel carouselData={carouselData}></ImageCarousel>
-        <StateYourMind user={user}></StateYourMind>
-        <Post
-          setCurrentUser={setCurrentUser}
-          setIsAuthenticated={setIsAuthenticated}
-          users={users}
-          user={user}
-          posts={posts}
-          setPosts={setPosts}
-        ></Post>
+        <CarouselContext.Provider value={{ carouselData, setCarouselData }}>
+          <ImageCarousel carouselData={carouselData}></ImageCarousel>
+          <StateYourMind user={user}></StateYourMind>
+          <Post
+            setCurrentUser={setCurrentUser}
+            setIsAuthenticated={setIsAuthenticated}
+            users={users}
+            user={user}
+            posts={posts}
+            setPosts={setPosts}
+          ></Post>
+        </CarouselContext.Provider>
       </div>
     </div>
   );

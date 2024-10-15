@@ -6,6 +6,8 @@ import PrivateRoute from "Global/components/PrivateRoute.tsx";
 import Home from "Content/Home/Home.tsx";
 import LogIn from "Global/components/LogIn/LogIn.tsx";
 import CreateStory from "Global/components/Image Carousel/CreateStory.tsx";
+import CarouselContext from "Content/Home/MiddleContent/CarouselContext";
+import { carouselDataType } from "Content/Home/MiddleContent/MiddleContent";
 
 export interface Users {
   user: string;
@@ -26,6 +28,7 @@ export interface CurrentUser {
 }
 
 function App() {
+  const [carouselData, setCarouselData] = useState<carouselDataType[]>([]);
   const [passwordValue, setPasswordValue] = useState<string>("");
   const [emailOrPhoneValue, setEmailOrPhoneValue] = useState<string>("");
 
@@ -101,6 +104,8 @@ function App() {
                 setCurrentUser={setCurrentUser}
                 users={users}
                 user={currentUser}
+                carouselData={carouselData}
+                setCarouselData={setCarouselData}
               ></Home>
             }
           ></Route>
@@ -113,10 +118,14 @@ function App() {
           <Route
             path="/stories/create"
             element={
-              <CreateStory
-                setIsAuthenticated={setIsAuthenticated}
-                currentUser={currentUser}
-              ></CreateStory>
+              <CarouselContext.Provider
+                value={{ carouselData, setCarouselData }}
+              >
+                <CreateStory
+                  setIsAuthenticated={setIsAuthenticated}
+                  currentUser={currentUser}
+                ></CreateStory>
+              </CarouselContext.Provider>
             }
           ></Route>
         </Route>

@@ -162,6 +162,12 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+
+                &.active {
+                    span {
+                        text-decoration: underline;
+                    }
+                }
             }
 
             .count {

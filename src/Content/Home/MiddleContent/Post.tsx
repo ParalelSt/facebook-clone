@@ -130,7 +130,9 @@ const Post = ({
                           })}
                         </div>
                         <div
-                          className="like-count count"
+                          className={`like-count count ${
+                            activePostId === post.id ? "active" : "disabled"
+                          }`}
                           onMouseEnter={() => handleLikeDisplayOpen(post.id)}
                           onMouseLeave={() => handleLikeDisplayClose()}
                         >
