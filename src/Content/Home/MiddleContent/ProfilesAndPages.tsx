@@ -51,9 +51,14 @@ const ProfilesAndPages = ({
     setCurrentUser
   );
 
-  const handleLoginClick = async (email: string, password: string) => {
+  const handleLoginClick = async (
+    email: string,
+    password: string,
+    user: Users
+  ) => {
     const logInSuccessful = await handleLogin(email, password);
     if (logInSuccessful) {
+      localStorage.setItem("currentUser", JSON.stringify(user));
       dropDownClose();
       navigate("/");
     }
@@ -87,7 +92,9 @@ const ProfilesAndPages = ({
                 return (
                   <div
                     className="account"
-                    onClick={() => handleLoginClick(user.email, user.password)}
+                    onClick={() =>
+                      handleLoginClick(user.email, user.password, user)
+                    }
                     key={user.id}
                   >
                     <img src={user.profilePicture} alt="" />
