@@ -1,7 +1,7 @@
 import "Global/components/Accordion/Accordion.scss";
 import { Link } from "react-router-dom";
-import { FaCaretDown } from "react-icons/fa6";
 import { AccordionItem } from "Content/Home/LeftSideNav/TopContainer";
+import { RiArrowDownSLine } from "react-icons/ri";
 
 interface Items {
   items: AccordionItem[];
@@ -29,8 +29,9 @@ function Accordion({
     <div id="accordion" className="item-container">
       <div className={`accordion-inner ${isOpen ? "reorder" : ""}`}>
         <div className="top" onClick={toggleTitle}>
-          <FaCaretDown />
-          <div className="icon-container"></div>
+          <div className="icon-container">
+            <RiArrowDownSLine />
+          </div>
           <span className="title">{accordionTitle}</span>
         </div>
         <div className={`accordion-container ${isOpen ? "active" : ""}`}>

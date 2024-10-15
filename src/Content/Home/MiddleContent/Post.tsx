@@ -17,6 +17,7 @@ import ProfilesAndPages from "Content/Home/MiddleContent/ProfilesAndPages";
 import useDropDown from "Global/hooks/useDropDown";
 import LikeButton from "Content/Home/MiddleContent/LikeButton";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 interface PostProps {
   posts: Posts[];
@@ -37,6 +38,7 @@ const Post = ({
 }: PostProps) => {
   //Like Logic
 
+  const [activePostId, setActivePostId] = useState<string | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [handleDropDownOpen, handleDropDownClose, _, isActive] = useDropDown();
 
@@ -51,6 +53,16 @@ const Post = ({
   const currentUser = localStorage.getItem("currentUser")
     ? JSON.parse(localStorage.getItem("currentUser") as string)
     : null;
+
+  //Hover on like count to display users who've liked the post
+
+  const handleLikeDisplayOpen = (postId: string) => {
+    setActivePostId(postId);
+  };
+
+  const handleLikeDisplayClose = () => {
+    setActivePostId(null);
+  };
 
   return (
     <>
@@ -91,6 +103,22 @@ const Post = ({
                     post.commentCount > 0 ||
                     post.shareCount > 0) && (
                     <div className="like-share-display">
+                      <div
+                        className={`users-that-liked ${
+                          activePostId === post.id ? "active" : "disabled"
+                        }`}
+                      >
+                        {post.usersWhoLiked.map((likedUser) => {
+                          return (
+                            <div
+                              className={`liked-user-display`}
+                              key={likedUser.id}
+                            >
+                              {likedUser.username}
+                            </div>
+                          );
+                        })}
+                      </div>
                       <div className="post-likes">
                         <div className="like-icons">
                           {post.likeIcons.map((icon) => {
@@ -100,22 +128,12 @@ const Post = ({
                               </div>
                             );
                           })}
-                          {post.likeCount !== 0 && (
-                            <div className="users-that-liked">
-                              {post.usersWhoLiked.map((likedUser) => {
-                                return (
-                                  <div
-                                    className="liked-user-display"
-                                    key={likedUser.id}
-                                  >
-                                    {likedUser.username}
-                                  </div>
-                                );
-                              })}
-                            </div>
-                          )}
                         </div>
-                        <div className="like-count count">
+                        <div
+                          className="like-count count"
+                          onMouseEnter={() => handleLikeDisplayOpen(post.id)}
+                          onMouseLeave={() => handleLikeDisplayClose()}
+                        >
                           <span>
                             {post.likeCount == 0 ? "" : post.likeCount}
                           </span>

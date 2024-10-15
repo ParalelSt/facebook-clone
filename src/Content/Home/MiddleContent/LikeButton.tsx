@@ -29,7 +29,6 @@ const LikeButton = ({ user, post, setPosts }: LikeButtonProps) => {
                 ...p.usersWhoLiked,
                 { id: currentUser.id, username: currentUser.user },
               ];
-
           return {
             ...p,
             likeCount: updatedLikeCount,
