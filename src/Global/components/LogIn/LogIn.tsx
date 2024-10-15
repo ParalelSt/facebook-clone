@@ -1,15 +1,15 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { Link } from "react-router-dom";
-import "Global/components/Login/LogIn.scss";
-import BorderLine from "../BorderLine";
+import "Global/components/LogIn/LogIn.scss";
+import BorderLine from "Global/components/BorderLine";
 import { useEffect, useState } from "react";
 import useLogInLogic from "./LogInLogic";
-import useBodyClass from "../../hooks/useBodyClass";
-import { Users } from "../../../App";
-import SignUp from "../SignUp/SignUp";
-import useDropDown from "../../hooks/useDropDown";
-import Options from "./Options";
-import LanguageList from "./LanguageList";
+import useBodyClass from "Global/hooks/useBodyClass";
+import { Users } from "App";
+import SignUp from "Global/components/SignUp/SignUp";
+import useDropDown from "Global/hooks/useDropDown";
+import Options from "Global/components/LogIn/Options";
+import LanguageList from "Global/components/LogIn/LanguageList";
 
 interface LogInProps {
   setIsAuthenticated: (isAuthenticated: boolean) => void;
