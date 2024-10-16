@@ -1,0 +1,145 @@
+@import '../../GlobalStyles.scss';
+
+.create-story-left {
+    display: flex;
+    flex-direction: column;
+
+    width: 27.7rem;
+
+    height: 100%;
+
+    background-color: white;
+    box-shadow: $shadow-light;
+
+    .create-story-left-top {
+        display: flex;
+        gap: 0.5em;
+
+        padding: 0.5em 0;
+
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+        .close-button-container {
+            margin-left: 1em;
+        }
+    }
+
+    .create-story-left-user-info-container-top {
+        display: flex;
+
+        padding: 1em;
+
+        .left {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-top: 0.6em;
+        }
+
+        .right {
+            margin-left: auto;
+
+            .privacy-settings {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                border-radius: 100%;
+
+                width: 2.2em;
+                height: 2.2em;
+
+                background-color: $button-gray;
+
+                &:hover {
+                    filter: brightness(0.95);
+                }
+
+                img {
+                    position: absolute;
+                    right: 0.29em;
+
+                    width: 1.6em;
+                    height: 1.6em;
+                }
+            }
+        }
+    }
+
+    .create-story-left-user-info-container-bottom {
+        display: flex;
+        align-items: center;
+        gap: 0.7em;
+
+        padding: 0.5em 1em 1.7em 1em;
+        border-bottom: 1px solid $border-gray;
+
+        .profile-picture {
+            height: 3.75em;
+            width: 3.75em;
+
+            img {
+                height: 100%;
+                width: 100%;
+            }
+        }
+
+        .username {
+            font-size: $m-l;
+        }
+    }
+
+    .story-items {
+        display: none;
+        flex-direction: column;
+
+        height: 100%;
+
+        &.active {
+            display: flex;
+        }
+
+        .main-buttons-container {
+            display: flex;
+            flex-direction: column;
+            margin-top: auto;
+
+            .create-story-button-container {
+                display: flex;
+                justify-items: center;
+                gap: 0.5em;
+    
+                padding: 1em;
+                padding-bottom: 1.2em;
+    
+                box-shadow: $shadow-dark;
+    
+                button {
+                    padding: 0.6em 2.6em;
+                    border-radius: 0.4em;
+    
+                    font-size: $m-l;
+
+                    white-space: nowrap;
+
+                    &:hover {
+                        filter: brightness(0.95);
+                    }
+                }
+    
+                .discard-button {
+                    background-color: $button-gray;
+                }
+    
+                .share-to-story-button {
+                    background-color: $blue;
+                    color: white;
+                }
+            }
+
+            
+        }
+    }
+}

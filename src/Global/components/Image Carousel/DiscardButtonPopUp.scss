@@ -1,0 +1,119 @@
+@import "../../GlobalStyles.scss";
+
+.discard-button-pop-up-background {
+    position: absolute;
+
+    top: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+    width: 100%;
+}
+
+.discard-items-display {
+    z-index: 200;
+
+    display: flex;
+    flex-direction: column;
+
+    border-radius: 0.5em;
+
+    width: 34.25em;
+    height: 11.1em;
+
+    background-color: white;
+    box-shadow: $shadow-dark;
+
+    &-top {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        padding: 1.2em 1em;
+
+        width: 100%;
+
+        &-close-button {
+            position: absolute;
+            right: 1em;
+
+            margin-left: auto;
+
+            button {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                padding: 0.45em;
+                border-radius: 100%;
+
+                background-color: $button-gray;
+
+                svg {
+                    height: 1.4em;
+                    width: 1.4em;
+                }
+            }
+        }
+    }
+
+    .border-line {
+        padding: 0;
+    }
+
+    &-bottom {
+        display: flex;
+        flex-direction: column;
+
+        padding: 1em;
+        padding-top: 0.5em;
+
+        height: 100%;
+    }
+
+    .discard-story-text {
+        display: flex;
+
+        margin-bottom: auto;
+
+        font-size: $medium;
+    }
+
+    .button-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 0.5em;
+
+        button {
+            border-radius: 0.4em;
+    
+            font-size: $medium;
+    
+            &:hover {
+                filter: brightness(0.95);
+            }
+        }
+
+        .continue-editing-button {
+            padding: 0.6em 0.7em;
+
+            color: $blue;
+
+            &:hover {
+                background-color: rgb($background, 0.6);
+            }
+        }
+
+        .discard-button {
+            padding: 0.6em 2.5em;
+
+            background-color: $blue;
+            color: white;
+        }
+    }
+}

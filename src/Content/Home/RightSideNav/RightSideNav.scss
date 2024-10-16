@@ -9,6 +9,8 @@
     overflow-x: hidden;
     overflow-y: hidden;
     scrollbar-width: thin;
+    position: fixed;
+    right: 0;
     
     &:hover {
         overflow-y: scroll;  
@@ -18,8 +20,4 @@
         padding-left: 0.3em;
         width: 100%;
     }
-
-    position: fixed;
-    right: 0;
-    
 }

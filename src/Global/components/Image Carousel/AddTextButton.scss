@@ -1,0 +1,53 @@
+@import "../../GlobalStyles.scss";
+
+.add-text-button-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 0.4em 0.8em;
+    
+    .add-text-button {
+        display: flex;
+        align-items: center;
+        gap: 0.7em;
+
+        padding: 0.6em;
+        border-radius: 0.5em;
+
+        width: 100%;
+        height: 100%;
+
+        &:hover {
+            background-color: rgba(228, 230, 235, 0.38);
+
+            .icon-container {
+                filter: brightness(0.95);
+            }
+        }
+
+        .icon-container {
+            display: flex;
+
+            border-radius: 100%;
+
+            background-color: #f0f2f4;
+
+            div {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                width: 2.5rem;
+                height: 2.5rem;
+
+                font-size: 1em !important; //Used a fake icon and it's now stuck as a div element, will update soon
+            }
+        }
+
+        span {
+            font-size: $m-l;
+            font-weight: bold;
+        }
+    }
+}
