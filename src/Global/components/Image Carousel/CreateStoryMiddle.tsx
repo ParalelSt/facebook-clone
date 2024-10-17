@@ -1,6 +1,6 @@
 import { FaImage } from "react-icons/fa6";
 import "Global/components/Image Carousel/CreateStoryMiddle.scss";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 
 interface CreateStoryMiddleProps {
   setImage: (image: string | null) => void;
@@ -17,8 +17,7 @@ const CreateStoryMiddle = ({
   image,
   imageInputRef,
 }: CreateStoryMiddleProps) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [isActive, setIsActive] = useState(false);
+  // const [isActive, setIsActive] = useState(false);
 
   const handleImageEditingOpen = () => {
     setIsActive(true);
