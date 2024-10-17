@@ -1,6 +1,6 @@
 import { FaImage } from "react-icons/fa6";
 import "Global/components/Image Carousel/CreateStoryMiddle.scss";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface CreateStoryMiddleProps {
   setImage: (image: string | null) => void;
@@ -17,7 +17,7 @@ const CreateStoryMiddle = ({
   image,
   imageInputRef,
 }: CreateStoryMiddleProps) => {
-  // const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(false);
 
   const handleImageEditingOpen = () => {
     setIsActive(true);
@@ -99,6 +99,8 @@ const CreateStoryMiddle = ({
             onClick={handleImageEditingOpen}
           >
             {image && <img src={image} alt="" />}
+
+            {isActive && <div className="expanded-image"></div>}
           </div>
           <div className="preview-text-container">
             <span className="">Select photo to crop and rotate</span>
