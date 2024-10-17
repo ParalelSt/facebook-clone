@@ -1,6 +1,6 @@
 import { Users } from "App";
 import "./CreateStory.scss";
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import CarouselContext from "Content/Home/MiddleContent/CarouselContext";
 import { v4 } from "uuid";
 import { carouselDataType } from "Content/Home/MiddleContent/MiddleContent";
@@ -20,6 +20,7 @@ const CreateStory = ({ setIsAuthenticated, currentUser }: CreateStoryProps) => {
 
   //Image file handling
   const [image, setImage] = useState<string | null>(null);
+  const imageInputRef = useRef<HTMLInputElement>(null);
 
   //CarouselData context
 
@@ -64,11 +65,14 @@ const CreateStory = ({ setIsAuthenticated, currentUser }: CreateStoryProps) => {
         setStoryItemsVisible={setStoryItemsVisible}
         setImage={setImage}
         currentUser={currentUser}
+        imageInputRef={imageInputRef}
       ></CreateStoryLeft>
       <CreateStoryMiddle
         setImage={setImage}
         storyItemsVisible={storyItemsVisible}
         setStoryItemsVisible={setStoryItemsVisible}
+        image={image}
+        imageInputRef={imageInputRef}
       ></CreateStoryMiddle>
       <CreateStoryRight
         currentUser={currentUser}

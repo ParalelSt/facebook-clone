@@ -14,6 +14,7 @@ interface CreateStoryLeftProps {
   storyItemsVisible: boolean;
   setStoryItemsVisible: (storyItemsVisible: boolean) => void;
   currentUser: Users | null;
+  imageInputRef: React.RefObject<HTMLInputElement>;
 }
 
 const CreateStoryLeft = ({
@@ -24,7 +25,10 @@ const CreateStoryLeft = ({
   storyItemsVisible,
   setStoryItemsVisible,
   currentUser,
+  imageInputRef,
 }: CreateStoryLeftProps) => {
+  console.log(currentUser);
+
   //Opening the discard items popup
 
   const openDiscardItems = () => {
@@ -37,6 +41,10 @@ const CreateStoryLeft = ({
     setImage(null);
     setStoryItemsVisible(false);
     setIsOpen(false);
+
+    if (imageInputRef?.current) {
+      imageInputRef.current.value = "";
+    }
   };
 
   return (
