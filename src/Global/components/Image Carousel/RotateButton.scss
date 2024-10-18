@@ -1,0 +1,24 @@
+@import '../../GlobalStyles.scss';
+
+.rotate-button {
+    button {
+        display: flex;
+        gap: 0.3em;
+    
+        padding: 0.5em 0.7em;
+        border-radius: 0.3em;
+    
+        background-color: $button-gray;
+    }
+    
+    span {
+        font-size: $medium;
+    }
+
+    svg {
+        max-height: 1em;
+        max-width: 1em;
+
+        transform: scaleX(-1) rotate(-90deg);
+    }
+}

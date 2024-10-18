@@ -15,6 +15,8 @@ interface CreateStoryLeftProps {
   setStoryItemsVisible: (storyItemsVisible: boolean) => void;
   currentUser: Users | null;
   imageInputRef: React.RefObject<HTMLInputElement>;
+  zoomLevel: string;
+  setZoomLevel: (zoomLevel: string) => void;
 }
 
 const CreateStoryLeft = ({
@@ -26,6 +28,8 @@ const CreateStoryLeft = ({
   setStoryItemsVisible,
   currentUser,
   imageInputRef,
+  zoomLevel,
+  setZoomLevel,
 }: CreateStoryLeftProps) => {
   console.log(currentUser);
 
@@ -44,6 +48,10 @@ const CreateStoryLeft = ({
 
     if (imageInputRef?.current) {
       imageInputRef.current.value = "";
+    }
+
+    if (zoomLevel) {
+      setZoomLevel("1");
     }
   };
 

@@ -1,6 +1,8 @@
 import { FaImage } from "react-icons/fa6";
 import "Global/components/Image Carousel/CreateStoryMiddle.scss";
 import { useEffect, useRef, useState } from "react";
+import RangeSlider from "./RangeSlider";
+import RotateButton from "./RotateButton";
 
 interface CreateStoryMiddleProps {
   setImage: (image: string | null) => void;
@@ -8,6 +10,8 @@ interface CreateStoryMiddleProps {
   setStoryItemsVisible: (storyItemsVisible: boolean) => void;
   image: string | null;
   imageInputRef: React.RefObject<HTMLInputElement>;
+  zoomLevel: string;
+  setZoomLevel: (zoomLevel: string) => void;
 }
 
 const CreateStoryMiddle = ({
@@ -16,16 +20,23 @@ const CreateStoryMiddle = ({
   setStoryItemsVisible,
   image,
   imageInputRef,
+  zoomLevel,
+  setZoomLevel,
 }: CreateStoryMiddleProps) => {
-  const [isActive, setIsActive] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const handleImageEditingOpen = () => {
-    setIsActive(true);
+    setIsExpanded(true);
   };
 
   const handleImageEditingClose = (e: MouseEvent) => {
-    if (imageRef.current && !imageRef.current.contains(e.target as Node)) {
-      setIsActive(false);
+    if (
+      imageRef.current &&
+      !imageRef.current.contains(e.target as Node) &&
+      imageControlsRef.current &&
+      !imageControlsRef.current.contains(e.target as Node)
+    ) {
+      setIsExpanded(false);
     }
   };
 
@@ -57,6 +68,7 @@ const CreateStoryMiddle = ({
   };
 
   const imageRef = useRef<HTMLImageElement>(null);
+  const imageControlsRef = useRef<HTMLImageElement>(null);
 
   return (
     <div className="create-story-middle">
@@ -94,17 +106,48 @@ const CreateStoryMiddle = ({
         <span className="preview-span">Preview</span>
         <div className="image-preview">
           <div
-            className={`preview-img-container`}
+            className={`preview-img-background ${
+              isExpanded ? "active" : "disabled"
+            }`}
+          ></div>
+          <div
+            className={`preview-img-container ${
+              isExpanded ? "expanded" : "default"
+            }`}
             ref={imageRef}
             onClick={handleImageEditingOpen}
           >
-            {image && <img src={image} alt="" />}
+            <div className={`image-container`}>
+              {image && (
+                <img
+                  src={image}
+                  alt="story-image"
+                  style={{
+                    transform: `scale(${zoomLevel})`,
+                    transition: "transform 0.3s ease",
+                  }}
+                />
+              )}
+            </div>
+          </div>
 
-            {isActive && <div className="expanded-image"></div>}
-          </div>
-          <div className="preview-text-container">
-            <span className="">Select photo to crop and rotate</span>
-          </div>
+          {!isExpanded && (
+            <div className="preview-text-container">
+              <span className="">Select photo to crop and rotate</span>
+            </div>
+          )}
+          {isExpanded && (
+            <div className="image-controls" ref={imageControlsRef}>
+              <RangeSlider
+                min="0.5"
+                max="4"
+                step="0.05"
+                value={zoomLevel}
+                onChange={setZoomLevel}
+              ></RangeSlider>
+              <RotateButton></RotateButton>
+            </div>
+          )}
         </div>
       </div>
     </div>

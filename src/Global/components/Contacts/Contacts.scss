@@ -34,14 +34,15 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
+                    
                     border-radius: 100%;
+
+                    width: 2em;
+                    height: 2em;
                     
                     &:hover {
                         background-color: rgb(128, 128, 128, 0.15);
                     }
-
-                    width: 2em;
-                    height: 2em;
 
                     svg {
                         color: rgb(128, 128, 128);
@@ -61,12 +62,12 @@
             padding: 0.5em;
     
             gap: 0.6em;
+
+            border-radius: 0.7em;
     
             &:hover {
                 background-color: rgba(128, 128, 128, 0.15);
             }
-    
-            border-radius: 0.7em;
     
             img {
                 height: 2em;

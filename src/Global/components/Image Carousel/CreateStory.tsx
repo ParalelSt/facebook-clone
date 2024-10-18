@@ -18,6 +18,9 @@ const CreateStory = ({ setIsAuthenticated, currentUser }: CreateStoryProps) => {
   const [storyItemsVisible, setStoryItemsVisible] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
+  //Image zooming state
+  const [zoomLevel, setZoomLevel] = useState("1");
+
   //Image file handling
   const [image, setImage] = useState<string | null>(null);
   const imageInputRef = useRef<HTMLInputElement>(null);
@@ -66,6 +69,8 @@ const CreateStory = ({ setIsAuthenticated, currentUser }: CreateStoryProps) => {
         setImage={setImage}
         currentUser={currentUser}
         imageInputRef={imageInputRef}
+        zoomLevel={zoomLevel}
+        setZoomLevel={setZoomLevel}
       ></CreateStoryLeft>
       <CreateStoryMiddle
         setImage={setImage}
@@ -73,6 +78,8 @@ const CreateStory = ({ setIsAuthenticated, currentUser }: CreateStoryProps) => {
         setStoryItemsVisible={setStoryItemsVisible}
         image={image}
         imageInputRef={imageInputRef}
+        zoomLevel={zoomLevel}
+        setZoomLevel={setZoomLevel}
       ></CreateStoryMiddle>
       <CreateStoryRight
         currentUser={currentUser}
