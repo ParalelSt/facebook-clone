@@ -19,12 +19,11 @@
 
         gap: 0.6em;
         
+        border-radius: 0.7em;
 
         &:hover {
             background-color: rgba(128, 128, 128, 0.15);
         }
-
-        border-radius: 0.7em;
 
         img, svg {
             width: 2em;

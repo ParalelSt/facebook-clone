@@ -24,6 +24,7 @@ const CreateStoryMiddle = ({
   setZoomLevel,
 }: CreateStoryMiddleProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
 
   const handleImageEditingOpen = () => {
     setIsExpanded(true);
@@ -60,11 +61,39 @@ const CreateStoryMiddle = ({
       reader.onloadend = () => {
         const imageUrl = reader.result as string;
         setImage(imageUrl);
+        const img = new Image();
+        img.onload = () => {
+          setImageSize({ width: img.width, height: img.height });
+        };
+        img.src = imageUrl;
       };
       reader.readAsDataURL(file);
-
       setStoryItemsVisible(true);
     }
+  };
+
+  const calculateImageSize = () => {
+    const widthThreshold = 900;
+    const targetWidth = 404;
+    const targetHeight = 225;
+
+    let width, height;
+
+    if (imageSize.width > widthThreshold) {
+      width = targetWidth;
+      height = targetHeight;
+    } else {
+      width = imageSize.width;
+      height = imageSize.height;
+    }
+
+    const zoomFactor = parseFloat(zoomLevel);
+
+    return {
+      width: `${width * zoomFactor}px`,
+      height: `${height * zoomFactor}px`,
+      transition: "width 0.3s ease, height 0.3s ease",
+    };
   };
 
   const imageRef = useRef<HTMLImageElement>(null);
@@ -117,15 +146,16 @@ const CreateStoryMiddle = ({
             ref={imageRef}
             onClick={handleImageEditingOpen}
           >
-            <div className={`image-container`}>
+            <div
+              className={`image-container ${
+                isExpanded ? "active" : "disabled"
+              }`}
+            >
               {image && (
                 <img
                   src={image}
                   alt="story-image"
-                  style={{
-                    transform: `scale(${zoomLevel})`,
-                    transition: "transform 0.3s ease",
-                  }}
+                  style={calculateImageSize()}
                 />
               )}
             </div>
@@ -139,8 +169,8 @@ const CreateStoryMiddle = ({
           {isExpanded && (
             <div className="image-controls" ref={imageControlsRef}>
               <RangeSlider
-                min="0.5"
-                max="4"
+                min="0.2"
+                max="1.7"
                 step="0.05"
                 value={zoomLevel}
                 onChange={setZoomLevel}
