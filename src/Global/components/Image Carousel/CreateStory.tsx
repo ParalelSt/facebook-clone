@@ -23,6 +23,10 @@ const CreateStory = ({ setIsAuthenticated, currentUser }: CreateStoryProps) => {
 
   //Image file handling
   const [image, setImage] = useState<string | null>(null);
+  const [imageSize, setImageSize] = useState<{
+    width: number | null;
+    height: number | null;
+  }>({ width: null, height: null });
   const imageInputRef = useRef<HTMLInputElement>(null);
 
   //CarouselData context
@@ -38,7 +42,10 @@ const CreateStory = ({ setIsAuthenticated, currentUser }: CreateStoryProps) => {
   //Adding the new story
 
   const addNewStory = (newStory: carouselDataType) => {
-    setCarouselData([...carouselData, newStory]);
+    const updatedData = carouselData.filter(
+      (story: carouselDataType) => story.userId !== currentUser?.id
+    );
+    setCarouselData([newStory, ...updatedData]);
   };
 
   const createStory = () => {
@@ -53,9 +60,14 @@ const CreateStory = ({ setIsAuthenticated, currentUser }: CreateStoryProps) => {
       image: image || "",
       userId: currentUser?.id || "",
       id: v4(),
+      width: imageSize.width !== null ? imageSize.width / 2 : undefined,
+      height: imageSize.height !== null ? imageSize.height / 2 : undefined,
     };
 
     addNewStory(newStory);
+    setImage(null);
+    setZoomLevel("1");
+    setStoryItemsVisible(false);
   };
 
   return (
@@ -80,6 +92,8 @@ const CreateStory = ({ setIsAuthenticated, currentUser }: CreateStoryProps) => {
         imageInputRef={imageInputRef}
         zoomLevel={zoomLevel}
         setZoomLevel={setZoomLevel}
+        imageSize={imageSize}
+        setImageSize={setImageSize}
       ></CreateStoryMiddle>
       <CreateStoryRight
         currentUser={currentUser}

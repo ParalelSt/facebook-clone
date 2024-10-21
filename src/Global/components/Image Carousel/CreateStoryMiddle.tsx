@@ -12,6 +12,11 @@ interface CreateStoryMiddleProps {
   imageInputRef: React.RefObject<HTMLInputElement>;
   zoomLevel: string;
   setZoomLevel: (zoomLevel: string) => void;
+  imageSize: { width: number | null; height: number | null };
+  setImageSize: (imageSize: {
+    width: number | null;
+    height: number | null;
+  }) => void;
 }
 
 const CreateStoryMiddle = ({
@@ -22,9 +27,10 @@ const CreateStoryMiddle = ({
   imageInputRef,
   zoomLevel,
   setZoomLevel,
+  imageSize,
+  setImageSize,
 }: CreateStoryMiddleProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [imageSize, setImageSize] = useState({ width: 0, height: 0 });
 
   const handleImageEditingOpen = () => {
     setIsExpanded(true);
@@ -63,7 +69,10 @@ const CreateStoryMiddle = ({
         setImage(imageUrl);
         const img = new Image();
         img.onload = () => {
-          setImageSize({ width: img.width, height: img.height });
+          setImageSize({
+            width: img.width || null,
+            height: img.height || null,
+          });
         };
         img.src = imageUrl;
       };
@@ -77,21 +86,25 @@ const CreateStoryMiddle = ({
     const targetWidth = 404;
     const targetHeight = 225;
 
-    let width, height;
+    const width = imageSize.width ?? 0; // Default to 0 if null
+    const height = imageSize.height ?? 0; // Default to 0 if null
 
-    if (imageSize.width > widthThreshold) {
-      width = targetWidth;
-      height = targetHeight;
+    let finalWidth: number;
+    let finalHeight: number;
+
+    if (width > widthThreshold) {
+      finalWidth = targetWidth;
+      finalHeight = targetHeight;
     } else {
-      width = imageSize.width;
-      height = imageSize.height;
+      finalWidth = width;
+      finalHeight = height;
     }
 
-    const zoomFactor = parseFloat(zoomLevel);
+    const zoomFactor = parseFloat(zoomLevel) || 1; // Default to 1 if parsing fails
 
     return {
-      width: `${width * zoomFactor}px`,
-      height: `${height * zoomFactor}px`,
+      width: `${finalWidth * zoomFactor}px`,
+      height: `${finalHeight * zoomFactor}px`,
       transition: "width 0.3s ease, height 0.3s ease",
     };
   };

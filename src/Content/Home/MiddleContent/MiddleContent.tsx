@@ -15,6 +15,8 @@ export interface carouselDataType {
   image: string;
   userId: string;
   id: string;
+  width: number | undefined;
+  height: number | undefined;
 }
 
 interface MiddleContentProps {

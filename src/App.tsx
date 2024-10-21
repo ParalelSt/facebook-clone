@@ -251,7 +251,7 @@ function App() {
     return currentUserStory
       ? [currentUserStory, ...otherStories]
       : otherStories;
-  }, [contactList]);
+  }, [contactList, currentUser]);
 
   useEffect(() => {
     setCarouselData(initialCarouselData);
