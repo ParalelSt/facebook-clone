@@ -17,6 +17,10 @@ interface CreateStoryMiddleProps {
     width: number | null;
     height: number | null;
   }) => void;
+  setPostImageSize: (postImageSize: {
+    width: number | null;
+    height: number | null;
+  }) => void;
 }
 
 const CreateStoryMiddle = ({
@@ -29,9 +33,8 @@ const CreateStoryMiddle = ({
   setZoomLevel,
   imageSize,
   setImageSize,
+  setPostImageSize,
 }: CreateStoryMiddleProps) => {
-  const previousImageSize = useRef(imageSize); // Use a ref to track previous size
-
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleImageEditingOpen = () => {
@@ -69,30 +72,18 @@ const CreateStoryMiddle = ({
       reader.onloadend = () => {
         const imageUrl = reader.result as string;
         setImage(imageUrl);
+        const img = new Image();
+        img.onload = () => {
+          setImageSize({ width: img.width, height: img.height });
+        };
+        img.src = imageUrl;
       };
       reader.readAsDataURL(file);
       setStoryItemsVisible(true);
     }
   };
 
-  useEffect(() => {
-    if (image) {
-      const img = new Image();
-      img.onload = () => {
-        const newWidth = img.width || null;
-        const newHeight = img.height || null;
-
-        if (
-          previousImageSize.current?.width !== newWidth ||
-          previousImageSize.current?.height !== newHeight
-        ) {
-          setImageSize({ width: newWidth, height: newHeight });
-          previousImageSize.current = { width: newWidth, height: newHeight };
-        }
-      };
-      img.src = image;
-    }
-  }, [image, setImageSize]);
+  useEffect(() => {}, [image, setImageSize]);
 
   const calculatedImageSize = useMemo(() => {
     const widthThreshold = 900;
@@ -106,8 +97,11 @@ const CreateStoryMiddle = ({
     let finalHeight: number;
 
     if (width > widthThreshold) {
-      finalWidth = targetWidth;
-      finalHeight = targetHeight;
+      finalWidth = targetWidth + 20;
+      finalHeight = targetHeight + 20;
+    } else if (width < targetWidth || height < targetHeight) {
+      finalWidth = 404;
+      finalHeight = 722;
     } else {
       finalWidth = width;
       finalHeight = height;
@@ -121,6 +115,13 @@ const CreateStoryMiddle = ({
       transition: "width 0.3s ease, height 0.3s ease",
     };
   }, [imageSize, zoomLevel]);
+
+  useEffect(() => {
+    setPostImageSize({
+      width: parseInt(calculatedImageSize.width) / 1.5,
+      height: parseInt(calculatedImageSize.height) / 1.5,
+    });
+  }, [calculatedImageSize, setPostImageSize]);
 
   const imageRef = useRef<HTMLImageElement>(null);
   const imageControlsRef = useRef<HTMLImageElement>(null);

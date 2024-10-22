@@ -92,8 +92,7 @@
                 height: 250px;
                 position: relative;
                 border-radius: 0.5em;
-                padding: 0.5em;
-                background-color: white;
+                background-color: black;
                 transition: filter 0.3s ease-in-out;
                 flex-shrink: 0;
                 overflow: hidden;
@@ -116,18 +115,13 @@
                     filter: brightness(0.9);
                     
                     .story-image {
-                        scale: 1.1;
+                        transform: scale(1.05);
+                        transition: transform 0.2s ease-in-out;
                     }
                 }
     
                 .story-image {
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
                     display: block;
-
-                    border-radius: 0.5em;
 
                     width: 100%;
                     height: 100%;

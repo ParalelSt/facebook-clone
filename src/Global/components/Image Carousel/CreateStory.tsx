@@ -27,6 +27,10 @@ const CreateStory = ({ setIsAuthenticated, currentUser }: CreateStoryProps) => {
     width: number | null;
     height: number | null;
   }>({ width: null, height: null });
+  const [postImageSize, setPostImageSize] = useState<{
+    width: number | null;
+    height: number | null;
+  }>({ width: null, height: null });
   const imageInputRef = useRef<HTMLInputElement>(null);
 
   //CarouselData context
@@ -65,12 +69,12 @@ const CreateStory = ({ setIsAuthenticated, currentUser }: CreateStoryProps) => {
       userId: currentUser?.id || "",
       id: v4(),
       width:
-        imageSize.width !== null
-          ? Math.round(imageSize.width * zoomFactor) / 2
+        postImageSize.width !== null
+          ? Math.round(postImageSize.width * zoomFactor) / 2
           : undefined,
       height:
-        imageSize.height !== null
-          ? Math.round(imageSize.height * zoomFactor) / 2
+        postImageSize.height !== null
+          ? Math.round(postImageSize.height * zoomFactor) / 2
           : undefined,
     };
 
@@ -104,6 +108,7 @@ const CreateStory = ({ setIsAuthenticated, currentUser }: CreateStoryProps) => {
         setZoomLevel={setZoomLevel}
         imageSize={imageSize}
         setImageSize={setImageSize}
+        setPostImageSize={setPostImageSize}
       ></CreateStoryMiddle>
       <CreateStoryRight
         currentUser={currentUser}
