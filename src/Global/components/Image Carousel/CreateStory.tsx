@@ -53,6 +53,10 @@ const CreateStory = ({ setIsAuthenticated, currentUser }: CreateStoryProps) => {
       throw new Error("How did you get here without signing in?");
     }
 
+    const zoomFactor = parseFloat(zoomLevel);
+
+    console.log(imageSize);
+
     const newStory = {
       username: currentUser?.user || "",
       profilePicture: currentUser?.profilePicture || "",
@@ -60,8 +64,14 @@ const CreateStory = ({ setIsAuthenticated, currentUser }: CreateStoryProps) => {
       image: image || "",
       userId: currentUser?.id || "",
       id: v4(),
-      width: imageSize.width !== null ? imageSize.width / 2 : undefined,
-      height: imageSize.height !== null ? imageSize.height / 2 : undefined,
+      width:
+        imageSize.width !== null
+          ? Math.round(imageSize.width * zoomFactor) / 2
+          : undefined,
+      height:
+        imageSize.height !== null
+          ? Math.round(imageSize.height * zoomFactor) / 2
+          : undefined,
     };
 
     addNewStory(newStory);

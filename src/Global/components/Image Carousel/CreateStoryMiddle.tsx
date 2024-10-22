@@ -1,6 +1,6 @@
 import { FaImage } from "react-icons/fa6";
 import "Global/components/Image Carousel/CreateStoryMiddle.scss";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import RangeSlider from "./RangeSlider";
 import RotateButton from "./RotateButton";
 
@@ -30,6 +30,8 @@ const CreateStoryMiddle = ({
   imageSize,
   setImageSize,
 }: CreateStoryMiddleProps) => {
+  const previousImageSize = useRef(imageSize); // Use a ref to track previous size
+
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleImageEditingOpen = () => {
@@ -67,21 +69,32 @@ const CreateStoryMiddle = ({
       reader.onloadend = () => {
         const imageUrl = reader.result as string;
         setImage(imageUrl);
-        const img = new Image();
-        img.onload = () => {
-          setImageSize({
-            width: img.width || null,
-            height: img.height || null,
-          });
-        };
-        img.src = imageUrl;
       };
       reader.readAsDataURL(file);
       setStoryItemsVisible(true);
     }
   };
 
-  const calculateImageSize = () => {
+  useEffect(() => {
+    if (image) {
+      const img = new Image();
+      img.onload = () => {
+        const newWidth = img.width || null;
+        const newHeight = img.height || null;
+
+        if (
+          previousImageSize.current?.width !== newWidth ||
+          previousImageSize.current?.height !== newHeight
+        ) {
+          setImageSize({ width: newWidth, height: newHeight });
+          previousImageSize.current = { width: newWidth, height: newHeight };
+        }
+      };
+      img.src = image;
+    }
+  }, [image, setImageSize]);
+
+  const calculatedImageSize = useMemo(() => {
     const widthThreshold = 900;
     const targetWidth = 404;
     const targetHeight = 225;
@@ -107,7 +120,7 @@ const CreateStoryMiddle = ({
       height: `${finalHeight * zoomFactor}px`,
       transition: "width 0.3s ease, height 0.3s ease",
     };
-  };
+  }, [imageSize, zoomLevel]);
 
   const imageRef = useRef<HTMLImageElement>(null);
   const imageControlsRef = useRef<HTMLImageElement>(null);
@@ -168,7 +181,11 @@ const CreateStoryMiddle = ({
                 <img
                   src={image}
                   alt="story-image"
-                  style={calculateImageSize()}
+                  style={{
+                    width: calculatedImageSize.width,
+                    height: calculatedImageSize.height,
+                    transition: calculatedImageSize.transition,
+                  }}
                 />
               )}
             </div>
@@ -182,8 +199,8 @@ const CreateStoryMiddle = ({
           {isExpanded && (
             <div className="image-controls" ref={imageControlsRef}>
               <RangeSlider
-                min="0.2"
-                max="1.7"
+                min="0.5"
+                max="2"
                 step="0.05"
                 value={zoomLevel}
                 onChange={setZoomLevel}

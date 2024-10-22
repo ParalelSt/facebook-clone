@@ -31,8 +31,6 @@ const CreateStoryLeft = ({
   zoomLevel,
   setZoomLevel,
 }: CreateStoryLeftProps) => {
-  console.log(currentUser);
-
   //Opening the discard items popup
 
   const openDiscardItems = () => {

@@ -55,7 +55,7 @@ function ImageCarousel({ carouselData }: data) {
       {carouselData
         .slice(currentIndex, currentIndex + imagesToShow)
         .map((story) => {
-          if (!story.recentStoryPost) {
+          if (!story.recentStoryPost && story.userId === currentUser.id) {
             return (
               <div
                 className="story-container user-story-container"

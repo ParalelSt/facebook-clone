@@ -232,6 +232,8 @@ function App() {
           image: "",
           userId: currentUser.id || "",
           id: v4(),
+          width: undefined,
+          height: undefined,
         }
       : null;
 
@@ -244,6 +246,8 @@ function App() {
           image: post.postImage || "",
           userId: post.id || "",
           id: v4(),
+          width: undefined,
+          height: undefined,
         },
       ];
     });
