@@ -21,6 +21,7 @@ import { useState } from "react";
 
 interface PostProps {
   posts: Posts[];
+  post?: Posts;
   setPosts: React.Dispatch<React.SetStateAction<Posts[]>>;
   users: Users[];
   user: Users | null;

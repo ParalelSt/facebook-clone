@@ -3,6 +3,7 @@ import RightSideNav from "Content/Home/RightSideNav/RightSideNav";
 import "Content/Home/Home.scss";
 import MiddleContent, {
   carouselDataType,
+  Posts,
 } from "Content/Home/MiddleContent/MiddleContent";
 import { Users } from "App";
 import { useMemo } from "react";
@@ -29,6 +30,8 @@ interface HomeProps {
   setCarouselData: (carouselData: carouselDataType[]) => void;
   contactList: ContactListType[];
   initialCarouselData: carouselDataType[];
+  posts: Posts[];
+  setPosts: (posts: Posts[]) => void;
 }
 
 function Home({
@@ -42,6 +45,8 @@ function Home({
   setCarouselData,
   contactList,
   initialCarouselData,
+  posts,
+  setPosts,
 }: HomeProps) {
   const sortedContactList = useMemo(() => {
     const onlineContacts = contactList.filter(
@@ -68,6 +73,8 @@ function Home({
         carouselData={carouselData}
         setCarouselData={setCarouselData}
         initialCarouselData={initialCarouselData}
+        posts={posts}
+        setPosts={setPosts}
       ></MiddleContent>
       <RightSideNav contactList={sortedContactList}></RightSideNav>
     </div>
