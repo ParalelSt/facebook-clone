@@ -73,7 +73,7 @@ function ImageCarousel({ carouselData }: data) {
             );
           } else if (story.recentStoryPost) {
             return (
-              <div className="story-container" key={story.id}>
+              <div className="story-container not-current-user" key={story.id}>
                 <img
                   src={story.image}
                   className="story-image"

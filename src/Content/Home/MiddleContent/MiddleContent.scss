@@ -92,11 +92,15 @@
                 height: 250px;
                 position: relative;
                 border-radius: 0.5em;
-                background-color: black;
+                background-color: white;
                 transition: filter 0.3s ease-in-out;
                 flex-shrink: 0;
                 overflow: hidden;
                 cursor: pointer;
+
+                &.not-current-user {
+                    background-color: black;
+                }
     
                 &::before {
                     content: '';

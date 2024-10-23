@@ -87,6 +87,7 @@ const CreateStoryMiddle = ({
 
   const calculatedImageSize = useMemo(() => {
     const widthThreshold = 900;
+    const heightThreshold = 722;
     const targetWidth = 404;
     const targetHeight = 225;
 
@@ -99,7 +100,11 @@ const CreateStoryMiddle = ({
     if (width > widthThreshold) {
       finalWidth = targetWidth + 20;
       finalHeight = targetHeight + 20;
-    } else if (width < targetWidth || height < targetHeight) {
+    } else if (
+      width < targetWidth ||
+      height < targetHeight ||
+      height > heightThreshold
+    ) {
       finalWidth = 404;
       finalHeight = 722;
     } else {
