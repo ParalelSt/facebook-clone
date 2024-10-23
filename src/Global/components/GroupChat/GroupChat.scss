@@ -23,12 +23,12 @@
         width: 100%;
     
         gap: 0.6em;
+
+        border-radius: 0.7em;
     
         &:hover {
             background-color: rgba(128, 128, 128, 0.15);
         }
-    
-        border-radius: 0.7em;
     
         img {
             width: 2em;

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { carouselDataType } from "Content/Home/MiddleContent/MiddleContent";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { GoPlus } from "react-icons/go";
@@ -9,92 +9,102 @@ interface data {
 }
 
 function ImageCarousel({ carouselData }: data) {
-  //Navigation Function
-
   const Navigate = useNavigate();
 
   const navigateToStoryCreation = () => {
     Navigate("/stories/create");
   };
 
-  //Current User info
-
   const currentUserString = localStorage.getItem("currentUser");
   const currentUser = currentUserString ? JSON.parse(currentUserString) : "";
-
-  //Displaying the image carousel
 
   const [currentIndex, setCurrentIndex] = useState(0);
   const imagesToShow = 5;
 
+  const validStories = useMemo(() => {
+    return carouselData.filter(
+      (story) =>
+        story.recentStoryPost ||
+        (!story.recentStoryPost && story.userId === currentUser.id)
+    );
+  }, [carouselData, currentUser.id]);
+
+  const totalValidImages = validStories.length;
+
   const nextSlide = () => {
-    setCurrentIndex((prevIndex) => {
-      const newIndex = prevIndex + imagesToShow - 1;
-      return newIndex < carouselData.length ? newIndex : 0;
-    });
+    setCurrentIndex(
+      (prevIndex) => (prevIndex + imagesToShow - 1) % totalValidImages
+    );
   };
 
   const prevSlide = () => {
     setCurrentIndex((prevIndex) => {
       const newIndex = prevIndex - imagesToShow + 1;
-      return newIndex >= 0
-        ? newIndex
-        : Math.max(carouselData.length - imagesToShow, 0);
+      return newIndex < 0 ? totalValidImages + newIndex : newIndex;
     });
   };
 
-  const remainingItems =
-    carouselData.filter((contact) => contact.recentStoryPost).length -
-    currentIndex;
+  const getVisibleStories = () => {
+    const stories = [];
+    for (let i = 0; i < imagesToShow; i++) {
+      const index = (currentIndex + i) % totalValidImages;
+      stories.push(validStories[index]);
+    }
+    return stories;
+  };
 
+  const visibleStories = getVisibleStories();
+
+  const isNextVisible = currentIndex + imagesToShow < totalValidImages;
   const isPrevVisible = currentIndex > 0;
-  const isNextVisible = remainingItems > imagesToShow - 1;
 
   return (
     <div className="carousel">
-      {carouselData
-        .slice(currentIndex, currentIndex + imagesToShow)
-        .map((story) => {
-          if (!story.recentStoryPost && story.userId === currentUser.id) {
-            return (
-              <div
-                className="story-container user-story-container"
-                onClick={navigateToStoryCreation}
-                key={story.id}
-              >
-                <img src={story.profilePicture} className={`user-profile`} />
-                <div className="create-story">
-                  <button className="create-story-btn">
-                    <GoPlus></GoPlus>
-                  </button>
-                  <span>Create story</span>
-                </div>
+      {visibleStories.map((story) => {
+        if (!story.recentStoryPost && story.userId === currentUser.id) {
+          return (
+            <div
+              className="story-container user-story-container"
+              onClick={navigateToStoryCreation}
+              key={story.id}
+            >
+              <img
+                src={story.profilePicture}
+                className={`user-profile`}
+                alt="User profile"
+              />
+              <div className="create-story">
+                <button className="create-story-btn">
+                  <GoPlus />
+                </button>
+                <span>Create story</span>
               </div>
-            );
-          } else if (story.recentStoryPost) {
-            return (
-              <div className="story-container not-current-user" key={story.id}>
-                <img
-                  src={story.image}
-                  className="story-image"
-                  style={{ width: story.width, height: story.height }}
-                />
-                <img
-                  src={story.profilePicture}
-                  className={`profile-picture ${
-                    story.recentStoryPost ? "active" : "disabled"
-                  }`}
-                />
-                <span className="story-username">{story.username}</span>
-              </div>
-            );
-          }
-        })}
+            </div>
+          );
+        } else if (story.recentStoryPost) {
+          return (
+            <div className="story-container not-current-user" key={story.id}>
+              <img
+                src={story.image}
+                className="story-image"
+                style={{ width: story.width, height: story.height }}
+                alt={`${story.username}'s story`}
+              />
+              <img
+                src={story.profilePicture}
+                className={`profile-picture ${
+                  story.recentStoryPost ? "active" : "disabled"
+                }`}
+                alt={`${story.username}'s profile`}
+              />
+              <span className="story-username">{story.username}</span>
+            </div>
+          );
+        }
+        return null;
+      })}
       {isPrevVisible && (
-        <button
-          className={`button-prev ${remainingItems === 1 ? "move-left" : ""}`}
-          onClick={prevSlide}
-        >
+        <button className={`button-prev`} onClick={prevSlide}>
           <IoIosArrowBack />
         </button>
       )}
