@@ -17,9 +17,12 @@ function Navbar({ setIsAuthenticated, users, currentUser }: NavbarProps) {
 
   const location = useLocation();
 
+  const isPostDetailPage = /^\/posts\/[\w-]+$/.test(location.pathname);
+
   if (
     location.pathname === "/login" ||
-    location.pathname === "/stories/create"
+    location.pathname === "/stories/create" ||
+    isPostDetailPage
   ) {
     return null;
   }

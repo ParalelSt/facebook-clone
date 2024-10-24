@@ -18,17 +18,22 @@ const LikeButton = ({ user, post, setPosts }: LikeButtonProps) => {
   const [handleLikeToggle, isLiked] = useLikeButtonLogic(initialLikeState);
 
   const handleLikeButtonClick = () => {
+    const newIsLiked = !isLiked;
     handleLikeToggle();
-    setPosts((prevPosts) =>
-      prevPosts.map((p) => {
+
+    setPosts((prevPosts) => {
+      return prevPosts.map((p) => {
         if (p.id === post.id) {
-          const updatedLikeCount = isLiked ? p.likeCount - 1 : p.likeCount + 1;
-          const updatedUsersWhoLiked = isLiked
-            ? p.usersWhoLiked.filter((user) => user.id !== currentUser.id)
-            : [
+          const updatedLikeCount = newIsLiked
+            ? p.likeCount + 1
+            : p.likeCount - 1;
+          const updatedUsersWhoLiked = newIsLiked
+            ? [
                 ...p.usersWhoLiked,
                 { id: currentUser.id, username: currentUser.user },
-              ];
+              ]
+            : p.usersWhoLiked.filter((user) => user.id !== currentUser.id);
+
           return {
             ...p,
             likeCount: updatedLikeCount,
@@ -36,8 +41,8 @@ const LikeButton = ({ user, post, setPosts }: LikeButtonProps) => {
           };
         }
         return p;
-      })
-    );
+      });
+    });
   };
 
   return (

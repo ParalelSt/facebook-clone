@@ -37,7 +37,6 @@ function App() {
   const [currentUser, setCurrentUser] = useState<Users | null>(
     storedUser ? JSON.parse(storedUser) : null
   );
-  const [posts, setPosts] = useState<Posts[]>([]);
 
   const contactList: ContactListType[] = useMemo(
     () => [
@@ -232,11 +231,11 @@ function App() {
     return [
       {
         username: "Aron Matoic",
-        profilePicture: "./images/ProfilePicture.jpg",
+        profilePicture: "/images/ProfilePicture.jpg",
         timePosted: "10 hours ago",
         description:
           "The capybara, or greater capybara (Hydrochoerus hydrochaeris), is the largest living rodent, native to South America. It is a member of the genus Hydrochoerus. The only other extant member is the lesser capybara (Hydrochoerus isthmius). Its close relatives include guinea pigs and rock cavies, and it is more distantly related to the agouti, the chinchilla, and the nutria. The capybara inhabits savannas and dense forests and lives near bodies of water. It is a highly social species and can be found in groups as large as 100 individuals, but usually lives in groups of 10–20 individuals. The capybara is hunted for its meat and hide and also for grease from its thick fatty skin.",
-        image: "./images/post/CapybaraJudge.jpg",
+        image: "/images/post/CapybaraJudge.jpg",
         likeIcons: [],
         usersWhoLiked: [
           {
@@ -273,10 +272,10 @@ function App() {
 
       {
         username: "Toshihido Yamada",
-        profilePicture: "./images/post/Toshihido.jpg",
+        profilePicture: "/images/post/Toshihido.jpg",
         timePosted: "28 August",
         description: "Take a look at my new GTR R34",
-        image: "./images/post/R34.avif",
+        image: "/images/post/R34.avif",
         likeIcons: [],
         usersWhoLiked: [
           {
@@ -766,6 +765,7 @@ function App() {
     setPosts(initialPosts);
   }, [initialPosts]);
 
+  const [posts, setPosts] = useState<Posts[]>(initialPosts);
   const [carouselData, setCarouselData] =
     useState<carouselDataType[]>(initialCarouselData);
   const [passwordValue, setPasswordValue] = useState<string>("");
@@ -792,6 +792,10 @@ function App() {
   useEffect(() => {
     console.log(users);
   }, [users]);
+
+  useEffect(() => {
+    console.log("Posts array:", posts);
+  }, [posts]);
 
   useEffect(() => {
     localStorage.setItem("isAuthenticated", isAuthenticated ? "true" : "false");
@@ -841,7 +845,7 @@ function App() {
                 setCarouselData={setCarouselData}
                 contactList={contactList}
                 initialCarouselData={initialCarouselData}
-                posts={initialPosts}
+                posts={posts}
                 setPosts={setPosts}
               ></Home>
             }
@@ -852,11 +856,14 @@ function App() {
           <Route path="/games"></Route>
           <Route path="/create-account"></Route>
           <Route
-            path="/posts/:postId"
+            path="/posts/:id"
             element={
               <PostDetail
                 posts={posts}
                 setPosts={setPosts}
+                setCurrentUser={setCurrentUser}
+                users={users}
+                setIsAuthenticated={setIsAuthenticated}
                 user={currentUser}
               />
             }
