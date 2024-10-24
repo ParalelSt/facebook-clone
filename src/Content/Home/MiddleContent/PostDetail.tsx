@@ -221,6 +221,7 @@ const PostDetail = ({
               </button>
             </div>
             <BorderLine></BorderLine>
+            <div className="post-detail-comments-display"></div>
             {post.commentCount > 0 && <div className={`post-comments`}></div>}
             <div className="post-detail-write-comment">
               <div className="post-detail-write-comment-top">
