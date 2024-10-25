@@ -31,7 +31,7 @@ interface HomeProps {
   contactList: ContactListType[];
   initialCarouselData: carouselDataType[];
   posts: Posts[];
-  setPosts: (posts: Posts[]) => void;
+  setPosts: React.Dispatch<React.SetStateAction<Posts[]>>;
 }
 
 function Home({
