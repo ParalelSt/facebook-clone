@@ -284,7 +284,7 @@ const PostDetail = ({
             {(post.likeCount > 0 ||
               post.commentCount > 0 ||
               post.shareCount > 0) && <BorderLine></BorderLine>}
-            <div className="post-buttons">
+            <div className="post-buttons post-detail-buttons">
               <LikeButton
                 user={user}
                 setPosts={setPosts}
