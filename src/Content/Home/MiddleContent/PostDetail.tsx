@@ -5,8 +5,11 @@ import "./PostDetail.scss";
 import {
   FaCamera,
   FaCaretDown,
+  FaCompress,
   FaEllipsis,
+  FaExpand,
   FaFileImage,
+  FaTag,
 } from "react-icons/fa6";
 import BorderLine from "Global/components/BorderLine";
 import LikeButton from "./LikeButton";
@@ -15,7 +18,13 @@ import { RiLinkM } from "react-icons/ri";
 import { PiShareFatLight } from "react-icons/pi";
 import { useEffect, useRef, useState } from "react";
 import useDropDown from "Global/hooks/useDropDown";
-import { FaSmile, FaSmileBeam, FaStickyNote } from "react-icons/fa";
+import {
+  FaSearchMinus,
+  FaSearchPlus,
+  FaSmile,
+  FaSmileBeam,
+  FaStickyNote,
+} from "react-icons/fa";
 import ProfilesAndPages from "./ProfilesAndPages";
 import Menu from "Navbar/Right/Menu";
 import Notifications from "Navbar/Right/Notifications";
@@ -24,6 +33,7 @@ import ProfileButton from "Navbar/Right/ProfileButton";
 import CloseButton from "Global/components/Image Carousel/CloseButton";
 import FacebookLogoButton from "Global/components/Image Carousel/FacebookLogoButton";
 import { BiSolidSend } from "react-icons/bi";
+import useZoomControl from "./ZoomControl";
 
 interface PostDetailProps {
   posts: Posts[];
@@ -42,6 +52,42 @@ const PostDetail = ({
   setIsAuthenticated,
   setCurrentUser,
 }: PostDetailProps) => {
+  //Zoom in, out and fullscreen controls
+  const [
+    zoomIn,
+    zoomOut,
+    zoomLevel,
+    toggleFullscreen,
+    zoomDisabled,
+    isFullscreen,
+  ] = useZoomControl();
+
+  const postImageRef = useRef<HTMLImageElement>(null);
+  const [imageSize, setImageSize] = useState<{
+    width: number | null;
+    height: number | null;
+  }>({
+    width: 0,
+    height: 0,
+  });
+
+  const heightThreshold = 947;
+
+  const handleImageLoad = () => {
+    if (postImageRef.current) {
+      setImageSize({
+        width:
+          postImageRef.current.naturalHeight > heightThreshold
+            ? heightThreshold
+            : postImageRef.current.naturalWidth,
+        height:
+          postImageRef.current.naturalHeight > heightThreshold
+            ? heightThreshold
+            : postImageRef.current.naturalWidth,
+      });
+    }
+  };
+
   const commentInputRef = useRef<HTMLInputElement>(null);
   const [commentInputActive, setCommentInputActive] = useState(false);
 
@@ -99,15 +145,47 @@ const PostDetail = ({
   }
 
   return (
-    <div className="post-detail-wrapper">
-      <div className="left-side-nav-buttons">
-        <CloseButton className="post-detail-close-btn"></CloseButton>
-        <FacebookLogoButton></FacebookLogoButton>
-      </div>
-      <div className="post-image">
-        <a href="#">
-          <img src={post.image} alt="" />
-        </a>
+    <div className="post-detail">
+      <div className="post-detail-wrapper">
+        <div className="left-side-nav-buttons">
+          <CloseButton className="post-detail-close-btn"></CloseButton>
+          <FacebookLogoButton></FacebookLogoButton>
+        </div>
+        <div className="post-image">
+          <div className="post-detail-image-container">
+            <img
+              ref={postImageRef}
+              src={post.image}
+              style={{
+                width: imageSize.width ?? 0,
+                height: imageSize.height ?? 0,
+                transform: `scale(${zoomLevel})`,
+              }}
+              onLoad={handleImageLoad}
+            />
+          </div>
+        </div>
+        <div className="post-detail-image-controls">
+          <button
+            className={`zoom-in-btn ${zoomDisabled ? "disabled" : "active"}`}
+            onClick={zoomIn}
+          >
+            <FaSearchPlus></FaSearchPlus>
+          </button>
+          <button
+            className={`zoom-out-btn ${zoomDisabled ? "active" : "disabled"}`}
+            onClick={zoomOut}
+          >
+            <FaSearchMinus></FaSearchMinus>
+          </button>
+          <button>
+            <FaTag></FaTag>
+          </button>
+          <button className="fullscreen-btn" onClick={() => toggleFullscreen()}>
+            {!isFullscreen && <FaExpand></FaExpand>}
+            {isFullscreen && <FaCompress></FaCompress>}
+          </button>
+        </div>
       </div>
       <div className="post-detail-container" key={post.id}>
         <div className="post-detail-nav">

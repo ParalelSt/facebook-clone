@@ -1,6 +1,13 @@
 @import '../../../Global/GlobalStyles.scss';
 
+.post-detail {
+    display: flex;
+
+
+}
+
 .post-detail-wrapper {
+    position: relative;
     display: flex;
     align-items: center;
     background-color: black;
@@ -11,8 +18,12 @@
     overflow: hidden;
 
     .left-side-nav-buttons {
+        z-index: 101;
         display: flex;
         align-items: flex-start;
+
+        margin-left: 0.5em;
+        gap: 0.5em;
 
         padding: 0.5em;
 
@@ -20,6 +31,18 @@
 
         .post-detail-close-btn {
             background: none;
+            cursor: pointer;
+
+            &:hover {
+                filter: brightness(0.95);
+            }
+        }
+        
+        .facebook-logo-color {
+            border-radius: 100%;
+
+            background-color: white;
+            cursor: pointer;
         }
     }
 
@@ -28,172 +51,227 @@
         justify-content: center;
         align-items: center;
 
-        width: 100%;
-        height: 100%;
+        width: 97.5rem;
+        height: 947px;
 
-        overflow: hidden;
+        
+        .post-detail-image-container {
+            position: absolute;
+            top: 0;
+            right: 0;
 
-        svg,img {
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+
             width: 100%;
-            height: 950px;
+            height: 100%;
 
-            object-fit: cover;
-        }
-    }
 
-    .post-detail-container {
-
-        width: 30em;
-        height: 100%;
-
-        background-color: white;
-
-        .post-detail-nav {
-            display: flex;
-            justify-content: flex-end;
-
-            padding: 0.3em 0.8em 0 1em;
-        }
-
-        .content {
-            padding: 0 1em;
-        }
-    }
-
-    .border-line {
-        padding-top: 0.3em;
-    }
-
-    .post-bottom-container {
-
-        .post-detail-comments-display {
-            &.active {
-                height: 38.5em;
-            }
-        }
-    }
-
-    .post-buttons {
-        span {
-            display: none;
-        }
-    }
-
-    .post-detail-write-comment {
-        display: flex;
-        flex-direction: column;
-
-        border-radius: 1.5em;
-
-        background-color: #f0f2f5;
-
-        .post-detail-write-comment-top {
-            display: flex;
-            gap: 0.5em;
-
-            padding: 0.7em;
-
-                .user-profile {
-                    position: relative;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-
-                    img {
-                        height: $xl;
-                        width: $xl;
-                        border-radius: 100%;
-                        object-fit: cover;
-    
-                        &:hover {
-                            filter: brightness(0.93);
-                        }
-                    }
-    
-                    .caret-container {
-                        position: absolute;
-                        bottom: -0.2em;
-                        right: 0;
-    
-                        svg {
-                            width: 0.8em;
-                            height: 0.8em;
-    
-                            border-radius: 100%;
-                            background-color: white;
-                        }
-                    }
-                }
-
-                input {
-                    margin-right: 0.2em;
-                    border: none;
-
-                    background-color: transparent;
-
-                    width: 100%;
-                    height: 1.5em;
-
-                    font-size: $medium;
-
-                    &:focus {
-                        outline: none;
-                    }
-                }
-        }
-
-        .post-detail-write-comment-bottom {
-            display: flex;
-
-            padding: 0.7em 1em;
-            padding-bottom: 0.8em;
-
-            .comment-buttons {
-                display: flex;
-                gap: 0.7em;
-
-                svg {
-
-                    color: $gray-text2;
-
-                    &:hover {
-                        background-color: $hover-white;
-                        scale: 1.1;
-                    }
-                }
-            }
-
-            .post-comment-button {
-                position: relative;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-
-                margin-left: auto;
-                border-radius: 100%;
-
-                svg {
-                    position: absolute;
-                    right: -0.4em;
-
-                    padding: 0.4em;
-
-                    height: 1.8em;
-                    width: 1.8em;
-
-                    color: #c7c6d1;
-                }
-
+            svg,img {
                 
 
-                &.active {
-                    svg {
-                        color: $blue;
+                width: 100%;
+                height: 100%;
+    
+                object-fit: contain;
+            }
+        }
 
-                        &:hover {
-                            border-radius: 100%;
-                            background-color: $button-gray;
-                        }
+    }
+
+    .post-detail-image-controls {
+        z-index: 101;
+
+        display: flex;
+        align-items: flex-start;
+        gap: 1em;
+
+        margin-top: 1.7em;
+        margin-right: 1em;
+
+        height: 100%;
+       
+        button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            height: 2em;
+            width: 2em;
+
+            background-color: rgba(0, 0, 0, 0.342);
+            border-radius: 100%;
+
+            &:hover {
+                filter: brightness(0.95);
+            }
+
+            svg {
+                height: 1.3em;
+                width: 1.3em;
+                color: white;
+            }
+        }
+    }
+
+    
+}
+
+.post-detail-container {
+
+    width: 25em;
+    height: 100%;
+
+    background-color: white;
+
+    .post-detail-nav {
+        display: flex;
+        justify-content: flex-end;
+
+        padding: 0.3em 0.8em 0 1em;
+    }
+
+    .content {
+        padding: 0 1em;
+    }
+}
+
+.border-line {
+    padding-top: 0.3em;
+}
+
+.post-bottom-container {
+
+    .post-detail-comments-display {
+        &.active {
+            height: 38.5em;
+        }
+    }
+}
+
+.post-buttons {
+    span {
+        display: none;
+    }
+}
+
+.post-detail-write-comment {
+    display: flex;
+    flex-direction: column;
+
+    border-radius: 1.5em;
+
+    background-color: #f0f2f5;
+
+    .post-detail-write-comment-top {
+        display: flex;
+        gap: 0.5em;
+
+        padding: 0.7em;
+
+            
+    }
+
+    .user-profile {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            height: $xl;
+            width: $xl;
+            border-radius: 100%;
+            object-fit: cover;
+
+            &:hover {
+                filter: brightness(0.93);
+            }
+        }
+
+        .caret-container {
+            position: absolute;
+            bottom: -0.2em;
+            right: 0;
+
+            svg {
+                width: 0.8em;
+                height: 0.8em;
+
+                border-radius: 100%;
+                background-color: white;
+            }
+        }
+    }
+
+    input {
+        margin-right: 0.2em;
+        border: none;
+
+        background-color: transparent;
+
+        width: 100%;
+        height: 1.5em;
+
+        font-size: $medium;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .post-detail-write-comment-bottom {
+        display: flex;
+
+        padding: 0.7em 1em;
+        padding-bottom: 0.8em;
+
+        .comment-buttons {
+            display: flex;
+            gap: 0.7em;
+
+            svg {
+
+                color: $gray-text2;
+
+                &:hover {
+                    background-color: $hover-white;
+                    scale: 1.1;
+                }
+            }
+        }
+
+        .post-comment-button {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            margin-left: auto;
+            border-radius: 100%;
+
+            svg {
+                position: absolute;
+                right: -0.4em;
+
+                padding: 0.4em;
+
+                height: 1.8em;
+                width: 1.8em;
+
+                color: #c7c6d1;
+            }
+
+            
+
+            &.active {
+                svg {
+                    color: $blue;
+
+                    &:hover {
+                        border-radius: 100%;
+                        background-color: $button-gray;
                     }
                 }
             }
