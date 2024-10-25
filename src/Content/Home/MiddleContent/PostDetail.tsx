@@ -187,7 +187,12 @@ const PostDetail = ({
           </button>
         </div>
       </div>
-      <div className="post-detail-container" key={post.id}>
+      <div
+        className={`post-detail-container ${
+          isFullscreen ? "active" : "disabled"
+        }`}
+        key={post.id}
+      >
         <div className="post-detail-nav">
           <Menu></Menu>
           <Messenger></Messenger>
