@@ -49,7 +49,12 @@ export interface Posts {
   likeCount: number;
   commentCount: number;
   shareCount: number;
-  comments: [];
+  comments: {
+    username: string;
+    profilePicture: string;
+    id: string;
+    comment: string;
+  }[];
   id: string;
 }
 

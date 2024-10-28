@@ -51,7 +51,7 @@ const LikeButton = ({ user, post, setPosts }: LikeButtonProps) => {
       onClick={handleLikeButtonClick}
     >
       <AiOutlineLike />
-      <span>Like</span>
+      <span className="button-text">Like</span>
     </button>
   );
 };

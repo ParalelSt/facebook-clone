@@ -157,8 +157,17 @@
 }
 
 .post-detail-buttons {
-    span {
+    .button-text {
         display: none;
+    }
+
+    .copied-to-clipboard {
+
+        width: 200%;
+
+        #copiedText {
+            margin-top: 0;
+        }
     }
 }
 

@@ -2,6 +2,7 @@ import { RiLinkM } from "react-icons/ri";
 import useCopyLogic from "./CopyLogic";
 import { Posts } from "./MiddleContent";
 import "./CopyButton.scss";
+import { useState } from "react";
 
 interface CopyButtonProps {
   post: Posts;
@@ -10,12 +11,20 @@ interface CopyButtonProps {
 const CopyButton = ({ post }: CopyButtonProps) => {
   //Copying function
 
-  const [handleCopy, showCopied] = useCopyLogic();
+  const [showCopied, setShowCopied] = useState(false);
+
+  const [handleCopy] = useCopyLogic();
+
+  const handleCopyClick = (postId: string) => {
+    handleCopy(postId);
+    setShowCopied(true);
+    setTimeout(() => setShowCopied(false), 800);
+  };
 
   return (
-    <button className="copy-btn btn" onClick={() => handleCopy(post.id)}>
+    <button className="copy-btn btn" onClick={() => handleCopyClick(post.id)}>
       <RiLinkM />
-      <span>Copy</span>
+      <span className="button-text">Copy</span>
       <div
         className={`copied-to-clipboard ${showCopied ? "copied" : "disabled"}`}
       >

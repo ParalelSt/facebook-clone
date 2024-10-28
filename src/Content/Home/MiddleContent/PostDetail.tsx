@@ -14,7 +14,6 @@ import {
 import BorderLine from "Global/components/BorderLine";
 import LikeButton from "./LikeButton";
 import { IoChatbubbleOutline } from "react-icons/io5";
-import { RiLinkM } from "react-icons/ri";
 import { PiShareFatLight } from "react-icons/pi";
 import { useEffect, useRef, useState } from "react";
 import useDropDown from "Global/hooks/useDropDown";
@@ -34,6 +33,7 @@ import CloseButton from "Global/components/Image Carousel/CloseButton";
 import FacebookLogoButton from "Global/components/Image Carousel/FacebookLogoButton";
 import { BiSolidSend } from "react-icons/bi";
 import useZoomControl from "./ZoomControl";
+import CopyButton from "./CopyButton";
 
 interface PostDetailProps {
   posts: Posts[];
@@ -293,15 +293,12 @@ const PostDetail = ({
               ></LikeButton>
               <button className="comment-btn">
                 <IoChatbubbleOutline />
-                <span>Comment</span>
+                <span className="button-text">Comment</span>
               </button>
-              <button className="copy-btn btn">
-                <RiLinkM />
-                <span>Copy</span>
-              </button>
+              <CopyButton post={post}></CopyButton>
               <button className="share-btn">
                 <PiShareFatLight />
-                <span>Share</span>
+                <span className="button-text">Share</span>
               </button>
             </div>
             <BorderLine></BorderLine>

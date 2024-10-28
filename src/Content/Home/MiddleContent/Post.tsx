@@ -18,6 +18,7 @@ import LikeButton from "Content/Home/MiddleContent/LikeButton";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import CopyButton from "./CopyButton";
+import PostComments from "./PostComments";
 
 interface PostProps {
   posts: Posts[];
@@ -173,7 +174,7 @@ const Post = ({
                   </div>
                   <BorderLine></BorderLine>
                   {post.commentCount > 0 && (
-                    <div className={`post-comments`}></div>
+                    <PostComments post={post}></PostComments>
                   )}
                   <div className="post-write-comment">
                     <div
