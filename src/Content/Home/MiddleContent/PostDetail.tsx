@@ -152,6 +152,7 @@ const PostDetail = ({
           <FacebookLogoButton></FacebookLogoButton>
         </div>
         <div className="post-image">
+          <div className="post-detail-image-tags"></div>
           <div className="post-detail-image-container">
             <img
               ref={postImageRef}

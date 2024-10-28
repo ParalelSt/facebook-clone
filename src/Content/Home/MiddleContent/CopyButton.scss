@@ -1,0 +1,25 @@
+@import '../../../Global/GlobalStyles.scss';
+
+.copied-to-clipboard {
+    position: absolute;
+    top: 2em;
+
+    border-radius: 0.5em;
+    padding: 0.3em;
+
+    background-color: $gray-text2;
+
+    #copiedText {
+        color: white;
+        font-size: $medium;
+    }
+
+    &.copied {
+        display: block;
+    }
+    
+    &.disabled { 
+        display: none;
+    }
+}
+

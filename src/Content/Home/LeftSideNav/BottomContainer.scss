@@ -39,13 +39,13 @@
             padding-right: 0.65em;
 
             color: #2d7dfd;
+
+            @include set-font-size ("small");
             
             &:hover {
                 background-color: rgba(128, 128, 128, 0.15);
                 cursor: pointer;
             }
-
-            @include set-font-size ("small");
 
             &.active {
                 opacity: 1;

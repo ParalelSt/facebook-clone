@@ -9,7 +9,6 @@ import { Posts } from "Content/Home/MiddleContent/MiddleContent";
 import "Content/Home/MiddleContent/Post.scss";
 import BorderLine from "Global/components/BorderLine";
 import { IoChatbubbleOutline } from "react-icons/io5";
-import { RiLinkM } from "react-icons/ri";
 import { PiShareFatLight } from "react-icons/pi";
 import { FaSmile, FaSmileBeam, FaStickyNote } from "react-icons/fa";
 import { Users } from "App";
@@ -18,6 +17,7 @@ import useDropDown from "Global/hooks/useDropDown";
 import LikeButton from "Content/Home/MiddleContent/LikeButton";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import CopyButton from "./CopyButton";
 
 interface PostProps {
   posts: Posts[];
@@ -42,14 +42,6 @@ const Post = ({
   const [activePostId, setActivePostId] = useState<string | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [handleDropDownOpen, handleDropDownClose, _, isActive] = useDropDown();
-
-  //Conditional Rendering
-
-  // const [shareStates, setShareStates] = useState<{ [key: number]: boolean }>(
-  //   {}
-  // );
-
-  // useEffect(() => {});
 
   const currentUser = localStorage.getItem("currentUser")
     ? JSON.parse(localStorage.getItem("currentUser") as string)
@@ -173,10 +165,7 @@ const Post = ({
                       <IoChatbubbleOutline />
                       <span>Comment</span>
                     </button>
-                    <button className="copy-btn btn">
-                      <RiLinkM />
-                      <span>Copy</span>
-                    </button>
+                    <CopyButton post={post}></CopyButton>
                     <button className="share-btn">
                       <PiShareFatLight />
                       <span>Share</span>
