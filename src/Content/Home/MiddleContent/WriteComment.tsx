@@ -40,6 +40,8 @@ const WriteComment = ({
   const [comment, setComment] = useState("");
 
   const handlePostComment = () => {
+    if (comment.trim() === "") return;
+
     const newComment = {
       username: currentUser.user,
       profilePicture: currentUser.profilePicture,
@@ -65,6 +67,13 @@ const WriteComment = ({
     }
   };
 
+  const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      handlePostComment();
+      event.preventDefault();
+    }
+  };
+
   return (
     <div className="post-detail-write-comment">
       <div
@@ -83,6 +92,7 @@ const WriteComment = ({
             type="text"
             ref={(el) => (commentInputRef.current[postId] = el)}
             value={comment}
+            onKeyDown={handleKeyDown}
             onChange={handleInputChange}
             onClick={setCommentButtonsActive}
           />

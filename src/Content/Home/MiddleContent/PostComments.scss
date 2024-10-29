@@ -1,12 +1,21 @@
 @import '../../../Global/GlobalStyles.scss';
 
+.comments-visible {
+    margin-bottom: 0.5em;
+}
+
 .post-comment-display {
+    max-height: 29em;
+
+    overflow: scroll;
 
     .post-comment-container {
         display: flex;
         gap: 0.5em;
 
         padding: 0.5em 0;
+
+        overflow-y: scroll;
 
         .post-comment-profile-picture {
             margin-top: 0.1em;

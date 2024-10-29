@@ -191,7 +191,10 @@ const Post = ({
                   </div>
                   <BorderLine></BorderLine>
                   {post.commentCount > 0 && (
-                    <PostComments post={post}></PostComments>
+                    <PostComments
+                      className="comments-visible"
+                      post={post}
+                    ></PostComments>
                   )}
                 </div>
                 <WriteComment
