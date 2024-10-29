@@ -2,28 +2,13 @@ import { useParams } from "react-router-dom";
 import { Posts } from "./MiddleContent";
 import { Users } from "App";
 import "./PostDetail.scss";
-import {
-  FaCamera,
-  FaCaretDown,
-  FaCompress,
-  FaEllipsis,
-  FaExpand,
-  FaFileImage,
-  FaTag,
-} from "react-icons/fa6";
+import { FaCompress, FaEllipsis, FaExpand, FaTag } from "react-icons/fa6";
 import BorderLine from "Global/components/BorderLine";
 import LikeButton from "./LikeButton";
-import { IoChatbubbleOutline } from "react-icons/io5";
 import { PiShareFatLight } from "react-icons/pi";
 import { useEffect, useRef, useState } from "react";
 import useDropDown from "Global/hooks/useDropDown";
-import {
-  FaSearchMinus,
-  FaSearchPlus,
-  FaSmile,
-  FaSmileBeam,
-  FaStickyNote,
-} from "react-icons/fa";
+import { FaSearchMinus, FaSearchPlus } from "react-icons/fa";
 import ProfilesAndPages from "./ProfilesAndPages";
 import Menu from "Navbar/Right/Menu";
 import Notifications from "Navbar/Right/Notifications";
@@ -31,9 +16,11 @@ import Messenger from "Navbar/Right/Messenger";
 import ProfileButton from "Navbar/Right/ProfileButton";
 import CloseButton from "Global/components/Image Carousel/CloseButton";
 import FacebookLogoButton from "Global/components/Image Carousel/FacebookLogoButton";
-import { BiSolidSend } from "react-icons/bi";
 import useZoomControl from "./ZoomControl";
 import CopyButton from "./CopyButton";
+import PostComments from "./PostComments";
+import CommentButton from "./CommentButton";
+import WriteComment from "./WriteComment";
 
 interface PostDetailProps {
   posts: Posts[];
@@ -52,6 +39,21 @@ const PostDetail = ({
   setIsAuthenticated,
   setCurrentUser,
 }: PostDetailProps) => {
+  //Write comment display
+
+  const commentButtonsActive = true;
+  const commentInputRef = useRef<{ [postId: string]: HTMLInputElement | null }>(
+    {}
+  );
+
+  const { id } = useParams<{ id: string }>();
+
+  useEffect(() => {
+    if (id && commentInputRef.current[id]) {
+      commentInputRef.current[id]?.focus();
+    }
+  }, [id]);
+
   //Zoom in, out and fullscreen controls
   const [
     zoomIn,
@@ -88,25 +90,12 @@ const PostDetail = ({
     }
   };
 
-  const commentInputRef = useRef<HTMLInputElement>(null);
-  const [commentInputActive, setCommentInputActive] = useState(false);
-
-  const handleInputChange = () => {
-    if (commentInputRef.current?.value) {
-      setCommentInputActive(true);
-    } else {
-      setCommentInputActive(false);
-    }
-  };
-
   //Like Logic
 
   const [activePostId, setActivePostId] = useState<string | null>(null);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [handleDropDownOpen, handleDropDownClose, _, isActive] = useDropDown();
-
-  const { id } = useParams<{ id: string }>();
 
   if (!id) {
     throw new Error("Post ID is undefined");
@@ -286,56 +275,25 @@ const PostDetail = ({
               post.commentCount > 0 ||
               post.shareCount > 0) && <BorderLine></BorderLine>}
             <div className="post-buttons post-detail-buttons">
-              <LikeButton
-                user={user}
-                setPosts={setPosts}
-                post={post}
-              ></LikeButton>
-              <button className="comment-btn">
-                <IoChatbubbleOutline />
-                <span className="button-text">Comment</span>
-              </button>
+              <LikeButton user={user} setPosts={setPosts} post={post} />
+              <CommentButton />
               <CopyButton post={post}></CopyButton>
               <button className="share-btn">
                 <PiShareFatLight />
                 <span className="button-text">Share</span>
               </button>
             </div>
-            <BorderLine></BorderLine>
-            <div className="post-detail-comments-display"></div>
+            <BorderLine />
+            {post.commentCount > 0 && <PostComments post={post} />}
             {post.commentCount > 0 && <div className={`post-comments`}></div>}
-            <div className="post-detail-write-comment">
-              <div className="post-detail-write-comment-top">
-                <div className="user-profile" onClick={handleDropDownOpen}>
-                  <img src={currentUser?.profilePicture} alt="" />
-                  <div className="caret-container">
-                    <FaCaretDown></FaCaretDown>
-                  </div>
-                </div>
-                <input
-                  placeholder={`Comment as ${currentUser?.user}`}
-                  type="text"
-                  ref={commentInputRef}
-                  onChange={handleInputChange}
-                />
-              </div>
-              <div className="post-detail-write-comment-bottom">
-                <div className="comment-buttons">
-                  <FaSmileBeam />
-                  <FaSmile />
-                  <FaCamera />
-                  <FaFileImage />
-                  <FaStickyNote />
-                </div>
-                <div
-                  className={`post-comment-button ${
-                    commentInputActive ? "active" : "disabled"
-                  }`}
-                >
-                  <BiSolidSend />
-                </div>
-              </div>
-            </div>
+            <WriteComment
+              currentUser={currentUser}
+              handleDropDownOpen={handleDropDownOpen}
+              commentButtonsActive={commentButtonsActive}
+              commentInputRef={commentInputRef}
+              post={post}
+              postId={post.id}
+            ></WriteComment>
           </div>
         </div>
       </div>

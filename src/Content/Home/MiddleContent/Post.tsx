@@ -1,24 +1,19 @@
-import {
-  FaCamera,
-  FaCaretDown,
-  FaEllipsis,
-  FaFileImage,
-} from "react-icons/fa6";
+import { FaEllipsis } from "react-icons/fa6";
 import ContentContainer from "Global/components/ContentContainer/ContentContainer";
 import { Posts } from "Content/Home/MiddleContent/MiddleContent";
 import "Content/Home/MiddleContent/Post.scss";
 import BorderLine from "Global/components/BorderLine";
-import { IoChatbubbleOutline } from "react-icons/io5";
 import { PiShareFatLight } from "react-icons/pi";
-import { FaSmile, FaSmileBeam, FaStickyNote } from "react-icons/fa";
 import { Users } from "App";
 import ProfilesAndPages from "Content/Home/MiddleContent/ProfilesAndPages";
 import useDropDown from "Global/hooks/useDropDown";
 import LikeButton from "Content/Home/MiddleContent/LikeButton";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import CopyButton from "./CopyButton";
 import PostComments from "./PostComments";
+import WriteComment from "./WriteComment";
+import CommentButton from "./CommentButton";
 
 interface PostProps {
   posts: Posts[];
@@ -38,6 +33,27 @@ const Post = ({
   setIsAuthenticated,
   setCurrentUser,
 }: PostProps) => {
+  //Write comment display
+
+  const [commentInputStates, setCommentInputStates] = useState<{
+    [postId: string]: boolean;
+  }>({});
+
+  const commentInputRef = useRef<{ [postId: string]: HTMLInputElement | null }>(
+    {}
+  );
+
+  const handleCommentButtonToggle = (postId: string) => {
+    setCommentInputStates((prevStates) => ({
+      ...prevStates,
+      [postId]: true,
+    }));
+
+    if (commentInputRef.current[postId]) {
+      commentInputRef.current[postId].focus();
+    }
+  };
+
   //Like Logic
 
   const [activePostId, setActivePostId] = useState<string | null>(null);
@@ -162,10 +178,11 @@ const Post = ({
                       setPosts={setPosts}
                       post={post}
                     ></LikeButton>
-                    <button className="comment-btn">
-                      <IoChatbubbleOutline />
-                      <span>Comment</span>
-                    </button>
+                    <CommentButton
+                      setCommentButtonsActive={() =>
+                        handleCommentButtonToggle(post.id)
+                      }
+                    ></CommentButton>
                     <CopyButton post={post}></CopyButton>
                     <button className="share-btn">
                       <PiShareFatLight />
@@ -176,31 +193,18 @@ const Post = ({
                   {post.commentCount > 0 && (
                     <PostComments post={post}></PostComments>
                   )}
-                  <div className="post-write-comment">
-                    <div
-                      className="post-comment-left"
-                      onClick={handleDropDownOpen}
-                    >
-                      <img src={currentUser?.profilePicture} alt="" />
-                      <div className="caret-container">
-                        <FaCaretDown></FaCaretDown>
-                      </div>
-                    </div>
-                    <div className="post-comment-right">
-                      <input
-                        placeholder={`Comment as ${currentUser?.user}`}
-                        type="text"
-                      />
-                      <div className="comment-btns">
-                        <FaSmileBeam />
-                        <FaSmile />
-                        <FaCamera />
-                        <FaFileImage />
-                        <FaStickyNote />
-                      </div>
-                    </div>
-                  </div>
                 </div>
+                <WriteComment
+                  currentUser={currentUser}
+                  handleDropDownOpen={handleDropDownOpen}
+                  commentButtonsActive={commentInputStates[post.id] || false}
+                  setCommentButtonsActive={() =>
+                    handleCommentButtonToggle(post.id)
+                  }
+                  commentInputRef={commentInputRef}
+                  post={post}
+                  postId={post.id}
+                ></WriteComment>
               </div>
             </ContentContainer>
           );
