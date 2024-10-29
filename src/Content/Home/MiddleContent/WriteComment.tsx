@@ -1,10 +1,11 @@
 import { Users } from "App";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { BiSolidSend } from "react-icons/bi";
 import { FaSmile, FaSmileBeam, FaStickyNote } from "react-icons/fa";
 import { FaCamera, FaCaretDown, FaFileImage } from "react-icons/fa6";
 import "./WriteComment.scss";
 import { Posts } from "./MiddleContent";
+import { v4 } from "uuid";
 
 interface WriteCommentsProp {
   handleDropDownOpen: () => void;
@@ -14,7 +15,7 @@ interface WriteCommentsProp {
   commentInputRef: React.MutableRefObject<{
     [postId: string]: HTMLInputElement | null;
   }>;
-  post: Posts;
+  setPosts: React.Dispatch<React.SetStateAction<Posts[]>>;
   postId: string;
 }
 
@@ -24,27 +25,45 @@ const WriteComment = ({
   commentButtonsActive,
   setCommentButtonsActive,
   commentInputRef,
-  post,
+  setPosts,
   postId,
 }: WriteCommentsProp) => {
   const [commentInputActive, setCommentInputActive] = useState(false);
-  const inputRef = useRef<HTMLInputElement>(null);
 
-  useEffect(() => {
-    commentInputRef.current[postId] = inputRef.current;
-  }, [postId, inputRef, commentInputRef]);
-
-  const handleInputChange = () => {
-    if (inputRef.current?.value) {
-      setCommentInputActive(true);
-    } else {
-      setCommentInputActive(false);
-    }
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value;
+    setComment(value);
+    setCommentInputActive(value.trim().length > 0);
   };
 
   //Post comment
+  const [comment, setComment] = useState("");
 
-  const handlePostComment = () => {};
+  const handlePostComment = () => {
+    const newComment = {
+      username: currentUser.user,
+      profilePicture: currentUser.profilePicture,
+      id: v4(),
+      comment: comment.trim(),
+    };
+
+    setPosts((prevPosts) => {
+      return prevPosts.map((p) =>
+        p.id === postId
+          ? {
+              ...p,
+              comments: [...p.comments, newComment],
+              commentCount: p.commentCount + 1,
+            }
+          : p
+      );
+    });
+
+    setComment("");
+    if (commentInputRef.current[postId]) {
+      commentInputRef.current[postId].focus();
+    }
+  };
 
   return (
     <div className="post-detail-write-comment">
@@ -62,7 +81,8 @@ const WriteComment = ({
           <input
             placeholder={`Comment as ${currentUser?.user}`}
             type="text"
-            ref={inputRef}
+            ref={(el) => (commentInputRef.current[postId] = el)}
+            value={comment}
             onChange={handleInputChange}
             onClick={setCommentButtonsActive}
           />
@@ -83,6 +103,7 @@ const WriteComment = ({
             className={`post-comment-button ${
               commentInputActive ? "active" : "disabled"
             }`}
+            onClick={handlePostComment}
           >
             <BiSolidSend />
           </div>

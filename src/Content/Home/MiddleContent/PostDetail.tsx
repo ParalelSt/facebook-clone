@@ -291,7 +291,7 @@ const PostDetail = ({
               handleDropDownOpen={handleDropDownOpen}
               commentButtonsActive={commentButtonsActive}
               commentInputRef={commentInputRef}
-              post={post}
+              setPosts={setPosts}
               postId={post.id}
             ></WriteComment>
           </div>

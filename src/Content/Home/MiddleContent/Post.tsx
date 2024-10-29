@@ -202,7 +202,7 @@ const Post = ({
                     handleCommentButtonToggle(post.id)
                   }
                   commentInputRef={commentInputRef}
-                  post={post}
+                  setPosts={setPosts}
                   postId={post.id}
                 ></WriteComment>
               </div>
