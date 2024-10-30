@@ -17,6 +17,7 @@ interface WriteCommentsProp {
   }>;
   setPosts: React.Dispatch<React.SetStateAction<Posts[]>>;
   postId: string;
+  className?: string;
 }
 
 const WriteComment = ({
@@ -27,6 +28,7 @@ const WriteComment = ({
   commentInputRef,
   setPosts,
   postId,
+  className,
 }: WriteCommentsProp) => {
   const [commentInputActive, setCommentInputActive] = useState(false);
 
@@ -75,7 +77,7 @@ const WriteComment = ({
   };
 
   return (
-    <div className="post-detail-write-comment">
+    <div className={`post-detail-write-comment ${className}`}>
       <div
         className="post-detail-write-comment-left user-detail"
         onClick={handleDropDownOpen}

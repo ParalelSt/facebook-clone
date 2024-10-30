@@ -238,12 +238,24 @@ function App() {
         image: "/images/post/CapybaraJudge.jpg",
         likeIcons: [],
         usersWhoLiked: [
-          { id: v4(), username: "Maine Cooper" },
-          { id: v4(), username: "John Doe" },
-          { id: v4(), username: "Jane Smith" },
-          { id: v4(), username: "Alice Johnson" },
-          { id: v4(), username: "Bob Brown" },
-          { id: v4(), username: "Charlie Davis" },
+          {
+            id: "5f2b9f8a-e0ae-4319-8e2e-dc9f8f40b204",
+            username: "Maine Cooper",
+          },
+          { id: "8c8e7c2a-abe1-481b-964f-1988b9a56a56", username: "John Doe" },
+          {
+            id: "a65b0bc9-fc8e-4c1a-8a6b-87e8d58b3bc7",
+            username: "Jane Smith",
+          },
+          {
+            id: "5b8e2397-baad-46de-b162-799e58e7b8e6",
+            username: "Alice Johnson",
+          },
+          { id: "6fd3123a-3569-49a4-bc97-1f5120e99f7d", username: "Bob Brown" },
+          {
+            id: "4ff1b0bc-f349-4c45-b929-6e89d8e8e6f0",
+            username: "Charlie Davis",
+          },
         ],
         likeCount: 6,
         commentCount: 2,
@@ -251,18 +263,18 @@ function App() {
         comments: [
           {
             username: "Maine Cooper",
-            id: v4(),
+            id: "e51ef8e5-5c1c-4dcb-bc66-90e5970120b4",
             profilePicture: "https://randomuser.me/api/portraits/men/1.jpg",
             comment: "Such an interesting animal!",
           },
           {
             username: "Jane Smith",
-            id: v4(),
+            id: "6c87de6c-b5a0-4e72-8c94-e7a48676007d",
             profilePicture: "https://randomuser.me/api/portraits/women/1.jpg",
             comment: "I love capybaras! They’re so cute.",
           },
         ],
-        id: v4(),
+        id: "b9d1079d-5154-4f8e-9ae7-0de2041c4b1a",
       },
 
       {
@@ -273,17 +285,26 @@ function App() {
         image: "/images/post/R34.avif",
         likeIcons: [],
         usersWhoLiked: [
-          { id: v4(), username: "John Doe" },
-          { id: v4(), username: "Jane Smith" },
-          { id: v4(), username: "Alice Johnson" },
-          { id: v4(), username: "Bob Brown" },
-          { id: v4(), username: "Charlie Davis" },
+          { id: "be9bc8ee-eec3-4be8-a6be-804ad1de420d", username: "John Doe" },
+          {
+            id: "de6350ae-d2bc-4292-a823-dba2dc5e6105",
+            username: "Jane Smith",
+          },
+          {
+            id: "e8fcf40c-1613-4f6d-b028-356aa1d29a02",
+            username: "Alice Johnson",
+          },
+          { id: "45317cc1-545f-4eb0-89ec-c90a7edc536c", username: "Bob Brown" },
+          {
+            id: "f0c909b3-493b-4e48-b5b5-c0d7021c1f7b",
+            username: "Charlie Davis",
+          },
         ],
         likeCount: 5,
         commentCount: 0,
         shareCount: 0,
         comments: [],
-        id: v4(),
+        id: "0accc5bc-05c0-4c2b-98c4-c4da0588c5d6",
       },
 
       {
@@ -295,10 +316,19 @@ function App() {
         image: "https://picsum.photos/id/1001/800/600",
         likeIcons: [],
         usersWhoLiked: [
-          { id: v4(), username: "Sarah Wilson" },
-          { id: v4(), username: "Mike Thompson" },
-          { id: v4(), username: "Lisa Garcia" },
-          { id: v4(), username: "David Lee" },
+          {
+            id: "61ca8465-fb4f-4b94-bd1e-dc2f44dc3b3d",
+            username: "Sarah Wilson",
+          },
+          {
+            id: "0d6c022b-36c0-4b51-a684-f5b67fae775b",
+            username: "Mike Thompson",
+          },
+          {
+            id: "f69c2576-b8d1-4d38-b69e-8c64073997d2",
+            username: "Lisa Garcia",
+          },
+          { id: "5c87b836-017e-47ed-8f7f-5c9a7f36215c", username: "David Lee" },
         ],
         likeCount: 4,
         commentCount: 2,
@@ -306,18 +336,18 @@ function App() {
         comments: [
           {
             username: "Sarah Wilson",
-            id: v4(),
+            id: "077ed5cb-2e09-4fa0-8a41-77c6f1f832ec",
             profilePicture: "https://randomuser.me/api/portraits/women/2.jpg",
             comment: "Wow, that looks amazing!",
           },
           {
             username: "Mike Thompson",
-            id: v4(),
+            id: "a1b57918-0511-4e2d-a448-b4587c14d01b",
             profilePicture: "https://randomuser.me/api/portraits/men/2.jpg",
             comment: "I wish I was there!",
           },
         ],
-        id: v4(),
+        id: "f36f0a85-3f5c-44cf-b52e-3bcb0414a220",
       },
 
       {
@@ -329,13 +359,31 @@ function App() {
         image: "https://picsum.photos/id/318/800/600",
         likeIcons: [],
         usersWhoLiked: [
-          { id: v4(), username: "Emma Watson" },
-          { id: v4(), username: "Chris Evans" },
-          { id: v4(), username: "Sophie Turner" },
-          { id: v4(), username: "Tom Holland" },
-          { id: v4(), username: "Zendaya" },
-          { id: v4(), username: "Robert Downey Jr." },
-          { id: v4(), username: "Scarlett Johansson" },
+          {
+            id: "cf4ab49c-d528-48ee-b69b-6e8aa6d1526f",
+            username: "Emma Watson",
+          },
+          {
+            id: "b80d6534-c917-4917-b90c-6ff9fa3ff580",
+            username: "Chris Evans",
+          },
+          {
+            id: "3eb47de1-d96a-45de-9724-4486ee7b7210",
+            username: "Sophie Turner",
+          },
+          {
+            id: "0173b62a-46d9-4e66-b3c3-2ab303df802b",
+            username: "Tom Holland",
+          },
+          { id: "29cb9b24-e69d-4875-91f5-f73385dc30ec", username: "Zendaya" },
+          {
+            id: "a24837c3-daa0-4679-a97e-18c2296547e7",
+            username: "Robert Downey Jr.",
+          },
+          {
+            id: "ff3ed0a3-0d38-42e6-85b0-2c2d11aeb8e7",
+            username: "Scarlett Johansson",
+          },
         ],
         likeCount: 7,
         commentCount: 1,
@@ -343,12 +391,12 @@ function App() {
         comments: [
           {
             username: "Emma Watson",
-            id: v4(),
+            id: "2c7f35c6-e8c0-4e06-bb1a-fc83a086b580",
             profilePicture: "https://randomuser.me/api/portraits/women/3.jpg",
             comment: "The Eiffel Tower is stunning!",
           },
         ],
-        id: v4(),
+        id: "aa53ff39-deda-4311-8cb6-5e0d4958b0fa",
       },
 
       {
@@ -360,9 +408,18 @@ function App() {
         image: "https://picsum.photos/id/237/800/600",
         likeIcons: [],
         usersWhoLiked: [
-          { id: v4(), username: "Oliver Brown" },
-          { id: v4(), username: "Isabella Martinez" },
-          { id: v4(), username: "Ethan Wilson" },
+          {
+            id: "7f07988f-69d5-49f0-8b82-067ecf04605a",
+            username: "Oliver Brown",
+          },
+          {
+            id: "9d1e64e2-6c2f-4e76-908c-b08ae77ef307",
+            username: "Isabella Martinez",
+          },
+          {
+            id: "1fa5879e-b891-4c49-a8b3-c1af22581e7c",
+            username: "Ethan Wilson",
+          },
         ],
         likeCount: 3,
         commentCount: 3,
@@ -370,24 +427,24 @@ function App() {
         comments: [
           {
             username: "Oliver Brown",
-            id: v4(),
+            id: "e50c65a1-2db2-49a2-a73f-b55c6e4b6b79",
             profilePicture: "https://randomuser.me/api/portraits/men/3.jpg",
             comment: "What a cute puppy!",
           },
           {
             username: "Isabella Martinez",
-            id: v4(),
+            id: "063a5e3b-89b7-4c8e-9435-2981f15656ae",
             profilePicture: "https://randomuser.me/api/portraits/women/4.jpg",
             comment: "Max looks so playful!",
           },
           {
             username: "Ethan Wilson",
-            id: v4(),
+            id: "ecb261cb-1ee7-4de1-b93a-e9632c50851d",
             profilePicture: "https://randomuser.me/api/portraits/men/4.jpg",
             comment: "Congratulations on your new friend!",
           },
         ],
-        id: v4(),
+        id: "d157c07e-12b5-4b9f-b0f2-37d95f4891f8",
       },
 
       {
@@ -399,10 +456,19 @@ function App() {
         image: "https://picsum.photos/id/48/800/600",
         likeIcons: [],
         usersWhoLiked: [
-          { id: v4(), username: "Sarah Johnson" },
-          { id: v4(), username: "David Lee" },
-          { id: v4(), username: "Emily Davis" },
-          { id: v4(), username: "James Wilson" },
+          {
+            id: "98c6e35f-ef73-41e5-9821-24c325b05b52",
+            username: "Sarah Johnson",
+          },
+          { id: "4e518f6a-86a7-4c4d-b7e1-f5b4c4c1fc55", username: "David Lee" },
+          {
+            id: "b3b631d2-4d8b-46dc-97af-b08e5be4ff49",
+            username: "Emily Davis",
+          },
+          {
+            id: "5b2d5b48-0a5e-496f-b148-c86cc6e58c92",
+            username: "James Wilson",
+          },
         ],
         likeCount: 4,
         commentCount: 2,
@@ -410,18 +476,18 @@ function App() {
         comments: [
           {
             username: "Sarah Johnson",
-            id: v4(),
+            id: "f1f64d5f-75f5-4b71-8dcb-e4c45da743b7",
             profilePicture: "https://randomuser.me/api/portraits/women/5.jpg",
             comment: "Amazing achievement! Well done!",
           },
           {
             username: "David Lee",
-            id: v4(),
+            id: "947db3c7-2252-4b18-9e4b-2b86c1d15b45",
             profilePicture: "https://randomuser.me/api/portraits/men/5.jpg",
             comment: "So proud of you!",
           },
         ],
-        id: v4(),
+        id: "f654450b-2b03-4e71-b64f-6dc5e44f7e36",
       },
 
       {
@@ -432,14 +498,20 @@ function App() {
         image: "https://picsum.photos/id/292/800/600",
         likeIcons: [],
         usersWhoLiked: [
-          { id: v4(), username: "Emma Thompson" },
-          { id: v4(), username: "Liam Garcia" },
+          {
+            id: "1f90e2af-7424-4f95-9e58-ffb6f1e03c5a",
+            username: "Emma Thompson",
+          },
+          {
+            id: "bbfd6f80-5713-42e5-b1f3-6b8cde8e34b3",
+            username: "Liam Garcia",
+          },
         ],
         likeCount: 2,
         commentCount: 0,
         shareCount: 0,
         comments: [],
-        id: v4(),
+        id: "ad78e378-e0c5-46aa-8d0d-1a1e5d8e7c73",
       },
 
       {
@@ -451,11 +523,23 @@ function App() {
         image: "https://picsum.photos/id/29/800/600",
         likeIcons: [],
         usersWhoLiked: [
-          { id: v4(), username: "Sophie Chen" },
-          { id: v4(), username: "Ryan Patel" },
-          { id: v4(), username: "Mia Johnson" },
-          { id: v4(), username: "Noah Williams" },
-          { id: v4(), username: "Ava Brown" },
+          {
+            id: "2f907b0d-b43e-47b3-9ac6-e7746d60b724",
+            username: "Sophia Chen",
+          },
+          {
+            id: "7afddf1a-1eb1-4c47-98fa-00bb0e5aa48f",
+            username: "Ryan Patel",
+          },
+          {
+            id: "38f33c60-d63d-4de1-b128-b59cbab9e8b5",
+            username: "Mia Johnson",
+          },
+          {
+            id: "cba5174f-f4f5-4c94-b9af-3c63a36a06f2",
+            username: "Noah Williams",
+          },
+          { id: "4b3dca5b-82d8-4b0e-bf88-d12177d6cc29", username: "Ava Brown" },
         ],
         likeCount: 5,
         commentCount: 1,
@@ -463,12 +547,12 @@ function App() {
         comments: [
           {
             username: "Sophie Chen",
-            id: v4(),
+            id: "2679b5c9-f90e-4373-bb7e-582307495e4e",
             profilePicture: "https://randomuser.me/api/portraits/women/79.jpg",
             comment: "The Rockies are beautiful!",
           },
         ],
-        id: v4(),
+        id: "885d54a4-c045-4c49-a6fc-ea705eb0d3af",
       },
 
       {
@@ -480,10 +564,22 @@ function App() {
         image: "https://picsum.photos/id/45/800/600",
         likeIcons: [],
         usersWhoLiked: [
-          { id: v4(), username: "Oliver Brown" },
-          { id: v4(), username: "Isabella Martinez" },
-          { id: v4(), username: "Ethan Wilson" },
-          { id: v4(), username: "Liam Johnson" },
+          {
+            id: "89761c7c-450b-4b89-a25f-081823a935bc",
+            username: "Oliver Brown",
+          },
+          {
+            id: "c6fc2e58-2e31-4b72-9c5e-7a6c95e58c6d",
+            username: "Isabella Martinez",
+          },
+          {
+            id: "1fd8570e-41f4-4ec5-8df2-d7c69c185227",
+            username: "Ethan Wilson",
+          },
+          {
+            id: "fa0a63c4-254c-4474-855c-f8473d1e143b",
+            username: "Liam Johnson",
+          },
         ],
         likeCount: 6,
         commentCount: 1,
@@ -491,12 +587,12 @@ function App() {
         comments: [
           {
             username: "Liam Johnson",
-            id: v4(),
+            id: "b59d0cc3-8e0a-4bb5-b1ba-b370e51aeb73",
             profilePicture: "https://randomuser.me/api/portraits/men/12.jpg",
             comment: "Congratulations on your graduation!",
           },
         ],
-        id: v4(),
+        id: "a9b5e564-6071-47ea-8ae6-b6cd062d9118",
       },
     ];
   }, []);

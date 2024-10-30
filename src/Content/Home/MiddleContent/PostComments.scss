@@ -5,9 +5,11 @@
 }
 
 .post-comment-display {
-    max-height: 29em;
+    height: 29em;
 
     overflow: scroll;
+    scrollbar-width: thin;
+
 
     .post-comment-container {
         display: flex;

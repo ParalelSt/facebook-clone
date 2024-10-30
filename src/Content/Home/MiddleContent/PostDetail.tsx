@@ -101,10 +101,18 @@ const PostDetail = ({
     throw new Error("Post ID is undefined");
   }
 
-  const post = posts.find((p) => {
-    console.log(`Comparing post.id: "${p.id}" with id: "${id}"`);
-    return p.id === id; // Match post by id
-  });
+  const [post, setPost] = useState<Posts | null>(null);
+
+  useEffect(() => {
+    // Log the available posts and the ID being searched
+    console.log("Available posts:", posts);
+    console.log("Searching for post ID:", id);
+
+    const fetchedPost = posts.find((post) => post.id === id);
+    console.log("Fetched post:", fetchedPost); // Log the fetched post
+
+    setPost(fetchedPost || null); // Set to null if undefined
+  }, [id, posts]);
 
   useEffect(() => {
     console.log("Updated post:", post);
@@ -284,8 +292,9 @@ const PostDetail = ({
               </button>
             </div>
             <BorderLine />
-            {post.commentCount > 0 && <PostComments post={post} />}
-            {post.commentCount > 0 && <div className={`post-comments`}></div>}
+            {post.commentCount > 0 && (
+              <PostComments className={"post-detail-comments"} post={post} />
+            )}
             <WriteComment
               currentUser={currentUser}
               handleDropDownOpen={handleDropDownOpen}
@@ -293,6 +302,9 @@ const PostDetail = ({
               commentInputRef={commentInputRef}
               setPosts={setPosts}
               postId={post.id}
+              className={`write-comment ${
+                post.commentCount > 0 ? "active" : "disabled"
+              }`}
             ></WriteComment>
           </div>
         </div>

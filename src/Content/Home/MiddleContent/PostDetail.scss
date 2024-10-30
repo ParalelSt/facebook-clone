@@ -140,6 +140,7 @@
 
     .content {
         padding: 0 1em;
+
     }
 }
 
@@ -148,11 +149,20 @@
 }
 
 .post-bottom-container {
+    height: 100%;
 
-    .post-detail-comments-display {
-        &.active {
-            height: 38.5em;
-        }
+    .post-detail-comments {
+        height: 34.5em;
+    }
+}
+
+.write-comment {
+    &.active {
+            margin-top: 1.5em;
+    }
+
+    &.disabled {
+        margin-top: 0.5em;
     }
 }
 
