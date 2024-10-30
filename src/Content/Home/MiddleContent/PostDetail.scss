@@ -158,7 +158,9 @@
 
 .write-comment {
     &.active {
-            margin-top: 1.5em;
+        position: relative;
+        bottom: -1em;
+
     }
 
     &.disabled {
