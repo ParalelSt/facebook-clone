@@ -1,0 +1,21 @@
+@import 'Global/GlobalStyles.scss';
+
+.video-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+
+    margin-top: 4.5em;
+
+    width: 100vw;
+
+    background-color: $background;
+
+    .video-content-container {
+        align-items: center;
+
+        width: 60em;
+    }
+}

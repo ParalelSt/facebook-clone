@@ -74,6 +74,8 @@ const WriteComment = ({
       handlePostComment();
       event.preventDefault();
     }
+
+    setCommentInputActive(false);
   };
 
   return (

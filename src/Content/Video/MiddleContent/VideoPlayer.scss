@@ -1,0 +1,16 @@
+@import '../../../Global/GlobalStyles.scss';
+
+.video-player {
+    display: flex;
+    justify-content: center;
+
+    height: 35em;
+    width: 60em;
+
+    background-color: black;
+
+    .video {
+        height: 35em;
+        max-width: 100%;
+    }
+}

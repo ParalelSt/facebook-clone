@@ -2,10 +2,13 @@ import { AiOutlineLike } from "react-icons/ai";
 import { Posts } from "Content/Home/MiddleContent/MiddleContent";
 import { Users } from "App";
 import useLikeButtonLogic from "./LikeButtonLogic";
+import { Videos } from "Content/Video/Video";
 
 interface LikeButtonProps {
-  post: Posts;
-  setPosts: React.Dispatch<React.SetStateAction<Posts[]>>;
+  post: Posts | Videos;
+  setPosts:
+    | React.Dispatch<React.SetStateAction<Posts[]>>
+    | React.Dispatch<React.SetStateAction<Videos[]>>;
   user: Users | null;
 }
 
@@ -32,13 +35,23 @@ const LikeButton = ({ user, post, setPosts }: LikeButtonProps) => {
                 ...p.usersWhoLiked,
                 { id: currentUser.id, username: currentUser.user },
               ]
-            : p.usersWhoLiked.filter((user) => user.id !== currentUser.id);
+            : p.usersWhoLiked.filter(
+                (user: Users) => user.id !== currentUser.id
+              );
 
-          return {
-            ...p,
-            likeCount: updatedLikeCount,
-            usersWhoLiked: updatedUsersWhoLiked,
-          };
+          if ("description" in p) {
+            return {
+              ...p,
+              likeCount: updatedLikeCount,
+              usersWhoLiked: updatedUsersWhoLiked,
+            } as Posts;
+          } else {
+            return {
+              ...p,
+              likeCount: updatedLikeCount,
+              usersWhoLiked: updatedUsersWhoLiked,
+            } as Videos;
+          }
         }
         return p;
       });

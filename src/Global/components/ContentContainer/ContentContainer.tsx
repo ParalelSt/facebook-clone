@@ -3,12 +3,13 @@ import "Global/components/ContentContainer/ContentContainer.scss";
 
 interface ContentContainerProps {
   children: ReactNode;
+  className?: string;
 }
 
 const ContentContainer = forwardRef<HTMLDivElement, ContentContainerProps>(
-  ({ children }, ref) => {
+  ({ children, className }, ref) => {
     return (
-      <div className="content-container" ref={ref}>
+      <div className={`content-container ${className}`} ref={ref}>
         {children}
       </div>
     );
