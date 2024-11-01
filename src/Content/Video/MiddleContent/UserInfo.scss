@@ -1,7 +1,73 @@
-
+@import 'Global/Globalstyles.scss';
 
 .user-info-container {
+    position: relative;
     display: flex;
+    align-items: center;
+    gap: 0.7em;
+
+    padding: 0.8em;
 
     width: 100%;
+
+    .user-info-left {
+
+        img {
+           width: 3em;
+           height: 3em;
+           border-radius: 100%;
+        }
+    }
+
+    .user-info-right {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2em;
+
+        .user-info-right-top {
+            display: flex;
+            align-items: center;
+            gap: 0.3em;
+        }
+
+        .username {
+            font-weight: bold;
+            font-size: $medium;
+        }
+
+        .centered-dot {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+
+            span {
+                font-size: $medium;
+                transform: translateY(-0.25em);
+            }
+        }
+
+        .user-info-follow-btn {
+            font-size: $medium;
+    
+            color: $blue;
+            
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+
+        .time-posted {
+            font-size: $small;
+    
+            color: $gray-text-dark;
+        }
+    }
+
+    .icon {
+        position: absolute;
+        top: 15%;
+        right: 0;
+
+    }
+
 }

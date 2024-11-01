@@ -1,0 +1,29 @@
+@import 'Global/Globalstyles.scss';
+
+.ellipsis-icon {
+    display: flex;
+    justify-content: center;
+    margin-right: 0.5em;
+
+
+    span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
+        border-radius: 100%;
+
+        width: 2em;
+        height: 2em;
+        
+        &:hover {
+            background-color: rgb(128, 128, 128, 0.15);
+        }
+
+        svg {
+            color: $gray-text-dark;
+            height: 1em;
+            width: 1em;
+        }
+    }
+}

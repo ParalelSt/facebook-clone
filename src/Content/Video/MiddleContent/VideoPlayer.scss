@@ -12,5 +12,7 @@
     .video {
         height: 35em;
         max-width: 100%;
+
+        object-fit: cover;
     }
 }
