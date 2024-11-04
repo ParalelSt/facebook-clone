@@ -1,10 +1,11 @@
 import React from "react";
 import { Posts } from "Content/Home/MiddleContent/MiddleContent";
 import "./PostComments.scss";
+import { Videos } from "Content/Video/Video";
 
 interface PostCommentsProps {
   className?: string;
-  post: Posts;
+  post: Posts | Videos;
 }
 
 const PostComments: React.FC<PostCommentsProps> = React.memo(

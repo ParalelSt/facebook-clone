@@ -13,7 +13,7 @@ import {
 } from "Content/Home/MiddleContent/MiddleContent";
 import { v4 } from "uuid";
 import PostDetail from "Content/Home/MiddleContent/PostDetail";
-import Video from "Content/Video/Video";
+import Video, { Videos } from "Content/Video/Video";
 
 export interface Users {
   user: string;
@@ -598,7 +598,7 @@ function App() {
     ];
   }, []);
 
-  const initialVideos = useMemo(() => {
+  const initialVideos: Videos[] = useMemo(() => {
     return [
       {
         video:
@@ -606,7 +606,7 @@ function App() {
         timePosted: "October 24 at 1:20 PM",
         likeCount: 34,
         commentCount: 10,
-        shareCount: 5,
+        viewCount: 100,
         usersWhoLiked: [
           { username: "Victoria Primo", id: "l23$fkj5%kdsfJkL" },
           { username: "John Doe", id: "a12$ghj7&kdkfQs1" },
@@ -637,7 +637,7 @@ function App() {
         timePosted: "10 hours ago",
         likeCount: 18,
         commentCount: 5,
-        shareCount: 3,
+        viewCount: 100,
         usersWhoLiked: [
           { username: "Emily Clark", id: "m56$gjh8&lskdQz8" },
           { username: "Michael Johnson", id: "h78$fgd3&lkdsM8x" },
@@ -673,7 +673,46 @@ function App() {
         timePosted: "Yesterday at 3:15 PM",
         likeCount: 25,
         commentCount: 8,
-        shareCount: 2,
+        viewCount: 100,
+        usersWhoLiked: [
+          { username: "Alice Wonderland", id: "a45$dsh2&fkjdLp9" },
+          { username: "Peter Parker", id: "j67$lkj4&dlfjQk3" },
+          { username: "Bruce Wayne", id: "g90$kjh5&lkfM2y1" },
+          { username: "Clark Kent", id: "e12$hfd7&kjdsN5t" },
+        ],
+        comments: [
+          {
+            username: "Diana Prince",
+            profilePicture: "https://randomuser.me/api/portraits/women/4.jpg",
+            comment: "Amazing content!",
+            id: "c6&gH7$Kj4*jWq8",
+          },
+          {
+            username: "Tony Stark",
+            profilePicture: "https://randomuser.me/api/portraits/men/5.jpg",
+            comment: "Very informative!",
+            id: "c7%fR2#Wb9*mLp3",
+          },
+          {
+            username: "Natasha Romanoff",
+            profilePicture: "https://randomuser.me/api/portraits/women/5.jpg",
+            comment: "Keep it up!",
+            id: "c8*R9$Wq6&hF5jN",
+          },
+        ],
+        username: "Emma Watson",
+        profilePicture: "https://randomuser.me/api/portraits/women/6.jpg",
+        userId: "user789!Gh5%Lp1",
+        id: "video3&Qf4#Wr8^Zj6",
+      },
+
+      {
+        video:
+          "https://videos.pexels.com/video-files/6606215/6606215-sd_960_506_24fps.mp4",
+        timePosted: "Yesterday at 3:15 PM",
+        likeCount: 25,
+        commentCount: 8,
+        viewCount: 100,
         usersWhoLiked: [
           { username: "Alice Wonderland", id: "a45$dsh2&fkjdLp9" },
           { username: "Peter Parker", id: "j67$lkj4&dlfjQk3" },
@@ -754,7 +793,7 @@ function App() {
     setVideos(initialVideos);
   }, [initialVideos]);
 
-  const [posts, setPosts] = useState<Posts[]>(initialPosts);
+  const [posts, setPosts] = useState<Posts[] | Videos[]>(initialPosts);
   const [videos, setVideos] = useState(initialVideos);
   const [carouselData, setCarouselData] =
     useState<carouselDataType[]>(initialCarouselData);
@@ -842,7 +881,13 @@ function App() {
           ></Route>
           <Route
             path="/video"
-            element={<Video videos={videos} setVideos={setVideos}></Video>}
+            element={
+              <Video
+                videos={videos}
+                setVideos={setVideos}
+                user={currentUser}
+              ></Video>
+            }
           ></Route>
           <Route path="/marketplace"></Route>
           <Route path="/groups"></Route>

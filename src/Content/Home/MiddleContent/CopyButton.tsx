@@ -3,9 +3,10 @@ import useCopyLogic from "./CopyLogic";
 import { Posts } from "./MiddleContent";
 import "./CopyButton.scss";
 import { useState } from "react";
+import { Videos } from "Content/Video/Video";
 
 interface CopyButtonProps {
-  post: Posts;
+  post: Posts | Videos;
 }
 
 const CopyButton = ({ post }: CopyButtonProps) => {

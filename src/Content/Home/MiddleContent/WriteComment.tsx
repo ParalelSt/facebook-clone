@@ -6,16 +6,17 @@ import { FaCamera, FaCaretDown, FaFileImage } from "react-icons/fa6";
 import "./WriteComment.scss";
 import { Posts } from "./MiddleContent";
 import { v4 } from "uuid";
+import { Videos } from "Content/Video/Video";
 
 interface WriteCommentsProp {
   handleDropDownOpen: () => void;
-  currentUser: Users;
+  currentUser: Users | null;
   commentButtonsActive: boolean;
   setCommentButtonsActive?: () => void;
   commentInputRef: React.MutableRefObject<{
     [postId: string]: HTMLInputElement | null;
   }>;
-  setPosts: React.Dispatch<React.SetStateAction<Posts[]>>;
+  setPosts: React.Dispatch<React.SetStateAction<Posts[] | Videos[]>>;
   postId: string;
   className?: string;
 }
@@ -45,8 +46,8 @@ const WriteComment = ({
     if (comment.trim() === "") return;
 
     const newComment = {
-      username: currentUser.user,
-      profilePicture: currentUser.profilePicture,
+      username: currentUser ? currentUser.user : null,
+      profilePicture: currentUser ? currentUser.profilePicture : null,
       id: v4(),
       comment: comment.trim(),
     };

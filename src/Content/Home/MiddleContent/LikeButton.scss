@@ -1,0 +1,54 @@
+@import 'Global/Globalstyles.scss';
+
+.like-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+
+    padding: 0.25em;
+    border-radius: 0.25em;
+
+    gap: 0.3em;
+
+    &:hover {
+        background-color: $hover-white;
+    }
+
+    svg {
+        width: 1.3em;
+        height: 1.3em;
+        color: $gray-text-dark;
+    }
+
+    span {
+        margin-top: 0.2em;
+        color: $gray-text-dark;
+        font-size: $m-l;
+        font-weight: 500;
+    }
+}
+
+.like-btn.liked {
+    @keyframes likeAnimation {
+        from {
+            transform: rotate(270deg);
+        }
+
+        to {
+            transform: rotate(0deg);
+        }
+    }
+
+    svg {
+        color: #0064ff;
+
+        animation-name: likeAnimation;
+        animation-duration: 900ms;
+    }
+
+    span {
+        color: #0064ff;
+    }
+}

@@ -3,22 +3,24 @@ import ContentContainer from "Global/components/ContentContainer/ContentContaine
 import { Posts } from "Content/Home/MiddleContent/MiddleContent";
 import "Content/Home/MiddleContent/Post.scss";
 import BorderLine from "Global/components/BorderLine";
-import { PiShareFatLight } from "react-icons/pi";
 import { Users } from "App";
 import ProfilesAndPages from "Content/Home/MiddleContent/ProfilesAndPages";
 import useDropDown from "Global/hooks/useDropDown";
 import LikeButton from "Content/Home/MiddleContent/LikeButton";
 import { Link } from "react-router-dom";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import CopyButton from "./CopyButton";
 import PostComments from "./PostComments";
 import WriteComment from "./WriteComment";
 import CommentButton from "./CommentButton";
+import ShareButton from "./ShareButton";
+import { useCommentButtonLogic } from "./CommentButtonLogic";
+import { Videos } from "Content/Video/Video";
 
 interface PostProps {
-  posts: Posts[];
-  post?: Posts;
-  setPosts: React.Dispatch<React.SetStateAction<Posts[]>>;
+  posts: Posts[] | Videos[];
+  post?: Posts | Videos[];
+  setPosts: React.Dispatch<React.SetStateAction<Posts[] | Videos[]>>;
   users: Users[];
   user: Users | null;
   setIsAuthenticated: (isAuthenticated: boolean) => void;
@@ -35,24 +37,8 @@ const Post = ({
 }: PostProps) => {
   //Write comment display
 
-  const [commentInputStates, setCommentInputStates] = useState<{
-    [postId: string]: boolean;
-  }>({});
-
-  const commentInputRef = useRef<{ [postId: string]: HTMLInputElement | null }>(
-    {}
-  );
-
-  const handleCommentButtonToggle = (postId: string) => {
-    setCommentInputStates((prevStates) => ({
-      ...prevStates,
-      [postId]: true,
-    }));
-
-    if (commentInputRef.current[postId]) {
-      commentInputRef.current[postId].focus();
-    }
-  };
+  const [handleCommentButtonToggle, commentInputRef, commentInputStates] =
+    useCommentButtonLogic();
 
   //Like Logic
 
@@ -99,79 +85,87 @@ const Post = ({
                     </div>
                   </div>
                   <div className="post-top-container-bottom">
-                    <div className="post-description">{post.description}</div>
+                    {post && "description" in post && (
+                      <div className="post-description">{post.description}</div>
+                    )}
                   </div>
                 </div>
                 <div className="post-bottom-container">
                   <div className="post-bottom-image">
                     <Link to={`/posts/${post.id}`}>
-                      <img src={post.image} alt="" />
+                      {post && "description" in post && (
+                        <img src={post.image} alt="" />
+                      )}
                     </Link>
                     <BorderLine></BorderLine>
                   </div>
-                  {(post.likeCount > 0 ||
-                    post.commentCount > 0 ||
-                    post.shareCount > 0) && (
-                    <div className="like-share-display">
-                      <div
-                        className={`users-that-liked ${
-                          activePostId === post.id ? "active" : "disabled"
-                        }`}
-                      >
-                        {post.usersWhoLiked.map((likedUser) => {
-                          return (
-                            <div
-                              className={`liked-user-display`}
-                              key={likedUser.id}
-                            >
-                              {likedUser.username}
-                            </div>
-                          );
-                        })}
-                      </div>
-                      <div className="post-likes">
-                        <div className="like-icons">
-                          {post.likeIcons.map((icon) => {
+                  {post &&
+                    "description" in post &&
+                    (post.likeCount > 0 ||
+                      post.commentCount > 0 ||
+                      post.shareCount > 0) && (
+                      <div className="like-share-display">
+                        <div
+                          className={`users-that-liked ${
+                            activePostId === post.id ? "active" : "disabled"
+                          }`}
+                        >
+                          {post.usersWhoLiked.map((likedUser) => {
                             return (
-                              <div className="img-container" key={post.id}>
-                                <img src={icon} alt="" />
+                              <div
+                                className={`liked-user-display`}
+                                key={likedUser.id}
+                              >
+                                {likedUser.username}
                               </div>
                             );
                           })}
                         </div>
-                        <div
-                          className={`like-count count ${
-                            activePostId === post.id ? "active" : "disabled"
-                          }`}
-                          onMouseEnter={() => handleLikeDisplayOpen(post.id)}
-                          onMouseLeave={() => handleLikeDisplayClose()}
-                        >
-                          <span>
-                            {post.likeCount == 0 ? "" : post.likeCount}
-                          </span>
+                        <div className="post-likes">
+                          <div className="like-icons">
+                            {post.likeIcons.map((icon) => {
+                              return (
+                                <div className="img-container" key={post.id}>
+                                  <img src={icon} alt="" />
+                                </div>
+                              );
+                            })}
+                          </div>
+                          <div
+                            className={`like-count count ${
+                              activePostId === post.id ? "active" : "disabled"
+                            }`}
+                            onMouseEnter={() => handleLikeDisplayOpen(post.id)}
+                            onMouseLeave={() => handleLikeDisplayClose()}
+                          >
+                            <span>
+                              {post.likeCount == 0 ? "" : post.likeCount}
+                            </span>
+                          </div>
+                        </div>
+                        <div className={`comment-and-share`}>
+                          <div className="comment-count count">
+                            <span>
+                              {post.commentCount !== 0
+                                ? post.commentCount + " " + `comments`
+                                : ""}
+                            </span>
+                          </div>
+                          <div className="share-count count">
+                            <span>
+                              {post.shareCount !== 0
+                                ? post.shareCount + " " + `share`
+                                : ""}
+                            </span>
+                          </div>
                         </div>
                       </div>
-                      <div className={`comment-and-share`}>
-                        <div className="comment-count count">
-                          <span>
-                            {post.commentCount !== 0
-                              ? post.commentCount + " " + `comments`
-                              : ""}
-                          </span>
-                        </div>
-                        <div className="share-count count">
-                          <span>
-                            {post.shareCount !== 0
-                              ? post.shareCount + " " + `share`
-                              : ""}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                  {(post.likeCount > 0 ||
-                    post.commentCount > 0 ||
-                    post.shareCount > 0) && <BorderLine></BorderLine>}
+                    )}
+                  {post &&
+                    "description" in post &&
+                    (post.likeCount > 0 ||
+                      post.commentCount > 0 ||
+                      post.shareCount > 0) && <BorderLine></BorderLine>}
                   <div className="post-buttons">
                     <LikeButton
                       user={user}
@@ -184,10 +178,7 @@ const Post = ({
                       }
                     ></CommentButton>
                     <CopyButton post={post}></CopyButton>
-                    <button className="share-btn">
-                      <PiShareFatLight />
-                      <span>Share</span>
-                    </button>
+                    <ShareButton></ShareButton>
                   </div>
                   <BorderLine></BorderLine>
                   {post.commentCount > 0 && (

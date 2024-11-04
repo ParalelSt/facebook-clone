@@ -6,6 +6,8 @@ import { Users } from "App";
 import { ContactListType } from "Content/Home/Home";
 import Post from "Content/Home/MiddleContent/Post";
 import CarouselContext from "./CarouselContext";
+import { Videos } from "Content/Video/Video";
+import { BasePost } from "./PostDetail";
 
 export interface carouselDataType {
   username: string;
@@ -29,8 +31,8 @@ interface MiddleContentProps {
   carouselData: carouselDataType[];
   setCarouselData: (carouselData: carouselDataType[]) => void;
   initialCarouselData: carouselDataType[];
-  posts: Posts[];
-  setPosts: React.Dispatch<React.SetStateAction<Posts[]>>;
+  posts: Posts[] | Videos[];
+  setPosts: React.Dispatch<React.SetStateAction<Posts[] | Videos[]>>;
 }
 
 export interface User {
@@ -38,13 +40,13 @@ export interface User {
   profilePicture: string;
 }
 
-export interface Posts {
+export interface Posts extends BasePost {
   username: string;
   profilePicture: string;
   timePosted: string;
   description: string;
   image: string;
-  likeIcons: [];
+  likeIcons: string[];
   usersWhoLiked: { username: string; id: string }[];
   likeCount: number;
   commentCount: number;

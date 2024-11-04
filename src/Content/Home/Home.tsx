@@ -7,6 +7,7 @@ import MiddleContent, {
 } from "Content/Home/MiddleContent/MiddleContent";
 import { Users } from "App";
 import { useMemo } from "react";
+import { Videos } from "Content/Video/Video";
 
 export interface ContactListType {
   username: string;
@@ -30,8 +31,8 @@ interface HomeProps {
   setCarouselData: (carouselData: carouselDataType[]) => void;
   contactList: ContactListType[];
   initialCarouselData: carouselDataType[];
-  posts: Posts[];
-  setPosts: React.Dispatch<React.SetStateAction<Posts[]>>;
+  posts: Posts[] | Videos[];
+  setPosts: React.Dispatch<React.SetStateAction<Posts[] | Videos[]>>;
 }
 
 function Home({

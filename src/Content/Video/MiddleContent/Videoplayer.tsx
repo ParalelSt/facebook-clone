@@ -10,6 +10,7 @@ interface VideoPlayerProps {
 const Videoplayer = ({ video }: VideoPlayerProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const [videoSize, setVideoSize] = useState<number | undefined>(650);
 
   useEffect(() => {
     if (isVisible) {
@@ -19,13 +20,24 @@ const Videoplayer = ({ video }: VideoPlayerProps) => {
     }
   }, [isVisible]);
 
+  const handleVideoResolution = () => {
+    const currentVideoWidth = videoRef.current?.videoWidth ?? 650;
+    setVideoSize(currentVideoWidth < 650 ? 650 : currentVideoWidth);
+  };
+
   return (
     <div className="video-player">
       <div className="video-container" key={video.id}>
         <ReactVisibilitySensor
           onChange={(isVisible: boolean) => setIsVisible(isVisible)}
         >
-          <video className="video" ref={videoRef} controls>
+          <video
+            className="video"
+            ref={videoRef}
+            controls
+            onLoadedMetadata={handleVideoResolution}
+            style={{ width: videoSize }}
+          >
             <source src={video.video} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
