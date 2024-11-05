@@ -7,30 +7,11 @@ import ButtonContainer from "./MiddleContent/ButtonContainer";
 import { Users } from "App";
 import StatisticsDisplay from "./MiddleContent/StatisticsDisplay";
 import { useNavigate } from "react-router-dom";
-import { BasePost } from "Content/Home/MiddleContent/PostDetail";
-
-export interface Videos extends BasePost {
-  video: string;
-  timePosted: string;
-  likeCount: number;
-  commentCount: number;
-  viewCount: number;
-  usersWhoLiked: { username: string; id: string }[];
-  comments: {
-    username: string;
-    profilePicture: string;
-    comment: string;
-    id: string;
-  }[];
-  username: string;
-  profilePicture: string;
-  userId: string;
-  id: string;
-}
+import { Post } from "Content/PostTypes";
 
 interface VideoProps {
-  videos: Videos[];
-  setVideos: React.Dispatch<React.SetStateAction<Videos[]>>;
+  videos: Post[];
+  setVideos: React.Dispatch<React.SetStateAction<Post[]>>;
   user: Users | null;
 }
 
@@ -38,7 +19,7 @@ const Video = ({ videos, setVideos, user }: VideoProps) => {
   const navigate = useNavigate();
 
   const handleCommentButtonToggle = (videoId: string) => {
-    navigate("");
+    navigate(`posts/${videoId}`);
   };
 
   return (
@@ -52,14 +33,14 @@ const Video = ({ videos, setVideos, user }: VideoProps) => {
               setVideos={setVideos}
               video={video}
               user={user}
-              commentButtonToggle={handleCommentButtonToggle}
+              commentButtonToggle={() => handleCommentButtonToggle(video.id)}
             ></ButtonContainer>
             <StatisticsDisplay
               likeCount={video.likeCount}
               peopleWhoLiked={video.usersWhoLiked}
               commentCount={video.commentCount}
               comments={video.comments}
-              viewCount={video.viewCount}
+              viewCount={video.type === "video" ? video.viewCount : 0}
             ></StatisticsDisplay>
           </ContentContainer>
         );

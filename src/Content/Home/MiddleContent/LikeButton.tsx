@@ -1,23 +1,25 @@
+import React from "react";
 import { AiOutlineLike } from "react-icons/ai";
-import { Posts } from "Content/Home/MiddleContent/MiddleContent";
-import { Users } from "App";
 import useLikeButtonLogic from "./LikeButtonLogic";
-import { Videos } from "Content/Video/Video";
+import { Post, User } from "Content/PostTypes";
 import "Content/Home/MiddleContent/LikeButton.scss";
 
 interface LikeButtonProps {
-  post: Posts | Videos;
-  setPosts: React.Dispatch<React.SetStateAction<(Posts | Videos)[]>>;
-  user: Users | null;
+  post: Post;
+  setPosts: React.Dispatch<React.SetStateAction<Post[]>>;
+  user: User | null;
 }
 
-const LikeButton = ({ user, post, setPosts }: LikeButtonProps) => {
-  const currentUserString = localStorage.getItem("currentUser");
-  const currentUser = currentUserString ? JSON.parse(currentUserString) : null;
+const LikeButton: React.FC<LikeButtonProps> = ({ user, post, setPosts }) => {
+  const currentUser = JSON.parse(
+    localStorage.getItem("currentUser") || "null"
+  ) as User | null;
+
   const initialLikeState = post.usersWhoLiked.some(
     (likedUser) => likedUser.id === user?.id
   );
   const [handleLikeToggle, isLiked] = useLikeButtonLogic(initialLikeState);
+
   const handleLikeButtonClick = () => {
     const newIsLiked = !isLiked;
     handleLikeToggle();
@@ -30,7 +32,10 @@ const LikeButton = ({ user, post, setPosts }: LikeButtonProps) => {
             usersWhoLiked: newIsLiked
               ? [
                   ...p.usersWhoLiked,
-                  { id: currentUser?.id, username: currentUser?.user },
+                  {
+                    id: currentUser?.id || "",
+                    username: currentUser?.user || "",
+                  },
                 ]
               : p.usersWhoLiked.filter((user) => user.id !== currentUser?.id),
           };

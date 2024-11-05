@@ -4,10 +4,9 @@ import "Content/Home/MiddleContent/MiddleContent.scss";
 import StateYourMind from "Content/Home/MiddleContent/StateYourMind";
 import { Users } from "App";
 import { ContactListType } from "Content/Home/Home";
-import Post from "Content/Home/MiddleContent/Post";
 import CarouselContext from "./CarouselContext";
-import { Videos } from "Content/Video/Video";
-import { BasePost } from "./PostDetail";
+import PostInfo from "Content/Home/MiddleContent/PostInfo";
+import { Post } from "Content/PostTypes";
 
 export interface carouselDataType {
   username: string;
@@ -31,33 +30,13 @@ interface MiddleContentProps {
   carouselData: carouselDataType[];
   setCarouselData: (carouselData: carouselDataType[]) => void;
   initialCarouselData: carouselDataType[];
-  posts: Posts[] | Videos[];
-  setPosts: React.Dispatch<React.SetStateAction<Posts[] | Videos[]>>;
+  posts: Post[];
+  setPosts: React.Dispatch<React.SetStateAction<Post[]>>;
 }
 
 export interface User {
   username: string;
   profilePicture: string;
-}
-
-export interface Posts extends BasePost {
-  username: string;
-  profilePicture: string;
-  timePosted: string;
-  description: string;
-  image: string;
-  likeIcons: string[];
-  usersWhoLiked: { username: string; id: string }[];
-  likeCount: number;
-  commentCount: number;
-  shareCount: number;
-  comments: {
-    username: string;
-    profilePicture: string;
-    id: string;
-    comment: string;
-  }[];
-  id: string;
 }
 
 function MiddleContent({
@@ -84,14 +63,14 @@ function MiddleContent({
         <CarouselContext.Provider value={{ carouselData, setCarouselData }}>
           <ImageCarousel carouselData={carouselData}></ImageCarousel>
           <StateYourMind user={user}></StateYourMind>
-          <Post
+          <PostInfo
             setCurrentUser={setCurrentUser}
             setIsAuthenticated={setIsAuthenticated}
             users={users}
             user={user}
             posts={posts}
             setPosts={setPosts}
-          ></Post>
+          ></PostInfo>
         </CarouselContext.Provider>
       </div>
     </div>

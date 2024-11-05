@@ -7,13 +7,11 @@ import Home, { ContactListType } from "Content/Home/Home.tsx";
 import LogIn from "Global/components/LogIn/LogIn.tsx";
 import CreateStory from "Global/components/Image Carousel/CreateStory.tsx";
 import CarouselContext from "Content/Home/MiddleContent/CarouselContext";
-import {
-  carouselDataType,
-  Posts,
-} from "Content/Home/MiddleContent/MiddleContent";
+import { carouselDataType } from "Content/Home/MiddleContent/MiddleContent";
 import { v4 } from "uuid";
 import PostDetail from "Content/Home/MiddleContent/PostDetail";
-import Video, { Videos } from "Content/Video/Video";
+import { Post } from "Content/PostTypes";
+import Video from "Content/Video/Video";
 
 export interface Users {
   user: string;
@@ -228,9 +226,10 @@ function App() {
     [currentUser]
   );
 
-  const initialPosts: Posts[] = useMemo(() => {
+  const initialPosts: Post[] = useMemo(() => {
     return [
       {
+        type: "image",
         username: "Aron Matoic",
         profilePicture: "/images/ProfilePicture.jpg",
         timePosted: "10 hours ago",
@@ -279,6 +278,7 @@ function App() {
       },
 
       {
+        type: "image",
         username: "Toshihido Yamada",
         profilePicture: "/images/post/Toshihido.jpg",
         timePosted: "28 August",
@@ -309,6 +309,7 @@ function App() {
       },
 
       {
+        type: "image",
         username: "Emily Johnson",
         profilePicture: "https://randomuser.me/api/portraits/women/12.jpg",
         timePosted: "2 days ago",
@@ -352,6 +353,7 @@ function App() {
       },
 
       {
+        type: "image",
         username: "Alex Rodriguez",
         profilePicture: "https://randomuser.me/api/portraits/men/67.jpg",
         timePosted: "1 week ago",
@@ -401,6 +403,7 @@ function App() {
       },
 
       {
+        type: "image",
         username: "Sophia Chen",
         profilePicture: "https://randomuser.me/api/portraits/women/79.jpg",
         timePosted: "3 days ago",
@@ -449,6 +452,7 @@ function App() {
       },
 
       {
+        type: "image",
         username: "Michael Brown",
         profilePicture: "https://randomuser.me/api/portraits/men/22.jpg",
         timePosted: "5 hours ago",
@@ -492,6 +496,7 @@ function App() {
       },
 
       {
+        type: "image",
         username: "Olivia Taylor",
         profilePicture: "https://randomuser.me/api/portraits/women/33.jpg",
         timePosted: "1 day ago",
@@ -516,6 +521,7 @@ function App() {
       },
 
       {
+        type: "image",
         username: "Daniel Kim",
         profilePicture: "https://randomuser.me/api/portraits/men/45.jpg",
         timePosted: "2 weeks ago",
@@ -557,6 +563,7 @@ function App() {
       },
 
       {
+        type: "image",
         username: "Emma Wilson",
         profilePicture: "https://randomuser.me/api/portraits/women/59.jpg",
         timePosted: "4 days ago",
@@ -598,9 +605,10 @@ function App() {
     ];
   }, []);
 
-  const initialVideos: Videos[] = useMemo(() => {
+  const initialVideos: Post[] = useMemo(() => {
     return [
       {
+        type: "video",
         video:
           "https://videos.pexels.com/video-files/8953675/8953675-uhd_1440_2560_30fps.mp4",
         timePosted: "October 24 at 1:20 PM",
@@ -632,6 +640,7 @@ function App() {
         id: "video1$hJ4m%Pz8x",
       },
       {
+        type: "video",
         video:
           "https://videos.pexels.com/video-files/28951846/12526759_360_640_60fps.mp4",
         timePosted: "10 hours ago",
@@ -668,6 +677,7 @@ function App() {
         id: "video2^dR6k@X8!Hj2",
       },
       {
+        type: "video",
         video:
           "https://videos.pexels.com/video-files/28346004/12363907_640_360_30fps.mp4",
         timePosted: "Yesterday at 3:15 PM",
@@ -707,6 +717,7 @@ function App() {
       },
 
       {
+        type: "video",
         video:
           "https://videos.pexels.com/video-files/6606215/6606215-sd_960_506_24fps.mp4",
         timePosted: "Yesterday at 3:15 PM",
@@ -793,7 +804,7 @@ function App() {
     setVideos(initialVideos);
   }, [initialVideos]);
 
-  const [posts, setPosts] = useState<Posts[] | Videos[]>(initialPosts);
+  const [posts, setPosts] = useState<Post[]>(initialPosts);
   const [videos, setVideos] = useState(initialVideos);
   const [carouselData, setCarouselData] =
     useState<carouselDataType[]>(initialCarouselData);
@@ -902,7 +913,6 @@ function App() {
                 setCurrentUser={setCurrentUser}
                 users={users}
                 setIsAuthenticated={setIsAuthenticated}
-                user={currentUser}
               />
             }
           />

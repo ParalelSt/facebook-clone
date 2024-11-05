@@ -1,27 +1,31 @@
-import { Users } from "App";
-import { useState } from "react";
+import React, { useState } from "react";
+import { v4 as uuidv4 } from "uuid";
 import { BiSolidSend } from "react-icons/bi";
-import { FaSmile, FaSmileBeam, FaStickyNote } from "react-icons/fa";
-import { FaCamera, FaCaretDown, FaFileImage } from "react-icons/fa6";
+import {
+  FaSmile,
+  FaSmileBeam,
+  FaStickyNote,
+  FaCamera,
+  FaCaretDown,
+  FaFileImage,
+} from "react-icons/fa";
+import { Post, User } from "Content/PostTypes";
 import "./WriteComment.scss";
-import { Posts } from "./MiddleContent";
-import { v4 } from "uuid";
-import { Videos } from "Content/Video/Video";
 
-interface WriteCommentsProp {
+interface WriteCommentProps {
   handleDropDownOpen: () => void;
-  currentUser: Users | null;
+  currentUser: User | null;
   commentButtonsActive: boolean;
   setCommentButtonsActive?: () => void;
   commentInputRef: React.MutableRefObject<{
     [postId: string]: HTMLInputElement | null;
   }>;
-  setPosts: React.Dispatch<React.SetStateAction<Posts[] | Videos[]>>;
+  setPosts: React.Dispatch<React.SetStateAction<Post[]>>;
   postId: string;
   className?: string;
 }
 
-const WriteComment = ({
+const WriteComment: React.FC<WriteCommentProps> = ({
   handleDropDownOpen,
   currentUser,
   commentButtonsActive,
@@ -30,8 +34,9 @@ const WriteComment = ({
   setPosts,
   postId,
   className,
-}: WriteCommentsProp) => {
+}) => {
   const [commentInputActive, setCommentInputActive] = useState(false);
+  const [comment, setComment] = useState("");
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const value = e.target.value;
@@ -39,16 +44,13 @@ const WriteComment = ({
     setCommentInputActive(value.trim().length > 0);
   };
 
-  //Post comment
-  const [comment, setComment] = useState("");
-
   const handlePostComment = () => {
     if (comment.trim() === "") return;
 
     const newComment = {
-      username: currentUser ? currentUser.user : null,
-      profilePicture: currentUser ? currentUser.profilePicture : null,
-      id: v4(),
+      username: currentUser?.user ?? "",
+      profilePicture: currentUser?.profilePicture ?? "",
+      id: uuidv4(),
       comment: comment.trim(),
     };
 
@@ -66,7 +68,7 @@ const WriteComment = ({
 
     setComment("");
     if (commentInputRef.current[postId]) {
-      commentInputRef.current[postId].focus();
+      commentInputRef.current[postId]?.focus();
     }
   };
 
@@ -75,7 +77,6 @@ const WriteComment = ({
       handlePostComment();
       event.preventDefault();
     }
-
     setCommentInputActive(false);
   };
 
@@ -99,7 +100,7 @@ const WriteComment = ({
             value={comment}
             onKeyDown={handleKeyDown}
             onChange={handleInputChange}
-            onClick={setCommentButtonsActive}
+            onClick={() => setCommentButtonsActive?.()}
           />
         </div>
         <div

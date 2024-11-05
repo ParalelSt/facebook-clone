@@ -1,13 +1,9 @@
+import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Posts } from "./MiddleContent";
-import { Users } from "App";
-import "./PostDetail.scss";
 import { FaCompress, FaEllipsis, FaExpand, FaTag } from "react-icons/fa6";
 import BorderLine from "Global/components/BorderLine";
 import LikeButton from "./LikeButton";
-import { useEffect, useRef, useState } from "react";
 import useDropDown from "Global/hooks/useDropDown";
-import { FaSearchMinus, FaSearchPlus } from "react-icons/fa";
 import ProfilesAndPages from "./ProfilesAndPages";
 import Menu from "Navbar/Right/Menu";
 import Notifications from "Navbar/Right/Notifications";
@@ -21,41 +17,33 @@ import PostComments from "./PostComments";
 import CommentButton from "./CommentButton";
 import WriteComment from "./WriteComment";
 import ShareButton from "./ShareButton";
-import { Videos } from "Content/Video/Video";
+import "./PostDetail.scss";
+import { Post, User } from "Content/PostTypes";
+import { FaSearchMinus, FaSearchPlus } from "react-icons/fa";
 
 interface PostDetailProps {
-  posts: Posts[] | Videos[];
-  setPosts: React.Dispatch<React.SetStateAction<(Posts | Videos)[]>>;
-  users: Users[];
-  user: Users | null;
+  posts: Post[];
+  setPosts: React.Dispatch<React.SetStateAction<Post[]>>;
+  users: User[];
   setIsAuthenticated: (isAuthenticated: boolean) => void;
-  setCurrentUser: (user: Users | null) => void;
+  setCurrentUser: (user: User | null) => void;
 }
 
-const PostDetail = ({
+export default function PostDetail({
   posts,
   setPosts,
   users,
-  user,
   setIsAuthenticated,
   setCurrentUser,
-}: PostDetailProps) => {
-  //Write comment display
-
+}: PostDetailProps) {
   const commentButtonsActive = true;
   const commentInputRef = useRef<{ [postId: string]: HTMLInputElement | null }>(
     {}
   );
-
   const { id } = useParams<{ id: string }>();
-
-  useEffect(() => {
-    if (id && commentInputRef.current[id]) {
-      commentInputRef.current[id]?.focus();
-    }
-  }, [id]);
-
-  //Zoom in, out and fullscreen controls
+  const [activePostId, setActivePostId] = useState<string | null>(null);
+  const [handleDropDownOpen, handleDropDownClose, , isActive] = useDropDown();
+  const [post, setPost] = useState<Post | null>(null);
   const [
     zoomIn,
     zoomOut,
@@ -64,98 +52,59 @@ const PostDetail = ({
     zoomDisabled,
     isFullscreen,
   ] = useZoomControl();
-
   const postImageRef = useRef<HTMLImageElement>(null);
   const [imageSize, setImageSize] = useState<{
     width: number | null;
     height: number | null;
-  }>({
-    width: 0,
-    height: 0,
-  });
-
+  }>({ width: 0, height: 0 });
   const heightThreshold = 947;
+
+  useEffect(() => {
+    if (id && commentInputRef.current[id]) {
+      commentInputRef.current[id]?.focus();
+    }
+  }, [id]);
+
+  useEffect(() => {
+    const fetchedPost = posts.find((post) => post.id === id);
+    console.log("Post type:", fetchedPost?.type);
+    console.log("Full post:", fetchedPost);
+    setPost(fetchedPost || null);
+  }, [id, posts]);
 
   const handleImageLoad = () => {
     if (postImageRef.current) {
+      const { naturalHeight, naturalWidth } = postImageRef.current;
       setImageSize({
-        width:
-          postImageRef.current.naturalHeight > heightThreshold
-            ? heightThreshold
-            : postImageRef.current.naturalWidth,
+        width: naturalHeight > heightThreshold ? heightThreshold : naturalWidth,
         height:
-          postImageRef.current.naturalHeight > heightThreshold
-            ? heightThreshold
-            : postImageRef.current.naturalWidth,
+          naturalHeight > heightThreshold ? heightThreshold : naturalWidth,
       });
     }
   };
 
-  //Like Logic
-
-  const [activePostId, setActivePostId] = useState<string | null>(null);
-
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [handleDropDownOpen, handleDropDownClose, _, isActive] = useDropDown();
-
-  if (!id) {
-    throw new Error("Post ID is undefined");
-  }
-
-  const [post, setPost] = useState<Posts | Videos | null>(null);
-
-  useEffect(() => {
-    // Log the available posts and the ID being searched
-    console.log("Available posts:", posts);
-    console.log("Searching for post ID:", id);
-
-    const fetchedPost = posts.find((post) => post.id === id) as
-      | Posts
-      | Videos
-      | undefined;
-    console.log("Fetched post:", fetchedPost); // Log the fetched post
-
-    setPost(fetchedPost || null); // Set to null if undefined
-  }, [id, posts]);
-
-  useEffect(() => {
-    console.log("Updated post:", post);
-  }, [post]);
+  const handleLikeDisplayOpen = (postId: string) => setActivePostId(postId);
+  const handleLikeDisplayClose = () => setActivePostId(null);
 
   if (!post) {
-    console.error(`Post not found. Available posts: ${JSON.stringify(posts)}`);
-    console.error(`Post ID: ${id}`);
     return <div>Post not found. Please check the URL.</div>;
   }
 
-  const currentUserString = localStorage.getItem("currentUser");
-  const currentUser = currentUserString ? JSON.parse(currentUserString) : null;
-
-  //Hover on like count to display users who've liked the post
-
-  const handleLikeDisplayOpen = (postId: string) => {
-    setActivePostId(postId);
-  };
-
-  const handleLikeDisplayClose = () => {
-    setActivePostId(null);
-  };
-
-  if (!posts.length) {
-    return <div>Loading...</div>;
-  }
+  const currentUser = JSON.parse(
+    localStorage.getItem("currentUser") || "null"
+  ) as User | null;
 
   return (
     <div className="post-detail">
       <div className="post-detail-wrapper">
         <div className="left-side-nav-buttons">
-          <CloseButton className="post-detail-close-btn"></CloseButton>
-          <FacebookLogoButton></FacebookLogoButton>
+          <CloseButton className="post-detail-close-btn" />
+          <FacebookLogoButton />
         </div>
         <div className="post-image">
-          <div className="post-detail-image-tags"></div>
+          <div className="post-detail-image-tags" />
           <div className="post-detail-image-container">
-            {post && "description" in post && (
+            {post.type === "image" ? (
               <img
                 ref={postImageRef}
                 src={post.image}
@@ -165,9 +114,9 @@ const PostDetail = ({
                   transform: `scale(${zoomLevel})`,
                 }}
                 onLoad={handleImageLoad}
+                alt=""
               />
-            )}
-            {post && "video" in post && (
+            ) : (
               <video className="video" controls>
                 <source src={post.video} type="video/mp4" />
                 Your browser does not support the video tag.
@@ -180,20 +129,19 @@ const PostDetail = ({
             className={`zoom-in-btn ${zoomDisabled ? "disabled" : "active"}`}
             onClick={zoomIn}
           >
-            <FaSearchPlus></FaSearchPlus>
+            <FaSearchPlus />
           </button>
           <button
             className={`zoom-out-btn ${zoomDisabled ? "active" : "disabled"}`}
             onClick={zoomOut}
           >
-            <FaSearchMinus></FaSearchMinus>
+            <FaSearchMinus />
           </button>
           <button>
-            <FaTag></FaTag>
+            <FaTag />
           </button>
-          <button className="fullscreen-btn" onClick={() => toggleFullscreen()}>
-            {!isFullscreen && <FaExpand></FaExpand>}
-            {isFullscreen && <FaCompress></FaCompress>}
+          <button className="fullscreen-btn" onClick={toggleFullscreen}>
+            {isFullscreen ? <FaCompress /> : <FaExpand />}
           </button>
         </div>
       </div>
@@ -204,15 +152,15 @@ const PostDetail = ({
         key={post.id}
       >
         <div className="post-detail-nav">
-          <Menu></Menu>
-          <Messenger></Messenger>
-          <Notifications></Notifications>
+          <Menu />
+          <Messenger />
+          <Notifications />
           <ProfileButton
             currentUser={currentUser}
             setIsAuthenticated={setIsAuthenticated}
-          ></ProfileButton>
+          />
         </div>
-        <BorderLine></BorderLine>
+        <BorderLine />
         <div className="content">
           <div className="post-top-container">
             <div className="post-top-container-top">
@@ -227,19 +175,18 @@ const PostDetail = ({
               </div>
               <div className="post-top-right">
                 <div className="icon-container">
-                  <FaEllipsis></FaEllipsis>
+                  <FaEllipsis />
                 </div>
               </div>
             </div>
             <div className="post-top-container-bottom">
-              {post && "description" in post && (
+              {post.type === "image" && (
                 <div className="post-description">{post.description}</div>
               )}
             </div>
           </div>
           <div className="post-bottom-container">
-            {post &&
-              "description" in post &&
+            {post.type === "image" &&
               (post.likeCount > 0 ||
                 post.commentCount > 0 ||
                 post.shareCount > 0) && (
@@ -249,69 +196,59 @@ const PostDetail = ({
                       activePostId === post.id ? "active" : "disabled"
                     }`}
                   >
-                    {post.usersWhoLiked.map((likedUser) => {
-                      return (
-                        <div
-                          className={`liked-user-display`}
-                          key={likedUser.id}
-                        >
-                          {likedUser.username}
-                        </div>
-                      );
-                    })}
+                    {post.usersWhoLiked.map((likedUser) => (
+                      <div className="liked-user-display" key={likedUser.id}>
+                        {likedUser.username}
+                      </div>
+                    ))}
                   </div>
                   <div className="post-likes">
                     <div className="like-icons">
-                      {post.likeIcons.map((icon) => {
-                        return (
-                          <div className="img-container" key={post.id}>
-                            <img src={icon} alt="" />
-                          </div>
-                        );
-                      })}
+                      {post.likeIcons.map((icon, index) => (
+                        <div className="img-container" key={index}>
+                          <img src={icon} alt="" />
+                        </div>
+                      ))}
                     </div>
                     <div
                       className={`like-count count ${
                         activePostId === post.id ? "active" : "disabled"
                       }`}
                       onMouseEnter={() => handleLikeDisplayOpen(post.id)}
-                      onMouseLeave={() => handleLikeDisplayClose()}
+                      onMouseLeave={handleLikeDisplayClose}
                     >
-                      <span>{post.likeCount == 0 ? "" : post.likeCount}</span>
+                      <span>{post.likeCount > 0 ? post.likeCount : ""}</span>
                     </div>
                   </div>
-                  <div className={`comment-and-share`}>
+                  <div className="comment-and-share">
                     <div className="comment-count count">
                       <span>
-                        {post.commentCount !== 0
-                          ? post.commentCount + " " + `comments`
+                        {post.commentCount > 0
+                          ? `${post.commentCount} comments`
                           : ""}
                       </span>
                     </div>
                     <div className="share-count count">
                       <span>
-                        {post.shareCount !== 0
-                          ? post.shareCount + " " + `share`
-                          : ""}
+                        {post.shareCount > 0 ? `${post.shareCount} shares` : ""}
                       </span>
                     </div>
                   </div>
                 </div>
               )}
-            {post &&
-              "description" in post &&
+            {post.type === "image" &&
               (post.likeCount > 0 ||
                 post.commentCount > 0 ||
-                post.shareCount > 0) && <BorderLine></BorderLine>}
+                post.shareCount > 0) && <BorderLine />}
             <div className="post-buttons post-detail-buttons">
-              <LikeButton user={user} setPosts={setPosts} post={post} />
+              <LikeButton user={currentUser} setPosts={setPosts} post={post} />
               <CommentButton />
-              <CopyButton post={post}></CopyButton>
-              <ShareButton></ShareButton>
+              <CopyButton post={post} />
+              <ShareButton />
             </div>
             <BorderLine />
             {post.commentCount > 0 && (
-              <PostComments className={"post-detail-comments"} post={post} />
+              <PostComments className="post-detail-comments" post={post} />
             )}
             <WriteComment
               currentUser={currentUser}
@@ -323,7 +260,7 @@ const PostDetail = ({
               className={`write-comment ${
                 post.commentCount > 0 ? "active" : "disabled"
               }`}
-            ></WriteComment>
+            />
           </div>
         </div>
       </div>
@@ -333,9 +270,7 @@ const PostDetail = ({
         dropDownClose={handleDropDownClose}
         isActive={isActive}
         users={users}
-      ></ProfilesAndPages>
+      />
     </div>
   );
-};
-
-export default PostDetail;
+}

@@ -1,19 +1,33 @@
+import React, { useState } from "react";
 import { RiLinkM } from "react-icons/ri";
 import useCopyLogic from "./CopyLogic";
-import { Posts } from "./MiddleContent";
 import "./CopyButton.scss";
-import { useState } from "react";
-import { Videos } from "Content/Video/Video";
 
-interface CopyButtonProps {
-  post: Posts | Videos;
+interface BasePost {
+  id: string;
 }
 
-const CopyButton = ({ post }: CopyButtonProps) => {
-  //Copying function
+interface ImagePost extends BasePost {
+  type: "image";
+  image: string;
+  description: string;
+}
 
+interface VideoPost extends BasePost {
+  type: "video";
+  video: string;
+  viewCount: number;
+  userId: string;
+}
+
+type Post = ImagePost | VideoPost;
+
+interface CopyButtonProps {
+  post: Post;
+}
+
+const CopyButton: React.FC<CopyButtonProps> = ({ post }) => {
   const [showCopied, setShowCopied] = useState(false);
-
   const [handleCopy] = useCopyLogic();
 
   const handleCopyClick = (postId: string) => {

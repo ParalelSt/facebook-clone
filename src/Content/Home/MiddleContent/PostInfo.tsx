@@ -1,6 +1,5 @@
 import { FaEllipsis } from "react-icons/fa6";
 import ContentContainer from "Global/components/ContentContainer/ContentContainer";
-import { Posts } from "Content/Home/MiddleContent/MiddleContent";
 import "Content/Home/MiddleContent/Post.scss";
 import BorderLine from "Global/components/BorderLine";
 import { Users } from "App";
@@ -15,19 +14,19 @@ import WriteComment from "./WriteComment";
 import CommentButton from "./CommentButton";
 import ShareButton from "./ShareButton";
 import { useCommentButtonLogic } from "./CommentButtonLogic";
-import { Videos } from "Content/Video/Video";
+import { Post } from "Content/PostTypes";
 
 interface PostProps {
-  posts: Posts[] | Videos[];
-  post?: Posts | Videos[];
-  setPosts: React.Dispatch<React.SetStateAction<Posts[] | Videos[]>>;
+  posts: Post[];
+  post?: Post;
+  setPosts: React.Dispatch<React.SetStateAction<Post[]>>;
   users: Users[];
   user: Users | null;
   setIsAuthenticated: (isAuthenticated: boolean) => void;
   setCurrentUser: (user: Users | null) => void;
 }
 
-const Post = ({
+const PostInfo = ({
   posts,
   setPosts,
   users,
@@ -216,4 +215,4 @@ const Post = ({
   );
 };
 
-export default Post;
+export default PostInfo;
