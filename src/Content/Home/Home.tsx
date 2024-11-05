@@ -3,11 +3,10 @@ import RightSideNav from "Content/Home/RightSideNav/RightSideNav";
 import "Content/Home/Home.scss";
 import MiddleContent, {
   carouselDataType,
-  Posts,
 } from "Content/Home/MiddleContent/MiddleContent";
 import { Users } from "App";
 import { useMemo } from "react";
-import { Videos } from "Content/Video/Video";
+import { Post } from "Content/PostTypes";
 
 export interface ContactListType {
   username: string;
@@ -31,8 +30,8 @@ interface HomeProps {
   setCarouselData: (carouselData: carouselDataType[]) => void;
   contactList: ContactListType[];
   initialCarouselData: carouselDataType[];
-  posts: Posts[] | Videos[];
-  setPosts: React.Dispatch<React.SetStateAction<Posts[] | Videos[]>>;
+  posts: Post[];
+  setPosts: React.Dispatch<React.SetStateAction<Post[]>>;
 }
 
 function Home({

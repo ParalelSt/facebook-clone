@@ -1,10 +1,10 @@
-import { Videos } from "../Video";
 import FollowButton from "./FollowButton";
 import "Content/Video/MiddleContent/UserInfo.scss";
 import EllipsisIcon from "Content/Video/MiddleContent/EllipsisIcon";
+import { Post } from "Content/PostTypes";
 
 interface UserInfoProps {
-  video: Videos;
+  video: Post;
 }
 
 const UserInfo = ({ video }: UserInfoProps) => {
