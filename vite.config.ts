@@ -4,6 +4,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 import path from "path";
 
 declare const __dirname: string;
+/// <reference types="node" />
 
 // https://vitejs.dev/config/
 export default defineConfig({
