@@ -20,6 +20,7 @@ import ShareButton from "./ShareButton";
 import "./PostDetail.scss";
 import { Post, User } from "Content/PostTypes";
 import { FaSearchMinus, FaSearchPlus } from "react-icons/fa";
+import { useCommentButtonLogic } from "./CommentButtonLogic";
 
 interface PostDetailProps {
   posts: Post[];
@@ -40,6 +41,7 @@ export default function PostDetail({
   const commentInputRef = useRef<{ [postId: string]: HTMLInputElement | null }>(
     {}
   );
+  const [handleCommentButtonToggle] = useCommentButtonLogic();
   const { id } = useParams<{ id: string }>();
   const [activePostId, setActivePostId] = useState<string | null>(null);
   const [handleDropDownOpen, handleDropDownClose, , isActive] = useDropDown();
@@ -118,32 +120,39 @@ export default function PostDetail({
               />
             ) : (
               <video className="video" controls>
-                <source src={post.video} type="video/mp4" />
+                <source
+                  src={post.video}
+                  height={1}
+                  width={1}
+                  type="video/mp4"
+                />
                 Your browser does not support the video tag.
               </video>
             )}
           </div>
         </div>
-        <div className="post-detail-image-controls">
-          <button
-            className={`zoom-in-btn ${zoomDisabled ? "disabled" : "active"}`}
-            onClick={zoomIn}
-          >
-            <FaSearchPlus />
-          </button>
-          <button
-            className={`zoom-out-btn ${zoomDisabled ? "active" : "disabled"}`}
-            onClick={zoomOut}
-          >
-            <FaSearchMinus />
-          </button>
-          <button>
-            <FaTag />
-          </button>
-          <button className="fullscreen-btn" onClick={toggleFullscreen}>
-            {isFullscreen ? <FaCompress /> : <FaExpand />}
-          </button>
-        </div>
+        {post.type === "image" && (
+          <div className="post-detail-image-controls">
+            <button
+              className={`zoom-in-btn ${zoomDisabled ? "disabled" : "active"}`}
+              onClick={zoomIn}
+            >
+              <FaSearchPlus />
+            </button>
+            <button
+              className={`zoom-out-btn ${zoomDisabled ? "active" : "disabled"}`}
+              onClick={zoomOut}
+            >
+              <FaSearchMinus />
+            </button>
+            <button>
+              <FaTag />
+            </button>
+            <button className="fullscreen-btn" onClick={toggleFullscreen}>
+              {isFullscreen ? <FaCompress /> : <FaExpand />}
+            </button>
+          </div>
+        )}
       </div>
       <div
         className={`post-detail-container ${
@@ -242,7 +251,11 @@ export default function PostDetail({
                 post.shareCount > 0) && <BorderLine />}
             <div className="post-buttons post-detail-buttons">
               <LikeButton user={currentUser} setPosts={setPosts} post={post} />
-              <CommentButton />
+              <CommentButton
+                setCommentButtonsActive={() =>
+                  handleCommentButtonToggle(post.id)
+                }
+              />
               <CopyButton post={post} />
               <ShareButton />
             </div>

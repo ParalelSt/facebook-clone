@@ -1,13 +1,13 @@
-import { Videos } from "Content/Video/Video";
+import { VideoPost } from "Content/PostTypes";
 import "Content/Video/MiddleContent/VideoPlayer.scss";
 import { useEffect, useRef, useState } from "react";
 import ReactVisibilitySensor from "react-visibility-sensor";
 
 interface VideoPlayerProps {
-  video: Videos;
+  post: VideoPost;
 }
 
-const Videoplayer = ({ video }: VideoPlayerProps) => {
+const Videoplayer = ({ post }: VideoPlayerProps) => {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isVisible, setIsVisible] = useState(false);
   const [videoSize, setVideoSize] = useState<number | undefined>(650);
@@ -27,7 +27,7 @@ const Videoplayer = ({ video }: VideoPlayerProps) => {
 
   return (
     <div className="video-player">
-      <div className="video-container" key={video.id}>
+      <div className="video-container" key={post.id}>
         <ReactVisibilitySensor
           onChange={(isVisible: boolean) => setIsVisible(isVisible)}
         >
@@ -38,7 +38,7 @@ const Videoplayer = ({ video }: VideoPlayerProps) => {
             onLoadedMetadata={handleVideoResolution}
             style={{ width: videoSize }}
           >
-            <source src={video.video} type="video/mp4" />
+            <source src={post.video} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
         </ReactVisibilitySensor>

@@ -17,13 +17,13 @@ function Navbar({ setIsAuthenticated, users, currentUser }: NavbarProps) {
 
   const location = useLocation();
 
-  const isPostDetailPage = /^\/posts\/[\w-]+$/.test(location.pathname);
-
-  if (
+  const isExcludedPath =
     location.pathname === "/login" ||
     location.pathname === "/stories/create" ||
-    isPostDetailPage
-  ) {
+    location.pathname.includes("/posts/") ||
+    location.pathname.includes("/video/videos/");
+
+  if (isExcludedPath) {
     return null;
   }
 

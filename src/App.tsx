@@ -637,7 +637,7 @@ function App() {
         username: "Alice Wonderland",
         profilePicture: "https://randomuser.me/api/portraits/women/2.jpg",
         userId: "user123&kL3#Yg6",
-        id: "video1$hJ4m%Pz8x",
+        id: "1$hJ4m%Pz8x",
       },
       {
         type: "video",
@@ -674,7 +674,7 @@ function App() {
         username: "John Doe",
         profilePicture: "https://randomuser.me/api/portraits/men/4.jpg",
         userId: "user456*Zg4#Df9",
-        id: "video2^dR6k@X8!Hj2",
+        id: "2^dR6k@X8!Hj2",
       },
       {
         type: "video",
@@ -713,7 +713,7 @@ function App() {
         username: "Emma Watson",
         profilePicture: "https://randomuser.me/api/portraits/women/6.jpg",
         userId: "user789!Gh5%Lp1",
-        id: "video3&Qf4#Wr8^Zj6",
+        id: "3&Qf4#Wr8^Zj6",
       },
 
       {
@@ -753,7 +753,7 @@ function App() {
         username: "Emma Watson",
         profilePicture: "https://randomuser.me/api/portraits/women/6.jpg",
         userId: "user789!Gh5%Lp1",
-        id: "video3&Qf4#Wr8^Zj6",
+        id: "3&Qf4#Wr8^Zj6",
       },
     ];
   }, []);
@@ -898,6 +898,18 @@ function App() {
                 setVideos={setVideos}
                 user={currentUser}
               ></Video>
+            }
+          ></Route>
+          <Route
+            path="/video/videos/:id"
+            element={
+              <PostDetail
+                posts={videos}
+                setPosts={setVideos}
+                setCurrentUser={setCurrentUser}
+                users={users}
+                setIsAuthenticated={setIsAuthenticated}
+              ></PostDetail>
             }
           ></Route>
           <Route path="/marketplace"></Route>

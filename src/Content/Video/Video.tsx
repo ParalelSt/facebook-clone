@@ -6,44 +6,38 @@ import UserInfo from "./MiddleContent/UserInfo";
 import ButtonContainer from "./MiddleContent/ButtonContainer";
 import { Users } from "App";
 import StatisticsDisplay from "./MiddleContent/StatisticsDisplay";
-import { useNavigate } from "react-router-dom";
-import { Post } from "Content/PostTypes";
+import { ImagePost, VideoPost } from "Content/PostTypes";
 
 interface VideoProps {
-  videos: Post[];
-  setVideos: React.Dispatch<React.SetStateAction<Post[]>>;
+  videos: (VideoPost | ImagePost)[];
+  setVideos: React.Dispatch<React.SetStateAction<(VideoPost | ImagePost)[]>>;
   user: Users | null;
 }
 
 const Video = ({ videos, setVideos, user }: VideoProps) => {
-  const navigate = useNavigate();
-
-  const handleCommentButtonToggle = (videoId: string) => {
-    navigate(`posts/${videoId}`);
-  };
-
   return (
     <div className="video-wrapper">
-      {videos.map((video) => {
-        return (
-          <ContentContainer className="video-content-container">
-            <UserInfo video={video}></UserInfo>
-            <Videoplayer video={video}></Videoplayer>
-            <ButtonContainer
-              setVideos={setVideos}
-              video={video}
-              user={user}
-              commentButtonToggle={() => handleCommentButtonToggle(video.id)}
-            ></ButtonContainer>
-            <StatisticsDisplay
-              likeCount={video.likeCount}
-              peopleWhoLiked={video.usersWhoLiked}
-              commentCount={video.commentCount}
-              comments={video.comments}
-              viewCount={video.type === "video" ? video.viewCount : 0}
-            ></StatisticsDisplay>
-          </ContentContainer>
-        );
+      {videos.map((post) => {
+        if ((post as VideoPost).video) {
+          return (
+            <ContentContainer className="video-content-container">
+              <UserInfo video={post}></UserInfo>
+              <Videoplayer post={post as VideoPost}></Videoplayer>
+              <ButtonContainer
+                setVideos={setVideos}
+                video={post}
+                user={user}
+              ></ButtonContainer>
+              <StatisticsDisplay
+                likeCount={post.likeCount}
+                peopleWhoLiked={post.usersWhoLiked}
+                commentCount={post.commentCount}
+                comments={post.comments}
+                viewCount={post.type === "video" ? post.viewCount : 0}
+              ></StatisticsDisplay>
+            </ContentContainer>
+          );
+        }
       })}
     </div>
   );
