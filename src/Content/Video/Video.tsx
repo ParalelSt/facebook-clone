@@ -23,18 +23,21 @@ const Video = ({ videos, setVideos, user }: VideoProps) => {
             <ContentContainer className="video-content-container">
               <UserInfo video={post}></UserInfo>
               <Videoplayer post={post as VideoPost}></Videoplayer>
-              <ButtonContainer
-                setVideos={setVideos}
-                video={post}
-                user={user}
-              ></ButtonContainer>
-              <StatisticsDisplay
-                likeCount={post.likeCount}
-                peopleWhoLiked={post.usersWhoLiked}
-                commentCount={post.commentCount}
-                comments={post.comments}
-                viewCount={post.type === "video" ? post.viewCount : 0}
-              ></StatisticsDisplay>
+              <div className="bottom-info">
+                <ButtonContainer
+                  setVideos={setVideos}
+                  video={post}
+                  user={user}
+                ></ButtonContainer>
+                <StatisticsDisplay
+                  likeCount={post.likeCount}
+                  peopleWhoLiked={post.usersWhoLiked}
+                  commentCount={post.commentCount}
+                  comments={post.comments}
+                  viewCount={post.type === "video" ? post.viewCount : 0}
+                  post={post}
+                ></StatisticsDisplay>
+              </div>
             </ContentContainer>
           );
         }

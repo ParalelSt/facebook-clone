@@ -1,6 +1,9 @@
+import { ImagePost, VideoPost } from "Content/PostTypes";
 import CommentsDisplay from "./CommentsDisplay";
 import LikeDisplay from "./LikeDisplay";
 import ViewsDisplay from "./ViewsDisplay";
+import "Content/Video/MiddleContent/StatisticsDisplay.scss";
+import { LuDot } from "react-icons/lu";
 
 interface StatisticsDisplayProps {
   likeCount: number;
@@ -8,6 +11,7 @@ interface StatisticsDisplayProps {
   commentCount: number;
   comments: Comments[];
   viewCount: number;
+  post: VideoPost | ImagePost;
 }
 
 export interface PeopleWhoLiked {
@@ -28,17 +32,22 @@ const StatisticsDisplay = ({
   commentCount,
   comments,
   viewCount,
+  post,
 }: StatisticsDisplayProps) => {
   return (
     <div className="statistics-display">
       <LikeDisplay
         likeCount={likeCount}
         peopleWhoLiked={peopleWhoLiked}
+        post={post}
       ></LikeDisplay>
+      <LuDot size={10} />
       <CommentsDisplay
         comments={comments}
         commentCount={commentCount}
+        post={post}
       ></CommentsDisplay>
+      <LuDot size={10} />
       <ViewsDisplay viewCount={viewCount}></ViewsDisplay>
     </div>
   );

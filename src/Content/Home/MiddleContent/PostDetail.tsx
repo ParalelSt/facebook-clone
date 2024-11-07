@@ -69,9 +69,11 @@ export default function PostDetail({
 
   useEffect(() => {
     const fetchedPost = posts.find((post) => post.id === id);
-    console.log("Post type:", fetchedPost?.type);
-    console.log("Full post:", fetchedPost);
-    setPost(fetchedPost || null);
+    if (id) {
+      setPost(fetchedPost ?? null);
+    } else {
+      setPost(null);
+    }
   }, [id, posts]);
 
   const handleImageLoad = () => {

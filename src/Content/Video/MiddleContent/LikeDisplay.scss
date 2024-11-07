@@ -1,0 +1,41 @@
+@import 'Global/Globalstyles.scss';
+
+.like-display {
+    position: relative;
+    display: flex;
+}
+
+.people-who-liked {
+    top: 1.5em;
+    display: none;
+    flex-direction: column;
+    gap: 0.2em;
+
+    padding: 0.6em;
+    border-radius: 0.5em;
+
+    width: auto;
+
+    z-index: 100;
+
+    color: white;
+    background-color: rgb(60, 60, 60, 0.9);
+
+    &.active {
+        position: absolute;
+        display: flex;
+    }
+}
+
+.like-count {
+    display: flex;
+    justify-content: center;
+
+    p {
+        color: $gray-text-dark;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}

@@ -1,0 +1,12 @@
+@import 'Global/Globalstyles.scss';
+
+.views-display {
+    .view-display {
+        display: flex;
+        justify-content: center;
+
+        p {
+            color: $gray-text-dark;
+        }
+    }
+} 

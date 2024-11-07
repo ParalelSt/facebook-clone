@@ -1,0 +1,11 @@
+@import 'Global/Globalstyles.scss';
+
+.statistics-display {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-left: auto;
+
+    padding: 0 0.8em;
+}

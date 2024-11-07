@@ -1,7 +1,6 @@
 import LikeButton from "Content/Home/MiddleContent/LikeButton";
 import { Users } from "App";
 import CommentButton from "Content/Home/MiddleContent/CommentButton";
-import CopyButton from "Content/Home/MiddleContent/CopyButton";
 import ShareButton from "Content/Home/MiddleContent/ShareButton";
 import "Content/Video/MiddleContent/ButtonContainer.scss";
 import { Post } from "Content/PostTypes";
@@ -33,7 +32,6 @@ const ButtonContainer = ({
       <CommentButton
         setCommentButtonsActive={() => handleCommentButtonToggle(video.id)}
       ></CommentButton>
-      <CopyButton post={video}></CopyButton>
       <ShareButton></ShareButton>
     </div>
   );

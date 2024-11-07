@@ -1,3 +1,5 @@
+import "Content/Video/MiddleContent/ViewsDisplay.scss";
+
 interface ViewDisplayProps {
   viewCount: number;
 }
@@ -7,7 +9,7 @@ const ViewsDisplay = ({ viewCount }: ViewDisplayProps) => {
     <div className="views-display">
       {viewCount > 0 && (
         <div className="view-display">
-          <div className="view-count">{viewCount}</div>
+          <p className="view-count">{viewCount} views</p>
         </div>
       )}
     </div>
