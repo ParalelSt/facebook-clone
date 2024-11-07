@@ -7,7 +7,7 @@ import ProfilesAndPages from "Content/Home/MiddleContent/ProfilesAndPages";
 import useDropDown from "Global/hooks/useDropDown";
 import LikeButton from "Content/Home/MiddleContent/LikeButton";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import CopyButton from "./CopyButton";
 import PostComments from "./PostComments";
 import WriteComment from "./WriteComment";
@@ -36,8 +36,12 @@ const PostInfo = ({
 }: PostProps) => {
   //Write comment display
 
-  const [handleCommentButtonToggle, commentInputRef, commentInputStates] =
-    useCommentButtonLogic();
+  const commentInputRef = useRef<{ [postId: string]: HTMLInputElement | null }>(
+    {}
+  );
+
+  const [handleCommentButtonToggle, commentInputStates] =
+    useCommentButtonLogic(commentInputRef);
 
   //Like Logic
 

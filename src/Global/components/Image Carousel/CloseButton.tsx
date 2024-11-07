@@ -4,13 +4,18 @@ import { useNavigate } from "react-router-dom";
 
 interface CloseButtonProps {
   className?: string;
+  URL?: string;
 }
 
-const CloseButton = ({ className }: CloseButtonProps) => {
-  const Navigate = useNavigate();
+const CloseButton = ({ className, URL }: CloseButtonProps) => {
+  const navigate = useNavigate();
 
   const handleCloseBtnClick = () => {
-    Navigate("/");
+    if (URL) {
+      navigate(URL);
+    } else {
+      navigate("/");
+    }
   };
 
   return (

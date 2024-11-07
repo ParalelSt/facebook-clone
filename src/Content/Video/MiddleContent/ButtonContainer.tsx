@@ -5,13 +5,14 @@ import CopyButton from "Content/Home/MiddleContent/CopyButton";
 import ShareButton from "Content/Home/MiddleContent/ShareButton";
 import "Content/Video/MiddleContent/ButtonContainer.scss";
 import { Post } from "Content/PostTypes";
+import { useCommentButtonLogic } from "Content/Home/MiddleContent/CommentButtonLogic";
+import { useRef } from "react";
 
 interface ButtonContainerProps {
   className?: string;
   setVideos: React.Dispatch<React.SetStateAction<Post[]>>;
   video: Post;
   user: Users | null;
-  commentButtonToggle?: (postId: string) => void;
 }
 
 const ButtonContainer = ({
@@ -19,15 +20,18 @@ const ButtonContainer = ({
   video,
   setVideos,
   user,
-  commentButtonToggle,
 }: ButtonContainerProps) => {
+  const commentInputRef = useRef<{ [postId: string]: HTMLInputElement | null }>(
+    {}
+  );
+
+  const [handleCommentButtonToggle] = useCommentButtonLogic(commentInputRef);
+
   return (
     <div className={`button-container ${className}`}>
       <LikeButton post={video} setPosts={setVideos} user={user}></LikeButton>
       <CommentButton
-        setCommentButtonsActive={() =>
-          commentButtonToggle ? commentButtonToggle(video.id) : null
-        }
+        setCommentButtonsActive={() => handleCommentButtonToggle(video.id)}
       ></CommentButton>
       <CopyButton post={video}></CopyButton>
       <ShareButton></ShareButton>

@@ -41,7 +41,7 @@ export default function PostDetail({
   const commentInputRef = useRef<{ [postId: string]: HTMLInputElement | null }>(
     {}
   );
-  const [handleCommentButtonToggle] = useCommentButtonLogic();
+  const [handleCommentButtonToggle] = useCommentButtonLogic(commentInputRef);
   const { id } = useParams<{ id: string }>();
   const [activePostId, setActivePostId] = useState<string | null>(null);
   const [handleDropDownOpen, handleDropDownClose, , isActive] = useDropDown();
@@ -100,7 +100,10 @@ export default function PostDetail({
     <div className="post-detail">
       <div className="post-detail-wrapper">
         <div className="left-side-nav-buttons">
-          <CloseButton className="post-detail-close-btn" />
+          <CloseButton
+            className="post-detail-close-btn"
+            URL={post.type === "video" ? "/video" : ""}
+          />
           <FacebookLogoButton />
         </div>
         <div className="post-image">
@@ -119,7 +122,7 @@ export default function PostDetail({
                 alt=""
               />
             ) : (
-              <video className="video" controls>
+              <video className="post-detail-video" controls>
                 <source
                   src={post.video}
                   height={1}
@@ -131,28 +134,32 @@ export default function PostDetail({
             )}
           </div>
         </div>
-        {post.type === "image" && (
-          <div className="post-detail-image-controls">
+        <div className="post-detail-image-controls">
+          {post.type === "image" && (
             <button
               className={`zoom-in-btn ${zoomDisabled ? "disabled" : "active"}`}
               onClick={zoomIn}
             >
               <FaSearchPlus />
             </button>
+          )}
+          {post.type === "image" && (
             <button
               className={`zoom-out-btn ${zoomDisabled ? "active" : "disabled"}`}
               onClick={zoomOut}
             >
               <FaSearchMinus />
             </button>
+          )}
+          {post.type === "image" && (
             <button>
               <FaTag />
             </button>
-            <button className="fullscreen-btn" onClick={toggleFullscreen}>
-              {isFullscreen ? <FaCompress /> : <FaExpand />}
-            </button>
-          </div>
-        )}
+          )}
+          <button className="fullscreen-btn" onClick={toggleFullscreen}>
+            {isFullscreen ? <FaCompress /> : <FaExpand />}
+          </button>
+        </div>
       </div>
       <div
         className={`post-detail-container ${
