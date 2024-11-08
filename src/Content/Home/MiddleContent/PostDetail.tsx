@@ -251,6 +251,50 @@ export default function PostDetail({
                   </div>
                 </div>
               )}
+
+            {post.type === "video" &&
+              (post.likeCount > 0 ||
+                post.commentCount > 0 ||
+                post.viewCount > 0) && (
+                <div className="like-share-display">
+                  <div
+                    className={`users-that-liked ${
+                      activePostId === post.id ? "active" : "disabled"
+                    }`}
+                  >
+                    {post.usersWhoLiked.map((likedUser) => (
+                      <div className="liked-user-display" key={likedUser.id}>
+                        {likedUser.username}
+                      </div>
+                    ))}
+                  </div>
+                  <div className="post-likes">
+                    <div
+                      className={`like-count count ${
+                        activePostId === post.id ? "active" : "disabled"
+                      }`}
+                      onMouseEnter={() => handleLikeDisplayOpen(post.id)}
+                      onMouseLeave={handleLikeDisplayClose}
+                    >
+                      <span>{post.likeCount > 0 ? post.likeCount : ""}</span>
+                    </div>
+                  </div>
+                  <div className="comment-and-share">
+                    <div className="comment-count count">
+                      <span>
+                        {post.commentCount > 0
+                          ? `${post.commentCount} comments`
+                          : ""}
+                      </span>
+                    </div>
+                    <div className="share-count count">
+                      <span>
+                        {post.viewCount > 0 ? `${post.viewCount} views` : ""}
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              )}
             {post.type === "image" &&
               (post.likeCount > 0 ||
                 post.commentCount > 0 ||

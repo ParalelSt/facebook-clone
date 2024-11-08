@@ -21,6 +21,8 @@
     color: white;
     background-color: rgb(60, 60, 60, 0.9);
 
+    font-size: $small;
+
     &.active {
         position: absolute;
         display: flex;
