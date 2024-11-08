@@ -14,7 +14,7 @@ const CloseButton = ({ className, URL }: CloseButtonProps) => {
     if (URL) {
       navigate(URL);
     } else {
-      navigate("/");
+      navigate(-1);
     }
   };
 

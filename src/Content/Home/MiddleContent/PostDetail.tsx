@@ -102,10 +102,7 @@ export default function PostDetail({
     <div className="post-detail">
       <div className="post-detail-wrapper">
         <div className="left-side-nav-buttons">
-          <CloseButton
-            className="post-detail-close-btn"
-            URL={post.type === "video" ? "/video" : ""}
-          />
+          <CloseButton className="post-detail-close-btn" />
           <FacebookLogoButton />
         </div>
         <div className="post-image">
