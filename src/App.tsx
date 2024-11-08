@@ -616,28 +616,34 @@ function App() {
         commentCount: 10,
         viewCount: 100,
         usersWhoLiked: [
-          { username: "Victoria Primo", id: "l23$fkj5%kdsfJkL" },
-          { username: "John Doe", id: "a12$ghj7&kdkfQs1" },
-          { username: "Emma Watson", id: "z23$kfd8%jdfkLm9" },
+          {
+            username: "Victoria Primo",
+            id: encodeURIComponent("l23$fkj5%kdsfJkL"),
+          },
+          { username: "John Doe", id: encodeURIComponent("a12$ghj7&kdkfQs1") },
+          {
+            username: "Emma Watson",
+            id: encodeURIComponent("z23$kfd8%jdfkLm9"),
+          },
         ],
         comments: [
           {
             username: "Alex Smith",
             profilePicture: "https://randomuser.me/api/portraits/men/1.jpg",
             comment: "Great video!",
-            id: "c1&f4h$Kd8jTq",
+            id: encodeURIComponent("c1&f4h$Kd8jTq"),
           },
           {
             username: "Lily Brown",
             profilePicture: "https://randomuser.me/api/portraits/women/1.jpg",
             comment: "I learned a lot from this!",
-            id: "c2%h3r&8jDfQ9",
+            id: encodeURIComponent("c2%h3r&8jDfQ9"),
           },
         ],
         username: "Alice Wonderland",
         profilePicture: "https://randomuser.me/api/portraits/women/2.jpg",
         userId: "user123&kL3#Yg6",
-        id: "1$hJ4m%Pz8x",
+        id: encodeURIComponent("1$hJ4sm%Pz8x"),
       },
       {
         type: "video",
@@ -648,33 +654,39 @@ function App() {
         commentCount: 5,
         viewCount: 100,
         usersWhoLiked: [
-          { username: "Emily Clark", id: "m56$gjh8&lskdQz8" },
-          { username: "Michael Johnson", id: "h78$fgd3&lkdsM8x" },
+          {
+            username: "Emily Clark",
+            id: encodeURIComponent("m56$gjh8&lskdQz8"),
+          },
+          {
+            username: "Michael Johnson",
+            id: encodeURIComponent("h78$fgd3&lkdsM8x"),
+          },
         ],
         comments: [
           {
             username: "Sarah Connor",
             profilePicture: "https://randomuser.me/api/portraits/women/3.jpg",
             comment: "This is awesome!",
-            id: "c3!dF4$Lh2*jRf",
+            id: encodeURIComponent("c3!dF4$Lh2*jRf"),
           },
           {
             username: "Tom Hardy",
             profilePicture: "https://randomuser.me/api/portraits/men/2.jpg",
             comment: "Thanks for sharing!",
-            id: "c4%rT5#Kp8*vL9",
+            id: encodeURIComponent("c4%rT5#Kp8*vL9"),
           },
           {
             username: "Robert Downey",
             profilePicture: "https://randomuser.me/api/portraits/men/3.jpg",
             comment: "Can you make more like this?",
-            id: "c5&vW9#Fs3*jL5",
+            id: encodeURIComponent("c5&vW9#Fs3*jL5"),
           },
         ],
         username: "John Doe",
         profilePicture: "https://randomuser.me/api/portraits/men/4.jpg",
         userId: "user456*Zg4#Df9",
-        id: "2^dR6k@X8!Hj2",
+        id: encodeURIComponent("2^dR6k@X8!Hj2"),
       },
       {
         type: "video",
@@ -685,35 +697,47 @@ function App() {
         commentCount: 8,
         viewCount: 100,
         usersWhoLiked: [
-          { username: "Alice Wonderland", id: "a45$dsh2&fkjdLp9" },
-          { username: "Peter Parker", id: "j67$lkj4&dlfjQk3" },
-          { username: "Bruce Wayne", id: "g90$kjh5&lkfM2y1" },
-          { username: "Clark Kent", id: "e12$hfd7&kjdsN5t" },
+          {
+            username: "Alice Wonderland",
+            id: encodeURIComponent("a45$dsh2&fkjdLp9"),
+          },
+          {
+            username: "Peter Parker",
+            id: encodeURIComponent("j67$lkj4&dlfjQk3"),
+          },
+          {
+            username: "Bruce Wayne",
+            id: encodeURIComponent("g90$kjh5&lkfM2y1"),
+          },
+          {
+            username: "Clark Kent",
+            id: encodeURIComponent("e12$hfd7&kjdsN5t"),
+          },
         ],
         comments: [
           {
             username: "Diana Prince",
             profilePicture: "https://randomuser.me/api/portraits/women/4.jpg",
             comment: "Amazing content!",
-            id: "c6&gH7$Kj4*jWq8",
+            id: encodeURIComponent("c6&gH7$Kj4*jWq8"),
           },
           {
             username: "Tony Stark",
             profilePicture: "https://randomuser.me/api/portraits/men/5.jpg",
             comment: "Very informative!",
-            id: "c7%fR2#Wb9*mLp3",
+            id: encodeURIComponent("c7%fR2#Wb9*mLp3"),
           },
           {
             username: "Natasha Romanoff",
             profilePicture: "https://randomuser.me/api/portraits/women/5.jpg",
             comment: "Keep it up!",
-            id: "c8*R9$Wq6&hF5jN",
+            id: encodeURIComponent("c8*R9$Wq6&hF5jN"),
           },
         ],
         username: "Emma Watson",
         profilePicture: "https://randomuser.me/api/portraits/women/6.jpg",
         userId: "user789!Gh5%Lp1",
-        id: "3&Qf4#Wr8^Zj6",
+        id: encodeURIComponent("3&Qf4#Wr8^Zj6"),
       },
 
       {
@@ -725,35 +749,47 @@ function App() {
         commentCount: 8,
         viewCount: 100,
         usersWhoLiked: [
-          { username: "Alice Wonderland", id: "a45$dsh2&fkjdLp9" },
-          { username: "Peter Parker", id: "j67$lkj4&dlfjQk3" },
-          { username: "Bruce Wayne", id: "g90$kjh5&lkfM2y1" },
-          { username: "Clark Kent", id: "e12$hfd7&kjdsN5t" },
+          {
+            username: "Alice Wonderland",
+            id: encodeURIComponent("a45$dsh2&fkjdLp9"),
+          },
+          {
+            username: "Peter Parker",
+            id: encodeURIComponent("j67$lkj4&dlfjQk3"),
+          },
+          {
+            username: "Bruce Wayne",
+            id: encodeURIComponent("g90$kjh5&lkfM2y1"),
+          },
+          {
+            username: "Clark Kent",
+            id: encodeURIComponent("e12$hfd7&kjdsN5t"),
+          },
         ],
         comments: [
           {
             username: "Diana Prince",
             profilePicture: "https://randomuser.me/api/portraits/women/4.jpg",
             comment: "Amazing content!",
-            id: "c6&gH7$Kj4*jWq8",
+            id: encodeURIComponent("c6&gH7$Kj4*jWq8"),
           },
           {
             username: "Tony Stark",
             profilePicture: "https://randomuser.me/api/portraits/men/5.jpg",
             comment: "Very informative!",
-            id: "c7%fR2#Wb9*mLp3",
+            id: encodeURIComponent("c7%fR2#Wb9*mLp3"),
           },
           {
             username: "Natasha Romanoff",
             profilePicture: "https://randomuser.me/api/portraits/women/5.jpg",
             comment: "Keep it up!",
-            id: "c8*R9$Wq6&hF5jN",
+            id: encodeURIComponent("c8*R9$Wq6&hF5jN"),
           },
         ],
         username: "Emma Watson",
         profilePicture: "https://randomuser.me/api/portraits/women/6.jpg",
         userId: "user789!Gh5%Lp1",
-        id: "3&Qf4#Wr8^Zj6",
+        id: encodeURIComponent("3&Qfdf4#Wr8^Zj6"),
       },
     ];
   }, []);

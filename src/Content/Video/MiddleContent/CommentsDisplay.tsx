@@ -23,6 +23,17 @@ const CommentsDisplay = ({
   const handleDisplayClose = () => {
     setActivePostId(null);
   };
+
+  const displayedUsernames = new Set<string>();
+
+  const uniqueComments = comments.filter((user) => {
+    if (displayedUsernames.has(user.username)) {
+      return false;
+    }
+    displayedUsernames.add(user.username);
+    return true;
+  });
+
   return (
     <div className="comments-display">
       {commentCount > 0 && (
@@ -39,9 +50,9 @@ const CommentsDisplay = ({
               activePostId === post.id ? "active" : "disabled"
             }`}
           >
-            {comments.map((user) => {
+            {uniqueComments.map((user) => {
               return (
-                <div className="user-liked" key={user.id}>
+                <div className="user-commented" key={user.id}>
                   <span>{user.username}</span>
                 </div>
               );

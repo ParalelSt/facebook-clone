@@ -26,15 +26,15 @@ export const useCommentButtonLogic = (commentInputRef: commentInputRefType) => {
       if (
         currentPath === "/" ||
         currentPath.startsWith("/posts/") ||
-        currentPath === `/video/videos/${postId}`
+        currentPath === `/video/videos/`
       ) {
         if (commentInputRef.current[postId]) {
           commentInputRef.current[postId]?.focus();
         }
       } else if (currentPath.startsWith("/video")) {
-        navigate(`/video/videos/${postId}`);
+        navigate(`/video/videos/${encodeURIComponent(postId)}`);
       } else {
-        navigate(`/posts/${postId}`);
+        navigate(`/posts/${encodeURIComponent(postId)}`);
       }
     },
     [location.pathname, navigate, commentInputRef]
