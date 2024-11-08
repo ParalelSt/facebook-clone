@@ -791,6 +791,144 @@ function App() {
         userId: "user789!Gh5%Lp1",
         id: encodeURIComponent("3&Qfdf4#Wr8^Zj6"),
       },
+      {
+        type: "video",
+        video:
+          "https://videos.pexels.com/video-files/27591089/12177890_640_360_60fps.mp4",
+        timePosted: "3 hours ago",
+        likeCount: 40,
+        commentCount: 12,
+        viewCount: 120,
+        usersWhoLiked: [
+          {
+            username: "Sophia Turner",
+            id: encodeURIComponent("t56$dgjh4&fkd4Nt"),
+          },
+          {
+            username: "James Smith",
+            id: encodeURIComponent("f23$ghl7&dksfJn1"),
+          },
+          {
+            username: "Oliver Stone",
+            id: encodeURIComponent("o45$kjh8&fhd2Wt9"),
+          },
+        ],
+        comments: [
+          {
+            username: "Mark Johnson",
+            profilePicture: "https://randomuser.me/api/portraits/men/6.jpg",
+            comment: "Incredible quality!",
+            id: encodeURIComponent("c10^G3&Jk8*Lwp9"),
+          },
+          {
+            username: "Lucy Liu",
+            profilePicture: "https://randomuser.me/api/portraits/women/7.jpg",
+            comment: "This helped me a lot, thanks!",
+            id: encodeURIComponent("c11%N5&Lx3^Rfg"),
+          },
+        ],
+        username: "Liam Neeson",
+        profilePicture: "https://randomuser.me/api/portraits/men/7.jpg",
+        userId: "user234%Gh6@Tb9",
+        id: encodeURIComponent("4&Lg8$kR2^Fj9"),
+      },
+      {
+        type: "video",
+        video:
+          "https://videos.pexels.com/video-files/18995601/18995601-hd_1080_1920_60fps.mp4",
+        timePosted: "2 days ago",
+        likeCount: 52,
+        commentCount: 15,
+        viewCount: 200,
+        usersWhoLiked: [
+          {
+            username: "Chloe Martinez",
+            id: encodeURIComponent("m34$lsd3&fl7QpR"),
+          },
+          { username: "Daniel Lee", id: encodeURIComponent("d12$hfg8&kj1RpT") },
+          {
+            username: "Jessica Taylor",
+            id: encodeURIComponent("j67%opk1&gk9Pl"),
+          },
+        ],
+        comments: [
+          {
+            username: "Helen Mirren",
+            profilePicture: "https://randomuser.me/api/portraits/women/8.jpg",
+            comment: "Loved it! Keep it up.",
+            id: encodeURIComponent("c12&J2r$Kh8*mRf"),
+          },
+          {
+            username: "Tom Hiddleston",
+            profilePicture: "https://randomuser.me/api/portraits/men/8.jpg",
+            comment: "This was amazing, such great content!",
+            id: encodeURIComponent("c13%N7&Jf4@XlQ2"),
+          },
+        ],
+        username: "Olivia Wilde",
+        profilePicture: "https://randomuser.me/api/portraits/women/9.jpg",
+        userId: "user675@Ij6xWq",
+        id: encodeURIComponent("5&Lm3!tV6^Bp5"),
+      },
+      {
+        type: "video",
+        video:
+          "https://videos.pexels.com/video-files/28589164/12428462_1920_1080_30fps.mp4",
+        timePosted: "5 hours ago",
+        likeCount: 29,
+        commentCount: 6,
+        viewCount: 80,
+        usersWhoLiked: [
+          {
+            username: "Ava Martinez",
+            id: encodeURIComponent("a11@gh2#rKf8Jp"),
+          },
+          { username: "Matthew Rose", id: encodeURIComponent("m98$kp7&dkjXl") },
+        ],
+        comments: [
+          {
+            username: "Bruce Lee",
+            profilePicture: "https://randomuser.me/api/portraits/men/9.jpg",
+            comment: "Nice, very educational!",
+            id: encodeURIComponent("c14$gR1*Lt5mQ"),
+          },
+        ],
+        username: "John Cena",
+        profilePicture: "https://randomuser.me/api/portraits/men/10.jpg",
+        userId: "user145@Pf8oLs",
+        id: encodeURIComponent("6&Tg4#bR9Xw2y"),
+      },
+      {
+        type: "video",
+        video:
+          "https://videos.pexels.com/video-files/5527699/5527699-uhd_2560_1440_30fps.mp4",
+        timePosted: "2 days ago",
+        likeCount: 15,
+        commentCount: 3,
+        viewCount: 150,
+        usersWhoLiked: [
+          {
+            username: "Lily Johnson",
+            id: encodeURIComponent("l23$gh6&fh9Xd7"),
+          },
+          {
+            username: "David Tennant",
+            id: encodeURIComponent("d87$fh2&ks4Qn9"),
+          },
+        ],
+        comments: [
+          {
+            username: "Rose Tyler",
+            profilePicture: "https://randomuser.me/api/portraits/women/10.jpg",
+            comment: "Really enjoyed this!",
+            id: encodeURIComponent("c15$fgh2*Hd3nL"),
+          },
+        ],
+        username: "Matt Smith",
+        profilePicture: "https://randomuser.me/api/portraits/men/11.jpg",
+        userId: "user456&Hg9f",
+        id: encodeURIComponent("7^Wm4@Bp9$Fj5"),
+      },
     ];
   }, []);
 
