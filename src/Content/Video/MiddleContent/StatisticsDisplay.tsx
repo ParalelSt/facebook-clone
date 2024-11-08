@@ -41,13 +41,13 @@ const StatisticsDisplay = ({
         peopleWhoLiked={peopleWhoLiked}
         post={post}
       ></LikeDisplay>
-      <LuDot size={10} />
+      {commentCount > 0 && <LuDot size={10} className={"comment-dot"} />}
       <CommentsDisplay
         comments={comments}
         commentCount={commentCount}
         post={post}
       ></CommentsDisplay>
-      <LuDot size={10} />
+      {viewCount > 0 && <LuDot size={10} className={"view-dot"} />}
       <ViewsDisplay viewCount={viewCount}></ViewsDisplay>
     </div>
   );

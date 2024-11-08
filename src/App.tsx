@@ -798,7 +798,7 @@ function App() {
         timePosted: "3 hours ago",
         likeCount: 40,
         commentCount: 12,
-        viewCount: 120,
+        viewCount: 0,
         usersWhoLiked: [
           {
             username: "Sophia Turner",
@@ -838,7 +838,7 @@ function App() {
           "https://videos.pexels.com/video-files/18995601/18995601-hd_1080_1920_60fps.mp4",
         timePosted: "2 days ago",
         likeCount: 52,
-        commentCount: 15,
+        commentCount: 0,
         viewCount: 200,
         usersWhoLiked: [
           {
@@ -851,20 +851,7 @@ function App() {
             id: encodeURIComponent("j67%opk1&gk9Pl"),
           },
         ],
-        comments: [
-          {
-            username: "Helen Mirren",
-            profilePicture: "https://randomuser.me/api/portraits/women/8.jpg",
-            comment: "Loved it! Keep it up.",
-            id: encodeURIComponent("c12&J2r$Kh8*mRf"),
-          },
-          {
-            username: "Tom Hiddleston",
-            profilePicture: "https://randomuser.me/api/portraits/men/8.jpg",
-            comment: "This was amazing, such great content!",
-            id: encodeURIComponent("c13%N7&Jf4@XlQ2"),
-          },
-        ],
+        comments: [],
         username: "Olivia Wilde",
         profilePicture: "https://randomuser.me/api/portraits/women/9.jpg",
         userId: "user675@Ij6xWq",
@@ -876,7 +863,7 @@ function App() {
           "https://videos.pexels.com/video-files/28589164/12428462_1920_1080_30fps.mp4",
         timePosted: "5 hours ago",
         likeCount: 29,
-        commentCount: 6,
+        commentCount: 1,
         viewCount: 80,
         usersWhoLiked: [
           {
@@ -904,8 +891,8 @@ function App() {
           "https://videos.pexels.com/video-files/5527699/5527699-uhd_2560_1440_30fps.mp4",
         timePosted: "2 days ago",
         likeCount: 15,
-        commentCount: 3,
-        viewCount: 150,
+        commentCount: 1,
+        viewCount: 150324,
         usersWhoLiked: [
           {
             username: "Lily Johnson",

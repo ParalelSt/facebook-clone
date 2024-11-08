@@ -9,7 +9,12 @@ const ViewsDisplay = ({ viewCount }: ViewDisplayProps) => {
     <div className="views-display">
       {viewCount > 0 && (
         <div className="view-display">
-          <p className="view-count">{viewCount} views</p>
+          <p className="view-count">
+            {viewCount > 999
+              ? viewCount.toString().slice(0, -3) + "K"
+              : viewCount}
+            {""} views
+          </p>
         </div>
       )}
     </div>

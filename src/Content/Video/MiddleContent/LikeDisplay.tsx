@@ -29,7 +29,11 @@ const LikeDisplay = ({ likeCount, peopleWhoLiked, post }: LikeDisplayProps) => {
             onMouseEnter={() => handleDisplayOpen(post.id)}
             onMouseLeave={handleDisplayClose}
           >
-            <p>{likeCount}</p>
+            <p>
+              {likeCount > 999
+                ? likeCount.toString().slice(0, -3) + "k"
+                : likeCount}
+            </p>
           </div>
           <div
             className={`people-who-liked ${
