@@ -1,7 +1,10 @@
+import "Content/Home/MiddleContent/Buttons/DropDownButtons/DropDownButtons.scss";
+import { BsPencilSquare } from "react-icons/bs";
+
 const ShareToFeedButton = () => {
   return (
     <div className="share-to-feed-button drop-down-btn">
-      <div className="button-icon"></div>
+      <BsPencilSquare />
       <span>Share to Feed</span>
     </div>
   );

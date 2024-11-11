@@ -1,7 +1,10 @@
+import "Content/Home/MiddleContent/Buttons/DropDownButtons/DropDownButtons.scss";
+import { LuPlusCircle } from "react-icons/lu";
+
 const ShareToYourStory = () => {
   return (
     <div className="share-to-your-story-button drop-down-btn">
-      <div className="button-icon"></div>
+      <LuPlusCircle />
       <span>Share to your story (Friends)</span>
     </div>
   );

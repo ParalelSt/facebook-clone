@@ -1,16 +1,18 @@
 @import 'Global/GlobalStyles.scss';
 
-.share-btn {
+.drop-down-btn {
     position: relative;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     flex: 1;
 
-    padding: 0.25em;
+    padding: 0.4em;
     border-radius: 0.25em;
 
     gap: 0.3em;
+
+    width: 100%;
 
     &:hover {
         background-color: $hover-white;
@@ -27,18 +29,5 @@
         color: $gray-text-dark;
         font-size: $m-l;
         font-weight: 500;
-    }
-}
-
-.share-drop-down {
-    bottom: 2.8em;
-}
-
-.share-copy-button {
-    justify-content: flex-start;
-
-    #copiedText {
-        display: flex;
-        justify-content: center;
     }
 }

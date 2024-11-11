@@ -1,7 +1,10 @@
+import "Content/Home/MiddleContent/Buttons/DropDownButtons/DropDownButtons.scss";
+import { ImEmbed2 } from "react-icons/im";
+
 const Embed = () => {
   return (
     <div className="embed-button drop-down-btn">
-      <div className="button-icon"></div>
+      <ImEmbed2 />
       <span>Embed</span>
     </div>
   );

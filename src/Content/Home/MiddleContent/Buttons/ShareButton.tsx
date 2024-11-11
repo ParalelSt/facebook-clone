@@ -5,6 +5,13 @@ import { useEffect, useRef } from "react";
 import DropDownContainer from "../DropDownContainer";
 import CopyButton from "./CopyButton";
 import { Post } from "Content/PostTypes";
+import ShareToFeedButton from "./DropDownButtons/ShareToFeedButton";
+import ShareToYourStory from "./DropDownButtons/ShareToYourStory";
+import SendInMessenger from "./DropDownButtons/SendInMessenger";
+import MoreOptions from "./DropDownButtons/MoreOptions";
+import ShareToAPage from "./DropDownButtons/ShareToAPage";
+import Embed from "./DropDownButtons/Embed";
+import ShareVia from "./DropDownButtons/ShareVia";
 
 interface ShareButtonProps {
   post: Post;
@@ -52,11 +59,14 @@ const ShareButton = ({ post }: ShareButtonProps) => {
         ref={dropDownRef}
         isActive={isActive}
       >
-        <CopyButton
-          className="share-copy-button"
-          text="link"
-          post={post}
-        ></CopyButton>
+        <ShareToFeedButton />
+        <ShareToYourStory />
+        <SendInMessenger />
+        <MoreOptions />
+        <ShareToAPage />
+        <CopyButton className="share-copy-button" text="link" post={post} />
+        <Embed />
+        <ShareVia />
       </DropDownContainer>
     </button>
   );
