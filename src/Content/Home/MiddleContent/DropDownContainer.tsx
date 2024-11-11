@@ -1,3 +1,4 @@
+import React from "react";
 import { TbTriangleFilled } from "react-icons/tb";
 import "Content/Home/MiddleContent/DropDownContainer.scss";
 
@@ -8,12 +9,10 @@ interface DropDownContainerProps {
   children: React.ReactNode;
 }
 
-const DropDownContainer = ({
-  className,
-  ref,
-  isActive,
-  children,
-}: DropDownContainerProps) => {
+const DropDownContainer = React.forwardRef<
+  HTMLDivElement,
+  DropDownContainerProps
+>(({ className, isActive, children }, ref) => {
   const handleDropDownClick = (e: React.MouseEvent) => {
     e.stopPropagation();
   };
@@ -30,6 +29,6 @@ const DropDownContainer = ({
       <TbTriangleFilled className="triangle-icon" color="white" />
     </div>
   );
-};
+});
 
 export default DropDownContainer;

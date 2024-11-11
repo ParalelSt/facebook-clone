@@ -30,7 +30,9 @@ const ShareButton = ({ post }: ShareButtonProps) => {
         dropDownRef.current &&
         !dropDownRef.current.contains(e.target as Node)
       ) {
-        handleDropDownClose();
+        if (isActive) {
+          handleDropDownClose();
+        }
       }
     };
 
