@@ -1,5 +1,5 @@
 import { IoChatbubbleOutline } from "react-icons/io5";
-import "Content/Home/MiddleContent/CommentButton.scss";
+import "Content/Home/MiddleContent/Buttons/CommentButton.scss";
 
 interface CommentButtonProps {
   setCommentButtonsActive?: () => void;

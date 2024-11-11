@@ -2,7 +2,7 @@ import React from "react";
 import { AiOutlineLike } from "react-icons/ai";
 import useLikeButtonLogic from "./LikeButtonLogic";
 import { Post, User } from "Content/PostTypes";
-import "Content/Home/MiddleContent/LikeButton.scss";
+import "Content/Home/MiddleContent/Buttons/LikeButton.scss";
 
 interface LikeButtonProps {
   post: Post;

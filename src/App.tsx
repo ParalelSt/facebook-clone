@@ -9,7 +9,7 @@ import CreateStory from "Global/components/Image Carousel/CreateStory.tsx";
 import CarouselContext from "Content/Home/MiddleContent/CarouselContext";
 import { carouselDataType } from "Content/Home/MiddleContent/MiddleContent";
 import { v4 } from "uuid";
-import PostDetail from "Content/Home/MiddleContent/PostDetail";
+import PostDetail from "Content/Home/MiddleContent/Posts/PostDetail";
 import { Post } from "Content/PostTypes";
 import Video from "Content/Video/Video";
 

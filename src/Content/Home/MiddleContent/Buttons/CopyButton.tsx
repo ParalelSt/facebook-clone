@@ -24,9 +24,11 @@ type Post = ImagePost | VideoPost;
 
 interface CopyButtonProps {
   post: Post;
+  text?: string;
+  className?: string;
 }
 
-const CopyButton: React.FC<CopyButtonProps> = ({ post }) => {
+const CopyButton: React.FC<CopyButtonProps> = ({ post, text, className }) => {
   const [showCopied, setShowCopied] = useState(false);
   const [handleCopy] = useCopyLogic();
 
@@ -37,9 +39,12 @@ const CopyButton: React.FC<CopyButtonProps> = ({ post }) => {
   };
 
   return (
-    <button className="copy-btn btn" onClick={() => handleCopyClick(post.id)}>
+    <button
+      className={`copy-btn btn ${className}`}
+      onClick={() => handleCopyClick(post.id)}
+    >
       <RiLinkM />
-      <span className="button-text">Copy</span>
+      <span className="button-text">Copy {text}</span>
       <div
         className={`copied-to-clipboard ${showCopied ? "copied" : "disabled"}`}
       >

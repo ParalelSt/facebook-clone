@@ -1,19 +1,19 @@
 import { FaEllipsis } from "react-icons/fa6";
 import ContentContainer from "Global/components/ContentContainer/ContentContainer";
-import "Content/Home/MiddleContent/Post.scss";
+import "./Post.scss";
 import BorderLine from "Global/components/BorderLine";
 import { Users } from "App";
 import ProfilesAndPages from "Content/Home/MiddleContent/ProfilesAndPages";
 import useDropDown from "Global/hooks/useDropDown";
-import LikeButton from "Content/Home/MiddleContent/LikeButton";
+import LikeButton from "Content/Home/MiddleContent/Buttons/LikeButton";
 import { Link } from "react-router-dom";
 import { useRef, useState } from "react";
-import CopyButton from "./CopyButton";
+import CopyButton from "Content/Home/MiddleContent/Buttons/CopyButton";
 import PostComments from "./PostComments";
 import WriteComment from "./WriteComment";
-import CommentButton from "./CommentButton";
-import ShareButton from "./ShareButton";
-import { useCommentButtonLogic } from "./CommentButtonLogic";
+import CommentButton from "Content/Home/MiddleContent/Buttons/CommentButton";
+import ShareButton from "Content/Home/MiddleContent/Buttons/ShareButton";
+import { useCommentButtonLogic } from "Content/Home/MiddleContent/Buttons/CommentButtonLogic";
 import { Post } from "Content/PostTypes";
 
 interface PostProps {
@@ -181,7 +181,7 @@ const PostInfo = ({
                       }
                     ></CommentButton>
                     <CopyButton post={post}></CopyButton>
-                    <ShareButton></ShareButton>
+                    <ShareButton post={post}></ShareButton>
                   </div>
                   <BorderLine></BorderLine>
                   {post.commentCount > 0 && (

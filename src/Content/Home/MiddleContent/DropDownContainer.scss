@@ -1,0 +1,40 @@
+@import 'Global/GlobalStyles.scss';
+
+.drop-down-container {
+    z-index: 101;
+
+    position: absolute;
+    flex-direction: column;
+
+    padding: 0.5em;
+    border-radius: 0.5em;
+
+    width: 22em;
+
+    background-color: white;
+    box-shadow: $shadow-dark;
+
+    &.disabled {
+        display: none;
+    }
+
+    &.active {
+        display: flex;
+    }
+
+    .triangle-icon {
+        position: absolute;
+        bottom: -0.5em;
+        left: 50%;
+        z-index: 100;
+
+        transform: rotate(90deg);
+
+        width: 1.7em;
+        height: 1.7em;
+    }
+
+    .children {
+        z-index: 102;
+    }
+}

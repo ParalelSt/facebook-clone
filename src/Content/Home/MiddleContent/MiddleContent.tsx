@@ -5,7 +5,7 @@ import StateYourMind from "Content/Home/MiddleContent/StateYourMind";
 import { Users } from "App";
 import { ContactListType } from "Content/Home/Home";
 import CarouselContext from "./CarouselContext";
-import PostInfo from "Content/Home/MiddleContent/PostInfo";
+import PostInfo from "Content/Home/MiddleContent/Posts/PostInfo";
 import { Post } from "Content/PostTypes";
 
 export interface carouselDataType {

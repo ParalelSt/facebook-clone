@@ -2,25 +2,25 @@ import React, { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FaCompress, FaEllipsis, FaExpand, FaTag } from "react-icons/fa6";
 import BorderLine from "Global/components/BorderLine";
-import LikeButton from "./LikeButton";
+import LikeButton from "Content/Home/MiddleContent/Buttons/LikeButton";
 import useDropDown from "Global/hooks/useDropDown";
-import ProfilesAndPages from "./ProfilesAndPages";
+import ProfilesAndPages from "Content/Home/MiddleContent/ProfilesAndPages";
 import Menu from "Navbar/Right/Menu";
 import Notifications from "Navbar/Right/Notifications";
 import Messenger from "Navbar/Right/Messenger";
 import ProfileButton from "Navbar/Right/ProfileButton";
 import CloseButton from "Global/components/Image Carousel/CloseButton";
 import FacebookLogoButton from "Global/components/Image Carousel/FacebookLogoButton";
-import useZoomControl from "./ZoomControl";
-import CopyButton from "./CopyButton";
-import PostComments from "./PostComments";
-import CommentButton from "./CommentButton";
-import WriteComment from "./WriteComment";
-import ShareButton from "./ShareButton";
+import useZoomControl from "Content/Home/MiddleContent/ZoomControl";
+import CopyButton from "Content/Home/MiddleContent/Buttons/CopyButton";
+import PostComments from "Content/Home/MiddleContent/Posts/PostComments";
+import CommentButton from "Content/Home/MiddleContent/Buttons/CommentButton";
+import WriteComment from "Content/Home/MiddleContent/Posts/WriteComment";
+import ShareButton from "Content/Home/MiddleContent/Buttons/ShareButton";
 import "./PostDetail.scss";
 import { Post, User } from "Content/PostTypes";
 import { FaSearchMinus, FaSearchPlus } from "react-icons/fa";
-import { useCommentButtonLogic } from "./CommentButtonLogic";
+import { useCommentButtonLogic } from "Content/Home/MiddleContent/Buttons/CommentButtonLogic";
 
 interface PostDetailProps {
   posts: Post[];
@@ -307,7 +307,7 @@ export default function PostDetail({
                 }
               />
               <CopyButton post={post} />
-              <ShareButton />
+              <ShareButton post={post} />
             </div>
             <BorderLine />
             {post.commentCount > 0 && (
