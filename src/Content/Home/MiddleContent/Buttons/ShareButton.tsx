@@ -15,9 +15,10 @@ import ShareVia from "./DropDownButtons/ShareVia";
 
 interface ShareButtonProps {
   post: Post;
+  className?: string;
 }
 
-const ShareButton = ({ post }: ShareButtonProps) => {
+const ShareButton = ({ post, className }: ShareButtonProps) => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [handleDropDownOpen, handleDropDownClose, toggleDropDown, isActive] =
     useDropDown();
@@ -51,11 +52,13 @@ const ShareButton = ({ post }: ShareButtonProps) => {
 
   return (
     <button
-      className={`share-btn btn ${isActive ? "active" : "disabled"}`}
+      className={`share-btn btn ${className} ${
+        isActive ? "active" : "disabled"
+      }`}
       onClick={handleOpenDropDown}
     >
       <PiShareFatLight />
-      <span>Share</span>
+      <span className="button-text">Share</span>
       <DropDownContainer
         className="share-drop-down"
         ref={dropDownRef}

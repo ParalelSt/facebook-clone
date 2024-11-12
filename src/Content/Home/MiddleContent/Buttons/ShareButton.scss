@@ -7,10 +7,10 @@
     justify-content: center;
     flex: 1;
 
-    padding: 0.25em;
+    padding: 0.4em;
     border-radius: 0.25em;
 
-    gap: 0.3em;
+    gap: 0.35em;
 
     &:hover {
         background-color: $hover-white;
@@ -28,9 +28,12 @@
         font-size: $m-l;
         font-weight: 500;
     }
+
 }
 
 .share-drop-down {
+    gap: 1em;
+
     bottom: 2.8em;
 }
 
@@ -41,4 +44,9 @@
         display: flex;
         justify-content: center;
     }
+
+    #shareCopyText {
+        display: inline;
+    }
+
 }

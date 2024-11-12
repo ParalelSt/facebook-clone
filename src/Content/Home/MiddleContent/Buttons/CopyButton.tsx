@@ -40,11 +40,13 @@ const CopyButton: React.FC<CopyButtonProps> = ({ post, text, className }) => {
 
   return (
     <button
-      className={`copy-btn btn ${className}`}
+      className={`${className} copy-btn btn `}
       onClick={() => handleCopyClick(post.id)}
     >
       <RiLinkM />
-      <span className="button-text">Copy {text}</span>
+      <span id="shareCopyText" className="button-text">
+        Copy {text}
+      </span>
       <div
         className={`copied-to-clipboard ${showCopied ? "copied" : "disabled"}`}
       >

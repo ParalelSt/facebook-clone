@@ -16,11 +16,11 @@ import CopyButton from "Content/Home/MiddleContent/Buttons/CopyButton";
 import PostComments from "Content/Home/MiddleContent/Posts/PostComments";
 import CommentButton from "Content/Home/MiddleContent/Buttons/CommentButton";
 import WriteComment from "Content/Home/MiddleContent/Posts/WriteComment";
-import ShareButton from "Content/Home/MiddleContent/Buttons/ShareButton";
 import "./PostDetail.scss";
 import { Post, User } from "Content/PostTypes";
 import { FaSearchMinus, FaSearchPlus } from "react-icons/fa";
 import { useCommentButtonLogic } from "Content/Home/MiddleContent/Buttons/CommentButtonLogic";
+import ShareButton from "../Buttons/ShareButton";
 
 interface PostDetailProps {
   posts: Post[];
@@ -307,7 +307,7 @@ export default function PostDetail({
                 }
               />
               <CopyButton post={post} />
-              <ShareButton post={post} />
+              <ShareButton post={post} className="post-detail-share-btn" />
             </div>
             <BorderLine />
             {post.commentCount > 0 && (

@@ -182,11 +182,26 @@
 
     .copied-to-clipboard {
 
-        width: 200%;
+        width: 100%;
 
         #copiedText {
             margin-top: 0;
         }
     }
+
+    .share-drop-down {
+        gap: 1em;
+
+        bottom: -19em;
+        right: -0.75em;
+
+        .triangle-icon {
+            top: -0.7em;
+            left: 18em;
+        }
+    }
+
 }
+
+
 
