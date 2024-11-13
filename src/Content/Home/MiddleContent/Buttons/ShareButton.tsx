@@ -16,6 +16,8 @@ import ShareVia from "./DropDownButtons/ShareVia";
 interface ShareButtonProps {
   post: Post;
   className?: string;
+  copyBtnClassName?: string;
+  copyBtnId?: string;
 }
 
 const ShareButton = ({ post, className }: ShareButtonProps) => {
@@ -69,7 +71,12 @@ const ShareButton = ({ post, className }: ShareButtonProps) => {
         <SendInMessenger />
         <MoreOptions />
         <ShareToAPage />
-        <CopyButton className="share-copy-button" text="link" post={post} />
+        <CopyButton
+          id="postDetailCopyBtn"
+          className="share-copy-button"
+          text="link"
+          post={post}
+        />
         <Embed />
         <ShareVia />
       </DropDownContainer>

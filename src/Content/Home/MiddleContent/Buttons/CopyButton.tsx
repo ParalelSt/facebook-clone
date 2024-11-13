@@ -26,9 +26,15 @@ interface CopyButtonProps {
   post: Post;
   text?: string;
   className?: string;
+  id?: string;
 }
 
-const CopyButton: React.FC<CopyButtonProps> = ({ post, text, className }) => {
+const CopyButton: React.FC<CopyButtonProps> = ({
+  post,
+  text,
+  className,
+  id,
+}) => {
   const [showCopied, setShowCopied] = useState(false);
   const [handleCopy] = useCopyLogic();
 
@@ -40,7 +46,8 @@ const CopyButton: React.FC<CopyButtonProps> = ({ post, text, className }) => {
 
   return (
     <button
-      className={`${className} copy-btn btn `}
+      className={`${className} copy-btn btn`}
+      id={id}
       onClick={() => handleCopyClick(post.id)}
     >
       <RiLinkM />

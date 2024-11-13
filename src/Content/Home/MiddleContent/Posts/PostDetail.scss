@@ -176,6 +176,10 @@
 }
 
 .post-detail-buttons {
+    .btn {
+        padding: 0.4em;
+    }
+
     .button-text {
         display: none;
     }
@@ -199,8 +203,15 @@
             top: -0.7em;
             left: 18em;
         }
+
+        .children {
+            #postDetailCopyBtn {
+                padding: 0.4em;
+            }
+        }
     }
 
+    
 }
 
 
