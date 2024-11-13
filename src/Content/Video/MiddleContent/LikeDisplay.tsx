@@ -43,7 +43,7 @@ const LikeDisplay = ({ likeCount, peopleWhoLiked, post }: LikeDisplayProps) => {
             {peopleWhoLiked.map((user) => {
               return (
                 <div className="user-liked" key={user.id}>
-                  <span>{user.username}</span>
+                  <p>{user.username}</p>
                 </div>
               );
             })}

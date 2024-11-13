@@ -27,6 +27,10 @@
         position: absolute;
         display: flex;
     }
+
+    .user-liked {
+        white-space: nowrap;
+    }
 }
 
 .like-count {
@@ -35,7 +39,6 @@
 
     p {
         color: $gray-text-dark;
-
 
         &:hover {
             text-decoration: underline;

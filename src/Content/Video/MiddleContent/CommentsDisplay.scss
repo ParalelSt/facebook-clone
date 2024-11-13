@@ -27,6 +27,10 @@
         position: absolute;
         display: flex;
     }
+
+    .user-commented {
+        white-space: nowrap;
+    }
 }
 
 .comment-count {
