@@ -299,6 +299,10 @@ export default function PostDetail({
               (post.likeCount > 0 ||
                 post.commentCount > 0 ||
                 post.shareCount > 0) && <BorderLine />}
+            {post.type === "video" &&
+              (post.likeCount > 0 ||
+                post.commentCount > 0 ||
+                post.viewCount > 0) && <BorderLine />}
             <div className="post-buttons post-detail-buttons">
               <LikeButton user={currentUser} setPosts={setPosts} post={post} />
               <CommentButton
