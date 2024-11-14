@@ -12,7 +12,6 @@ import ProfileButton from "Navbar/Right/ProfileButton";
 import CloseButton from "Global/components/Image Carousel/CloseButton";
 import FacebookLogoButton from "Global/components/Image Carousel/FacebookLogoButton";
 import useZoomControl from "Content/Home/MiddleContent/ZoomControl";
-import CopyButton from "Content/Home/MiddleContent/Buttons/CopyButton";
 import PostComments from "Content/Home/MiddleContent/Posts/PostComments";
 import CommentButton from "Content/Home/MiddleContent/Buttons/CommentButton";
 import WriteComment from "Content/Home/MiddleContent/Posts/WriteComment";
@@ -21,6 +20,7 @@ import { Post, User } from "Content/PostTypes";
 import { FaSearchMinus, FaSearchPlus } from "react-icons/fa";
 import { useCommentButtonLogic } from "Content/Home/MiddleContent/Buttons/CommentButtonLogic";
 import ShareButton from "../Buttons/ShareButton";
+import ImageShareButton from "../Buttons/ImageShareButton/ImageShareButton";
 
 interface PostDetailProps {
   posts: Post[];
@@ -310,8 +310,10 @@ export default function PostDetail({
                   handleCommentButtonToggle(post.id)
                 }
               />
-              <CopyButton post={post} />
-              <ShareButton post={post} className="post-detail-share-btn" />
+              {post.type === "video" && (
+                <ShareButton post={post} className="post-detail-share-btn" />
+              )}
+              {post.type === "image" && <ImageShareButton />}
             </div>
             <BorderLine />
             {post.commentCount > 0 && (

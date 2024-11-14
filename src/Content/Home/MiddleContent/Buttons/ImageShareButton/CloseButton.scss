@@ -1,0 +1,22 @@
+@import 'Global/GlobalStyles.scss';
+
+.close-btn-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 2.25em;
+    height: 2.25em;
+
+    border-radius: 100%;
+
+    background-color: $button-gray;
+
+    img, svg {
+        width: 1.35em;
+        height: 1.35em;
+
+        color: black;
+    }
+}

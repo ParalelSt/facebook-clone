@@ -1,0 +1,19 @@
+@import 'Global/GlobalStyles.scss';
+
+.share-button-drop-down-top {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 1.2em 0.5em;
+    padding-bottom: 0.8em;
+
+    h3 {
+        font-size: $large;
+    }
+
+    .close-btn-container {
+        right: 1em;
+    }
+}
