@@ -2,20 +2,16 @@ import { PiShareFatLight } from "react-icons/pi";
 import "Content/Home/MiddleContent/Buttons/ImageShareButton/ImageShareButton.scss";
 import useDropDown from "Global/hooks/useDropDown";
 import { useEffect, useRef } from "react";
-import { Post } from "Content/PostTypes";
 import ImageShareDropDown from "./ImageShareDropDown";
 
 interface ImageShareButtonProps {
-  post: Post;
   className?: string;
   copyBtnClassName?: string;
   copyBtnId?: string;
 }
 
-const ImageShareButton = ({ post, className }: ImageShareButtonProps) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [handleDropDownOpen, handleDropDownClose, toggleDropDown, isActive] =
-    useDropDown();
+const ImageShareButton = ({ className }: ImageShareButtonProps) => {
+  const [, handleDropDownClose, toggleDropDown, isActive] = useDropDown();
 
   const dropDownRef = useRef<HTMLDivElement | null>(null);
 

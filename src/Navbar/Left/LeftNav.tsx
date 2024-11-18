@@ -5,7 +5,9 @@ import SearchInput from "Navbar/Left/SearchInput";
 
 function LeftNav() {
   const currentPath = useLocation().pathname;
-  const placeholder = useHandleName(currentPath);
+  const capitalizedPath =
+    currentPath.charAt(0).toUpperCase() + currentPath.slice(1);
+  const placeholder = useHandleName(capitalizedPath);
 
   const navigate = useNavigate();
   const handleNavigate = () => {
