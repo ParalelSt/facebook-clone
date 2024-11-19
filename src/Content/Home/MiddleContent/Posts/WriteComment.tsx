@@ -23,6 +23,7 @@ interface WriteCommentProps {
   setPosts: React.Dispatch<React.SetStateAction<Post[]>>;
   postId: string;
   className?: string;
+  writeCommentId?: string;
 }
 
 const WriteComment: React.FC<WriteCommentProps> = ({
@@ -34,6 +35,7 @@ const WriteComment: React.FC<WriteCommentProps> = ({
   setPosts,
   postId,
   className,
+  writeCommentId,
 }) => {
   const [commentInputActive, setCommentInputActive] = useState(false);
   const [comment, setComment] = useState("");
@@ -81,7 +83,10 @@ const WriteComment: React.FC<WriteCommentProps> = ({
   };
 
   return (
-    <div className={`post-detail-write-comment ${className}`}>
+    <div
+      id={writeCommentId}
+      className={`post-detail-write-comment ${className}`}
+    >
       <div
         className="post-detail-write-comment-left user-detail"
         onClick={handleDropDownOpen}
