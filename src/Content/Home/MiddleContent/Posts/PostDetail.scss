@@ -163,9 +163,7 @@
     }
 }
 
-#writeCommentVideo {
-    bottom: -5em;
-}
+
 
 .write-comment {
     &.active {
@@ -177,6 +175,10 @@
     &.disabled {
         margin-top: 0.5em;
     }
+}
+
+#writeCommentVideo {
+    bottom: -5em;
 }
 
 .post-detail-buttons {

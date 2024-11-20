@@ -326,10 +326,10 @@ export default function PostDetail({
               commentInputRef={commentInputRef}
               setPosts={setPosts}
               postId={post.id}
-              writeCommentId="writeCommentVideo"
-              className={`${
-                post.type === "video" ? "write-comment-video" : ""
-              } write-comment ${post.commentCount > 0 ? "active" : "disabled"}`}
+              writeCommentId={post.type === "video" ? "writeCommentVideo" : ""}
+              className={`write-comment ${
+                post.commentCount > 0 ? "active" : "disabled"
+              }`}
             />
           </div>
         </div>
