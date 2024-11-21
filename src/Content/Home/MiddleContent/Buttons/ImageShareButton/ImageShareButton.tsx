@@ -1,7 +1,6 @@
 import { PiShareFatLight } from "react-icons/pi";
 import "Content/Home/MiddleContent/Buttons/ImageShareButton/ImageShareButton.scss";
-import useDropDown from "Global/hooks/useDropDown";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import ImageShareDropDown from "./ImageShareDropDown";
 
 interface ImageShareButtonProps {
@@ -11,33 +10,33 @@ interface ImageShareButtonProps {
 }
 
 const ImageShareButton = ({ className }: ImageShareButtonProps) => {
-  const [, handleDropDownClose, toggleDropDown, isActive] = useDropDown();
-
-  const dropDownRef = useRef<HTMLDivElement | null>(null);
+  const [isActive, setIsActive] = useState<boolean>(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleCloseDropDown = (e: MouseEvent) => {
+    const handleClickOutside = (event: MouseEvent) => {
       if (
-        dropDownRef.current &&
-        !dropDownRef.current.contains(e.target as Node)
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
       ) {
-        if (isActive) {
-          handleDropDownClose();
-        }
+        setIsActive(false);
       }
     };
 
-    document.body.addEventListener("click", handleCloseDropDown);
-    console.log("DropDown isActive: ", isActive);
-
+    document.addEventListener("mousedown", handleClickOutside);
     return () => {
-      document.body.removeEventListener("click", handleCloseDropDown);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [handleDropDownClose, isActive]);
+  }, []);
 
-  const handleOpenDropDown = (e: React.MouseEvent) => {
-    e.stopPropagation();
-    toggleDropDown();
+  const handleOpenDropDown = () => {
+    console.log("Opening dropdown");
+    setIsActive(true);
+  };
+
+  const handleCloseDropDown = () => {
+    console.log("Closing dropdown");
+    setIsActive(false);
   };
 
   return (
@@ -49,7 +48,11 @@ const ImageShareButton = ({ className }: ImageShareButtonProps) => {
     >
       <PiShareFatLight />
       <span className="button-text">Share</span>
-      <ImageShareDropDown isActive={isActive} />
+      <ImageShareDropDown
+        closeFunction={handleCloseDropDown}
+        ref={dropdownRef}
+        isActive={isActive}
+      />
     </button>
   );
 };
