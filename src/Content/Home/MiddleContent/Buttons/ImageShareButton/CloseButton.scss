@@ -13,6 +13,10 @@
 
     background-color: $button-gray;
 
+    &:hover {
+        filter: brightness(0.97);
+    }
+
     img, svg {
         width: 1.35em;
         height: 1.35em;
