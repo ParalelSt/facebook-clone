@@ -21,6 +21,7 @@ import { FaSearchMinus, FaSearchPlus } from "react-icons/fa";
 import { useCommentButtonLogic } from "Content/Home/MiddleContent/Buttons/CommentButtonLogic";
 import ShareButton from "../Buttons/ShareButton";
 import ImageShareButton from "../Buttons/ImageShareButton/ImageShareButton";
+import { ContactListType } from "Content/Home/Home";
 
 interface PostDetailProps {
   posts: Post[];
@@ -28,6 +29,7 @@ interface PostDetailProps {
   users: User[];
   setIsAuthenticated: (isAuthenticated: boolean) => void;
   setCurrentUser: (user: User | null) => void;
+  contacts: ContactListType[];
 }
 
 export default function PostDetail({
@@ -36,6 +38,7 @@ export default function PostDetail({
   users,
   setIsAuthenticated,
   setCurrentUser,
+  contacts,
 }: PostDetailProps) {
   const commentButtonsActive = true;
   const commentInputRef = useRef<{ [postId: string]: HTMLInputElement | null }>(
@@ -313,7 +316,9 @@ export default function PostDetail({
               {post.type === "video" && (
                 <ShareButton post={post} className="post-detail-share-btn" />
               )}
-              {post.type === "image" && <ImageShareButton />}
+              {post.type === "image" && (
+                <ImageShareButton contacts={contacts} />
+              )}
             </div>
             <BorderLine />
             {post.commentCount > 0 && (

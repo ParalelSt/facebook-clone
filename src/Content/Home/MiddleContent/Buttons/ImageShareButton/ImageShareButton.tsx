@@ -2,14 +2,21 @@ import { PiShareFatLight } from "react-icons/pi";
 import "Content/Home/MiddleContent/Buttons/ImageShareButton/ImageShareButton.scss";
 import { useEffect, useRef, useState } from "react";
 import ImageShareDropDown from "./ImageShareDropDown";
+import { ContactListType } from "Content/Home/Home";
 
 interface ImageShareButtonProps {
   className?: string;
   copyBtnClassName?: string;
   copyBtnId?: string;
+  contacts: ContactListType[];
 }
 
-const ImageShareButton = ({ className }: ImageShareButtonProps) => {
+const ImageShareButton = ({
+  className,
+  copyBtnClassName,
+  copyBtnId,
+  contacts,
+}: ImageShareButtonProps) => {
   const [isActive, setIsActive] = useState<boolean>(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -52,6 +59,7 @@ const ImageShareButton = ({ className }: ImageShareButtonProps) => {
         closeFunction={handleCloseDropDown}
         ref={dropdownRef}
         isActive={isActive}
+        contacts={contacts}
       />
     </button>
   );

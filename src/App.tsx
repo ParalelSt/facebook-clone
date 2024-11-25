@@ -1070,6 +1070,7 @@ function App() {
                 setCurrentUser={setCurrentUser}
                 users={users}
                 setIsAuthenticated={setIsAuthenticated}
+                contacts={contactList}
               ></PostDetail>
             }
           ></Route>
@@ -1086,6 +1087,7 @@ function App() {
                 setCurrentUser={setCurrentUser}
                 users={users}
                 setIsAuthenticated={setIsAuthenticated}
+                contacts={contactList}
               />
             }
           />

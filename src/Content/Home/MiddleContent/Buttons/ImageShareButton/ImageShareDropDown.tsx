@@ -4,14 +4,16 @@ import ShareButtonMiddle from "./ShareButtonMiddle";
 import BorderLine from "Global/components/BorderLine";
 import ShareButtonTop from "./ShareButtonTop";
 import ContentContainer from "Global/components/ContentContainer/ContentContainer";
+import { ContactListType } from "Content/Home/Home";
 
 interface ImageShareDropDownProps {
   isActive: boolean;
   closeFunction: (e: React.MouseEvent) => void;
+  contacts: ContactListType[];
 }
 
 const ImageShareDropDown = forwardRef<HTMLDivElement, ImageShareDropDownProps>(
-  ({ isActive, closeFunction }, ref) => {
+  ({ isActive, closeFunction, contacts }, ref) => {
     const handleClick = (e: React.MouseEvent) => {
       e.stopPropagation();
 
@@ -29,7 +31,7 @@ const ImageShareDropDown = forwardRef<HTMLDivElement, ImageShareDropDownProps>(
         <ContentContainer className="image-share-drop-down">
           <ShareButtonTop closeFunction={closeFunction} />
           <BorderLine />
-          <ShareButtonMiddle />
+          <ShareButtonMiddle contacts={contacts} />
           <ShareButtonBottom />
         </ContentContainer>
       </div>

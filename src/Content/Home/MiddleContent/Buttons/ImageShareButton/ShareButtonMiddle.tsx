@@ -1,7 +1,12 @@
+import { ContactListType } from "Content/Home/Home";
 import "Content/Home/MiddleContent/Buttons/ImageShareButton/ShareDropDownStyles.scss";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 
-const ShareButtonMiddle = () => {
+interface ShareButtonMiddleProps {
+  contacts: ContactListType[];
+}
+
+const ShareButtonMiddle = ({ contacts }: ShareButtonMiddleProps) => {
   return (
     <div className="share-button-drop-down-middle">
       <div className="share-button-drop-down-middle-input">
@@ -9,6 +14,11 @@ const ShareButtonMiddle = () => {
           <FaMagnifyingGlass />
         </div>
         <input type="text" placeholder="Search for people and groups" />
+      </div>
+      <div className="share-button-drop-down-middle-content-container">
+        {contacts.map((contact) => {
+          return <div className="contact">{contact.username}</div>;
+        })}
       </div>
     </div>
   );
