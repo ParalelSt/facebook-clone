@@ -86,6 +86,10 @@
     &-content-container {
         display: flex;
         flex-direction: column;
+
+        height: 28em;
+
+        overflow-y: scroll;
     }
 
     .contact {
@@ -108,7 +112,7 @@
         }
 
         .username {
-            
+
         }
     }
 }
