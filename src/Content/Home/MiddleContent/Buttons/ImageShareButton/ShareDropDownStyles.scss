@@ -24,6 +24,26 @@
 
     padding: 0.6em 1em;
 
+    .share-button-drop-down-middle-text {
+        display: flex;
+        align-items: center;
+
+        .lock-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            svg {
+                height: 0.8em;
+                width: 0.8em;
+            }
+        }
+
+        span {
+            font-size: $xs;
+        }
+    }
+
     &-input {
         display: flex;
         align-items: center;
@@ -60,6 +80,35 @@
         svg {
             height: 1em;
             width: 1em;
+        }
+    }
+
+    &-content-container {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .contact {
+        display: flex;
+        align-items: center;
+        
+        width: 100%;
+
+        .profile-picture {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            img {
+                border-radius: 100%;
+
+                width: 42px;
+                height: 42px;
+            }
+        }
+
+        .username {
+            
         }
     }
 }
