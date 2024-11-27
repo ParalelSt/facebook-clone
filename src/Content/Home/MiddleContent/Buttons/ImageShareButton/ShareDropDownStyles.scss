@@ -24,6 +24,11 @@
 
     padding: 0.6em 1em;
 
+    overflow-y: scroll;
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
     .share-button-drop-down-middle-text {
         display: flex;
         align-items: center;
@@ -85,18 +90,29 @@
 
     &-content-container {
         display: flex;
-        flex-direction: column;
 
         height: 28em;
+    }
 
-        overflow-y: scroll;
+    .contacts-container {
+        width: 100%;
     }
 
     .contact {
         display: flex;
         align-items: center;
+
+        padding: 0.5em;
         
         width: 100%;
+
+        &:hover {
+            background-color: #f2f2f2;
+
+            img {
+                filter: brightness(0.95);
+            }
+        }
 
         .profile-picture {
             display: flex;
@@ -108,6 +124,8 @@
 
                 width: 42px;
                 height: 42px;
+
+                object-fit: cover;
             }
         }
 

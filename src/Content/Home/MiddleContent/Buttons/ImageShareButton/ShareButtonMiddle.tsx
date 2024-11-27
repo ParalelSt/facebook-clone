@@ -2,6 +2,7 @@ import { ContactListType } from "Content/Home/Home";
 import "Content/Home/MiddleContent/Buttons/ImageShareButton/ShareDropDownStyles.scss";
 import { useRef, useState } from "react";
 import { FaLock, FaMagnifyingGlass } from "react-icons/fa6";
+import { v4 } from "uuid";
 
 interface ShareButtonMiddleProps {
   contacts: ContactListType[];
@@ -31,17 +32,20 @@ const ShareButtonMiddle = ({ contacts }: ShareButtonMiddleProps) => {
         <input type="text" placeholder="Search for people and groups" />
       </div>
       <div className="share-button-drop-down-middle-content-container">
-        {contacts.map((contact) => {
-          return (
-            <div className="contact" key={contact.id}>
-              <div className="profile-picture">
-                <img src={contact.image} alt="contact profile picture" />
+        <div className="contacts-container">
+          {contacts.map((contact) => {
+            return (
+              <div className="contact" key={contact.id}>
+                <div className="profile-picture">
+                  <img src={contact.image} alt="contact profile picture" />
+                </div>
+                <h4 className="username">{contact.username}</h4>
+                <input id={v4()} type="checkbox" ref={checkBoxRef} />
               </div>
-              <h4 className="username">{contact.username}</h4>
-              <input type="checkbox" ref={checkBoxRef} />
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
+        <div className="scrollbar-container"></div>
       </div>
     </div>
   );
