@@ -2,6 +2,8 @@ import { ContactListType } from "Content/Home/Home";
 import "Content/Home/MiddleContent/Buttons/ImageShareButton/ShareDropDownStyles.scss";
 import { useRef, useState } from "react";
 import { FaLock, FaMagnifyingGlass } from "react-icons/fa6";
+import { IoArrowRedo } from "react-icons/io5";
+import { PiCaretRight } from "react-icons/pi";
 import { v4 } from "uuid";
 
 interface ShareButtonMiddleProps {
@@ -11,6 +13,13 @@ interface ShareButtonMiddleProps {
 const ShareButtonMiddle = ({ contacts }: ShareButtonMiddleProps) => {
   const [isGroup, setIsGroup] = useState(false);
   const checkBoxRef = useRef<HTMLInputElement | null>(null);
+
+  const handleContactClick = () => {
+    if (checkBoxRef.current) {
+      checkBoxRef.current.checked = !checkBoxRef.current.checked;
+      checkBoxRef.current.dispatchEvent(new Event("change", { bubbles: true }));
+    }
+  };
 
   return (
     <div className="share-button-drop-down-middle">
@@ -33,9 +42,22 @@ const ShareButtonMiddle = ({ contacts }: ShareButtonMiddleProps) => {
       </div>
       <div className="share-button-drop-down-middle-content-container">
         <div className="contacts-container">
+          <div className="contact" onClick={handleContactClick}>
+            <div className="icon">
+              <IoArrowRedo />
+            </div>
+            <h4 className="title">More share options</h4>
+            <div className="caret-container">
+              <PiCaretRight />
+            </div>
+          </div>
           {contacts.map((contact) => {
             return (
-              <div className="contact" key={contact.id}>
+              <div
+                className="contact"
+                key={contact.id}
+                onClick={handleContactClick}
+              >
                 <div className="profile-picture">
                   <img src={contact.image} alt="contact profile picture" />
                 </div>

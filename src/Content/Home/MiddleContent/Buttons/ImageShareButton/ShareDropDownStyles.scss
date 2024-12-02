@@ -26,16 +26,6 @@
 
     overflow-y: scroll;
 
-    //Fix scrollbars for all browsers
-
-    ::-webkit-scrollbar {
-        width: 8px; 
-    }
-
-    ::-webkit-scrollbar-track {
-        background: rgba($color: #000000, $alpha: 1.0);
-    }
-
     .share-button-drop-down-middle-text {
         display: flex;
         align-items: center;
@@ -103,6 +93,8 @@
 
     .contacts-container {
         width: 100%;
+
+        padding: 0.5em 0;
     }
 
     .contact {
@@ -110,6 +102,7 @@
         align-items: center;
 
         padding: 0.5em;
+        border-radius: 0.5em;
         
         width: 100%;
 
@@ -134,10 +127,54 @@
 
                 object-fit: cover;
             }
+
         }
 
-        .username {
+        .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
 
+            border-radius: 100%;
+
+            width: 42px;
+            height: 42px;
+
+            background-color: #e4e6eb;
+
+            svg {
+                width: 1.7em;
+                height: 1.7em;
+
+                object-fit: cover;
+
+                color: black;
+            }
+        }
+
+        .username, .title {
+            padding-left: 0.6em;
+        }
+
+        .title {
+            font-weight: normal;
+        }
+
+        input {
+            margin-left: auto;
+            margin-right: 0.2em;
+
+            height: 1.5em;
+            width: 1.5em;
+        }
+
+        .caret-container {
+            margin-left: auto;
+
+            svg {
+                width: 1.7em;
+                height: 1.7em;
+            }
         }
     }
 }
