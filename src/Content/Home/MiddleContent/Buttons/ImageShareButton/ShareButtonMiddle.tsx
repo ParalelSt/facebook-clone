@@ -1,6 +1,6 @@
 import { ContactListType } from "Content/Home/Home";
 import "Content/Home/MiddleContent/Buttons/ImageShareButton/ShareDropDownStyles.scss";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { FaLock, FaMagnifyingGlass } from "react-icons/fa6";
 import { IoArrowRedo } from "react-icons/io5";
 import { PiCaretRight } from "react-icons/pi";
@@ -12,13 +12,17 @@ interface ShareButtonMiddleProps {
 
 const ShareButtonMiddle = ({ contacts }: ShareButtonMiddleProps) => {
   const [isGroup, setIsGroup] = useState(false);
-  const checkBoxRef = useRef<HTMLInputElement | null>(null);
+  const [selectedContacts, setSelectedContacts] = useState<
+    Record<string, boolean>
+  >({});
 
-  const handleContactClick = () => {
-    if (checkBoxRef.current) {
-      checkBoxRef.current.checked = !checkBoxRef.current.checked;
-      checkBoxRef.current.dispatchEvent(new Event("change", { bubbles: true }));
-    }
+  const handleContactClick = (id: string) => {
+    setSelectedContacts((prev) => ({
+      ...prev,
+      [id]: !prev[id],
+    }));
+
+    console.log(selectedContacts);
   };
 
   return (
@@ -42,7 +46,7 @@ const ShareButtonMiddle = ({ contacts }: ShareButtonMiddleProps) => {
       </div>
       <div className="share-button-drop-down-middle-content-container">
         <div className="contacts-container">
-          <div className="contact" onClick={handleContactClick}>
+          <div className="contact">
             <div className="icon">
               <IoArrowRedo />
             </div>
@@ -56,13 +60,17 @@ const ShareButtonMiddle = ({ contacts }: ShareButtonMiddleProps) => {
               <div
                 className="contact"
                 key={contact.id}
-                onClick={handleContactClick}
+                onClick={() => handleContactClick(contact.id)}
               >
                 <div className="profile-picture">
                   <img src={contact.image} alt="contact profile picture" />
                 </div>
                 <h4 className="username">{contact.username}</h4>
-                <input id={v4()} type="checkbox" ref={checkBoxRef} />
+                <input
+                  checked={selectedContacts[contact.id]}
+                  id={v4()}
+                  type="checkbox"
+                />
               </div>
             );
           })}
