@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, useState } from "react";
 import ShareButtonBottom from "./ShareButtonBottom";
 import ShareButtonMiddle from "./ShareButtonMiddle";
 import BorderLine from "Global/components/BorderLine";
@@ -22,6 +22,18 @@ const ImageShareDropDown = forwardRef<HTMLDivElement, ImageShareDropDownProps>(
       }
     };
 
+    const [selectedContacts, setSelectedContacts] = useState<
+      Record<string, boolean>
+    >(() =>
+      contacts.reduce(
+        (acc, contact) => ({
+          ...acc,
+          [contact.id]: false,
+        }),
+        {} as Record<string, boolean>
+      )
+    );
+
     return (
       <div
         onClick={handleClick}
@@ -31,7 +43,11 @@ const ImageShareDropDown = forwardRef<HTMLDivElement, ImageShareDropDownProps>(
         <ContentContainer className="image-share-drop-down">
           <ShareButtonTop closeFunction={closeFunction} />
           <BorderLine />
-          <ShareButtonMiddle contacts={contacts} />
+          <ShareButtonMiddle
+            selectedContacts={selectedContacts}
+            setSelectedContacts={setSelectedContacts}
+            contacts={contacts}
+          />
           <ShareButtonBottom />
         </ContentContainer>
       </div>

@@ -8,21 +8,24 @@ import { v4 } from "uuid";
 
 interface ShareButtonMiddleProps {
   contacts: ContactListType[];
+  selectedContacts: Record<string, boolean>;
+  setSelectedContacts: (selectedContacts: Record<string, boolean>) => void;
 }
 
-const ShareButtonMiddle = ({ contacts }: ShareButtonMiddleProps) => {
+const ShareButtonMiddle = ({
+  contacts,
+  selectedContacts,
+  setSelectedContacts,
+}: ShareButtonMiddleProps) => {
   const [isGroup, setIsGroup] = useState(false);
-  const [selectedContacts, setSelectedContacts] = useState<
-    Record<string, boolean>
-  >({});
 
   const handleContactClick = (id: string) => {
-    setSelectedContacts((prev) => ({
-      ...prev,
-      [id]: !prev[id],
-    }));
-
-    console.log(selectedContacts);
+    setSelectedContacts((prevSelected) => {
+      return {
+        ...prevSelected,
+        [id]: !prevSelected[id],
+      };
+    });
   };
 
   return (
@@ -67,7 +70,7 @@ const ShareButtonMiddle = ({ contacts }: ShareButtonMiddleProps) => {
                 </div>
                 <h4 className="username">{contact.username}</h4>
                 <input
-                  checked={selectedContacts[contact.id]}
+                  checked={selectedContacts[contact.id] || false}
                   id={v4()}
                   type="checkbox"
                 />
