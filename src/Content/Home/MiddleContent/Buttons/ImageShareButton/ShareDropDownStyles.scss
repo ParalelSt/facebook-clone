@@ -179,3 +179,41 @@
         }
     }
 }
+
+.share-button-drop-down-bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 0.8em 1em;
+
+    &-input {
+        display: flex;
+        align-items: center;
+
+        border-radius: 1em;
+
+        width: 100%;
+
+        background-color: $background;
+
+        input {
+            padding: 0.55em;
+            padding-left: 0.75em;
+            border: none;
+
+            width: 100%;
+
+            background-color: transparent;
+            font-size: $medium;
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+}
