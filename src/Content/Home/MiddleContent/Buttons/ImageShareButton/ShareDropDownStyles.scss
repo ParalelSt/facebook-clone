@@ -88,7 +88,7 @@
     &-content-container {
         display: flex;
 
-        height: 29.5em;
+        height: 33.1em;
     }
 
     .contacts-container {
@@ -186,8 +186,7 @@
     align-items: center;
     justify-content: center;
 
-    display: flex;
-    flex-direction: column;
+    border-top: 1px solid hsla(220, 7%, 82%, 0.4);
 
     padding: 0.8em 1em;
 
