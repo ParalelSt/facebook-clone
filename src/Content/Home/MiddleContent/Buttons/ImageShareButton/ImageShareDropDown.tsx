@@ -1,4 +1,4 @@
-import { forwardRef, useState } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import ShareButtonBottom from "./ShareButtonBottom";
 import ShareButtonMiddle from "./ShareButtonMiddle";
 import BorderLine from "Global/components/BorderLine";
@@ -34,6 +34,20 @@ const ImageShareDropDown = forwardRef<HTMLDivElement, ImageShareDropDownProps>(
       )
     );
 
+    useEffect(() => {
+      const handleKeyDown = (event: KeyboardEvent) => {
+        if (event.key === "Escape") {
+          closeFunction(event as unknown as React.MouseEvent);
+        }
+      };
+
+      document.addEventListener("keydown", handleKeyDown);
+
+      return () => {
+        document.removeEventListener("keydown", handleKeyDown);
+      };
+    });
+
     return (
       <div
         onClick={handleClick}
@@ -48,7 +62,7 @@ const ImageShareDropDown = forwardRef<HTMLDivElement, ImageShareDropDownProps>(
             setSelectedContacts={setSelectedContacts}
             contacts={contacts}
           />
-          <ShareButtonBottom />
+          <ShareButtonBottom isOpen={isActive} />
         </ContentContainer>
       </div>
     );
