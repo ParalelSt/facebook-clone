@@ -1,5 +1,5 @@
 import "Content/Home/MiddleContent/Buttons/ImageShareButton/ShareDropDownStyles.scss";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FaFacebookMessenger } from "react-icons/fa6";
 
 interface ShareButtonBottomProps {
@@ -8,6 +8,8 @@ interface ShareButtonBottomProps {
 
 const ShareButtonBottom = ({ isOpen }: ShareButtonBottomProps) => {
   const inputFocusRef = useRef<HTMLInputElement | null>(null);
+
+  const [sendButtonActive, setSendButtonActive] = useState(true);
 
   useEffect(() => {
     if (isOpen) {
@@ -24,12 +26,19 @@ const ShareButtonBottom = ({ isOpen }: ShareButtonBottomProps) => {
           placeholder="Add an optional message here..."
         />
       </div>
-      <div className="share-button-drop-down-bottom-button-container">
-        <div className="share-button-drop-down-bottom-icon-container">
+      <button
+        className={`share-button-drop-down-bottom-button-container ${
+          sendButtonActive ? "active" : "disabled"
+        }`}
+      >
+        <div className="share-button-drop-down-bottom-button-container-icon-container">
           <FaFacebookMessenger />
         </div>
-        <h4 className="share-button-drop-down-bottom-button-text">Send</h4>
-      </div>
+        <h4 className="share-button-drop-down-bottom-button-container-text">
+          Send
+        </h4>
+        {!sendButtonActive && <div className="blur-background"></div>}
+      </button>
     </div>
   );
 };
