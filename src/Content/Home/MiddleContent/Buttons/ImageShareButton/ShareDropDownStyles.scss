@@ -235,6 +235,11 @@
         &.active {
             background-color: $blue;
 
+            &:hover {
+                filter: brightness(0.97);
+                cursor: pointer;
+            }
+
             .share-button-drop-down-bottom-button-container-icon-container {
                 svg {
                     color: white;

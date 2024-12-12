@@ -4,18 +4,34 @@ import { FaFacebookMessenger } from "react-icons/fa6";
 
 interface ShareButtonBottomProps {
   isOpen: boolean;
+  selectedContacts: Record<string, boolean>;
 }
 
-const ShareButtonBottom = ({ isOpen }: ShareButtonBottomProps) => {
+const ShareButtonBottom = ({
+  isOpen,
+  selectedContacts,
+}: ShareButtonBottomProps) => {
   const inputFocusRef = useRef<HTMLInputElement | null>(null);
 
-  const [sendButtonActive, setSendButtonActive] = useState(true);
+  const [sendButtonActive, setSendButtonActive] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
       inputFocusRef.current?.focus();
     }
   }, [isOpen]);
+
+  useEffect(() => {
+    const anySelected = Object.values(selectedContacts).some(
+      (value) => value === true
+    );
+
+    if (anySelected) {
+      setSendButtonActive(true);
+    } else {
+      setSendButtonActive(false);
+    }
+  }, [selectedContacts]);
 
   return (
     <div className="share-button-drop-down-bottom">

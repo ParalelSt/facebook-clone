@@ -62,7 +62,10 @@ const ImageShareDropDown = forwardRef<HTMLDivElement, ImageShareDropDownProps>(
             setSelectedContacts={setSelectedContacts}
             contacts={contacts}
           />
-          <ShareButtonBottom isOpen={isActive} />
+          <ShareButtonBottom
+            isOpen={isActive}
+            selectedContacts={selectedContacts}
+          />
         </ContentContainer>
       </div>
     );
