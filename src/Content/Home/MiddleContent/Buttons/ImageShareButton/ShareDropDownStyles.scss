@@ -232,6 +232,10 @@
 
         background-color: $button-gray;
 
+        &.mouseDown {
+            width: 98.5%;
+        }
+
         &.active {
             background-color: $blue;
 

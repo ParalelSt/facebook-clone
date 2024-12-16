@@ -14,6 +14,7 @@ const ShareButtonBottom = ({
   const inputFocusRef = useRef<HTMLInputElement | null>(null);
 
   const [sendButtonActive, setSendButtonActive] = useState(false);
+  const [isMouseDown, setIsMouseDown] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -33,6 +34,14 @@ const ShareButtonBottom = ({
     }
   }, [selectedContacts]);
 
+  const handleMouseDown = () => {
+    setIsMouseDown(true);
+  };
+
+  const handleMouseUp = () => {
+    setIsMouseDown(false);
+  };
+
   return (
     <div className="share-button-drop-down-bottom">
       <div className="share-button-drop-down-bottom-input">
@@ -43,9 +52,11 @@ const ShareButtonBottom = ({
         />
       </div>
       <button
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
         className={`share-button-drop-down-bottom-button-container ${
           sendButtonActive ? "active" : "disabled"
-        }`}
+        } ${isMouseDown ? "mouseDown" : "mouseUp"}`}
       >
         <div className="share-button-drop-down-bottom-button-container-icon-container">
           <FaFacebookMessenger />
