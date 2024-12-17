@@ -42,6 +42,10 @@ const ShareButtonBottom = ({
     setIsMouseDown(false);
   };
 
+  const handleMouseLeave = () => {
+    setIsMouseDown(false);
+  };
+
   return (
     <div className="share-button-drop-down-bottom">
       <div className="share-button-drop-down-bottom-input">
@@ -54,6 +58,7 @@ const ShareButtonBottom = ({
       <button
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseLeave}
         className={`share-button-drop-down-bottom-button-container ${
           sendButtonActive ? "active" : "disabled"
         } ${isMouseDown ? "mouseDown" : "mouseUp"}`}

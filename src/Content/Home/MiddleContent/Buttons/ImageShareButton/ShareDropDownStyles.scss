@@ -232,16 +232,16 @@
 
         background-color: $button-gray;
 
-        &.mouseDown {
-            width: 98.5%;
-        }
-
         &.active {
             background-color: $blue;
 
             &:hover {
                 filter: brightness(0.97);
                 cursor: pointer;
+            }
+
+            &.mouseDown {
+                width: 98.5%;
             }
 
             .share-button-drop-down-bottom-button-container-icon-container {
