@@ -39,11 +39,13 @@ const ImageShareButton = ({
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [isActive]);
 
-  const handleOpenDropDown = () => {
+  const handleOpenDropDown = (event) => {
     console.log("Opening dropdown");
+    event.stopPropagation();
     setIsActive(true);
+    console.log(isActive);
   };
 
   const handleCloseDropDown = () => {
