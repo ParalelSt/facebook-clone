@@ -5,11 +5,15 @@ import { FaFacebookMessenger } from "react-icons/fa6";
 interface ShareButtonBottomProps {
   isOpen: boolean;
   selectedContacts: Record<string, boolean>;
+  setSelectedContacts: (selectedContacts: Record<string, boolean>) => void;
+  closeFunction: (e: React.MouseEvent) => void;
 }
 
 const ShareButtonBottom = ({
   isOpen,
   selectedContacts,
+  setSelectedContacts,
+  closeFunction,
 }: ShareButtonBottomProps) => {
   const inputFocusRef = useRef<HTMLInputElement | null>(null);
 
@@ -46,6 +50,13 @@ const ShareButtonBottom = ({
     setIsMouseDown(false);
   };
 
+  const handleCloseDropDown = (event: React.MouseEvent) => {
+    if (sendButtonActive) {
+      closeFunction(event);
+      setSelectedContacts({ contact: false });
+    }
+  };
+
   return (
     <div className="share-button-drop-down-bottom">
       <div className="share-button-drop-down-bottom-input">
@@ -59,6 +70,7 @@ const ShareButtonBottom = ({
         onMouseDown={handleMouseDown}
         onMouseUp={handleMouseUp}
         onMouseLeave={handleMouseLeave}
+        onClick={handleCloseDropDown}
         className={`share-button-drop-down-bottom-button-container ${
           sendButtonActive ? "active" : "disabled"
         } ${isMouseDown ? "mouseDown" : "mouseUp"}`}

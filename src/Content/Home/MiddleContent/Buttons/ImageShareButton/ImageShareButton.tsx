@@ -41,7 +41,7 @@ const ImageShareButton = ({
     };
   }, [isActive]);
 
-  const handleOpenDropDown = (event) => {
+  const handleOpenDropDown = (event: React.MouseEvent) => {
     console.log("Opening dropdown");
     event.stopPropagation();
     setIsActive(true);
