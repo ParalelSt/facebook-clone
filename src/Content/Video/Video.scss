@@ -1,5 +1,9 @@
 @import 'Global/GlobalStyles.scss';
 
+.video-container {
+    display: flex;
+}
+
 .video-wrapper {
     display: flex;
     flex-direction: column;
@@ -9,14 +13,14 @@
 
     margin-top: 4.5em;
     margin-bottom: 1.5em;
-
     width: 100vw;
 
-    background-color: $background;
+    background-color: #f0f2f5;
 
     .video-content-container {
         align-items: center;
 
+        margin-left: 15em;
         padding: 0;
 
         width: 60em;

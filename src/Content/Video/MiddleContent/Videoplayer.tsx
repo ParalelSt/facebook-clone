@@ -27,7 +27,7 @@ const Videoplayer = ({ post }: VideoPlayerProps) => {
 
   return (
     <div className="video-player">
-      <div className="video-container" key={post.id}>
+      <div className="video-media-container" key={post.id}>
         <ReactVisibilitySensor
           onChange={(isVisible: boolean) => setIsVisible(isVisible)}
         >
